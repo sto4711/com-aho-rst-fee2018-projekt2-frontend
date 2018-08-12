@@ -5,10 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class InfoService {
   info: string  = '';
+  when: Date = null;
 
   constructor() { }
 
   showInfo(info: string)  {
     this.info = info;
+    this.when = new Date();
   }
 }

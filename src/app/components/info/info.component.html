@@ -1,5 +1,3 @@
 <div *ngIf="infoService.info.length">
-
-{{infoService.info}}
-
+<p>{{infoService.when | date :"HH:mm:ss"}} &emsp; {{infoService.info}}</p>
 </div>
