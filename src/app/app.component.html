@@ -1,11 +1,6 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    ich bin auch ein {{ title }}
-  </h1>
-</div>
-
-<app-login></app-login>
-<br>
+<h1>{{title}}</h1>
+<nav>
+  <a routerLink="/login">Login</a>
+</nav>
+<router-outlet></router-outlet>
 <app-info></app-info>
-
