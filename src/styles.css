@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --baseColorStyle1: #01B5E7;
+  --baseColorStyle2: black;
+  --baseColor: var(--baseColorStyle1);
+}
+
+body {
+  font-family: 'Calibri', sans-serif;
+  color: var(--baseColor);
+}
