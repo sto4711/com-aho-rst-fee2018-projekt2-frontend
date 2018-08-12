@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from './login';
+import { Login } from 'src/app/services/login/login';
+import { LoginService } from 'src/app/services/login/login.service';
 
 
 @Component({
@@ -9,15 +10,20 @@ import { Login } from './login';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
-  login: Login;
+  login: Login = {
+    user: '',
+    pwd: ''
+  };
+
+
 
   ngOnInit() {
   }
 
   onClick() {
-    console.log('hallo moto');
+    this.loginService.signin(this.login);
   }
 
 }
