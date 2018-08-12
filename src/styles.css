@@ -2,9 +2,14 @@
   --baseColorStyle1: #01B5E7;
   --baseColorStyle2: black;
   --baseColor: var(--baseColorStyle1);
+  --baseColorError: red;
 }
 
 body {
   font-family: 'Calibri', sans-serif;
   color: var(--baseColor);
+}
+
+.error {
+  color: var(--baseColorError);
 }

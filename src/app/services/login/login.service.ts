@@ -24,8 +24,8 @@ export class LoginService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap((token: Token) => console.log("signin ok")),
-      catchError(this.handleError<Token>('signin'))
+      tap((token: Token) => console.log("signin ok"))/*,
+      catchError(this.handleError<Token>('signin'))*/
     );
   }
 
@@ -33,8 +33,7 @@ export class LoginService {
     return this.http.post<Token>(backend_URL + 'auth/signout', null, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
     },).pipe(
-      tap((token: Token) => console.log("signout ok")),
-      catchError(this.handleError<Token>('signout'))
+      tap((token: Token) => console.log("signout ok"))
     );
   }
 

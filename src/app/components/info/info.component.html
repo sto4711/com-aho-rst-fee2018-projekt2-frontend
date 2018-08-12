@@ -1,3 +1,9 @@
-<div *ngIf="infoService.info.length">
-<p>{{infoService.when | date :"HH:mm:ss"}} &emsp; {{infoService.info}}</p>
+<br>
+<br>
+<br>
+<div>
+  <span *ngIf="infoService.info.length"  >{{infoService.when | date :"HH:mm:ss"}} &emsp;{{infoService.info}}</span>
+  <span *ngIf="infoService.error.length" class="error"> {{infoService.when | date :"HH:mm:ss"}} &emsp; {{infoService.error}}</span>
 </div>
+
+
