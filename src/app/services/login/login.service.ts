@@ -18,16 +18,6 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
 
-  private createHeaders(token: Token): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    if (token !== null) {
-      headers.set("Authorization", token.value);
-    }
-    return headers;
-  }
-
-
   /** gets token back */
   signin(login: Login): Observable<Token> {
     return this.http.post<Token>(backend_URL + 'auth/signin', login, {
