@@ -3,6 +3,7 @@ import {Login} from 'src/app/services/login/login';
 import {Token} from 'src/app/services/login/token';
 import {LoginService} from 'src/app/services/login/login.service';
 import {InfoService} from 'src/app/services/info/info.service';
+import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 
 
 @Component({
@@ -12,9 +13,10 @@ import {InfoService} from 'src/app/services/info/info.service';
 })
 export class LoginComponent implements OnInit {
 
-  private token: Token = new Token();
-
-  constructor(private loginService: LoginService, private infoService: InfoService) {
+  constructor(
+    private infoService: InfoService
+    , private loginService: LoginService
+    , private clientContextService: ClientContextService) {
   }
 
   login: Login = {
@@ -27,9 +29,9 @@ export class LoginComponent implements OnInit {
 
   onClick_Login() {
     this.loginService.signin(this.login)
-      .subscribe(result => {
-          this.token = result;
-          this.infoService.showInfo("token: " + result.value);
+      .subscribe(token => {
+          this.clientContextService.setToken(token);
+          this.infoService.showInfo("login ok");
         },
         error => {
           this.infoService.showError(error.message);
@@ -41,9 +43,9 @@ export class LoginComponent implements OnInit {
   }
 
   onClick_Logout() {
-    this.loginService.signout(this.token)
+    this.loginService.signout(this.clientContextService.getToken())
       .subscribe(token => {
-          this.infoService.showInfo("signout ok");
+          this.infoService.showInfo("logout ok");
         },
         error => {
           this.infoService.showError(error.message);

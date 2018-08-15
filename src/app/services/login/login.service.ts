@@ -1,26 +1,25 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
+import {A_rest_client} from 'src/app/commons/a_rest_client';
 import {Login} from 'src/app/services/login/login';
 import {Token} from 'src/app/services/login/token';
-import {Routes} from "@angular/router";
-import {LoginComponent} from "../../components/login/login.component";
 
-const backend_URL: string = "http://localhost:3000/webshop/";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService extends A_rest_client {
 
   constructor(private http: HttpClient) {
+    super();
   }
 
   /** gets token back */
   signin(login: Login): Observable<Token> {
-    return this.http.post<Token>(backend_URL + 'auth/signin', login, {
+    return this.http.post<Token>(A_rest_client.BACKEND_WEBSHOP_URL + 'auth/signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -29,19 +28,13 @@ export class LoginService {
     );
   }
 
-  signout(token: Token): Observable<any>{
-    return this.http.post<Token>(backend_URL + 'auth/signout', null, {
+  signout(token: Token): Observable<any> {
+    return this.http.post<Token>("http://localhost:3000/webshop/" + 'auth/signout', null, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
     },).pipe(
-      tap((token: Token) => console.log("signout ok"))
+      tap((result: string) => console.log("signout ok"))
     );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
 
 }

@@ -8,13 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { InfoComponent } from './components/info/info.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { TodoComponent } from './components/todo/todo.component';
+import { UserComponent } from './components/admin/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     InfoComponent,
-    TodoComponent
+    TodoComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
