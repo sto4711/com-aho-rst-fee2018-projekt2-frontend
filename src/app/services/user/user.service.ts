@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 import {User} from 'src/app/services/user/user';
-import {A_rest_client} from "src/app/commons/a_rest_client";
+import {A_rest_client} from 'src/app/commons/a_rest_client';
 import {Token} from 'src/app/services/login/token';
 
 
@@ -23,7 +23,7 @@ export class UserService extends A_rest_client {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(
-      tap((users: User[]) => console.log("get users ok"))/*,
+      tap((users: User[]) => console.log('get users ok'))/*,
       catchError(this.handleError<Token>('signin'))*/
     );
   }

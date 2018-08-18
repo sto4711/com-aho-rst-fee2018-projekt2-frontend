@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Token} from "../login/token";
-import {HttpClient} from "../../../../node_modules/@angular/common/http";
-import {tokenize} from "../../../../node_modules/@angular/compiler/src/ml_parser/lexer";
+import {Token} from '../login/token';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +7,7 @@ import {tokenize} from "../../../../node_modules/@angular/compiler/src/ml_parser
 
 export class ClientContextService {
 
-  private token: Token = {value : ""};
+  private token: Token = {value : ''};
 
   constructor() {
   }

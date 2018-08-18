@@ -1,19 +1,18 @@
-<p>please sign in</p>
-
+<h3>{{title}}</h3>
 
 <form>
   <div>
-    <input [(ngModel)]="login.user" placeholder="user" name = "username" autocomplete="username">
+    <input [(ngModel)]='login.user' placeholder='user' name = 'username' autocomplete='username'>
   </div>
 
   <div>
-    <input type="password" [(ngModel)]="login.pwd" placeholder="pwd"  name = "current-password" autocomplete="current-password">
+    <input type='password' [(ngModel)]='login.pwd' placeholder='pwd'  name = 'current-password' autocomplete='current-password'>
   </div>
 
   <div>
-    <button (click)="onClick_Login()" >login</button>
+    <button (click)='onClick_Login()' >login</button>
   </div>
   <div>
-    <button (click)="onClick_Logout()" >logout</button>
+    <button (click)='onClick_Logout()' >logout</button>
   </div>
 </form>
