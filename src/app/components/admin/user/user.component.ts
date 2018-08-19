@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import {User} from 'src/app/services/user/user';
-import {UserService} from 'src/app/services/user/user.service';
+import {User} from 'src/app/services/admin/user/user';
+import {UserService} from 'src/app/services/admin/user/user.service';
 import {InfoService} from 'src/app/services/info/info.service';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
@@ -13,33 +14,34 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  title = 'User';
+  title: string = 'User';
+  users: User[];
 
   constructor(
     private infoService: InfoService
     , private loginService: LoginService
     , private clientContextService: ClientContextService
     , private userService: UserService
+    , private router: Router
   ) {
   }
 
   ngOnInit() {
+    this.getUsers();
   }
 
-  onClick_Search() {
+  getUsers(): void {
     this.userService.get(this.clientContextService.getToken())
-      .subscribe(result => {
-          this.infoService.showInfo('onClick_Search() ok');
+      .subscribe(users => {
+          this.infoService.showInfo('getUsers() ok');
+          this.users = users;
         },
         error => {
           this.infoService.showError(error.message);
-        },
-        () => {
-          // 'onCompleted' callback route to new page here
+          this.router.navigate(['login']).then();
         }
       );
   }
-
 
 
 }

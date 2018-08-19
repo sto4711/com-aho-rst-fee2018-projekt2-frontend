@@ -1,5 +1,10 @@
 <h3>{{title}}</h3>
+
 <div>
-  <button (click)='onClick_Search()' >search</button>
+  <ul>
+    <li *ngFor='let user of users'>
+      <span >{{user.name}} {{user.firstname}}</span>
+    </li>
+  </ul>
 </div>
 
