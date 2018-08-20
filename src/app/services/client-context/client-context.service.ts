@@ -6,17 +6,36 @@ import {Token} from '../login/token';
 })
 
 export class ClientContextService {
+  static BACKEND_HOST : string = 'localhost';
+  static BACKEND_PORT : number = 3000;
 
   private token: Token = {value : ''};
+  private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
+  private backendURL_auth :string  = 'http://localhost:3000/webshop/auth/';
+  private backendURL_adminUsers :string  = 'http://localhost:3000/webshop/admin/users/';
+  private backendURL_adminProducts :string  = 'http://localhost:3000/webshop/admin/products/';
 
-  constructor() {
-  }
+  constructor() {}
 
   setToken(token: Token){
     this.token = token;
   }
 
-  getToken()  {
+  getToken() :Token {
     return this.token;
   }
+
+  getBackendURL_public() :string {
+    return this.backendURL_public;
+  }
+  getBackendURL_auth():string  {
+    return this.backendURL_auth;
+  }
+  getBackendURL_adminUsers():string  {
+    return this.backendURL_adminUsers;
+  }
+  getBackendURL_adminProducts():string  {
+    return this.backendURL_adminProducts;
+  }
+
 }
