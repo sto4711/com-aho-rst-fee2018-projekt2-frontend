@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TodoComponent } from './components/todo/todo.component';
 import { UserComponent } from './components/admin/user/user.component';
 import { ProductComponent } from './components/admin/product/product.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductComponent } from './components/admin/product/product.component';
     InfoComponent,
     TodoComponent,
     UserComponent,
-    ProductComponent
+    ProductComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
