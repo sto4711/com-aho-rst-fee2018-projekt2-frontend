@@ -1,0 +1,32 @@
+<div class="row">
+  <h2>Mein Konto</h2>
+  <div class="login-form-wrap">
+
+    <form class="form login-form" #f="ngForm" (ngSubmit)="onClick_Login(f.value)">
+      <h4>Ich habe bereits ein Konto</h4>
+      <label for="login-email">E-Mail</label>
+      <input id="login-email" name="user" ngModel placeholder="E-Mail" type="email" required autofocus/>
+
+      <label for="login-password">Passwort</label>
+      <input id="login-password" name="pwd" ngModel type="password"  placeholder="Passwort" required autofocus/>
+      <div *ngIf="invalidLogin" class="alert danger">
+        <p>Falscher Benutzername oder Passwort</p>
+      </div>
+      <button class="btn form-btn" type="submit"><span class="btn-form-text">Login</span> </button>
+
+    </form>
+    <form class="form new-account-form">
+      <h4>Neues Konto erstellen</h4>
+
+      <label for="create-email">E-Mail</label>
+      <input id="create-email" placeholder="Meine E-Mail" type="email" required autofocus/>
+
+      <label for="create-password">Passwort</label>
+      <input type="password" placeholder="Mein Passwort" id="create-password" required autofocus/>
+      <button class="btn form-btn" type="submit"><span class="btn-form-text"> Anmelden</span></button>
+
+    </form>
+  </div>
+
+
+</div><!-- end .row -->

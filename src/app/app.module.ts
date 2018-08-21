@@ -10,6 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { TodoComponent } from './components/todo/todo.component';
 import { UserComponent } from './components/admin/user/user.component';
 import { ProductComponent } from './components/admin/product/product.component';
+import { HomeComponent } from './components/home/home.component';
+import { ArticleListingComponent } from './components/article-listing/article-listing.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
+import {LoginService} from './services/login/login.service';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,18 @@ import { ProductComponent } from './components/admin/product/product.component';
     InfoComponent,
     TodoComponent,
     UserComponent,
-    ProductComponent
-  ],
+    ProductComponent,
+    HomeComponent,
+    ArticleListingComponent,
+    MyAccountComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
