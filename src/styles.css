@@ -37,6 +37,7 @@ app-root {
   display: block;
   width: 100%;
 }
+
 html, body {
   height: 100%;
   font-size: 10px;
@@ -778,6 +779,20 @@ select {
   }
 }
 /*
+    messages ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+.alert {
+  text-align: center;
+  padding: 10px;
+}
+
+.danger {
+  color: #fff;
+  border: 1px solid #e11313;
+  background-color: crimson;
+}
+
+/*
     misc ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
@@ -821,3 +836,4 @@ select {
 }
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
