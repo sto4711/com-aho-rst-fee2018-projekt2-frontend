@@ -1,0 +1,27 @@
+<h3>{{title}}</h3>
+
+
+<label for="searchBox">filter</label>
+<input #searchBox id="searchBox" (keyup)="search(searchBox.value)"/>
+<span *ngIf="(products$ | async)?.length==0">no records found</span>
+<span *ngIf="(products$ | async)?.length>0">{{(products$ | async)?.length}} records found</span>
+
+
+
+
+<div *ngIf="products$ | async">
+  <ul >
+    <li *ngFor="let product of products$ | async">
+      <div>
+        <h4>{{product.brand}}</h4>
+        <h5>{{product.name}}</h5>
+        <h5>{{product.description}}</h5>
+        <h5>{{product.price}} CHF</h5>
+        <img src='{{imageURL + product.imageURL}}' style='width: 10%; height: 10%'>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+

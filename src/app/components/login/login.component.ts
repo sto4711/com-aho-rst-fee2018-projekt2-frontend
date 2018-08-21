@@ -1,6 +1,7 @@
 import {Router} from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import {Component, Inject, OnInit} from '@angular/core';
 
-import {Component, OnInit} from '@angular/core';
 import {Login} from 'src/app/services/login/login';
 import {LoginService} from 'src/app/services/login/login.service';
 import {InfoService} from 'src/app/services/info/info.service';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   title = 'Login';
 
   constructor(
-    private infoService: InfoService
+    @Inject(DOCUMENT) document
+    ,private infoService: InfoService
     , private loginService: LoginService
     , private clientContextService: ClientContextService
     , private router: Router
@@ -24,11 +26,15 @@ export class LoginComponent implements OnInit {
   }
 
   login: Login = {
-    user: '',
-    pwd: ''
+    user: 'rst',
+    pwd: 'rst'
   };
 
   ngOnInit() {
+    setTimeout(()=>{
+      document.getElementById('loginButton').focus();
+    },0);
+
   }
 
   onClick_Login() {
