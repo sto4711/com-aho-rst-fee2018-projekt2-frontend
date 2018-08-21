@@ -11,6 +11,8 @@ import { TodoComponent } from './components/todo/todo.component';
 import { UserComponent } from './components/admin/user/user.component';
 import { ProductComponent } from './components/admin/product/product.component';
 import { HomeComponent } from './components/home/home.component';
+import { ArticleListingComponent } from './components/article-listing/article-listing.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { HomeComponent } from './components/home/home.component';
     TodoComponent,
     UserComponent,
     ProductComponent,
-    HomeComponent
-  ],
+    HomeComponent,
+    ArticleListingComponent,
+    MyAccountComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
