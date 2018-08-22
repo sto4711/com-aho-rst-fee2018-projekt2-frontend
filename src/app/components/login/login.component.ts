@@ -15,6 +15,10 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
 })
 export class LoginComponent implements OnInit {
   title = 'Login';
+  login: Login = {
+    email: '',
+    pwd: ''
+  };
 
   constructor(
     @Inject(DOCUMENT) document
@@ -25,19 +29,11 @@ export class LoginComponent implements OnInit {
   ) {
   }
 
-  login: Login = {
-    user: 'rst',
-    pwd: 'rst'
-  };
 
   ngOnInit() {
-    setTimeout(()=>{
-      document.getElementById('loginButton').focus();
-    },0);
-
   }
 
-  onClick_Login() {
+  signin() {
     this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
@@ -61,7 +57,7 @@ export class LoginComponent implements OnInit {
           this.infoService.showError(error.message);
         },
         () => {
-          // 'onCompleted' callback route to new page here
+          // 'onCompleted'
         });
   }
 

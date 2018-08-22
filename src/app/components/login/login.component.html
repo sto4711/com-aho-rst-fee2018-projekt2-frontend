@@ -1,44 +1,19 @@
-<form class="form login-form ">
+<form class="form login-form" (ngSubmit)="signin()" >
   <h4>Ich habe bereits ein Konto</h4>
   <label for="login-email">E-Mail</label>
-  <input id="login-email" placeholder="E-Mail" type="email" />
-
+  <input id="login-email" placeholder="E-Mail" type="email" name="login-email" [(ngModel)]="login.email" autocomplete="off" />
   <label for="login-password">Passwort</label>
-  <input type="password" placeholder="Passwort" id="login-password" />
-  <button class="btn form-btn"><span class="btn-form-text">Login</span> </button>
-
+  <input  id="login-password" placeholder="Passwort" name="login-password"  type="password" [(ngModel)]="login.pwd" autocomplete="off" />
+  <button class="btn form-btn" type="submit" ><span class="btn-form-text">Login</span> </button>
 </form>
 
-<!--
-<h1>{{title}}</h1>
+
 <nav>
   <div><a routerLink='/login'>Login</a></div>
   <div><a routerLink='/admin/user'>admin/User</a></div>
   <div><a routerLink='/admin/product'>admin/Product</a></div>
 </nav>
 <router-outlet></router-outlet>
-
-<div class="containerInfo" >
-  <app-info></app-info>
-</div>
-
+<app-info></app-info>
 <app-todo></app-todo>
-<h3>{{title}}</h3>
 
-<form>
-  <div>
-    <input [(ngModel)]="login.user" placeholder="user" name = "username" autocomplete="username" >
-  </div>
-
-  <div>
-    <input type="password" [(ngModel)]="login.pwd" placeholder="pwd"  name = "current-password" autocomplete="current-password" >
-  </div>
-
-  <div>
-    <button id="loginButton" (click)="onClick_Login()" >login</button>
-  </div>
-  <div>
-    <button (click)="onClick_Logout()" >logout</button>
-  </div>
-</form>
--->

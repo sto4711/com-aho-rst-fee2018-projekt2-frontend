@@ -1,7 +1,6 @@
 import {Router} from '@angular/router';
 
 import {Component, OnInit} from '@angular/core';
-import {Login} from 'src/app/services/login/login';
 import {LoginService} from 'src/app/services/login/login.service';
 import {InfoService} from 'src/app/services/info/info.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
@@ -54,7 +53,7 @@ export class MyAccountComponent implements OnInit {
           this.infoService.showError(error.message);
         },
         () => {
-          // 'onCompleted' callback route to new page here
+          // 'onCompleted'
         });
   }
 
