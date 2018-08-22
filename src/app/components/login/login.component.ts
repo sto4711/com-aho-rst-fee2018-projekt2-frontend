@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.infoService.showError(error.message);
         },
         () => {
-          this.router.navigate(['admin/product']).then();
+          this.router.navigate(['admin/article']).then();
         }
       );
   }

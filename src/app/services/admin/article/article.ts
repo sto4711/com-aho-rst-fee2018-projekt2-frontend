@@ -1,4 +1,4 @@
-export class Product {
+export class Article {
   brand: string;
   name: string;
   description: string;

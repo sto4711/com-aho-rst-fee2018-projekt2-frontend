@@ -9,11 +9,11 @@ import { InfoComponent } from './components/info/info.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoComponent } from './components/todo/todo.component';
 import { UserComponent } from './components/admin/user/user.component';
-import { ProductComponent } from './components/admin/product/product.component';
 import { HomeComponent } from './components/home/home.component';
 import { ArticleListingComponent } from './components/article-listing/article-listing.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import {LoginService} from './services/login/login.service';
+import { ArticleComponent } from './components/admin/article/article.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,11 @@ import {LoginService} from './services/login/login.service';
     InfoComponent,
     TodoComponent,
     UserComponent,
-    ProductComponent,
+    ArticleComponent,
     HomeComponent,
     ArticleListingComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ArticleComponent
    ],
   imports: [
     BrowserModule,

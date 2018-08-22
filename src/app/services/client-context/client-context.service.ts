@@ -13,7 +13,7 @@ export class ClientContextService {
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
   private backendURL_auth :string  = 'http://localhost:3000/webshop/auth/';
   private backendURL_adminUsers :string  = 'http://localhost:3000/webshop/admin/users/';
-  private backendURL_adminProducts :string  = 'http://localhost:3000/webshop/admin/products/';
+  private backendURL_adminArticles :string  = 'http://localhost:3000/webshop/admin/articles/';
 
   constructor() {}
 
@@ -34,8 +34,8 @@ export class ClientContextService {
   getBackendURL_adminUsers():string  {
     return this.backendURL_adminUsers;
   }
-  getBackendURL_adminProducts():string  {
-    return this.backendURL_adminProducts;
+  getBackendURL_adminArticles():string  {
+    return this.backendURL_adminArticles;
   }
 
 }
