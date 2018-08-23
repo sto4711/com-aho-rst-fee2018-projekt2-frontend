@@ -1,5 +1,5 @@
 <div class="row">
-  <h2>Article Name</h2>
+  <h2>{{articleDetails[0]?.brand}}</h2>
   <div id="article-detail-wrap">
     <picture>
       <source media="(min-width: 475px)" srcset="../assets/images/product-img.jpg">
@@ -14,14 +14,11 @@
       </figure>
     </picture>
     <div id="article-detail-content">
-      <div  *ngFor="let article of articles$">
-        <p>{{article.name}}</p>
-      </div>
-      <h4>Article Detail Subtitle</h4>
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <h4>{{articleDetails[0]?.name}}</h4>
+      <p>{{articleDetails[0]?.description}}</p>
       <p class="article-detail-nr">Artikel Nr. <span>1234</span></p>
       <p class="article-detail-availability available">Ab Lager Verfügbar</p>
-      <p class="article-detail-price">CHF 22.00</p>
+      <p class="article-detail-price">CHF {{articleDetails[0]?.price}}</p>
       <p>
         <select id="article-amount">
           <option value="">--Bitte Anzahl auswählen--</option>

@@ -11,7 +11,7 @@ import {Article} from '../../services/articles/article';
 })
 export class ArticleDetailComponent implements OnInit {
 
-  article$: Observable<Article[]>;
+  articleDetails: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +25,15 @@ export class ArticleDetailComponent implements OnInit {
     this.route.paramMap
       .subscribe( params => {
         console.log(params);
-       let articleName = params.get('articlename');
-        this.article$ =  this.articleService.getArticleDetails(articleName);
+       let id = params.get('_id');
+         this.articleDetails =  this.articleService.getArticleDetails(id)
+          .subscribe(
+          result => {
+
+           this.articleDetails = result;
+           console.log((this.articleDetails));
+          }
+        );
       });
   }
 
