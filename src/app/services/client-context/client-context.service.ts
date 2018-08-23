@@ -14,6 +14,7 @@ export class ClientContextService {
   private backendURL_auth :string  = 'http://localhost:3000/webshop/auth/';
   private backendURL_adminUsers :string  = 'http://localhost:3000/webshop/admin/users/';
   private backendURL_adminArticles :string  = 'http://localhost:3000/webshop/admin/articles/';
+  private backendURL_allArticles :string  = 'http://localhost:3000/webshop/articles/';
 
   constructor() {}
 
@@ -36,6 +37,9 @@ export class ClientContextService {
   }
   getBackendURL_adminArticles():string  {
     return this.backendURL_adminArticles;
+  }
+  getBackendURL_allArticles():string  {
+    return this.backendURL_allArticles;
   }
 
 }

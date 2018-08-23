@@ -28,5 +28,13 @@ export class ArticleService {
       tap(() => console.log('get products ok'))
     );
   }
+  getAllArticles( ): Observable<Article[]> {
+    return this.http.get<Article[]>(this.clientContextService.getBackendURL_allArticles() , {
+        headers: {'Content-Type': 'application/json' }
+      }
+    ).pipe(
+      tap(() => console.log('get products ok'))
+    );
+  }
 
 }
