@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -16,6 +17,7 @@ import {LoginService} from './services/login/login.service';
 import { ArticleComponent } from './components/admin/article/article.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import { ArticleDetailComponent } from './components/article-detail/article-deta
     ArticleListingComponent,
     MyAccountComponent,
     ArticleComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    SearchComponent
    ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

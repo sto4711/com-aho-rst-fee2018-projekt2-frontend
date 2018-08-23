@@ -20,9 +20,9 @@ export class ArticleService {
     //super(http);
   }
 
-  searchArticles(token: Token, term: string): Observable<Article[]> {
+  searchArticles( term: string): Observable<Article[]> {
     return this.http.get<Article[]>(this.clientContextService.getBackendURL_adminArticles() + '?filterName=' + term, {
-        headers: {'Content-Type': 'application/json', 'Authorization': token.value}
+        headers: {'Content-Type': 'application/json' }
       }
     ).pipe(
       tap(() => console.log('get products ok'))
@@ -38,7 +38,6 @@ export class ArticleService {
   }
 
   getArticleDetails( term: string): Observable<Article[]> {
-    console.log(term);
      return this.http.get<Article[]>(this.clientContextService.getBackendURL_articleDetails() + '?filterName=' + term , {
         headers: {'Content-Type': 'application/json' }
       }

@@ -8,7 +8,7 @@ import {InfoService} from 'src/app/services/info/info.service';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {ArticleService} from 'src/app/services/articles/article.service';
-import {Article} from 'src/app/services/articles/article';
+import {Article} from 'src/app/services/articles/article.service';
 
 @Component({
   selector: 'app-article',
@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
       startWith(''),
       debounceTime(300), // wait 300ms after each keystroke before considering the term
       distinctUntilChanged(), // ignore new term if same as previous term
-      switchMap((term: string) => this.articleService.searchArticles(this.clientContextService.getToken(), term)),
+      switchMap((term: string) => this.articleService.searchArticles(  term)),
       catchError((error: HttpErrorResponse) => {
         return of(this.handleError('search bikes', error));
       })
