@@ -7,8 +7,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {InfoService} from 'src/app/services/info/info.service';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
-import {ArticleService} from 'src/app/services/admin/article/article.service';
-import {Article} from 'src/app/services/admin/article/article';
+import {ArticleService} from 'src/app/services/articles/article.service';
+import {Article} from 'src/app/services/articles/article';
 
 @Component({
   selector: 'app-article',
