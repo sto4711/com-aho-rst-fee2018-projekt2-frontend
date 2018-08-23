@@ -7,7 +7,9 @@
 
   <div class="product-listing" *ngIf="articles$ | async">
 
-    <div class="product-container" *ngFor="let article of articles$ | async">
+    <div class="product-container"
+         *ngFor="let article of articles$
+           | async | paginate: { itemsPerPage: 12, currentPage: p }">
       <div class="product-content">
         <img class="product-img" src="../assets/images/product-img.jpg" width="100%" height="auto"/>
         <div class="product-data">
@@ -24,6 +26,7 @@
 
 
   </div><!-- end .product-listing -->
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 
 </div><!-- end .row -->

@@ -14,6 +14,7 @@ import { ArticleListingComponent } from './components/article-listing/article-li
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import {LoginService} from './services/login/login.service';
 import { ArticleComponent } from './components/admin/article/article.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ArticleComponent } from './components/admin/article/article.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
