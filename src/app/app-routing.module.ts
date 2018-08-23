@@ -7,12 +7,14 @@ import {ArticleComponent} from 'src/app/components/admin/article/article.compone
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
+import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'article-listing', component: ArticleListingComponent},
+  {path: 'article-detail/:articlename', component: ArticleDetailComponent},
   {path: 'my-account', component: MyAccountComponent},
   {path: 'admin/user', component: UserComponent},
   {path: 'admin/article', component: ArticleComponent}

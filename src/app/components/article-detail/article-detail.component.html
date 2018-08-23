@@ -1,0 +1,38 @@
+<div class="row">
+  <h2>Article Name</h2>
+  <div id="article-detail-wrap">
+    <picture>
+      <source media="(min-width: 475px)" srcset="../assets/images/product-img.jpg">
+      <source media="(min-width: 320px)" srcset="../assets/images/product-img.jpg">
+      <figure>
+        <img src="../assets/images/product-img.jpg" width="100%" height="auto">
+        <figcaption>Teile diesen Artikel auf
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+        </figcaption>
+      </figure>
+    </picture>
+    <div id="article-detail-content">
+      <div  *ngFor="let article of articles$">
+        <p>{{article.name}}</p>
+      </div>
+      <h4>Article Detail Subtitle</h4>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <p class="article-detail-nr">Artikel Nr. <span>1234</span></p>
+      <p class="article-detail-availability available">Ab Lager Verfügbar</p>
+      <p class="article-detail-price">CHF 22.00</p>
+      <p>
+        <select id="article-amount">
+          <option value="">--Bitte Anzahl auswählen--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </p>
+      <p><button class="btn form-btn"><i class="fas fa-shopping-cart"></i>In den Warenkorb</button></p>
+      <p><a href="#" class="continue-shopping">Weiter Einkaufen</a></p>
+    </div><!-- end #article-detail-content -->
+  </div><!--- end #article-detail-wrap -->
+
+</div><!-- end .row -->

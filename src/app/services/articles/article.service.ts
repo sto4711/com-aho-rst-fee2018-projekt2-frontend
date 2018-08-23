@@ -37,4 +37,14 @@ export class ArticleService {
     );
   }
 
+  getArticleDetails( term: string): Observable<Article[]> {
+    console.log(term);
+     return this.http.get<Article[]>(this.clientContextService.getBackendURL_articleDetails() + '?filterName=' + term , {
+        headers: {'Content-Type': 'application/json' }
+      }
+    ).pipe(
+      tap(() => console.log('get products ok'))
+    );
+  }
+
 }

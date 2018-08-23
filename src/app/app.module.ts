@@ -15,6 +15,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import {LoginService} from './services/login/login.service';
 import { ArticleComponent } from './components/admin/article/article.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomeComponent,
     ArticleListingComponent,
     MyAccountComponent,
-    ArticleComponent
+    ArticleComponent,
+    ArticleDetailComponent
    ],
   imports: [
     BrowserModule,
