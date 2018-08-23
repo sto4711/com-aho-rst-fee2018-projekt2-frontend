@@ -12,7 +12,7 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
   providedIn: 'root'
 })
 export class ArticleService {
-
+  articles$: Observable<Article[]>;
   constructor(
     protected http: HttpClient
     , private clientContextService: ClientContextService
