@@ -2,10 +2,10 @@
   <h2>{{articleDetails[0]?.brand}}</h2>
   <div id="article-detail-wrap">
     <picture>
-      <source media="(min-width: 475px)" srcset="../assets/images/product-img.jpg">
-      <source media="(min-width: 320px)" srcset="../assets/images/product-img.jpg">
+      <source media="(min-width: 475px)" srcset="{{imageURL + articleDetails[0]?.imageURL}}">
+      <source media="(min-width: 320px)" srcset="{{imageURL + articleDetails[0]?.imageURL}}">
       <figure>
-        <img src="../assets/images/product-img.jpg" width="100%" height="auto">
+        <img src="{{imageURL + articleDetails[0]?.imageURL}}" width="100%" height="auto">
         <figcaption>Teile diesen Artikel auf
           <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
           <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>

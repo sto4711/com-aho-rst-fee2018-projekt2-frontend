@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
  import { ActivatedRoute, Router } from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {Observable} from 'rxjs';
-import {Article} from '../../services/articles/article';
+import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+
 
 @Component({
   selector: 'app-article-detail',
@@ -12,30 +12,28 @@ import {Article} from '../../services/articles/article';
 export class ArticleDetailComponent implements OnInit {
 
   articleDetails: any;
+  imageURL: string = this.clientContextService.getBackendURL_public();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private clientContextService: ClientContextService
 
-
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.route.paramMap
       .subscribe( params => {
-        console.log(params);
-       let id = params.get('_id');
-         this.articleDetails =  this.articleService.getArticleDetails(id)
+        let id = params.get('_id');
+        this.articleDetails =  this.articleService.getArticleDetails(id)
           .subscribe(
-          result => {
-
-           this.articleDetails = result;
-           console.log((this.articleDetails));
-          }
-        );
+            result => {
+              this.articleDetails = result;
+            }
+          );
       });
   }
+
+  ngOnInit() {}
 
 }
 
