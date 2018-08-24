@@ -2,7 +2,7 @@ import { Component  } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {map, startWith, switchMap} from 'rxjs/operators';
-import {Article} from '../../services/admin/article/article';
+import {Article} from '../../services/articles/article';
 import {ArticleService} from '../../services/articles/article.service';
 
 export interface State {

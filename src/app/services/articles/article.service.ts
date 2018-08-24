@@ -4,7 +4,7 @@ import {Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 import {Token} from 'src/app/services/login/token';
-import {Article} from 'src/app/services/admin/article/article';
+import {Article} from 'src/app/services/articles/article';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 
 
