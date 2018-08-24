@@ -10,8 +10,8 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-        <a  routerLink="/article-detail/{{state.name}}"><span>{{state.name}}</span></a>
+      <mat-option *ngFor="let article of filteredStates | async" [value]="article.name">
+        <a  routerLink="/article-detail/{{article.name}}"><span>{{article.name}}</span></a>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

@@ -1,6 +1,6 @@
 import { Component  } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscriber} from 'rxjs';
 import {map, startWith, switchMap} from 'rxjs/operators';
 import {Article} from '../../services/admin/article/article';
 import {ArticleService} from '../../services/articles/article.service';
@@ -22,12 +22,12 @@ export interface State {
 })
 
 export class SearchComponent   {
-   articles: any;
+   articlesResult: any;
 
    stateCtrl = new FormControl();
    filteredStates: Observable<State[]>;
 
-   states = [];
+   articles = [];
 
    constructor(
      private articleService: ArticleService,
@@ -37,22 +37,27 @@ export class SearchComponent   {
 
        .pipe(
          startWith(''),
-         map(state => state ? this._filterStates(state) : this.states.slice())
+         map(article => article ? this._filterStates(article) : this.articles.slice())
        );
 
    }
 
    private _filterStates(value: string): State[] {
      const filterValue = value.toLowerCase();
-       this.articles = this.articleService.searchArticles(filterValue)
-        .subscribe(
-          result => {
+      if (filterValue.length >= 3) {
+       this.articlesResult = this.articleService.searchArticles(filterValue)
+         .subscribe(
+           result => {
+             this.articles = result;
+           }
+         );
+       return this.articles.filter(article => article.name.toLowerCase().indexOf(filterValue) === 0);
 
-            this.states = result;
-          }
-        );
-      return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+     }
+     else{
+       this.articles = [];
+       return this.articles;
+      }
 
    }
-
 }

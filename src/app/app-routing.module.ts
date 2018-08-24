@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'article-listing', component: ArticleListingComponent},
-  {path: 'article-detail/:_id', component: ArticleDetailComponent},
+  {path: 'article-detail', component: ArticleDetailComponent},
   {path: 'my-account', component: MyAccountComponent},
   {path: 'admin/user', component: UserComponent},
   {path: 'admin/article', component: ArticleComponent}

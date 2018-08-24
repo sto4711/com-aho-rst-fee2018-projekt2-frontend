@@ -15,6 +15,7 @@ import {Observable} from 'rxjs';
 })
 export class ArticleListingComponent implements OnInit {
   articles$: Observable<Article[]>;
+  articleSEOName: string;
 
   imageURL: string = this.clientContextService.getBackendURL_public();
   p: number = 1;
@@ -26,7 +27,8 @@ export class ArticleListingComponent implements OnInit {
 
   ) {
 
-    this.articles$ =  this.articleService.getAllArticles( );
+    this.articles$ =  this.articleService.getAllArticles()
+
   }
   ngOnInit() { }
 
