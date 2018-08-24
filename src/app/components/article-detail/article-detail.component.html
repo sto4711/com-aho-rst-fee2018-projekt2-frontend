@@ -16,8 +16,9 @@
     <div id="article-detail-content">
       <h4>{{articleDetails[0]?.name}}</h4>
       <p>{{articleDetails[0]?.description}}</p>
-      <p class="article-detail-nr">Artikel Nr. <span>1234</span></p>
-      <p class="article-detail-availability available">Ab Lager Verfügbar</p>
+      <p class="article-detail-nr">Artikel Nr. <span>{{articleDetails[0]?.itemNumber}}</span></p>
+      <p *ngIf='articleDetails[0]?.availability'  class="article-detail-availability available" >Ab Lager verfügbar</p>
+      <p *ngIf='!articleDetails[0]?.availability'  class="article-detail-availability available" >In 3 Wochen lieferbar</p>
       <p class="article-detail-price">CHF {{articleDetails[0]?.price}}</p>
       <p>
         <select id="article-amount">

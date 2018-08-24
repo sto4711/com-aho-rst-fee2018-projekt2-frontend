@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { InfoComponent } from './components/info/info.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TodoComponent } from './components/todo/todo.component';
 import { UserComponent } from './components/admin/user/user.component';
 import { HomeComponent } from './components/home/home.component';
 import { ArticleListingComponent } from './components/article-listing/article-listing.component';
@@ -29,7 +28,6 @@ import {TrimPipe} from './trim.pipe';
     AppComponent,
     LoginComponent,
     InfoComponent,
-    TodoComponent,
     UserComponent,
     ArticleComponent,
     HomeComponent,
