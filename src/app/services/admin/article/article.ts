@@ -4,8 +4,7 @@ export class Article {
   description: string;
   price: number;
   imageURL: string;
+  imageSmallURL : string;
+  availability: boolean;
   _id: string;
 }
-
-
-

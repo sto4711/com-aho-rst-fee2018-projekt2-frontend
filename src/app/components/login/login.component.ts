@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     ,private infoService: InfoService
     , private loginService: LoginService
     , private clientContextService: ClientContextService
-    , private router: Router
   ) {
   }
 
@@ -41,10 +40,10 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.infoService.showError(error.message);
-        },
+        }/*,
         () => {
           this.router.navigate(['admin/article']).then();
-        }
+        }*/
       );
   }
 
