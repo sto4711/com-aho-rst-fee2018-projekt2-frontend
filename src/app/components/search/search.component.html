@@ -1,17 +1,18 @@
-<form class="search-form" role="search" method="get" name="search" action="">
+<!--<form class="search-form" role="search" method="get" name="search" action="">
   <div class="topNavInput">
     <input class="form-control suchbegriff" placeholder="Nach Artikeln suchen" name="suche" type="text" value="">
-    <a class="suchenFormSubmit" href="#"> <i class="fas fa-search"></i></a>
+    <a class="suchenFormSubmit" href="#"> </a>
   </div>
 
-</form>
-<form class="example-form">
+</form>-->
+<form class="example-form" class="search-form" role="search" method="" name="search" action="">
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <input matInput placeholder="Artikel suchen" aria-label="Artikel suchen" [matAutocomplete]="auto" [formControl]="stateCtrl">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let article of filteredStates | async" [value]="article.name">
-        <a  routerLink="/article-detail/{{article.name}}"><span>{{article.name}}</span></a>
+        <a  [routerLink]="['/article-detail/']" [queryParams]="{article:article.name | trim  ,id:article._id }"><span>{{article.name}}</span></a>
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+  </mat-form-field><i class="fas fa-search"></i>
+</form>

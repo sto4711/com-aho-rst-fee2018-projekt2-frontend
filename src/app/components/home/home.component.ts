@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {InfoService} from 'src/app/services/info/info.service';
+import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {ArticleService} from 'src/app/services/articles/article.service';
+import {Article} from 'src/app/services/articles/article';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +13,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  articles$: Observable<Article[]>;
 
-  ngOnInit() {
+  imageURL: string = this.clientContextService.getBackendURL_public();
+  p: number = 1;
+
+  constructor(
+    private infoService: InfoService
+    , private clientContextService: ClientContextService
+    , private articleService: ArticleService,
+
+  ) {
+
+    this.articles$ = this.articleService.getAllArticles()
+  }
+
+    ngOnInit() {
   }
 
 }

@@ -9,6 +9,6 @@ export class TrimPipe implements PipeTransform{
     if(!value)
       return null;
 
-    return value.replace(/ /g,"_");
+    return value.replace(/ /g,"-");
   }
 }

@@ -143,6 +143,12 @@ ul.ngx-pagination {
 
 }
 
+.mat-form-field {
+  font-weight: 300;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #95c2b0 !important;
+}
 /*
     header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -221,8 +227,9 @@ ul.ngx-pagination {
  */
 
 .search-form {
-
-}
+height: 40px;
+  backgground:#fff;
+ }
 
 .topNavInput {
   position: relative;
@@ -452,6 +459,7 @@ h2.claim {
 }
 
 .product-listing-descr {
+  font-size: 1.6rem;
   color: #818A91;
 }
 

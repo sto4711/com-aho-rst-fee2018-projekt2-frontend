@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Router} from '@angular/router';
-
 import {InfoService} from 'src/app/services/info/info.service';
  import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {ArticleService} from 'src/app/services/articles/article.service';
@@ -15,7 +13,6 @@ import {Observable} from 'rxjs';
 })
 export class ArticleListingComponent implements OnInit {
   articles$: Observable<Article[]>;
-  articleSEOName: string;
 
   imageURL: string = this.clientContextService.getBackendURL_public();
   p: number = 1;
