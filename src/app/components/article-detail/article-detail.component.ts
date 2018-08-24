@@ -23,7 +23,8 @@ export class ArticleDetailComponent implements OnInit {
   ) {
     this.route.paramMap
       .subscribe( params => {
-        let id = params.get('_id');
+        console.log(params);
+        let id =  this.route.snapshot.queryParams["id"];
         this.articleDetails =  this.articleService.getArticleDetails(id)
           .subscribe(
             result => {

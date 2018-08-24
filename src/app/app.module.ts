@@ -21,6 +21,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { SearchComponent } from './components/search/search.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {TrimPipe} from './trim.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MyAccountComponent,
     ArticleComponent,
     ArticleDetailComponent,
-    SearchComponent
+    SearchComponent,
+    TrimPipe
 
    ],
   imports: [
