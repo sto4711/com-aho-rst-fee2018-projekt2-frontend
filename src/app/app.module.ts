@@ -20,6 +20,7 @@ import { ArticleDetailComponent } from './components/article-detail/article-deta
 import { SearchComponent } from './components/search/search.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TrimPipe} from './trim.pipe';
+import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {TrimPipe} from './trim.pipe';
     MyAccountComponent,
     ArticleDetailComponent,
     SearchComponent,
-    TrimPipe
+    TrimPipe,
+    ShoppingBasketPlayComponent
 
    ],
   imports: [

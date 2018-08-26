@@ -1,0 +1,20 @@
+<h2>Warenkorb demo backend</h2>
+
+<form class="form login-form" #f="ngForm" (ngSubmit)="onClick_createShoppingBasket(f.value)">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">create</span> </button>
+</form>
+
+<form class="form login-form" #f2="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f2.value)">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article</span> </button>
+</form>
+
+<form class="form login-form" #f3="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f3.value)">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article</span> </button>
+</form>
+
+
+
+
+<h3>Warenkorb JSON</h3>
+<h4>{{jsonResult}}</h4>
+

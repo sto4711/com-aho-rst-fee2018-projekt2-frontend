@@ -12,11 +12,8 @@ import {Login} from "../../services/login/login";
   styleUrls: ['./my-account.component.css']
 })
 export class MyAccountComponent implements OnInit {
-
-  login: Login = {
-    email: '',
-    pwd: ''
-  };
+  invalidLogin: boolean;
+  login: Login = new Login();
 
   constructor(
     private infoService: InfoService
@@ -26,13 +23,10 @@ export class MyAccountComponent implements OnInit {
   ) {
   }
 
-
-  invalidLogin: boolean;
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClick_Login() {
-  this.loginService.signin(this.login)
+    this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
           this.infoService.showInfo('login ok');
@@ -42,6 +36,7 @@ export class MyAccountComponent implements OnInit {
           this.infoService.showError(error.message);
         },
         () => {
+          this.login = new Login();
           this.router.navigate(['home']).then();
         }
       );

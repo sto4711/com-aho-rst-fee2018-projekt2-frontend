@@ -18,6 +18,9 @@ export class ClientContextService {
   private backendURL_userDetails :string  = 'http://localhost:3000/webshop/user-details/';
   private backendURL_user :string  = 'http://localhost:3000/webshop/user/';
 
+  private backendURL_shoppingBasket :string  = 'http://localhost:3000/webshop/shopping-basket/';
+
+
   constructor() {}
 
   setToken(token: Token){
@@ -50,5 +53,10 @@ export class ClientContextService {
   getBackendURL_allUsers():string  {
     return this.backendURL_allUsers;
   }
+
+  getBackendURL_shoppingBasket():string  {
+    return this.backendURL_shoppingBasket;
+  }
+
 
 }
