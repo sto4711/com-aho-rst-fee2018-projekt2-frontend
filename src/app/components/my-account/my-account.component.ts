@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from 'src/app/services/login/login.service';
 import {InfoService} from 'src/app/services/info/info.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {Login} from "../../services/login/login";
 
 @Component({
   selector: 'app-my-account',
@@ -11,6 +12,11 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
   styleUrls: ['./my-account.component.css']
 })
 export class MyAccountComponent implements OnInit {
+
+  login: Login = {
+    email: '',
+    pwd: ''
+  };
 
   constructor(
     private infoService: InfoService
@@ -25,10 +31,8 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick_Login(logindata) {
-
-
-  this.loginService.signin(logindata)
+  onClick_Login() {
+  this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
           this.infoService.showInfo('login ok');
@@ -38,10 +42,9 @@ export class MyAccountComponent implements OnInit {
           this.infoService.showError(error.message);
         },
         () => {
-          this.router.navigate(['admin/product']).then();
+          this.router.navigate(['home']).then();
         }
       );
-
   }
 
   onClick_Logout() {

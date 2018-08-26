@@ -16,20 +16,10 @@ export class ArticleService {
   constructor(
     protected http: HttpClient
     , private clientContextService: ClientContextService
-  ) {
-    //super(http);
-  }
+  ) {}
 
   searchArticles( term: string): Observable<Article[]> {
-    return this.http.get<Article[]>(this.clientContextService.getBackendURL_adminArticles() + '?filterName=' + term, {
-        headers: {'Content-Type': 'application/json' }
-      }
-    ).pipe(
-      tap(() => console.log('get products ok'))
-    );
-  }
-  getAllArticles( ): Observable<Article[]> {
-    return this.http.get<Article[]>(this.clientContextService.getBackendURL_allArticles() , {
+    return this.http.get<Article[]>(this.clientContextService.getBackendURL_allArticles() + '?filterName=' + term, {
         headers: {'Content-Type': 'application/json' }
       }
     ).pipe(

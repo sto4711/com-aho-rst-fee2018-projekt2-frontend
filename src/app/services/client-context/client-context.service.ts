@@ -11,11 +11,12 @@ export class ClientContextService {
 
   private token: Token = {value : ''};
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
-  private backendURL_auth :string  = 'http://localhost:3000/webshop/auth/';
-  private backendURL_adminUsers :string  = 'http://localhost:3000/webshop/admin/users/';
-  private backendURL_adminArticles :string  = 'http://localhost:3000/webshop/admin/articles/';
   private backendURL_allArticles :string  = 'http://localhost:3000/webshop/articles/';
   private backendURL_articleDetails :string  = 'http://localhost:3000/webshop/article-details/';
+
+  private backendURL_allUsers :string  = 'http://localhost:3000/webshop/users/';
+  private backendURL_userDetails :string  = 'http://localhost:3000/webshop/user-details/';
+  private backendURL_user :string  = 'http://localhost:3000/webshop/user/';
 
   constructor() {}
 
@@ -30,19 +31,24 @@ export class ClientContextService {
   getBackendURL_public() :string {
     return this.backendURL_public;
   }
-  getBackendURL_auth():string  {
-    return this.backendURL_auth;
-  }
-  getBackendURL_adminUsers():string  {
-    return this.backendURL_adminUsers;
-  }
-  getBackendURL_adminArticles():string  {
-    return this.backendURL_adminArticles;
-  }
+
   getBackendURL_allArticles():string  {
     return this.backendURL_allArticles;
   }
   getBackendURL_articleDetails():string  {
     return this.backendURL_articleDetails;
   }
+
+  getBackendURL_user():string  {
+    return this.backendURL_user;
+  }
+
+  getBackendURL_userDetails():string  {
+    return this.backendURL_userDetails;
+  }
+
+  getBackendURL_allUsers():string  {
+    return this.backendURL_allUsers;
+  }
+
 }

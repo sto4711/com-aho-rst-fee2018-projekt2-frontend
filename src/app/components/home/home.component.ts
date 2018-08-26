@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit {
     , private articleService: ArticleService,
 
   ) {
-
-    this.articles$ = this.articleService.getAllArticles()
+    this.articles$ = this.articleService.searchArticles('');
   }
 
     ngOnInit() {

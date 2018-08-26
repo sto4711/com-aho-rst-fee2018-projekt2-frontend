@@ -21,7 +21,7 @@ export class UserService {
 
   /** gets all the users back */
   get(token: Token): Observable<User[]> {
-    return this.http.get<User[]>(     this.clientContextService.getBackendURL_adminUsers() , {
+    return this.http.get<User[]>(     this.clientContextService.getBackendURL_user() , {
         headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {InfoService} from 'src/app/services/info/info.service';
- import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {ArticleService} from 'src/app/services/articles/article.service';
 import {Article} from 'src/app/services/articles/article';
 import {Observable} from 'rxjs';
@@ -19,15 +19,14 @@ export class ArticleListingComponent implements OnInit {
 
   constructor(
     private infoService: InfoService
-     , private clientContextService: ClientContextService
+    , private clientContextService: ClientContextService
     , private articleService: ArticleService,
-
   ) {
-
-    this.articles$ =  this.articleService.getAllArticles()
-
+    this.articles$ = this.articleService.searchArticles('');
   }
-  ngOnInit() { }
+
+  ngOnInit() {
+  }
 
 
 }

@@ -6,6 +6,7 @@ import {tap} from 'rxjs/operators';
 import {Login} from 'src/app/services/login/login';
 import {Token} from 'src/app/services/login/token';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {User} from "../admin/user/user";
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class LoginService {
 
   /** gets token back */
   signin(login: Login): Observable<Token> {
-    return this.http.post<Token>(this.clientContextService.getBackendURL_auth() + 'signin', login, {
+    return this.http.post<Token>(this.clientContextService.getBackendURL_user() + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -30,15 +31,21 @@ export class LoginService {
   }
 
   signout(token: Token): Observable<any> {
-    return this.http.post<Token>(this.clientContextService.getBackendURL_auth()+ 'signout', null, {
+    return this.http.post<Token>(this.clientContextService.getBackendURL_user()+ 'signout', null, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
     },).pipe(
       tap((/*result: string*/) => console.log('signout ok'))
     );
   }
 
-  isloggedin() {
-    return false;
+  isloggediIn(email: string): Observable<boolean> {
+    return this.http.get<boolean>(     this.clientContextService.getBackendURL_user() , {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap((isloggedin: boolean) => console.log('isloggedin ' + isloggedin))/*,
+      catchError(this.handleError<Token>('isloggedin'))*/
+    );
   }
 
 }

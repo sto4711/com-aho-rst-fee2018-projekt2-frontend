@@ -5,10 +5,9 @@
     <form class="form login-form" #f="ngForm" (ngSubmit)="onClick_Login(f.value)">
       <h4>Ich habe bereits ein Konto</h4>
       <label for="login-email">E-Mail</label>
-      <input id="login-email" name="user" ngModel placeholder="E-Mail" type="email" required autofocus/>
-
+      <input id="login-email" name="user" ngModel placeholder="E-Mail" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
       <label for="login-password">Passwort</label>
-      <input id="login-password" name="pwd" ngModel type="password"  placeholder="Passwort" required autofocus/>
+      <input id="login-password" name="pwd" ngModel type="password"  placeholder="Passwort" required autofocus [(ngModel)]="login.pwd" autocomplete="off"/>
       <div *ngIf="invalidLogin" class="alert danger">
         <p>Falscher Benutzername oder Passwort</p>
       </div>

@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {LoginComponent} from 'src/app/components/login/login.component';
 import {UserComponent} from 'src/app/components/admin/user/user.component';
-import {ArticleComponent} from 'src/app/components/admin/article/article.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
@@ -11,13 +9,11 @@ import {ArticleDetailComponent} from './components/article-detail/article-detail
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'article-listing', component: ArticleListingComponent},
   {path: 'article-detail', component: ArticleDetailComponent},
   {path: 'my-account', component: MyAccountComponent},
-  {path: 'admin/user', component: UserComponent},
-  {path: 'admin/article', component: ArticleComponent}
+  {path: 'admin/user', component: UserComponent}
 ];
 
 @NgModule({
