@@ -36,8 +36,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
       );
   }
 
-  onClick_addShoppingBasketItem() {
-    this.shoppingBasketService.addItem(new ShoppingBasketItem(this.shoppingBasket._id,'xEUehKXKxYo0011', 1))
+  onClick_addShoppingBasketItem(form, articleId) {
+    this.shoppingBasketService.addItem(new ShoppingBasketItem(this.shoppingBasket._id,articleId, 1))
       .subscribe(shoppingBasket => {
           this.infoService.showInfo('add ShoppingBasket item ok');
           this.jsonResult = JSON.stringify(shoppingBasket);
@@ -48,8 +48,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
       );
   }
 
-  onClick_removeShoppingBasketItem() {
-    this.shoppingBasketService.removeItem(new ShoppingBasketItem(this.shoppingBasket._id,'xEUehKXKxYo0011',0))
+  onClick_removeShoppingBasketItem(form, articleId) {
+    this.shoppingBasketService.removeItem(new ShoppingBasketItem(this.shoppingBasket._id,articleId,0))
       .subscribe(shoppingBasket => {
           this.infoService.showInfo('remove ShoppingBasket item ok');
           this.jsonResult = JSON.stringify(shoppingBasket);

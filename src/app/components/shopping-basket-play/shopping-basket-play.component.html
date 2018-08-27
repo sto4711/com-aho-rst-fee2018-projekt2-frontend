@@ -4,14 +4,22 @@
   <button class="btn form-btn" type="submit"><span class="btn-form-text">create</span> </button>
 </form>
 
-<form class="form login-form" #f2="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f2.value)">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article</span> </button>
+<form class="form login-form" #f2="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f2.value,'xEUehKXKxYo0011')">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article1</span> </button>
 </form>
 
-<form class="form login-form" #f3="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f3.value)">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article</span> </button>
+<form class="form login-form" #f3="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f3.value,'xEUehKXKxYo0019')">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article2</span> </button>
 </form>
 
+
+<form class="form login-form" #f4="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f4.value,'xEUehKXKxYo0011')">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article1</span> </button>
+</form>
+
+<form class="form login-form" #f5="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f5.value, 'xEUehKXKxYo0019')">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article2</span> </button>
+</form>
 
 
 
