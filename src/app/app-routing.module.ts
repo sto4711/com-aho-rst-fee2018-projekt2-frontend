@@ -7,6 +7,7 @@ import {ArticleListingComponent} from './components/article-listing/article-list
 import {MyAccountComponent} from './components/my-account/my-account.component';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 import {ShoppingBasketPlayComponent} from "./components/shopping-basket-play/shopping-basket-play.component";
+import {ArticleComponent} from "./components/admin/article/article.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'article-detail', component: ArticleDetailComponent},
   {path: 'my-account', component: MyAccountComponent},
   {path: 'admin/user', component: UserComponent},
+  {path: 'admin/article', component: ArticleComponent},
   {path: 'shopping-basket-play', component: ShoppingBasketPlayComponent}
 ];
 

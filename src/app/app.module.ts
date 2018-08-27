@@ -21,6 +21,7 @@ import { SearchComponent } from './components/search/search.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TrimPipe} from './trim.pipe';
 import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
+import { ArticleComponent } from './components/admin/article/article.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/s
     ArticleDetailComponent,
     SearchComponent,
     TrimPipe,
-    ShoppingBasketPlayComponent
+    ShoppingBasketPlayComponent,
+    ArticleComponent
 
    ],
   imports: [
