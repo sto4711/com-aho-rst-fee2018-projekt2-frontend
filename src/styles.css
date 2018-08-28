@@ -151,6 +151,12 @@ ul.ngx-pagination {
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: #95c2b0 !important;
 }
+
+.mat-option-text a {
+  display: block;
+  width: 100%;
+}
+
 /*
     header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */

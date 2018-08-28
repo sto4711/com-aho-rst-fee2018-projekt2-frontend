@@ -1,9 +1,11 @@
+
 <form class="example-form" class="search-form" role="search" method="" name="search" action="">
+
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Artikel suchen" aria-label="Artikel suchen" [matAutocomplete]="auto" [formControl]="stateCtrl">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let article of articles$ | async" [value]="article.name">
-        <a  [routerLink]="['/article-detail/']" [queryParams]="{id:article._id }"><span>{{article.name}}</span></a>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getSelectedArticle($event)'>
+      <mat-option *ngFor="let article of filteredArticle | async" [value]="article.name">
+        <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.name | trim  ,id:article._id }"><span>{{article.name}}</span></a>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field><i class="fas fa-search"></i>

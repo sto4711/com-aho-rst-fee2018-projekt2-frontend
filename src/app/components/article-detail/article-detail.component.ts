@@ -33,17 +33,7 @@ export class ArticleDetailComponent implements OnInit {
 
 
   ) {
-    this.route.paramMap
-      .subscribe( params => {
-         this.articleID =  this.route.snapshot.queryParams["id"];
-        this.articleDetails =  this.articleService.getArticleDetails(this.articleID)
-          .subscribe(
-            result => {
-              this.articleDetails = result;
-            }
 
-          );
-      });
   }
   selectedArticleAmount(amount){
     this.articleAmount = amount;
@@ -53,7 +43,19 @@ export class ArticleDetailComponent implements OnInit {
   this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID );
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.paramMap
+      .subscribe( params => {
+        this.articleID =  this.route.snapshot.queryParams["id"];
+        this.articleDetails =  this.articleService.getArticleDetails(this.articleID)
+          .subscribe(
+            result => {
+              this.articleDetails = result;
+            }
+
+          );
+      });
+  }
 
 }
 

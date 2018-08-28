@@ -1,4 +1,4 @@
-export interface State {
+export interface Article {
   brand: string;
   description: string;
   imageURL: string;
