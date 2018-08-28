@@ -1,12 +1,15 @@
 export class ShoppingBasketItem {
   public shoppingBasketID :string =  '';
   public articleID :string =  '';
-  public count : number = 0;
+  public articleName :string =  '';
+  public articlePrice :number =  null;
+  public articleAvailability :boolean =  null;
+  public articleCount :number =  null;
 
-  constructor(shoppingBasketID: string, articleID: string, count : number) {
+  constructor(shoppingBasketID: string, articleID: string, articleCount : number) {
     this.shoppingBasketID = shoppingBasketID;
     this.articleID = articleID;
-    this.count = count;
+    this.articleCount = articleCount;
   }
 
 
