@@ -19,7 +19,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   public jsonResult = '';
   public localBasketId: string;
-
+  public myShoppingBasket: any;
   private shoppingBasket: ShoppingBasket = null;
 
 
@@ -30,6 +30,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getShoppingBasket();
   }
 
   getLocalBasketId() {
@@ -52,8 +53,6 @@ export class ShoppingBasketPlayComponent implements OnInit {
           }
         );
 
-
-
   }
 
   getShoppingBasket() {
@@ -62,6 +61,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.shoppingBasketService.getShoppingCart(shoppingBasket_id)
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
+
+
         },
         error => {
           //

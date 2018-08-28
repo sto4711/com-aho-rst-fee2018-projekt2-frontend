@@ -23,6 +23,7 @@ import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/s
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -50,11 +51,13 @@ import {ErrorHandlerService} from "./services/commons/error/error-handler.servic
     MatFormFieldModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   entryComponents: [
     DialogConfirmComponent ],
   providers: [LoginService, { provide: ErrorHandler, useClass: ErrorHandlerService }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
