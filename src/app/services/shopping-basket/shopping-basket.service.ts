@@ -46,7 +46,13 @@ export class ShoppingBasketService {
     );
   }
 
-
-
+  getShoppingCart(shoppingBasketID: ShoppingBasket ): Observable<ShoppingBasket> {
+    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'getShoppingCartBasket', shoppingBasketID, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap(() => console.log('get ok'))
+    );
+  }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
  import { ActivatedRoute, Router } from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
-
+import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
+import {ClientContextService} from "../../services/client-context/client-context.service";
 
 @Component({
   selector: 'app-article-detail',
@@ -13,27 +13,35 @@ export class ArticleDetailComponent implements OnInit {
 
   articleDetails: any;
   imageURL: string = this.clientContextService.getBackendURL_public();
+  articleID : string;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
+    private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent,
     private clientContextService: ClientContextService
+
 
   ) {
     this.route.paramMap
       .subscribe( params => {
-        console.log(params);
-        const id =  this.route.snapshot.queryParams["id"];
-        this.articleDetails =  this.articleService.getArticleDetails(id)
+         this.articleID =  this.route.snapshot.queryParams["id"];
+        this.articleDetails =  this.articleService.getArticleDetails(this.articleID)
           .subscribe(
             result => {
               this.articleDetails = result;
             }
+
           );
       });
   }
 
+  addShoppingBasketItem(){
+
+  this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID);
+   }
   ngOnInit() {}
 
 }

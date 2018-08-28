@@ -28,8 +28,14 @@
           <option value="3">3</option>
         </select>
       </p>
-      <p><button class="btn form-btn"><i class="fas fa-shopping-cart"></i>In den Warenkorb</button></p>
-      <p><a href="#" class="continue-shopping">Weiter Einkaufen</a></p>
+
+      <form class="form" #f1="ngForm" (ngSubmit)="addShoppingBasketItem()">
+        <p>
+         <button class="btn form-btn" type="submit" ><i class="fas fa-shopping-cart"></i>In den Warenkorb</button>
+      </p>
+    </form>
+
+      <p><a href="#" class="continue-shopping"  routerLink="/article-listing">Weiter Einkaufen</a></p>
     </div><!-- end #article-detail-content -->
   </div><!--- end #article-detail-wrap -->
 

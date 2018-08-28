@@ -1,27 +1,29 @@
 <h2>Warenkorb demo backend</h2>
 
-<form class="form login-form" #f="ngForm" (ngSubmit)="onClick_createShoppingBasket(f.value)">
+<form class="form login-form" #f="ngForm" (ngSubmit)=" CreateShoppingBasket(f.value)">
   <button class="btn form-btn" type="submit"><span class="btn-form-text">create</span> </button>
 </form>
 
-<form class="form login-form" #f2="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f2.value,'xEUehKXKxYo0011')">
+<form class="form login-form" #f2="ngForm" (ngSubmit)="addShoppingBasketItem( 'xEUehKXKxYo0011')">
   <button class="btn form-btn" type="submit"><span class="btn-form-text">add article1</span> </button>
 </form>
 
-<form class="form login-form" #f3="ngForm" (ngSubmit)="onClick_addShoppingBasketItem(f3.value,'xEUehKXKxYo0019')">
+<form class="form login-form" #f3="ngForm" (ngSubmit)="addShoppingBasketItem('xEUehKXKxYo0019')">
   <button class="btn form-btn" type="submit"><span class="btn-form-text">add article2</span> </button>
 </form>
 
 
-<form class="form login-form" #f4="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f4.value,'xEUehKXKxYo0011')">
+<form class="form login-form" #f4="ngForm" (ngSubmit)="removeShoppingBasketItem('xEUehKXKxYo0011')">
   <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article1</span> </button>
 </form>
 
-<form class="form login-form" #f5="ngForm" (ngSubmit)="onClick_removeShoppingBasketItem(f5.value, 'xEUehKXKxYo0019')">
+<form class="form login-form" #f5="ngForm" (ngSubmit)="removeShoppingBasketItem('xEUehKXKxYo0019')">
   <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article2</span> </button>
 </form>
 
-
+<form class="form login-form" #f6="ngForm" (ngSubmit)="getShoppingBasket()">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">Get Basket</span> </button>
+</form>
 
 <h3>Warenkorb JSON</h3>
 <h4>{{jsonResult}}</h4>
