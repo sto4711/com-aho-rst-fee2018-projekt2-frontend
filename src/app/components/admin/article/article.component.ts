@@ -5,7 +5,9 @@ import {ClientContextService} from "../../../services/client-context/client-cont
 import {Router} from "@angular/router";
 import {Observable, of, Subject} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+
 import {ArticleService} from "../../../services/articles/article.service";
+import {DialogService} from "../../../services/commons/dialog/dialog.service";
 import {Article} from "../../../services/articles/article";
 
 @Component({
@@ -15,7 +17,7 @@ import {Article} from "../../../services/articles/article";
 })
 export class ArticleComponent implements OnInit {
   title: string = 'Demo searching by enter letters';
-  products$: Observable<Article[]>;
+  articles$: Observable<Article[]>;
   imageURL: string =  this.clientContextService.getBackendURL_public();
   private searchTerms = new Subject<string>();
 
@@ -23,12 +25,13 @@ export class ArticleComponent implements OnInit {
     private loginService: LoginService
     , private clientContextService: ClientContextService
     , private articleService: ArticleService
+    , private dialogService: DialogService
     , private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.products$ = this.searchTerms.pipe(
+    this.articles$ = this.searchTerms.pipe(
       startWith(''),
       debounceTime(300), // wait 300ms after each keystroke before considering the term
       distinctUntilChanged(), // ignore new term if same as previous term
@@ -47,7 +50,7 @@ export class ArticleComponent implements OnInit {
     if (error instanceof HttpErrorResponse && error.status == 401) {
       this.router.navigate(['my-account']).then();
     } else {
-      alert(error.message);
+      this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
     }
 
     return [];

@@ -36,7 +36,7 @@ import {ErrorHandlerService} from "./services/commons/error/error-handler.servic
     TrimPipe,
     ShoppingBasketPlayComponent,
     ArticleComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
    ],
   imports: [
     BrowserModule,

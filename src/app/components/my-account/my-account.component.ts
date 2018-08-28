@@ -5,7 +5,6 @@ import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Login} from "../../services/login/login";
 import {DialogService} from "../../services/commons/dialog/dialog.service";
-//import {DialogService} from "../../services/commons/dialog.service";
 
 @Component({
   selector: 'app-my-account',

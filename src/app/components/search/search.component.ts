@@ -1,63 +1,47 @@
-import { Component  } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, Subject, Subscriber} from 'rxjs';
-import {map, startWith, switchMap} from 'rxjs/operators';
+import {Observable, of, Subject, Subscriber} from 'rxjs';
+import {catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
 import {Article} from '../../services/articles/article';
 import {ArticleService} from '../../services/articles/article.service';
+import {State} from "./state";
+import {HttpErrorResponse} from "@angular/common/http";
+import {DialogService} from "../../services/commons/dialog/dialog.service";
 
-export interface State {
-  brand: string;
-  description: string;
-  imageURL: string;
-  name: string;
-  price: string;
-  searchTags: string;
-  _id: string;
-}
 
- @Component({
+@Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 
-export class SearchComponent   {
-   articlesResult: any;
+export class SearchComponent {
+  articlesResult: any;
+  articles$: Observable<Article[]>;
+  stateCtrl = new FormControl();
+  filteredStates: Observable<State[]>;
 
-   stateCtrl = new FormControl();
-   filteredStates: Observable<State[]>;
+  articles = [];
 
-   articles = [];
+  constructor(
+    private articleService: ArticleService
+    , private dialogService: DialogService
+  ) {
 
-   constructor(
-     private articleService: ArticleService,
+    this.articles$ = this.stateCtrl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300), // wait 300ms after each keystroke before considering the term
+      distinctUntilChanged(), // ignore new term if same as previous term
+      switchMap((term: string) => this.articleService.searchArticles(term)),
+      catchError((error: HttpErrorResponse) => {
+        return of(this.handleError('search bikes', error));
+      })
+    );
+  }
 
- ) {
-     this.filteredStates = this.stateCtrl.valueChanges
+  private handleError<T>(operation = 'operation', error: any) {
+        this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
+      return [];
+    }
 
-       .pipe(
-         startWith(''),
-         map(article => article ? this._filterStates(article) : this.articles.slice())
-       );
-
-   }
-
-   private _filterStates(value: string): State[] {
-     const filterValue = value.toLowerCase();
-      if (filterValue.length >= 3) {
-       this.articlesResult = this.articleService.searchArticles(filterValue)
-         .subscribe(
-           result => {
-             this.articles = result;
-           }
-         );
-       return this.articles.filter(article => article.name.toLowerCase().indexOf(filterValue) === 0);
-
-     }
-     else{
-       this.articles = [];
-       return this.articles;
-      }
-
-   }
 }
