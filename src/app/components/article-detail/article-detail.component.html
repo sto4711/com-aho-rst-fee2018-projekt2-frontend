@@ -20,13 +20,16 @@
       <p *ngIf='articleDetails[0]?.availability'  class="article-detail-availability available" >Ab Lager verfügbar</p>
       <p *ngIf='!articleDetails[0]?.availability'  class="article-detail-availability available" >In 3 Wochen lieferbar</p>
       <p class="article-detail-price">CHF {{articleDetails[0]?.price}}</p>
+
       <p>
-        <select id="article-amount">
-          <option value="">--Bitte Anzahl auswählen--</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
+        <mat-form-field>
+          <mat-select name="artikel-anzahl"  placeholder="Bitte Anzahl auswählen" [(ngModel)]="selectedValue"  (selectionChange)="selectedArticleAmount($event.value)">
+            <mat-option *ngFor="let anzahl of amount" [value]="anzahl.value">
+              {{anzahl.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        {{selectedValue}}
       </p>
 
       <form class="form" #f1="ngForm" (ngSubmit)="addShoppingBasketItem()">

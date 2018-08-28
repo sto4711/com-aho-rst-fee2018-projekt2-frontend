@@ -146,6 +146,7 @@ ul.ngx-pagination {
 
 .mat-form-field {
   font-weight: 300;
+  min-width: 250px;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: #95c2b0 !important;
