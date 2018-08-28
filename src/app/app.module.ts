@@ -8,7 +8,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
 import { AppComponent } from './app.component';
-import { InfoComponent } from './components/info/info.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './components/admin/user/user.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,11 +21,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TrimPipe} from './trim.pipe';
 import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
 import { ArticleComponent } from './components/admin/article/article.component';
+//import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InfoComponent,
     UserComponent,
     HomeComponent,
     ArticleListingComponent,
@@ -36,6 +35,7 @@ import { ArticleComponent } from './components/admin/article/article.component';
     TrimPipe,
     ShoppingBasketPlayComponent,
     ArticleComponent
+    //DialogConfirmComponent
 
    ],
   imports: [

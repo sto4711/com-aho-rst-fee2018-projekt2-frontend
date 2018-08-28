@@ -5,7 +5,7 @@
     <form class="form login-form" #f="ngForm" (ngSubmit)="onClick_Login(f.value)">
       <h4>Ich habe bereits ein Konto</h4>
       <label for="login-email">E-Mail</label>
-      <input id="login-email" name="user" ngModel placeholder="E-Mail" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
+      <input id="login-email" name="mail" ngModel placeholder="E-Mail" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
       <label for="login-password">Passwort</label>
       <input id="login-password" name="pwd" ngModel type="password"  placeholder="Passwort" required autofocus [(ngModel)]="login.pwd" autocomplete="off"/>
       <div *ngIf="invalidLogin" class="alert danger">
@@ -18,10 +18,9 @@
       <h4>Neues Konto erstellen</h4>
 
       <label for="create-email">E-Mail</label>
-      <input id="create-email" placeholder="Meine E-Mail" type="email" required autofocus/>
-
+      <input id="create-email" placeholder="Meine E-Mail" type="email" required autofocus autocomplete="off"/>
       <label for="create-password">Passwort</label>
-      <input type="password" placeholder="Mein Passwort" id="create-password" required autofocus/>
+      <input type="password" placeholder="Mein Passwort" id="create-password" required autofocus autocomplete="off"/>
       <button class="btn form-btn" type="submit"><span class="btn-form-text"> Anmelden</span></button>
 
     </form>

@@ -2,9 +2,9 @@ import {Router} from '@angular/router';
 
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from 'src/app/services/login/login.service';
-import {InfoService} from 'src/app/services/info/info.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Login} from "../../services/login/login";
+//import {DialogService} from "../../services/commons/dialog.service";
 
 @Component({
   selector: 'app-my-account',
@@ -16,10 +16,10 @@ export class MyAccountComponent implements OnInit {
   login: Login = new Login();
 
   constructor(
-    private infoService: InfoService
-    , private loginService: LoginService
+    private loginService: LoginService
     , private clientContextService: ClientContextService
     , private router: Router
+    //, private dialogService: DialogService
   ) {
   }
 
@@ -29,11 +29,10 @@ export class MyAccountComponent implements OnInit {
     this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
-          this.infoService.showInfo('login ok');
         },
         error => {
           this.invalidLogin = true;
-          this.infoService.showError(error.message);
+          //this.dialogService.confirm('Fehler login', 'Es ist ein Fehler aufgetreten ' + error);
         },
         () => {
           this.login = new Login();
@@ -45,13 +44,10 @@ export class MyAccountComponent implements OnInit {
   onClick_Logout() {
     this.loginService.signout(this.clientContextService.getToken())
       .subscribe(token => {
-          this.infoService.showInfo('logout token ' + token.valueOf() + ' ok');
+          //
         },
         error => {
-          this.infoService.showError(error.message);
-        },
-        () => {
-          // 'onCompleted'
+          //this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
         });
   }
 

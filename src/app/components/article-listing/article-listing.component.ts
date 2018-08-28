@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-import {InfoService} from 'src/app/services/info/info.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {ArticleService} from 'src/app/services/articles/article.service';
 import {Article} from 'src/app/services/articles/article';
@@ -18,9 +17,8 @@ export class ArticleListingComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private infoService: InfoService
-    , private clientContextService: ClientContextService
-    , private articleService: ArticleService,
+    private clientContextService: ClientContextService
+    , private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
   }

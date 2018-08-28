@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {InfoService} from "../../services/info/info.service";
 import {ClientContextService} from "../../services/client-context/client-context.service";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 import {ShoppingBasket} from "../../services/shopping-basket/shopping-basket";
@@ -15,8 +14,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
   public jsonResult: string = '';
   private shoppingBasket  : ShoppingBasket = null;
 
-  constructor(    private infoService: InfoService
-    , private shoppingBasketService: ShoppingBasketService
+  constructor(
+     private shoppingBasketService: ShoppingBasketService
     , private clientContextService: ClientContextService
   ) { }
 
@@ -26,12 +25,11 @@ export class ShoppingBasketPlayComponent implements OnInit {
   onClick_createShoppingBasket() {
     this.shoppingBasketService.create()
       .subscribe(shoppingBasket => {
-          this.infoService.showInfo('create ShoppingBasket ok');
           this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
         },
         error => {
-          this.infoService.showError(error.message);
+          //this.dialogService.confirm('Fehler createShoppingBasket', 'Es ist ein Fehler aufgetreten ' + error);
         }
       );
   }
@@ -39,11 +37,10 @@ export class ShoppingBasketPlayComponent implements OnInit {
   onClick_addShoppingBasketItem(form, articleId) {
     this.shoppingBasketService.addItem(new ShoppingBasketItem(this.shoppingBasket._id,articleId, 1))
       .subscribe(shoppingBasket => {
-          this.infoService.showInfo('add ShoppingBasket item ok');
           this.jsonResult = JSON.stringify(shoppingBasket);
         },
         error => {
-          this.infoService.showError(error.message);
+          //this.dialogService.confirm('Fehler addShoppingBasketItem', 'Es ist ein Fehler aufgetreten ' + error);
         }
       );
   }
@@ -51,11 +48,10 @@ export class ShoppingBasketPlayComponent implements OnInit {
   onClick_removeShoppingBasketItem(form, articleId) {
     this.shoppingBasketService.removeItem(new ShoppingBasketItem(this.shoppingBasket._id,articleId,0))
       .subscribe(shoppingBasket => {
-          this.infoService.showInfo('remove ShoppingBasket item ok');
           this.jsonResult = JSON.stringify(shoppingBasket);
         },
         error => {
-          this.infoService.showError(error.message);
+          //this.dialogService.confirm('Fehler removeShoppingBasketItem', 'Es ist ein Fehler aufgetreten ' + error);
         }
       );
   }

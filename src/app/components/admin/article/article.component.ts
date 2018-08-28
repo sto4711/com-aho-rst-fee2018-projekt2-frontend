@@ -4,7 +4,6 @@ import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} fr
 import {ClientContextService} from "../../../services/client-context/client-context.service";
 import {Router} from "@angular/router";
 import {Observable, of, Subject} from "rxjs";
-import {InfoService} from "../../../services/info/info.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ArticleService} from "../../../services/articles/article.service";
 import {Article} from "../../../services/articles/article";
@@ -21,8 +20,7 @@ export class ArticleComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private infoService: InfoService
-    , private loginService: LoginService
+    private loginService: LoginService
     , private clientContextService: ClientContextService
     , private articleService: ArticleService
     , private router: Router
@@ -47,8 +45,7 @@ export class ArticleComponent implements OnInit {
 
   private handleError<T>(operation = 'operation', error: any) {
     if (error instanceof HttpErrorResponse && error.status == 401) {
-      this.infoService.showError(operation + ' not authenticated, please login');
-      this.router.navigate(['login']).then();
+      this.router.navigate(['my-account']).then();
     } else {
       alert(error.message);
     }
