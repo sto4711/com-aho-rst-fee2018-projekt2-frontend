@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './components/admin/user/user.component';
@@ -21,7 +21,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TrimPipe} from './trim.pipe';
 import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
 import { ArticleComponent } from './components/admin/article/article.component';
-//import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
+import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
+import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
 
 @NgModule({
   declarations: [
@@ -34,9 +35,8 @@ import { ArticleComponent } from './components/admin/article/article.component';
     SearchComponent,
     TrimPipe,
     ShoppingBasketPlayComponent,
-    ArticleComponent
-    //DialogConfirmComponent
-
+    ArticleComponent,
+    DialogConfirmComponent
    ],
   imports: [
     BrowserModule,
@@ -49,10 +49,12 @@ import { ArticleComponent } from './components/admin/article/article.component';
     MatInputModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatAutocompleteModule
-
+    MatAutocompleteModule,
+    MatDialogModule
   ],
-  providers: [LoginService],
+  entryComponents: [
+    DialogConfirmComponent ],
+  providers: [LoginService, { provide: ErrorHandler, useClass: ErrorHandlerService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

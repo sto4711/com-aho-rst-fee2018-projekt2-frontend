@@ -4,6 +4,7 @@ import {ClientContextService} from "../../services/client-context/client-context
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 import {ShoppingBasket} from "../../services/shopping-basket/shopping-basket";
 import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket-item";
+import {DialogService} from "../../services/commons/dialog/dialog.service";
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -26,6 +27,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   constructor(
     private shoppingBasketService: ShoppingBasketService
     , private clientContextService: ClientContextService
+    , private dialogService :DialogService
   ) {
   }
 
@@ -75,7 +77,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.shoppingBasketService.addItem(new ShoppingBasketItem(shoppingBasket_id, articleId, 1))
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
-
+          this.dialogService.confirm('addItem()', 'alles ok');
         },
         error => {
           //

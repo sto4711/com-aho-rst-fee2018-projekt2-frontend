@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Login} from "../../services/login/login";
+import {DialogService} from "../../services/commons/dialog/dialog.service";
 //import {DialogService} from "../../services/commons/dialog.service";
 
 @Component({
@@ -19,7 +20,7 @@ export class MyAccountComponent implements OnInit {
     private loginService: LoginService
     , private clientContextService: ClientContextService
     , private router: Router
-    //, private dialogService: DialogService
+    , private dialogService: DialogService
   ) {
   }
 
@@ -32,7 +33,7 @@ export class MyAccountComponent implements OnInit {
         },
         error => {
           this.invalidLogin = true;
-          //this.dialogService.confirm('Fehler login', 'Es ist ein Fehler aufgetreten ' + error);
+          this.dialogService.confirm('Fehler login', 'Es ist ein Fehler aufgetreten ' + error);
         },
         () => {
           this.login = new Login();
@@ -47,7 +48,7 @@ export class MyAccountComponent implements OnInit {
           //
         },
         error => {
-          //this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
+          this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
         });
   }
 
