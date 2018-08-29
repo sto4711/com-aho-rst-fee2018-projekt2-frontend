@@ -7,20 +7,12 @@
 
   <div class="product-listing" *ngIf="articles$ | async">
 
-    <div class="product-container"
-         *ngFor="let article of articles$
-           | async | paginate: { itemsPerPage: 12, currentPage: p }">
-      <div class="product-content">
-        <img class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
-        <div class="product-data">
-          <p><span class="product-listing-title">{{article.name}}</span><br>
-            <span class="product-listing-descr">{{article.brand}}</span><br>
-            <span class="product-listing-price">CHF {{article.price}}</span>
-          </p>
-          <a class="btn prod-listing" type="button" role="button"  aria-label="Zum Artikel" [routerLink]="['/article-detail/']" [queryParams]="{article:article.name | trim, id:article._id }" >Zum Artikel</a>
-        </div><!-- end .product-data -->
-      </div><!-- end .product-content -->
-    </div><!-- end .product-container -->
+<app-article-template class="product-container"  *ngFor="let item of articles$| async | paginate: { itemsPerPage: 12, currentPage: p }" [article]="item">
+
+</app-article-template><!-- end .product-container -->
+
+
+
   </div><!-- end .product-listing -->
   <pagination-controls
     (pageChange)="p = $event"

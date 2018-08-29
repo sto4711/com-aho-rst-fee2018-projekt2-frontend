@@ -36,7 +36,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.getShoppingBasket();
+  // this.getShoppingBasket();
 
 
   }

@@ -22,9 +22,10 @@ import {TrimPipe} from './trim.pipe';
 import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
-import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
+import {ErrorHandlerService} from './services/commons/error/error-handler.service';
 import {MatSelectModule} from '@angular/material/select';
 import {AmountConverterPipe} from './currency.pipe';
+import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {AmountConverterPipe} from './currency.pipe';
     ShoppingBasketPlayComponent,
     ArticleComponent,
     DialogConfirmComponent,
+    ArticleTemplateComponent,
    ],
   imports: [
     BrowserModule,

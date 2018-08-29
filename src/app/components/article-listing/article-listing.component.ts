@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
-import {ArticleService} from 'src/app/services/articles/article.service';
 import {Article} from 'src/app/services/articles/article';
 import {Observable} from 'rxjs';
+import {ArticleService} from '../../services/articles/article.service';
 
 @Component({
   selector: 'app-article-listing',
@@ -13,12 +12,10 @@ import {Observable} from 'rxjs';
 export class ArticleListingComponent implements OnInit {
   articles$: Observable<Article[]>;
 
-  imageURL: string = this.clientContextService.getBackendURL_public();
   p: number = 1;
 
   constructor(
-    private clientContextService: ClientContextService
-    , private articleService: ArticleService
+    private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
   }
