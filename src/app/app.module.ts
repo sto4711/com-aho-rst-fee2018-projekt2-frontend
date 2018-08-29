@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {ErrorHandler, NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,6 +24,7 @@ import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
 import {MatSelectModule} from '@angular/material/select';
+ import {AmountConverterPipe} from './currency.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
     ArticleDetailComponent,
     SearchComponent,
     TrimPipe,
+    AmountConverterPipe,
     ShoppingBasketPlayComponent,
     ArticleComponent,
     DialogConfirmComponent,
@@ -56,7 +58,9 @@ import {MatSelectModule} from '@angular/material/select';
   ],
   entryComponents: [
     DialogConfirmComponent ],
-  providers: [LoginService, { provide: ErrorHandler, useClass: ErrorHandlerService }],
+  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, { provide: ErrorHandler, useClass: ErrorHandlerService},
+
+  ],
   bootstrap: [AppComponent]
 })
 

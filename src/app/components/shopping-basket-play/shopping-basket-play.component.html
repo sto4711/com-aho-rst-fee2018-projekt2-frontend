@@ -43,19 +43,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td class="article-row">123</td>
-        <td class="article-row">Fahrrad Kette deluxe asdfadsfa sdfasdf</td>
-        <td class="article-row">CHF 20.00</td>
-        <td class="article-row">
-          <select class="cart-article-amount">
-            <option value="">--Bitte Anzahl auswählen--</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+      <tr *ngFor="let article of myShoppingBasket">
+        <td class="article-row">{{article.articleID}}</td>
+        <td class="article-row">{{article.articleName}}</td>
+        <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
+        <td class="article-row"> {{article.articleAmount}}</td>
+        <td class="article-row ">CHF {{article.articlePrice | amountConverter}}
+          <i class="fa fa-times" aria-hidden="true"></i>
         </td>
-        <td class="article-row ">CHF 10.00 <i class="fa fa-times" aria-hidden="true"></i></td>
       </tr>
 
 
@@ -73,7 +68,7 @@
         <td >
           <p><span>CHF 30.00</span></p>
           <p><span>CHF 15.00</span></p>
-          <p><strong><span>CHF 45.00</span></strong></p>
+          <p><strong><span>CHF {{totalSum | amountConverter}}</span></strong></p>
         </td>
       </tr>
 

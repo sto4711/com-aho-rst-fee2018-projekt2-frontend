@@ -20,6 +20,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
   public jsonResult = '';
   public localBasketId: string;
   public myShoppingBasket: any;
+  public totalSum = 45;
+
   private shoppingBasket: ShoppingBasket = null;
 
 
@@ -61,9 +63,13 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.shoppingBasketService.getShoppingCart(shoppingBasket_id)
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
+           this.myShoppingBasket = shoppingBasket['items'];
 
+           for(let articleID in this.myShoppingBasket){
+             this.totalSum += this.myShoppingBasket[articleID].articlePrice;
+           }
 
-        },
+         },
         error => {
           //
         }
