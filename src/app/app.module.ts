@@ -24,7 +24,7 @@ import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
 import {MatSelectModule} from '@angular/material/select';
- import {AmountConverterPipe} from './currency.pipe';
+import {AmountConverterPipe} from './currency.pipe';
 
 @NgModule({
   declarations: [

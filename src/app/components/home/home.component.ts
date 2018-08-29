@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  articles$: Observable<Article[]>;
+  articles: Observable<Article[]>;
 
   imageURL: string = this.clientContextService.getBackendURL_public();
   p: number = 1;
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     private clientContextService: ClientContextService
     , private articleService: ArticleService,
   ) {
-    this.articles$ = this.articleService.searchArticles('');
+    this.articles = this.articleService.getArticlesNewest(4);
   }
 
   ngOnInit() {

@@ -22,7 +22,16 @@ export class ArticleService {
         headers: {'Content-Type': 'application/json' }
       }
     ).pipe(
-      tap(() => console.log('get products ok'))
+      tap(() => console.log('searchArticles ok'))
+    );
+  }
+
+  getArticlesNewest( limit: number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.clientContextService.getBackendURL_newestArticles() + '?limit=' + limit, {
+        headers: {'Content-Type': 'application/json' }
+      }
+    ).pipe(
+      tap(() => console.log('getArticlesNewest ok'))
     );
   }
 
@@ -31,7 +40,7 @@ export class ArticleService {
         headers: {'Content-Type': 'application/json' }
       }
     ).pipe(
-      tap(() => console.log('get products ok'))
+      tap(() => console.log('getArticleDetails ok'))
     );
   }
 

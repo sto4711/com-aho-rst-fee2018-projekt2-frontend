@@ -12,6 +12,7 @@ export class ClientContextService {
   private token: Token = {value : ''};
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
   private backendURL_allArticles :string  = 'http://localhost:3000/webshop/articles/';
+  private backendURL_newestArticles :string  = 'http://localhost:3000/webshop/articles/newest';
   private backendURL_articleDetails :string  = 'http://localhost:3000/webshop/article-details/';
 
   private backendURL_allUsers :string  = 'http://localhost:3000/webshop/users/';
@@ -38,6 +39,11 @@ export class ClientContextService {
   getBackendURL_allArticles():string  {
     return this.backendURL_allArticles;
   }
+
+  getBackendURL_newestArticles():string  {
+    return this.backendURL_newestArticles;
+  }
+
   getBackendURL_articleDetails():string  {
     return this.backendURL_articleDetails;
   }
