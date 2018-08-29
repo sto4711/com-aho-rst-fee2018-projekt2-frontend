@@ -1,11 +1,9 @@
-import {Component} from '@angular/core';
+import { Component  } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, of} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
-import {Article} from '../../services/articles/article';
+import {Observable, Subject, Subscriber} from 'rxjs';
+import {map, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
-import {HttpErrorResponse} from "@angular/common/http";
-import {DialogService} from "../../services/commons/dialog/dialog.service";
+import {Article} from '../../components/search/article';
 
 
 @Component({
@@ -14,32 +12,44 @@ import {DialogService} from "../../services/commons/dialog/dialog.service";
   styleUrls: ['./search.component.css']
 })
 
-export class SearchComponent {
+export class SearchComponent   {
   articlesResult: any;
-  articles$: Observable<Article[]>;
+
   stateCtrl = new FormControl();
+  filteredArticle: Observable<Article[]>;
 
   articles = [];
 
   constructor(
-    private articleService: ArticleService
-    , private dialogService: DialogService
-  ) {
+    private articleService: ArticleService,
 
-    this.articles$ = this.stateCtrl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300), // wait 300ms after each keystroke before considering the term
-      distinctUntilChanged(), // ignore new term if same as previous term
-      switchMap((term: string) => this.articleService.searchArticles(term)),
-      catchError((error: HttpErrorResponse) => {
-        return of(this.handleError('search bikes', error));
-      })
-    );
+  ) {
+    this.filteredArticle = this.stateCtrl.valueChanges
+
+      .pipe(
+        startWith(''),
+        map(article => article ? this._filterArticle(article) : this.articles.slice())
+      );
+
   }
 
-  private handleError<T>(operation = 'operation', error: any) {
-      this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
-      return [];
+  private _filterArticle(value: string): Article[] {
+    const filterValue = value.toLowerCase();
+    if (filterValue.length > 3) {
+      this.articlesResult = this.articleService.searchArticles(filterValue)
+        .subscribe(
+          result => {
+            this.articles = result;
+          }
+        );
+      return this.articles.filter(article => article.name.toLowerCase().indexOf(filterValue) === 0);
+
+    }
+    else{
+      this.articles = [];
+      return this.articles;
     }
 
   }
+
+}
