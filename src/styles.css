@@ -146,10 +146,17 @@ ul.ngx-pagination {
 
 .mat-form-field {
   font-weight: 300;
+  min-width: 250px;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: #95c2b0 !important;
 }
+
+.mat-option-text a {
+  display: block;
+  width: 100%;
+}
+
 /*
     header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -562,6 +569,7 @@ figcaption .fab {
 }
 .cart-next-wrap {
   width: 250px;
+  margin: 5em 0 0 0;
 
 }
 
@@ -582,7 +590,7 @@ th {
   font-weight: 400;
 }
 td, th {
-  padding: 6px;
+  padding: 0.8em;
   text-align: left;
 }
 
@@ -594,7 +602,7 @@ tfoot tr:nth-of-type(odd) {
   background: #fff;
 }
 
-tfoot
+
 
 @media screen and (max-width: 1024px)  {
 
@@ -606,11 +614,16 @@ tfoot
   #cart-result {
     margin: 0;
   }
+  .cart-next-wrap {
+    width: 250px;
+    margin: 5em 8em 0 0;
 
+  }
   /* Force table to not be like tables anymore */
-  table, thead, tbody, th, td, tr {
+  table, thead, tfoot, tbody, th, td, tr {
     display: block;
   }
+
 
   /* Hide table headers (but not display: none;, for accessibility) */
   thead tr {
@@ -833,9 +846,9 @@ select {
 }
 
 .fa-times {
+  float:right;
   color: #e11313;
   font-size: 1.8rem;
-  margin: 0 0 0 35px;
   cursor: pointer;
 }
 .no-bg {

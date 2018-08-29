@@ -28,3 +28,56 @@
 <h3>Warenkorb JSON</h3>
 <h4>{{jsonResult}}</h4>
 
+<div class="row">
+  <h2>Warenkorb</h2>
+  <div class="cart-items-listing">
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nr </th>
+        <th>Artikel</th>
+        <th>Preis</th>
+        <th>Anzahl</th>
+        <th>Gesamtsumme</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let article of myShoppingBasket">
+        <td class="article-row">{{article.articleID}}</td>
+        <td class="article-row">{{article.articleName}}</td>
+        <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
+        <td class="article-row"> {{article.articleAmount}}</td>
+        <td class="article-row ">CHF {{article.articlePrice | amountConverter}}
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </td>
+      </tr>
+
+
+      </tbody>
+      <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <p><span class="result-text" >Zwischensumme</span></p>
+          <p><span class="result-text">Lieferkosten</span></p>
+          <p><span class="result-text"><strong>Gesamtsumme</strong></span></p>
+        </td>
+        <td >
+          <p><span>CHF 30.00</span></p>
+          <p><span>CHF 15.00</span></p>
+          <p><strong><span>CHF {{totalSum | amountConverter}}</span></strong></p>
+        </td>
+      </tr>
+
+      </tfoot>
+    </table>
+
+  </div><!-- end .cart-items-listing -->
+  <div class="cart-next-wrap float-right">
+    <p><button class="btn form-btn"><i class="fas fa-shopping-cart"></i>Zur Kasse</button></p>
+    <p><a href="#" class="continue-shopping">Weiter Einkaufen</a></p>
+  </div>
+</div><!-- end .row -->

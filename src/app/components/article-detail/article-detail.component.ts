@@ -9,13 +9,21 @@ import {ClientContextService} from "../../services/client-context/client-context
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.css']
 })
+
+
 export class ArticleDetailComponent implements OnInit {
 
   articleDetails: any;
   imageURL: string = this.clientContextService.getBackendURL_public();
   articleID : string;
+  articleAmount: string;
+  selectedValue = 1;
 
-
+  amount = [
+    {value: '1', viewValue: '1'},
+    {value: '2', viewValue: '2'},
+    {value: '3', viewValue: '3'}
+  ];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -25,9 +33,20 @@ export class ArticleDetailComponent implements OnInit {
 
 
   ) {
+
+  }
+  selectedArticleAmount(amount){
+    this.articleAmount = amount;
+  }
+  addShoppingBasketItem(){
+
+  this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID );
+   }
+
+  ngOnInit() {
     this.route.paramMap
       .subscribe( params => {
-         this.articleID =  this.route.snapshot.queryParams["id"];
+        this.articleID =  this.route.snapshot.queryParams["id"];
         this.articleDetails =  this.articleService.getArticleDetails(this.articleID)
           .subscribe(
             result => {
@@ -37,12 +56,6 @@ export class ArticleDetailComponent implements OnInit {
           );
       });
   }
-
-  addShoppingBasketItem(){
-
-  this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID);
-   }
-  ngOnInit() {}
 
 }
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {ErrorHandler, NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,6 +23,8 @@ import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/s
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {ErrorHandlerService} from "./services/commons/error/error-handler.service";
+import {MatSelectModule} from '@angular/material/select';
+ import {AmountConverterPipe} from './currency.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {ErrorHandlerService} from "./services/commons/error/error-handler.servic
     ArticleDetailComponent,
     SearchComponent,
     TrimPipe,
+    AmountConverterPipe,
     ShoppingBasketPlayComponent,
     ArticleComponent,
     DialogConfirmComponent,
@@ -50,11 +53,15 @@ import {ErrorHandlerService} from "./services/commons/error/error-handler.servic
     MatFormFieldModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   entryComponents: [
     DialogConfirmComponent ],
-  providers: [LoginService, { provide: ErrorHandler, useClass: ErrorHandlerService }],
+  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, { provide: ErrorHandler, useClass: ErrorHandlerService},
+
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
