@@ -47,7 +47,16 @@
         <td class="article-row">{{article.articleID}}</td>
         <td class="article-row">{{article.articleName}}</td>
         <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
-        <td class="article-row"> {{article.articleAmount}}</td>
+        <td class="article-row">
+          <form id="add-to-chart" #f="ngForm">
+            <button type="button" role="button" id="minus" name="articleMinus" ngDefaultControl [(ngModel)]="articleMinus" >
+              <img src="../assets/images/button-minus.gif" alt="button-minus" width="11" height="11"> </button>
+            <button type="button" role="button" disabled id="count">1{{article.articleAmount}}</button>
+            <button id="plus" role="button" type="button" name="articlePlus"  ngDefaultControl [(ngModel)]="articlePlus"   >
+              <img src="../assets/images/button-plus.gif" alt="button-plus" width="11" height="11"> </button>
+           </form>
+
+        </td>
         <td class="article-row ">CHF {{article.articlePrice | amountConverter}}
           <i class="fa fa-times" aria-hidden="true"></i>
         </td>

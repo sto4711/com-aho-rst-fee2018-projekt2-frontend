@@ -4,6 +4,7 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
+import {Form} from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -21,6 +22,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
   public localBasketId: string;
   public myShoppingBasket: any;
   public totalSum = 45;
+   public articleMinus;
+  public articlePlus;
 
   private shoppingBasket: ShoppingBasket = null;
 
@@ -28,11 +31,14 @@ export class ShoppingBasketPlayComponent implements OnInit {
   constructor(
     private shoppingBasketService: ShoppingBasketService
     , private clientContextService: ClientContextService
+
   ) {
   }
 
   ngOnInit() {
-    this.getShoppingBasket();
+   this.getShoppingBasket();
+
+
   }
 
   getLocalBasketId() {

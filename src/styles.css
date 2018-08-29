@@ -76,6 +76,11 @@ footer {
   background-color: #f3c1a2;
 }
 
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
 /*
     fonts, list items /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -572,6 +577,37 @@ figcaption .fab {
   margin: 5em 0 0 0;
 
 }
+
+#add-to-chart img {
+
+  position: relative;
+  top: 1px;
+
+}
+
+button#minus, button#plus {
+  display: inline-block;
+  padding: 2px 5px;
+  color: #779BA0;
+  background-color: #fff;
+  border: 1px #B3B4B4 solid;
+  font-size: 13px;
+  font-weight: 200;
+}
+
+ button#count {
+  display: inline-block;
+  padding: 0 35px;
+  border-top: 1px #B3B4B4 solid;
+  border-bottom: 1px #B3B4B4 solid;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  color: #000;
+  font-weight: 600;
+   height: 20px;
+   cursor: default;
+ }
 
 table {
   width: 100%;
