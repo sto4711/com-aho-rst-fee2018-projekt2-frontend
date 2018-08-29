@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
- import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
 import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
 import {ClientContextService} from "../../services/client-context/client-context.service";
@@ -15,7 +15,7 @@ export class ArticleDetailComponent implements OnInit {
 
   articleDetails: any;
   imageURL: string = this.clientContextService.getBackendURL_public();
-  articleID : string;
+  articleID: string;
   articleAmount: string;
   selectedValue = 1;
 
@@ -24,38 +24,45 @@ export class ArticleDetailComponent implements OnInit {
     {value: '2', viewValue: '2'},
     {value: '3', viewValue: '3'}
   ];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
     private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent,
     private clientContextService: ClientContextService
-
-
   ) {
-
+    // reload page when ID changes
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
   }
-  selectedArticleAmount(amount){
+
+
+  selectedArticleAmount(amount) {
     this.articleAmount = amount;
   }
-  addShoppingBasketItem(){
 
-  this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID );
-   }
+  addShoppingBasketItem() {
+    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID);
+  }
 
-  ngOnInit() {
+  public ngOnInit() {
+    console.log('ngOnInit');
+
     this.route.paramMap
-      .subscribe( params => {
-        this.articleID =  this.route.snapshot.queryParams["id"];
-        this.articleDetails =  this.articleService.getArticleDetails(this.articleID)
+      .subscribe(params => {
+        this.articleID = this.route.snapshot.queryParams["id"];
+        this.articleDetails = this.articleService.getArticleDetails(this.articleID)
           .subscribe(
             result => {
               this.articleDetails = result;
+              console.log('new article set, URL ' + this.articleDetails.imageSmallURL);
             }
-
           );
       });
   }
+
 
 }
 
