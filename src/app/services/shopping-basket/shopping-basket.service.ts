@@ -47,6 +47,16 @@ export class ShoppingBasketService {
     );
   }
 
+  changeItemAmount(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'changeItemAmount', shoppingBasketItem, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap(() => console.log('create ok'))/*,
+      catchError(this.handleError<Token>('signin'))*/
+    );
+  }
+
   removeItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'removeItem', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}

@@ -1,5 +1,12 @@
 <h4>{{jsonResult}}</h4>
 
+
+<form class="form login-form" #f="ngForm" (ngSubmit)=" changeItemAmount_ShoppingBasket('xEUehKXKxYo001',6)">
+  <button class="btn form-btn" type="submit"><span class="btn-form-text">changeItemAmount</span> </button>
+</form>
+
+
+
 <div class="row">
   <h2>Warenkorb</h2>
   <div class="cart-items-listing">
@@ -23,7 +30,7 @@
           <form id="add-to-chart" #f="ngForm">
             <button type="button" role="button" id="minus" name="articleMinus" ngDefaultControl [(ngModel)]="articleMinus" >
               <img src="../assets/images/button-minus.gif" alt="button-minus" width="11" height="11"> </button>
-            <button type="button" role="button" disabled id="count">1{{article.articleAmount}}</button>
+            <button type="button" role="button" disabled id="count">{{article.articleAmount}}</button>
             <button id="plus" role="button" type="button" name="articlePlus"  ngDefaultControl [(ngModel)]="articlePlus"   >
               <img src="../assets/images/button-plus.gif" alt="button-plus" width="11" height="11"> </button>
            </form>

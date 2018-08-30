@@ -60,7 +60,6 @@ export class ShoppingBasketPlayComponent implements OnInit {
       );
   }
 
-
   addShoppingBasketItem(articleId, articleAmount) {
     const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
     this.shoppingBasketService.addItem(shoppingBasketItem)
@@ -71,6 +70,15 @@ export class ShoppingBasketPlayComponent implements OnInit {
       );
   }
 
+  changeItemAmount_ShoppingBasket(articleId, articleAmount) {
+    const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
+    this.shoppingBasketService.changeItemAmount(shoppingBasketItem)
+      .subscribe(shoppingBasket => {
+          this.jsonResult = JSON.stringify(shoppingBasket);
+          this.shoppingBasket = shoppingBasket;
+        }
+      );
+  }
 
   removeShoppingBasketItem(articleId) {
     const shoppingBasket_id = ShoppingBasketPlayComponent.getLocalBasketId();
