@@ -1,31 +1,3 @@
-<h2>Warenkorb demo backend</h2>
-
-<form class="form login-form" #f="ngForm" (ngSubmit)=" createShoppingBasket(f.value)">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">create</span> </button>
-</form>
-
-<form class="form login-form" #f2="ngForm" (ngSubmit)="addShoppingBasketItem( 'xEUehKXKxYo0011')">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article1</span> </button>
-</form>
-
-<form class="form login-form" #f3="ngForm" (ngSubmit)="addShoppingBasketItem('xEUehKXKxYo0019')">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">add article2</span> </button>
-</form>
-
-
-<form class="form login-form" #f4="ngForm" (ngSubmit)="removeShoppingBasketItem('xEUehKXKxYo0011')">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article1</span> </button>
-</form>
-
-<form class="form login-form" #f5="ngForm" (ngSubmit)="removeShoppingBasketItem('xEUehKXKxYo0019')">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">remove article2</span> </button>
-</form>
-
-<form class="form login-form" #f6="ngForm" (ngSubmit)="getShoppingBasket()">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">Get Basket</span> </button>
-</form>
-
-<h3>Warenkorb JSON</h3>
 <h4>{{jsonResult}}</h4>
 
 <div class="row">
@@ -43,8 +15,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let article of myShoppingBasket">
-        <td class="article-row">{{article.articleID}}</td>
+      <tr *ngFor="let article of shoppingBasket.items">
+        <td class="article-row">{{article.itemNumber}}</td>
         <td class="article-row">{{article.articleName}}</td>
         <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
         <td class="article-row">
@@ -57,7 +29,7 @@
            </form>
 
         </td>
-        <td class="article-row ">CHF {{article.articlePrice | amountConverter}}
+        <td class="article-row ">CHF {{article.articlePriceSum | amountConverter}}
           <i class="fa fa-times" aria-hidden="true"></i>
         </td>
       </tr>
@@ -75,9 +47,9 @@
           <p><span class="result-text"><strong>Gesamtsumme</strong></span></p>
         </td>
         <td >
-          <p><span>CHF 30.00</span></p>
+          <p><span>CHF {{shoppingBasket.totalSum | amountConverter}}</span></p>
           <p><span>CHF 15.00</span></p>
-          <p><strong><span>CHF {{totalSum | amountConverter}}</span></strong></p>
+          <p><strong><span>CHF {{shoppingBasket.totalSum + 15 | amountConverter}}</span></strong></p>
         </td>
       </tr>
 

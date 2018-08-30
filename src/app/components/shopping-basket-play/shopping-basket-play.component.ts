@@ -4,7 +4,6 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
-import {Form} from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -17,111 +16,68 @@ import {Form} from '@angular/forms';
 })
 
 export class ShoppingBasketPlayComponent implements OnInit {
-
   public jsonResult = '';
-  public localBasketId: string;
-  public myShoppingBasket: any;
+  public shoppingBasket: ShoppingBasket = new ShoppingBasket();
+
+
   public totalSum = 45;
-   public articleMinus;
+  public articleMinus;
   public articlePlus;
-
-  private shoppingBasket: ShoppingBasket = null;
-
 
   constructor(
     private shoppingBasketService: ShoppingBasketService
-    , private clientContextService: ClientContextService
-
   ) {
   }
 
-  ngOnInit() {
-  // this.getShoppingBasket();
-
-
+  public ngOnInit() {
+    if (ShoppingBasketPlayComponent.getLocalBasketId() === null) {
+      this.createShoppingBasket();
+    } else {
+      this.getShoppingBasket();
+    }
   }
 
-  getLocalBasketId() {
+  private static getLocalBasketId() {
     return localStorage.getItem('cartId');
-
   }
 
-  async createShoppingBasket() {
-
-      await this.shoppingBasketService.create()
-        .subscribe(shoppingBasket => {
-            this.jsonResult = JSON.stringify(shoppingBasket);
-            this.shoppingBasket = shoppingBasket;
-           },
-          error => {
-            //
-          },() =>{
-            localStorage.setItem('cartId', this.shoppingBasket._id);
-
-          }
-        );
-
-  }
-
-  getShoppingBasket() {
-    const shoppingBasket_id = this.getLocalBasketId();
-
-    this.shoppingBasketService.getShoppingCart(shoppingBasket_id)
-      .subscribe(shoppingBasket => {
-          this.jsonResult = JSON.stringify(shoppingBasket);
-           this.myShoppingBasket = shoppingBasket['items'];
-
-           for(let articleID in this.myShoppingBasket){
-             this.totalSum += this.myShoppingBasket[articleID].articlePrice;
-           }
-
-         },
-        error => {
-          //
-        }
-      );
-
-  }
-
-  addShoppingBasketItem(articleId) {
-    let shoppingBasket_id = this.getLocalBasketId();
-
-    if (!shoppingBasket_id) {
-          this.createShoppingBasket().then((basket) => {
-            this.addItem(articleId);
-      });
-    }
-    else{
-      this.addItem(articleId);
-    }
-
-  }
-
-  addItem(articleId){
-
-    let shoppingBasket_id = this.getLocalBasketId();
-    console.log(shoppingBasket_id);
-    this.shoppingBasketService.addItem(new ShoppingBasketItem(shoppingBasket_id, articleId, 1))
+  createShoppingBasket() {
+    this.shoppingBasketService.create()
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
-          console.log(this.shoppingBasket);
-        },
-        error => {
-          //
+          localStorage.setItem('cartId', this.shoppingBasket._id);
         }
       );
   }
 
+  getShoppingBasket() {
+    this.shoppingBasketService.get(ShoppingBasketPlayComponent.getLocalBasketId())
+      .subscribe(shoppingBasket => {
+          this.jsonResult = JSON.stringify(shoppingBasket);
+          this.shoppingBasket = shoppingBasket;
+        }
+      );
+  }
+
+
+  addShoppingBasketItem(articleId, articleAmount) {
+    const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
+    this.shoppingBasketService.addItem(shoppingBasketItem)
+      .subscribe(shoppingBasket => {
+          this.jsonResult = JSON.stringify(shoppingBasket);
+          this.shoppingBasket = shoppingBasket;
+        }
+      );
+  }
+
+
   removeShoppingBasketItem(articleId) {
-    const shoppingBasket_id = this.getLocalBasketId();
+    const shoppingBasket_id = ShoppingBasketPlayComponent.getLocalBasketId();
 
     this.shoppingBasketService.removeItem(new ShoppingBasketItem(shoppingBasket_id, articleId, 0))
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
-        },
-        error => {
-          //
         }
       );
   }

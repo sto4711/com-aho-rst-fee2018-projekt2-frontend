@@ -5,7 +5,6 @@ import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
-import {Article} from "../articles/article";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,16 @@ export class ShoppingBasketService {
     );
   }
 
+  get( shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
+    return this.http.get<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + '?id=' + shoppingBasketID, {
+        headers: {'Content-Type': 'application/json' }
+      }
+    ).pipe(
+      tap(() => console.log('get ok'))
+    );
+  }
+
+
   addItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'addItem', shoppingBasketItem, {
       headers: {'Content-Type': 'application/json'}
@@ -47,14 +56,6 @@ export class ShoppingBasketService {
     );
   }
 
-  getShoppingCart( shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket[]> {
-    return this.http.get<ShoppingBasket[]>(this.clientContextService.getBackendURL_shoppingBasket() + '?id=' + shoppingBasketID, {
-        headers: {'Content-Type': 'application/json' }
-      }
-    ).pipe(
-      tap(() => console.log('get shoppingCart ok'))
-    );
-  }
 
 
 }

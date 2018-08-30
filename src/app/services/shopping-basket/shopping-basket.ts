@@ -5,4 +5,8 @@ export class ShoppingBasket {
   public userID : string = '';
   public shoppingBasketDate : Date= new Date();
   public items  :ShoppingBasketItem[] = [];
+  public totalSum: number = 0;
+
+
+
 }

@@ -3,13 +3,15 @@ export class ShoppingBasketItem {
   public articleID :string =  '';
   public articleName :string =  '';
   public articlePrice :number =  null;
+  public articlePriceSum :number =  null;
   public articleAvailability :boolean =  null;
-  public articleCount :number =  null;
+  public articleAmount :number =  null;
+  public itemNumber :string =  null;
 
-  constructor(shoppingBasketID: string, articleID: string, articleCount : number) {
+  constructor(shoppingBasketID: string, articleID: string, articleAmount : number) {
     this.shoppingBasketID = shoppingBasketID;
     this.articleID = articleID;
-    this.articleCount = articleCount;
+    this.articleAmount = articleAmount;
   }
 
 

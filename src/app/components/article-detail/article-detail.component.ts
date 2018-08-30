@@ -16,13 +16,13 @@ export class ArticleDetailComponent implements OnInit {
   articleDetails: any;
   imageURL: string = this.clientContextService.getBackendURL_public();
   articleID: string;
-  articleAmount: string;
+  articleAmount: number = 1;
   selectedValue = 1;
 
   amount = [
-    {value: '1', viewValue: '1'},
-    {value: '2', viewValue: '2'},
-    {value: '3', viewValue: '3'}
+    {value: 1, viewValue: '1'},
+    {value: 2, viewValue: '2'},
+    {value: 3, viewValue: '3'}
   ];
 
   constructor(
@@ -44,7 +44,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   addShoppingBasketItem() {
-    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID);
+    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID,this.articleAmount);
   }
 
   public ngOnInit() {

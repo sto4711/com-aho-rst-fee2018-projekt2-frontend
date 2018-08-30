@@ -35,8 +35,8 @@ export class ArticleService {
     );
   }
 
-  getArticleDetails( term: string): Observable<Article[]> {
-      return this.http.get<Article[]>(this.clientContextService.getBackendURL_articleDetails() + '?id=' + term , {
+  getArticleDetails( term: string): Observable<Article> {
+      return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?id=' + term , {
         headers: {'Content-Type': 'application/json' }
       }
     ).pipe(
