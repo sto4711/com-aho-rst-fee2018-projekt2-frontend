@@ -561,7 +561,10 @@ figcaption .fab {
 }
 
 .cart-article-amount {
-  max-width: 250px;
+  width: 60px;
+  border:1px solid #ccc;
+  margin: 0 2px;
+  text-align: center;
 }
 
 #cart-result {
@@ -586,12 +589,13 @@ figcaption .fab {
 }
 
 button#minus, button#plus {
+
   display: inline-block;
-  padding: 2px 5px;
+  padding: 8px 15px;
   color: #779BA0;
   background-color: #fff;
-  border: 1px #B3B4B4 solid;
-  font-size: 13px;
+  border: 1px solid #ccc;
+  font-size: 1.6rem;
   font-weight: 200;
 }
 
@@ -661,10 +665,6 @@ tfoot tr:nth-of-type(odd) {
 
   }
 
-  button#minus, button#plus {
-    padding: 12px 15px;
-
-  }
 
   /* Force table to not be like tables anymore */
   table, thead, tfoot, tbody, th, td, tr {

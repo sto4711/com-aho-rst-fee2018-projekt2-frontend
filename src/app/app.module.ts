@@ -42,7 +42,7 @@ import {MatSnackBarModule} from "@angular/material";
     ShoppingBasketPlayComponent,
     ArticleComponent,
     DialogConfirmComponent,
-    ArticleTemplateComponent,
+    ArticleTemplateComponent
    ],
   imports: [
     BrowserModule,
@@ -62,7 +62,7 @@ import {MatSnackBarModule} from "@angular/material";
   ],
   entryComponents: [
     DialogConfirmComponent, ShoppingBasketPlayComponent ],
-  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, { provide: ErrorHandler, useClass: ErrorHandlerService},
+  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
 
   ],
   bootstrap: [AppComponent]

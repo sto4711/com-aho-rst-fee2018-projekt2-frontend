@@ -1,15 +1,7 @@
-<h4>{{jsonResult}}</h4>
-
-
-<form class="form login-form" #f="ngForm" (ngSubmit)=" changeItemAmount_ShoppingBasket('xEUehKXKxYo001',6)">
-  <button class="btn form-btn" type="submit"><span class="btn-form-text">changeItemAmount</span> </button>
-</form>
-
-
-
 <div class="row">
   <h2>Warenkorb</h2>
-  <div class="cart-items-listing">
+  <div *ngIf="shoppingBasket.items.length !==0">
+  <div class="cart-items-listing" >
 
     <table>
       <thead>
@@ -27,17 +19,17 @@
         <td class="article-row">{{article.articleName}}</td>
         <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
         <td class="article-row">
-          <form id="add-to-chart" #f="ngForm">
-            <button type="button" role="button" id="minus" name="articleMinus" ngDefaultControl [(ngModel)]="articleMinus" >
+          <form id="add-to-chart" >
+            <button type="button" role="button" id="minus" name="articleMinus" (click)="changeItemAmount_ShoppingBasket(article.articleID, article.articleAmount-1)">
               <img src="../assets/images/button-minus.gif" alt="button-minus" width="11" height="11"> </button>
-            <button type="button" role="button" disabled id="count">{{article.articleAmount}}</button>
-            <button id="plus" role="button" type="button" name="articlePlus"  ngDefaultControl [(ngModel)]="articlePlus"   >
+            <input class="cart-article-amount" type="text" id="count" name="articleCount" [(ngModel)]="article.articleAmount" #articleAmount="ngModel"   />
+            <button id="plus" role="button" type="button" name="articlePlus" (click)="changeItemAmount_ShoppingBasket(article.articleID, article.articleAmount+1)" >
               <img src="../assets/images/button-plus.gif" alt="button-plus" width="11" height="11"> </button>
            </form>
 
         </td>
         <td class="article-row ">CHF {{article.articlePriceSum | amountConverter}}
-          <i class="fa fa-times" aria-hidden="true"></i>
+          <i class="fa fa-times" aria-hidden="true" (click)="removeShoppingBasketItem(article.articleID)"></i>
         </td>
       </tr>
 
@@ -66,6 +58,11 @@
   </div><!-- end .cart-items-listing -->
   <div class="cart-next-wrap float-right">
     <p><button class="btn form-btn"><i class="fas fa-shopping-cart"></i>Zur Kasse</button></p>
-    <p><a href="#" class="continue-shopping">Weiter Einkaufen</a></p>
+    <p><a role="link" routerLink="/article-listing" class="continue-shopping">Weiter Einkaufen</a></p>
   </div>
+  </div>
+  <p *ngIf="shoppingBasket.items.length ==0">
+    <strong>Ihr Warenkorb ist leer.</strong><br>
+    <a role="link" routerLink="/article-listing"class="continue-shopping">Hier</a> gehts zu unseren Artikeln.
+  </p>
 </div><!-- end .row -->
