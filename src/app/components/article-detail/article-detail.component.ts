@@ -30,7 +30,7 @@ export class ArticleDetailComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent,
-    private clientContextService: ClientContextService
+    private clientContextService: ClientContextService,
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function() {

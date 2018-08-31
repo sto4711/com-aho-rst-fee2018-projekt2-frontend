@@ -19,7 +19,7 @@ export class ShoppingBasketService {
 
   create(): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'create', {
-      headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
       tap(() => console.log('create ok'))/*,
@@ -27,9 +27,9 @@ export class ShoppingBasketService {
     );
   }
 
-  get( shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
+  get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
     return this.http.get<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + '?id=' + shoppingBasketID, {
-        headers: {'Content-Type': 'application/json' }
+        headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
       tap(() => console.log('get ok'))
@@ -39,11 +39,11 @@ export class ShoppingBasketService {
 
   addItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'addItem', shoppingBasketItem, {
-      headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))/*,
-      catchError(this.handleError<Token>('signin'))*/
+      tap(() => console.log('addItem ok'))
+
     );
   }
 
@@ -52,8 +52,7 @@ export class ShoppingBasketService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))/*,
-      catchError(this.handleError<Token>('signin'))*/
+      tap(() => console.log('create ok'))
     );
   }
 
@@ -65,7 +64,6 @@ export class ShoppingBasketService {
       tap(() => console.log('create ok'))
     );
   }
-
 
 
 }

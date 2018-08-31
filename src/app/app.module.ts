@@ -26,6 +26,7 @@ import {ErrorHandlerService} from './services/commons/error/error-handler.servic
 import {MatSelectModule} from '@angular/material/select';
 import {AmountConverterPipe} from './currency.pipe';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
+import {MatSnackBarModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -56,10 +57,11 @@ import { ArticleTemplateComponent } from './components/article-template/article-
     MatCheckboxModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatSelectModule
   ],
   entryComponents: [
-    DialogConfirmComponent ],
+    DialogConfirmComponent, ShoppingBasketPlayComponent ],
   providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, { provide: ErrorHandler, useClass: ErrorHandlerService},
 
   ],

@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Component, OnInit} from '@angular/core';
-import {ClientContextService} from '../../services/client-context/client-context.service';
+import {MatSnackBar} from "@angular/material";
+
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
+
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -18,14 +20,13 @@ import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket
 export class ShoppingBasketPlayComponent implements OnInit {
   public jsonResult = '';
   public shoppingBasket: ShoppingBasket = new ShoppingBasket();
-
-
-  public totalSum = 45;
+  public totalSum = 0;
   public articleMinus;
   public articlePlus;
 
   constructor(
     private shoppingBasketService: ShoppingBasketService
+    , private snackBar: MatSnackBar
   ) {
   }
 
@@ -66,6 +67,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
+          this.snackBar.open('Artikel zu Warenkorb hinzugefügt', null, {duration: 1500});
         }
       );
   }
@@ -76,16 +78,17 @@ export class ShoppingBasketPlayComponent implements OnInit {
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
+          this.snackBar.open('Artikelmenge angepasst', null, {duration: 1500});
         }
       );
   }
 
   removeShoppingBasketItem(articleId) {
-    const shoppingBasket_id = ShoppingBasketPlayComponent.getLocalBasketId();
-
-    this.shoppingBasketService.removeItem(new ShoppingBasketItem(shoppingBasket_id, articleId, 0))
+    this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, 0))
       .subscribe(shoppingBasket => {
           this.jsonResult = JSON.stringify(shoppingBasket);
+          this.shoppingBasket = shoppingBasket;
+          this.snackBar.open('Artikel von Warenkorb entfernt', null, {duration: 1500});
         }
       );
   }
