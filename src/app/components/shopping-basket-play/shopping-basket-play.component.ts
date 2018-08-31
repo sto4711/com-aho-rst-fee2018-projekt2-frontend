@@ -1,10 +1,11 @@
-import {Injectable, Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {MatSnackBar} from "@angular/material";
+import {Injectable, Component, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
 import {Form} from '@angular/forms';
+ import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -32,6 +33,8 @@ export class ShoppingBasketPlayComponent implements OnInit {
   constructor(
     private shoppingBasketService: ShoppingBasketService
     , private snackBar: MatSnackBar
+    , public dialog: MatDialog
+    , public confirmDeleteService: ConfirmDeleteService
   ) {
   }
 
@@ -49,6 +52,16 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   public static getLocalBasketId() {
     return localStorage.getItem('cartId');
+  }
+
+  confirmDelete(articleId, articleName){
+    this.confirmDeleteService.confirm(articleName).subscribe(
+    result => {
+          if (result === 'ja') {
+            this.removeShoppingBasketItem(articleId, articleName);
+          }
+        }
+      );
   }
 
   createShoppingBasket() {
@@ -81,7 +94,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
       );
   }
 
-  changeItemAmount_ShoppingBasket(articleId, articleAmount) {
+  changeItemAmount_ShoppingBasket(articleId, articleName, articleAmount) {
     if (articleAmount >= 1 && articleAmount <= 3) {
        const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
 
@@ -89,7 +102,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
         .subscribe(shoppingBasket => {
             this.shoppingBasket = shoppingBasket;
 
-          this.snackBar.open('Artikelmenge ist angepasst.', null, {duration: 1500});
+          this.snackBar.open('Artikelmenge für ' + articleName + ' ist angepasst.', null, {duration: 1500});
           }
         );
     }

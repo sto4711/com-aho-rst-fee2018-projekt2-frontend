@@ -796,7 +796,14 @@ a.btn:hover, .form-btn:hover {
   max-width: 250px;
 }
 
+.btn-confirm-wrap {
+  display: flex;
+  justify-content: space-around;
+}
 
+button.btn-confirm {
+  width: 45%;
+}
 
 /*
     forms ////////////////////////////////////////////////////////////////////////////////////////////////

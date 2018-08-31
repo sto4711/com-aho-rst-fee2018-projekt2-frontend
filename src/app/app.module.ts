@@ -27,6 +27,7 @@ import {MatComponentsModule} from './mat-components/mat-components.module';
 import { HeaderComponent } from './components/header/header.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog-confirm-delete/dialog-confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ArticleTemplateComponent,
     HeaderComponent,
     TopBarComponent,
-    FooterComponent
+    FooterComponent,
+    DialogConfirmDeleteComponent
    ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
   ],
   entryComponents: [
-    DialogConfirmComponent, ShoppingBasketPlayComponent ],
+    DialogConfirmComponent, ShoppingBasketPlayComponent, DialogConfirmDeleteComponent ],
   providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
 
   ],
