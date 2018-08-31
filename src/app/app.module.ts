@@ -17,16 +17,14 @@ import {LoginService} from './services/login/login.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { SearchComponent } from './components/search/search.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {TrimPipe} from './trim.pipe';
 import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
-import {ErrorHandlerService} from './services/commons/error/error-handler.service';
-import {MatSelectModule} from '@angular/material/select';
 import {AmountConverterPipe} from './currency.pipe';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
-import {MatSnackBarModule} from "@angular/material";
+import { ShoppingBasketBadgeComponent } from './components/shopping-basket-badge/shopping-basket-badge.component';
+import {MatComponentsModule} from './mat-components/mat-components.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +40,8 @@ import {MatSnackBarModule} from "@angular/material";
     ShoppingBasketPlayComponent,
     ArticleComponent,
     DialogConfirmComponent,
-    ArticleTemplateComponent
+    ArticleTemplateComponent,
+    ShoppingBasketBadgeComponent
    ],
   imports: [
     BrowserModule,
@@ -52,13 +51,8 @@ import {MatSnackBarModule} from "@angular/material";
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatSelectModule
+    MatComponentsModule
+
   ],
   entryComponents: [
     DialogConfirmComponent, ShoppingBasketPlayComponent ],
