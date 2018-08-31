@@ -1,54 +1,6 @@
 <div id="wrapper">
-  <header>
-    <div class="row">
-      <div id="top-bar">
-        <div id="top-bar-contact">
-          <ul>
-            <li>
-              <i class="fas fa-phone"></i><a href="tel:+41 44 187 89 65">T +41 44 187 89 65</a>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i><a href="mailto:myshop@shop.com">myshop@shop.com</a>
-            </li>
-          </ul>
-        </div><!-- end #top-bar-contact -->
-        <div id="top-bar-service">
-          <ul>
-            <li>
-              <i class="fas fa-shopping-cart"></i><a routerLink="/shopping-basket-play">Warenkorb</a>
-            </li>
-            <li>
-              <app-search></app-search>
-            </li>
-          </ul>
-        </div><!-- end #top-bar-service -->
-      </div><!-- end #top-bar -->
-    </div><!-- end .row -->
 
-    <div id="top-banner">
-      <div class="bg-main-nav"></div><!-- end #main-nav-wrap -->
-      <nav class="main-nav">
-        <div id="hamburger" (click)="hamburger($event)">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
-        <ul>
-          <li><a routerLinkActive="active" role="link" routerLink="/home">Home</a></li>
-          <li><a routerLinkActive="active" role="link" routerLink="/article-listing">Produkte</a></li>
-          <li><a routerLinkActive="active" role="link" routerLink="/my-account">Mein Konto</a></li>
-
-        </ul>
-      </nav>
-      <div id="banner">
-        <picture>
-          <source media="(min-width: 475px)" srcset="../assets/images/header.jpg">
-          <source media="(min-width: 320px)" srcset="../assets/images/header.jpg">
-          <img src="../assets/images/header.jpg" width="100%" height="auto">
-        </picture>
-      </div><!-- end #banner -->
-    </div><!-- end #top-banner -->
-  </header>
+<app-header></app-header>
 
   <section id="content">
     <router-outlet></router-outlet>
@@ -56,49 +8,6 @@
   </section><!-- end #content -->
 
 
-  <footer>
-    <div class="row ">
-      <div class="col">
-        <h3>Kontakt</h3>
-        <p>
-          Shop Name<br>
-          Street name<br>
-          4587 City name<br><br>
-          <a href="tel:+41 44 123 45 67">T +41 44 123 45 67</a> <br>
-          <a href="shop@shopdomain.ch"> E shop@shopdomain.ch</a>
-        </p>
-      </div><!-- end kontakt -->
-
-      <div class="col">
-        <h3>Informationen</h3>
-
-        <ul>
-          <li><a href="#">Versand und Zahlungsbedingungen</a> </li>
-          <li><a href="#">Allgemeine Geschäftsbedingungen</a> </li>
-          <li><a href="#">Datenschutz</a> </li>
-          <li><a href="#">Impressum</a> </li>
-        </ul>
-
-      </div><!-- end informationen -->
-
-      <div class="col">
-        <h3>Zahlungsmöglichkeiten</h3>
-        <ul id="payment-logos">
-          <li><img src="../assets/logos/paypal.png" width="113" height="30"/> </li>
-          <li><img src="../assets/logos/mastercard.png" width="74" height="58" /> </li>
-          <li><img src="../assets/logos/visa.png" width="94" height="33" /> </li>
-        </ul>
-      </div><!-- end Zahlungsmöglichkeiten -->
-    </div><!-- end .row -->
-    <p id="disclaimer">* Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben </p>
-  </footer>
+<app-footer></app-footer>
 </div><!-- end #wrapper -->
 
-<script>
-  function myFunction(x) {
-    x.classList.toggle("change");
-    document.getElementsByClassName('bg-main-nav')[0].classList.toggle("expand");
-    document.getElementsByClassName('main-nav')[0].classList.toggle("xs-nav");
-
-  }
-</script>

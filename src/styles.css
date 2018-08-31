@@ -180,7 +180,7 @@ ul.ngx-pagination {
 
 }
 #top-bar li:first-child {
-  margin: 0 15px 0 0;
+  margin: 0 35px 0 0;
 }
 
 #top-bar a {
@@ -297,6 +297,7 @@ nav.main-nav li a{
 #hamburger {
   display: none;
   margin: 11px 0 0 11px;
+  cursor: pointer;
 }
 
 
@@ -714,20 +715,16 @@ tfoot tr:nth-of-type(odd) {
     footer ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-p#disclaimer{
-  font-size: 14px;
-  display: block;
-  width: 100%;
-  padding: 25px 0;
-  text-align: center;
-
+footer {
+  padding: 25px 0 0 0;
 }
+
 footer .row {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 25px auto 0 auto;
+
 }
 
 footer .col {
@@ -736,6 +733,17 @@ footer .col {
 footer a {
   color: #373A3C;
 }
+
+
+p#disclaimer{
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 25px 0;
+  text-align: center;
+
+}
+
 #payment-logos li {
   margin: 0 0 15px 0;
 }
@@ -889,7 +897,7 @@ select {
 }
 
 .fa-shopping-cart {
-  padding: 0 15px 0 0;
+  padding: 0;
 }
 
 .fa-times {

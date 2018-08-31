@@ -14,6 +14,7 @@ import {ClientContextService} from "../../services/client-context/client-context
 export class ArticleDetailComponent implements OnInit {
 
   articleDetails: any;
+  articleName: string;
   imageURL: string = this.clientContextService.getBackendURL_public();
   articleID: string;
   articleAmount: number = 1;
@@ -30,7 +31,7 @@ export class ArticleDetailComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent,
-    private clientContextService: ClientContextService,
+    private clientContextService: ClientContextService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -44,12 +45,10 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   addShoppingBasketItem() {
-    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID,this.articleAmount);
+    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID, this.articleName, this.articleAmount);
   }
 
   public ngOnInit() {
-    console.log('ngOnInit');
-
     this.route.paramMap
       .subscribe(params => {
         this.articleID = this.route.snapshot.queryParams["id"];
@@ -57,7 +56,7 @@ export class ArticleDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.articleDetails = result;
-              console.log('new article set, URL ' + this.articleDetails.imageSmallURL);
+              this.articleName = this.articleDetails[0].name;
             }
           );
       });

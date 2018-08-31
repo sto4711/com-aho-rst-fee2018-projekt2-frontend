@@ -1,0 +1,29 @@
+<header>
+  <div class="row">
+  <app-top-bar></app-top-bar>
+  </div><!-- end .row -->
+
+  <div id="top-banner">
+    <div class="bg-main-nav"></div><!-- end #main-nav-wrap -->
+    <nav class="main-nav">
+      <div id="hamburger" (click)="hamburger($event)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <ul>
+        <li><a routerLinkActive="active" role="link" routerLink="/home">Home</a></li>
+        <li><a routerLinkActive="active" role="link" routerLink="/article-listing">Produkte</a></li>
+        <li><a routerLinkActive="active" role="link" routerLink="/my-account">Mein Konto</a></li>
+
+      </ul>
+    </nav>
+    <div id="banner">
+      <picture>
+        <source media="(min-width: 475px)" srcset="../assets/images/header.jpg">
+        <source media="(min-width: 320px)" srcset="../assets/images/header.jpg">
+        <img src="../assets/images/header.jpg" width="100%" height="auto">
+      </picture>
+    </div><!-- end #banner -->
+  </div><!-- end #top-banner -->
+</header>

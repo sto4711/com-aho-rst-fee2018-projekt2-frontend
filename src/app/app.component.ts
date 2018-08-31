@@ -6,12 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Webshop';
 
-    hamburger($event) {
-      document.getElementsByClassName('bg-main-nav')[0].classList.toggle('expand');
-      document.getElementsByClassName('main-nav')[0].classList.toggle('xs-nav');
 
-    }
   }
 

@@ -1,11 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Component, OnInit} from '@angular/core';
+import {Injectable, Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {MatSnackBar} from "@angular/material";
-
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
-import {Form, FormGroup} from '@angular/forms';
+import {Form} from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -22,7 +21,13 @@ export class ShoppingBasketPlayComponent implements OnInit {
   public shoppingBasket: ShoppingBasket = new ShoppingBasket();
   public totalSum = 0;
   public amountForm: Form;
-  public articleCount:string;
+  public articleCount: string;
+  public message: string;
+  public itemCount: string;
+
+  public messageSource = new BehaviorSubject<string>('0');
+  currentMessage = this.messageSource.asObservable();
+
 
   constructor(
     private shoppingBasketService: ShoppingBasketService
@@ -31,6 +36,10 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   public ngOnInit() {
+    this.checkBasketExists();
+  }
+
+  public checkBasketExists(){
     if (ShoppingBasketPlayComponent.getLocalBasketId() === null) {
       this.createShoppingBasket();
     } else {
@@ -38,14 +47,13 @@ export class ShoppingBasketPlayComponent implements OnInit {
     }
   }
 
-  private static getLocalBasketId() {
+  public static getLocalBasketId() {
     return localStorage.getItem('cartId');
   }
 
   createShoppingBasket() {
     this.shoppingBasketService.create()
       .subscribe(shoppingBasket => {
-          this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
           localStorage.setItem('cartId', this.shoppingBasket._id);
         }
@@ -55,38 +63,37 @@ export class ShoppingBasketPlayComponent implements OnInit {
   getShoppingBasket() {
     this.shoppingBasketService.get(ShoppingBasketPlayComponent.getLocalBasketId())
       .subscribe(shoppingBasket => {
-          this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
-          console.log(shoppingBasket.items.length);
+         this.messageSource.next((this.shoppingBasket['items'].length).toString());
+
         }
       );
   }
 
-  addShoppingBasketItem(articleId, articleAmount) {
+  addShoppingBasketItem(articleId, articleName, articleAmount) {
     const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
     this.shoppingBasketService.addItem(shoppingBasketItem)
       .subscribe(shoppingBasket => {
-          this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
-          this.snackBar.open('Artikel zu Warenkorb hinzugefügt', null, {duration: 1500});
+        this.messageSource.next((this.shoppingBasket['items'].length).toString());
+        this.snackBar.open(articleName + ' zum Warenkorb hinzugefügt.', null, {duration: 1500});
         }
       );
   }
 
   changeItemAmount_ShoppingBasket(articleId, articleAmount) {
     if (articleAmount >= 1 && articleAmount <= 3) {
-      console.log(typeof articleAmount);
-      const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
+       const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
 
       this.shoppingBasketService.changeItemAmount(shoppingBasketItem)
         .subscribe(shoppingBasket => {
-            this.jsonResult = JSON.stringify(shoppingBasket);
             this.shoppingBasket = shoppingBasket;
-            this.snackBar.open('Artikelmenge angepasst', null, {duration: 1500});
+
+          this.snackBar.open('Artikelmenge ist angepasst.', null, {duration: 1500});
           }
         );
     }
-    if(articleAmount < 1) {
+    if (articleAmount < 1) {
       this.snackBar.open(   'Sie können nicht 0 Bikes bestellen.', null, {duration: 1500});
 
     }
@@ -97,12 +104,13 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   }
 
-  removeShoppingBasketItem(articleId) {
+  removeShoppingBasketItem(articleId, articleName) {
     this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, 0))
       .subscribe(shoppingBasket => {
-          this.jsonResult = JSON.stringify(shoppingBasket);
           this.shoppingBasket = shoppingBasket;
-          this.snackBar.open('Artikel von Warenkorb entfernt', null, {duration: 1500});
+        this.messageSource.next((this.shoppingBasket['items'].length).toString());
+        this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
+
         }
       );
   }

@@ -23,8 +23,10 @@ import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {AmountConverterPipe} from './currency.pipe';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
-import { ShoppingBasketBadgeComponent } from './components/shopping-basket-badge/shopping-basket-badge.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
+import { HeaderComponent } from './components/header/header.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {MatComponentsModule} from './mat-components/mat-components.module';
     ArticleComponent,
     DialogConfirmComponent,
     ArticleTemplateComponent,
-    ShoppingBasketBadgeComponent
+    HeaderComponent,
+    TopBarComponent,
+    FooterComponent
    ],
   imports: [
     BrowserModule,

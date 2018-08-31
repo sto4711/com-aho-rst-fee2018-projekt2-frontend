@@ -1,0 +1,24 @@
+<div id="top-bar">
+  <div id="top-bar-contact">
+    <ul>
+      <li>
+        <i class="fas fa-phone"></i><a href="tel:+41 44 187 89 65">T +41 44 187 89 65</a>
+      </li>
+      <li>
+        <i class="fas fa-envelope"></i><a href="mailto:myshop@shop.com">myshop@shop.com</a>
+      </li>
+    </ul>
+  </div><!-- end #top-bar-contact -->
+  <div id="top-bar-service">
+    <ul>
+      <li>
+        <i class="fas fa-shopping-cart "></i>
+        <a routerLink="/shopping-basket-play" matBadge="{{items}}" matBadgeOverlap="false" matBadgeSize="medium">Warenkorb</a>
+
+      </li>
+      <li>
+        <app-search></app-search>
+      </li>
+    </ul>
+  </div><!-- end #top-bar-service -->
+</div><!-- end #top-bar -->
