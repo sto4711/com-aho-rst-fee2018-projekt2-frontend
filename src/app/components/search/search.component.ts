@@ -3,7 +3,7 @@ import {FormControl} from '@angular/forms';
 import {Observable, Subject, Subscriber} from 'rxjs';
 import {map, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
-import {Article} from '../../components/search/article';
+import {Article} from "../../services/articles/article";
 
 
 @Component({
