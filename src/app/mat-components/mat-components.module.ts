@@ -4,9 +4,10 @@ import {MatFormFieldModule} from '../../../node_modules/@angular/material/form-f
 import {MatCheckboxModule} from '../../../node_modules/@angular/material/checkbox';
 import {MatAutocompleteModule} from '../../../node_modules/@angular/material/autocomplete';
 import {MatDialogModule} from '../../../node_modules/@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material';
+import { MatSnackBarModule} from '@angular/material';
 import {MatSelectModule} from '../../../node_modules/@angular/material/select';
 import {MatBadgeModule} from '../../../node_modules/@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   exports: [
@@ -17,7 +18,8 @@ import {MatBadgeModule} from '../../../node_modules/@angular/material/badge';
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule
   ]
 })
 export class MatComponentsModule { }

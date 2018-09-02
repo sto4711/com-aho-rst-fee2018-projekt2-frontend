@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
 import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
-import {ClientContextService} from "../../services/client-context/client-context.service";
+import {ClientContextService} from '../../services/client-context/client-context.service';
 
 @Component({
   selector: 'app-article-detail',

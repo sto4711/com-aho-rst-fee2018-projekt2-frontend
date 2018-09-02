@@ -11,14 +11,44 @@
   </div><!-- end #top-bar-contact -->
   <div id="top-bar-service">
     <ul>
+
       <li>
         <i class="fas fa-shopping-cart "></i>
-        <a routerLink="/shopping-basket-play" matBadge="{{items}}" matBadgeOverlap="false" matBadgeSize="medium">Warenkorb</a>
+        <span (click)="displayBasket()"  class="basket-link"
+           [matMenuTriggerFor]="menu" matBadge="{{itemAmount}}"
+           matBadgeOverlap="false" matBadgeSize="medium">Warenkorb
+        </span>
+
+        <mat-menu #menu="matMenu">
+         <div  *ngIf="BasketOverview['items']?.length  !== 0">
+          <div *ngFor="let article of BasketOverview['items']">
+            <ul>
+              <li>
+                <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleName | trim, id:article.articleID }">
+                  {{article.articleAmount}}x
+                {{article.articleName}}</a><br>
+               <span class="overview-price">CHF {{article.articlePrice}}</span>
+              </li>
+            </ul>
+          </div>
+          <br>
+           <p *ngIf="BasketTotalSum"> <span class="overview-price"><strong>Zwischensumme</strong></span><br>
+             <span class="overview-price">CHF {{BasketTotalSum | amountConverter}}</span></p>
+         <br>
+         <a [routerLink]="['/shopping-basket-play/']">
+            <button class="btn form-btn mat-menu-btn"  >
+              <i class="fas fa-shopping-cart"></i>Zum Warenkorb</button></a>
+         </div>
+          <div *ngIf="BasketOverview['items']?.length  == 0"  >
+            <p>Es befinden sich keine Artikel im Warenkorb.</p>
+          </div>
+        </mat-menu>
 
       </li>
       <li>
         <app-search></app-search>
       </li>
+
     </ul>
   </div><!-- end #top-bar-service -->
 </div><!-- end #top-bar -->
