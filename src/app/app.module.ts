@@ -28,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog-confirm-delete/dialog-confirm-delete.component';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog
     HeaderComponent,
     TopBarComponent,
     FooterComponent,
-    DialogConfirmDeleteComponent
+    DialogConfirmDeleteComponent,
+    OrderDetailComponent
    ],
   imports: [
     BrowserModule,

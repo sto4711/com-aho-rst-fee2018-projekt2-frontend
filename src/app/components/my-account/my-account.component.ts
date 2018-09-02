@@ -5,6 +5,7 @@ import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Login} from "../../services/login/login";
 import {DialogService} from "../../services/commons/dialog/dialog.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-my-account',
@@ -20,12 +21,14 @@ export class MyAccountComponent implements OnInit {
     , private clientContextService: ClientContextService
     , private router: Router
     , private dialogService: DialogService
+    , private snackBar: MatSnackBar
+
   ) {
   }
 
   ngOnInit() {}
 
-  onClick_Login() {
+  onLogin() {
     this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
@@ -36,12 +39,13 @@ export class MyAccountComponent implements OnInit {
         },
         () => {
           this.login = new Login();
-          this.router.navigate(['home']).then();
+          this.snackBar.open('login ok', null, {duration: 1500});
+          this.router.navigate([this.clientContextService.nextRoute]).then();
         }
       );
   }
 
-  onClick_Logout() {
+  onLogout() {
     this.loginService.signout(this.clientContextService.getToken())
       .subscribe(token => {
           //

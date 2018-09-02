@@ -55,7 +55,7 @@ export class ArticleDetailComponent implements OnInit {
         this.articleDetails = this.articleService.getArticleDetails(this.articleID)
           .subscribe(
             result => {
-              this.articleDetails = result;
+              this.articleDetails[0] = result;
               this.articleName = this.articleDetails[0].name;
             }
           );

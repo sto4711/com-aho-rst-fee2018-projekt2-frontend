@@ -2,7 +2,7 @@
   <h2>Mein Konto</h2>
   <div class="login-form-wrap">
 
-    <form class="form login-form" #f="ngForm" (ngSubmit)="onClick_Login(f.value)">
+    <form class="form login-form" #f="ngForm" (ngSubmit)="onLogin(f.value)">
       <h4>Ich habe bereits ein Konto</h4>
       <label for="login-email">E-Mail</label>
       <input id="login-email" name="mail" ngModel placeholder="E-Mail" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>

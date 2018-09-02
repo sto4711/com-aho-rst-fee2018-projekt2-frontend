@@ -10,6 +10,8 @@ export class ClientContextService {
   static BACKEND_PORT : number = 3000;
 
   private token: Token = {value : ''};
+  public nextRoute = '';
+
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
   private backendURL_allArticles :string  = 'http://localhost:3000/webshop/articles/';
   private backendURL_newestArticles :string  = 'http://localhost:3000/webshop/articles/newest';
@@ -21,6 +23,7 @@ export class ClientContextService {
 
   private backendURL_shoppingBasket :string  = 'http://localhost:3000/webshop/shopping-basket/';
 
+  private backendURL_order :string  = 'http://localhost:3000/webshop/order/';
 
   constructor() {}
 
@@ -62,6 +65,10 @@ export class ClientContextService {
 
   getBackendURL_shoppingBasket():string  {
     return this.backendURL_shoppingBasket;
+  }
+
+  getBackendURL_order():string  {
+    return this.backendURL_order;
   }
 
 
