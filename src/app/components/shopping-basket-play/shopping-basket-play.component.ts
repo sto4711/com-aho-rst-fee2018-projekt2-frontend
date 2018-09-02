@@ -31,7 +31,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
 
   constructor(
-    private shoppingBasketService: ShoppingBasketService
+    public shoppingBasketService: ShoppingBasketService
     , private snackBar: MatSnackBar
     , public dialog: MatDialog
     , public confirmDeleteService: ConfirmDeleteService
@@ -42,7 +42,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.checkBasketExists();
   }
 
-  public checkBasketExists(){
+  public checkBasketExists() {
     if (ShoppingBasketPlayComponent.getLocalBasketId() === null) {
       this.createShoppingBasket();
     } else {
@@ -54,7 +54,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
     return localStorage.getItem('cartId');
   }
 
-  confirmDelete(articleId, articleName){
+  confirmDelete(articleId, articleName) {
     this.confirmDeleteService.confirm(articleName).subscribe(
     result => {
           if (result === 'ja') {
@@ -78,9 +78,10 @@ export class ShoppingBasketPlayComponent implements OnInit {
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
          this.messageSource.next((this.shoppingBasket['items'].length).toString());
+         }
 
-        }
       );
+
   }
 
   addShoppingBasketItem(articleId, articleName, articleAmount) {
@@ -109,8 +110,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
     if (articleAmount < 1) {
       this.snackBar.open(   'Sie können nicht 0 Bikes bestellen.', null, {duration: 1500});
 
-    }
-    else{
+    } else {
       this.snackBar.open(   '3 Bikes ist die maximale Bestellmenge für diesen Artikel.', null, {duration: 1500});
 
     }
@@ -121,6 +121,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, 0))
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
+          console.log(this.shoppingBasket);
         this.messageSource.next((this.shoppingBasket['items'].length).toString());
         this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
 

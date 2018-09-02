@@ -9,19 +9,31 @@ import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-bask
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  public items: string
+  public itemAmount: string
+  public BasketOverview: object;
+  public BasketTotalSum: string;
+
 
    constructor(
      private articleService: ArticleService,
      private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent
 
+
    ) {  }
 
     ngOnInit() {
       this.ShoppingBasketPlayComponent.checkBasketExists();
-
-      this.ShoppingBasketPlayComponent.currentMessage.subscribe(message => this.items = message );
-
+      this.ShoppingBasketPlayComponent.currentMessage.subscribe(message => this.itemAmount = message );
+      this.displayBasket();
   }
 
+  displayBasket(){
+    this.BasketOverview = this.ShoppingBasketPlayComponent.shoppingBasketService
+      .get(ShoppingBasketPlayComponent.getLocalBasketId())
+      .subscribe(result => {
+        this.BasketOverview =  result;
+        this.BasketTotalSum = this.BasketOverview['totalSum'];
+        }
+      );
+  }
 }

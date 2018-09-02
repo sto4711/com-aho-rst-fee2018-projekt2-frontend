@@ -162,9 +162,30 @@ ul.ngx-pagination {
   width: 100%;
 }
 
-/*
-    header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
- */
+.mat-menu-content:not(:empty){
+  padding: 10px;
+}
+.mat-menu-content ul li  {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #cccccc;
+}
+.mat-menu-content p {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+}
+
+a button.mat-menu-btn {
+  font-size: 1.4rem;
+}
+
+.overview-price {
+  margin: 0 0 0 20px;
+}
+  /*
+      header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   */
 
 #top-bar {
   display: flex;
@@ -192,8 +213,8 @@ ul.ngx-pagination {
   align-self: flex-end;
 }
 
-#top-bar-service {
-
+.basket-link {
+  cursor:pointer;
 }
 
 @media screen and (max-width: 620px) {
