@@ -18,17 +18,10 @@ import {Form} from '@angular/forms';
 })
 
 export class ShoppingBasketPlayComponent implements OnInit {
-  public jsonResult = '';
   public shoppingBasket: ShoppingBasket = new ShoppingBasket();
-  public totalSum = 0;
-  public amountForm: Form;
-  public articleCount: string;
   public message: string;
-  public itemCount: string;
-
   public messageSource = new BehaviorSubject<string>('0');
   currentMessage = this.messageSource.asObservable();
-
 
   constructor(
     private shoppingBasketService: ShoppingBasketService
