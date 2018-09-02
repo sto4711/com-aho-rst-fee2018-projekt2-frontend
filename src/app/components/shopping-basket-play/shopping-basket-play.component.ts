@@ -6,6 +6,9 @@ import {ShoppingBasket} from '../../services/shopping-basket/shopping-basket';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
 import {Form} from '@angular/forms';
  import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
+import {OrderService} from "../../services/order/order.service";
+import {ClientContextService} from "../../services/client-context/client-context.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shopping-basket-play',
@@ -28,6 +31,9 @@ export class ShoppingBasketPlayComponent implements OnInit {
     , private snackBar: MatSnackBar
     , public dialog: MatDialog
     , public confirmDeleteService: ConfirmDeleteService
+    , private clientContextService: ClientContextService
+    , private router: Router
+    , private orderService: OrderService
   ) {
   }
 
@@ -45,6 +51,12 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   public static getLocalBasketId() {
     return localStorage.getItem('cartId');
+  }
+
+  private routeToLogin() {
+    this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
+    this.clientContextService.nextRoute = 'shopping-basket-play';
+    this.router.navigate(['my-account']).then();
   }
 
   confirmDelete(articleId, articleName) {
@@ -121,5 +133,24 @@ export class ShoppingBasketPlayComponent implements OnInit {
         }
       );
   }
+
+  public pay() {
+    if (this.clientContextService.getToken().value === '') {
+      this.routeToLogin();
+    } else {
+      this.orderService.create(this.shoppingBasket._id, this.clientContextService.getToken())
+        .subscribe(order => {
+            this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
+            this.router.navigate(['/order-detail'], { queryParams: { id: order._id } }).then();
+          },
+          error => {
+            if (error.status === 401) {
+              this.routeToLogin();
+            }
+          }
+        );
+    }
+  }
+
 
 }
