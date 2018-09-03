@@ -16,7 +16,7 @@ export class ArticleDetailComponent implements OnInit {
   public article: Article;
   public imageURL: string = this.clientContextService.getBackendURL_public();
   public selectedValue = 1;
-  private articleAmount: number = 0;
+  private articleAmount: number = 1;
 
   amount = [
     {value: 1, viewValue: '1'},
