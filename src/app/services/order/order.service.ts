@@ -6,6 +6,8 @@ import {ClientContextService} from "../client-context/client-context.service";
 import {HttpClient} from "@angular/common/http";
 import {Token} from "../login/token";
 import {ShoppingBasketItem} from "../shopping-basket/shopping-basket-item";
+import {Article} from "../articles/article";
+import {Order} from "./order";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,15 @@ export class OrderService {
       }
     ).pipe(
       tap(() => console.log('OrderService.create ok'))
+    );
+  }
+
+  public getOrderDetails( id: string): Observable<Order> {
+    return this.http.get<Order>(this.clientContextService.getBackendURL_orderDetails() + '?id=' + id , {
+        headers: {'Content-Type': 'application/json' }
+      }
+    ).pipe(
+      tap(() => console.log('getOrderDetails ok'))
     );
   }
 

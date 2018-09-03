@@ -24,6 +24,7 @@ export class ClientContextService {
   private backendURL_shoppingBasket :string  = 'http://localhost:3000/webshop/shopping-basket/';
 
   private backendURL_order :string  = 'http://localhost:3000/webshop/order/';
+  private backendURL_orderDetails = 'http://localhost:3000/webshop/order-details/';
 
   constructor() {}
 
@@ -69,6 +70,10 @@ export class ClientContextService {
 
   getBackendURL_order():string  {
     return this.backendURL_order;
+  }
+
+  getBackendURL_orderDetails():string  {
+    return this.backendURL_orderDetails;
   }
 
 

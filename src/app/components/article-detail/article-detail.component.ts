@@ -32,7 +32,7 @@ export class ArticleDetailComponent implements OnInit {
     private clientContextService: ClientContextService
   ) {
     // reload page when ID changes
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
   }
@@ -55,7 +55,7 @@ export class ArticleDetailComponent implements OnInit {
               this.article = result;
             }
           );
-  });
+      });
   }
 
 
