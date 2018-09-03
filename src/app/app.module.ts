@@ -29,6 +29,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog-confirm-delete/dialog-confirm-delete.component';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     TopBarComponent,
     FooterComponent,
     DialogConfirmDeleteComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    CheckoutComponent
    ],
   imports: [
     BrowserModule,
