@@ -1,7 +1,7 @@
-import { Component  } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable, Subject, Subscriber} from 'rxjs';
-import {map, startWith, switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
 import {Article} from "../../services/articles/article";
 
@@ -12,44 +12,41 @@ import {Article} from "../../services/articles/article";
   styleUrls: ['./search.component.css']
 })
 
-export class SearchComponent   {
-  articlesResult: any;
-
+export class SearchComponent {
   stateCtrl = new FormControl();
   filteredArticle: Observable<Article[]>;
-
   articles = [];
 
   constructor(
     private articleService: ArticleService,
-
   ) {
     this.filteredArticle = this.stateCtrl.valueChanges
-
       .pipe(
         startWith(''),
-        map(article => article ? this._filterArticle(article) : this.articles.slice())
+        map(term => this.searchArticle(term))
       );
 
   }
 
-  private _filterArticle(value: string): Article[] {
-    const filterValue = value.toLowerCase();
-    if (filterValue.length > 3) {
-      this.articlesResult = this.articleService.searchArticles(filterValue)
+  public getSelectedArticle(event) {
+    console.log('getSelectedArticle(), selected one  ' + JSON.stringify(event.option.value));
+  }
+
+  private searchArticle(term: string): Article[] {
+    if (term && term.length > 3) {
+      const termLower = term.toLowerCase();
+      this.articleService.searchArticles(termLower)
         .subscribe(
           result => {
             this.articles = result;
           }
         );
-      return this.articles.filter(article => article.name.toLowerCase().indexOf(filterValue) === 0);
-
+      return this.articles.filter(article => article.name.toLowerCase().indexOf(termLower) === 0);
     }
-    else{
+    else {
       this.articles = [];
       return this.articles;
     }
-
   }
 
 }
