@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
 import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
 import {ClientContextService} from '../../services/client-context/client-context.service';
+import {Article} from "../../services/articles/article";
 
 @Component({
   selector: 'app-article-detail',
@@ -12,13 +13,10 @@ import {ClientContextService} from '../../services/client-context/client-context
 
 
 export class ArticleDetailComponent implements OnInit {
-
-  articleDetails: any;
-  articleName: string;
-  imageURL: string = this.clientContextService.getBackendURL_public();
-  articleID: string;
-  articleAmount: number = 1;
-  selectedValue = 1;
+  public article: Article;
+  public imageURL: string = this.clientContextService.getBackendURL_public();
+  public selectedValue = 1;
+  private articleAmount: number = 0;
 
   amount = [
     {value: 1, viewValue: '1'},
@@ -45,21 +43,19 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   addShoppingBasketItem() {
-    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.articleID, this.articleName, this.articleAmount);
+    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.article._id, this.article.name, this.articleAmount);
   }
 
   public ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
-        this.articleID = this.route.snapshot.queryParams["id"];
-        this.articleDetails = this.articleService.getArticleDetails(this.articleID)
+        this.articleService.getArticleDetails(this.route.snapshot.queryParams["id"])
           .subscribe(
             result => {
-              this.articleDetails[0] = result;
-              this.articleName = this.articleDetails[0].name;
+              this.article = result;
             }
           );
-      });
+  });
   }
 
 

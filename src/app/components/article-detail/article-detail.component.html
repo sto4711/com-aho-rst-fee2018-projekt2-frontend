@@ -1,11 +1,11 @@
 <div class="row">
-  <h2>{{articleDetails[0]?.brand}}</h2>
+  <h2>{{article?.brand}}</h2>
   <div id="article-detail-wrap">
     <picture>
-      <source media="(min-width: 475px)" srcset="{{imageURL + articleDetails[0]?.imageURL}}">
-      <source media="(min-width: 320px)" srcset="{{imageURL + articleDetails[0]?.imageURL}}">
+      <source media="(min-width: 475px)" srcset="{{imageURL + article?.imageURL}}">
+      <source media="(min-width: 320px)" srcset="{{imageURL + article?.imageURL}}">
       <figure>
-        <img src="{{imageURL + articleDetails[0]?.imageURL}}" width="100%" height="auto">
+        <img src="{{imageURL + article?.imageURL}}" width="100%" height="auto">
         <figcaption>Teile diesen Artikel auf
           <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
           <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -14,12 +14,12 @@
       </figure>
     </picture>
     <div id="article-detail-content">
-      <h4>{{articleDetails[0]?.name}}</h4>
-      <p>{{articleDetails[0]?.description}}</p>
-      <p class="article-detail-nr">Artikel Nr. <span>{{articleDetails[0]?.itemNumber}}</span></p>
-      <p *ngIf='articleDetails[0]?.availability'  class="article-detail-availability available" >Ab Lager verfügbar</p>
-      <p *ngIf='!articleDetails[0]?.availability'  class="article-detail-availability available" >In 3 Wochen lieferbar</p>
-      <p class="article-detail-price">CHF {{articleDetails[0]?.price}}</p>
+      <h4>{{article?.name }}</h4>
+      <p>{{article?.description}}</p>
+      <p class="article-detail-nr">Artikel Nr. <span>{{article?.itemNumber}}</span></p>
+      <p *ngIf='article?.availability'  class="article-detail-availability available" >Ab Lager verfügbar</p>
+      <p *ngIf='!article?.availability'  class="article-detail-availability available" >In 3 Wochen lieferbar</p>
+      <p class="article-detail-price">CHF {{article?.price}}</p>
 
       <p>
         <mat-form-field>
