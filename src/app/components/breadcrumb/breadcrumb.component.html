@@ -1,0 +1,16 @@
+<ul class="breadcrumb">
+
+  <li><a  routerLink="/home">Home</a></li>
+
+  <ng-container *ngIf="mainUrl !== '' ">
+    <li><a  routerLink="/{{mainUrl}}">{{breadcrumb}}</a></li>
+  </ng-container>
+
+  <ng-container *ngIf="mainUrl == '' ">
+    <li>{{breadcrumb}}</li>
+  </ng-container>
+
+  <ng-container *ngIf="firstParam !== 'undefinied' ">
+    <li>{{firstParam | detrim}}</li>
+  </ng-container>
+</ul>

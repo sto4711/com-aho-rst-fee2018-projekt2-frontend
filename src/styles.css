@@ -826,6 +826,25 @@ button.btn-confirm {
   width: 45%;
 }
 
+
+/*
+    breadcrumb ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+.breadcrumb li {
+  display: inline-block;
+}
+
+.breadcrumb li, .breadcrumb li a {
+  font-size:1.6rem;
+}
+.breadcrumb a::after {
+  content: '>';
+  line-height: inherit;
+  vertical-align: baseline;
+  margin: 0 5px 0 5px;
+
+}
+
 /*
     forms ////////////////////////////////////////////////////////////////////////////////////////////////
  */
