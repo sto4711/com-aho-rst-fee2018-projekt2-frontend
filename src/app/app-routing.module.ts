@@ -15,27 +15,26 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'article-listing', component: ArticleListingComponent,
     data: {
-      mainUrl: '',
-      breadcrumb: 'Unsere Artikel'
+      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Unsere Artikel'} ]
+
     }
   },
 
   {path: 'article-detail', component: ArticleDetailComponent,
     data: {
-        mainUrl: 'article-listing',
-         breadcrumb: 'Unsere Artikel'
+         breadcrumbPath: [{'mainUrl': 'article-listing', 'breadcrumb': 'Unsere Artikel'} ]
     }
   },
   {path: 'my-account', component: MyAccountComponent,
     data: {
-      mainUrl: '',
-      breadcrumb: 'Mein Konto'
-     }
+      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Mein Konto'} ]
+
+    }
     },
   {path: 'shopping-basket-play', component: ShoppingBasketPlayComponent,
     data: {
-      mainUrl: '',
-      breadcrumb: 'Mein Warenkorb'
+      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Mein Warenkorb'} ]
+
     }},
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/user', component: UserComponent},

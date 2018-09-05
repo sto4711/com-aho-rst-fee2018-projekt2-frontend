@@ -8,10 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  private breadcrumb: string;
-  private mainUrl: string;
-  private firstParam: string;
 
+  private firstParam: string;
+  private breadcrumbPath: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -20,16 +19,14 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('breadcrumb');
-    this.route.paramMap
+     this.route.paramMap
       .subscribe( (result) => {
 
          this.firstParam = this.route.snapshot.queryParams.article;
 
         this.route.data.subscribe( data => {
-          this.mainUrl = data.mainUrl;
-          this.breadcrumb = data.breadcrumb;
 
+          this.breadcrumbPath = data.breadcrumbPath;
          });
 
       });
