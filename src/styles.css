@@ -201,12 +201,12 @@ h2#headline {
 
 .part1, .part2 {
   position: relative;
-  left: -560px;
+  left: -100vw;
 
 }
 
 .part1 {
-  animation: slidePart1 0.5s forwards ;
+   animation: slidePart1 0.5s forwards ;
   -webkit-animation: slidePart1 0.5s forwards;
   animation-delay: 2s;
 }
