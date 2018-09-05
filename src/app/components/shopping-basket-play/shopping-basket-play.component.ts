@@ -126,8 +126,10 @@ export class ShoppingBasketPlayComponent implements OnInit {
     this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, 0))
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
-          console.log(this.shoppingBasket);
-        this.messageSource.next((this.shoppingBasket['items'].length).toString());
+          console.log(this.shoppingBasket.items.length);
+
+          this.messageSource.next((this.shoppingBasket.items.length).toString());
+          console.log(this.messageSource);
         this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
 
         }

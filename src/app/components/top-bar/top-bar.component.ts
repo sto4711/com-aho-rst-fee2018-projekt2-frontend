@@ -23,7 +23,7 @@ export class TopBarComponent implements OnInit {
 
     ngOnInit() {
       this.ShoppingBasketPlayComponent.checkBasketExists();
-      this.ShoppingBasketPlayComponent.currentMessage.subscribe(message => this.itemAmount = message );
+      // this.ShoppingBasketPlayComponent.currentMessage.subscribe(message => this.itemAmount = message );
       this.displayBasket();
   }
 
