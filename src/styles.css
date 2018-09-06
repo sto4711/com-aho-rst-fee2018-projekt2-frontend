@@ -26,10 +26,110 @@ green: #95c2b0;
   -webkit-touch-callout: none;
 
 }
+
 img {
   border: 0;
 }
 
+/*
+    logo  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+ .logo-wrap {
+   display: grid;
+   grid-template-columns: 1fr 0.5fr 3fr;
+   grid-template-rows: 30px 80px 30px;
+   grid-template-areas:
+     'big-letter line first-word'
+     'big-letter line second-word'
+     'big-letter line third-word';
+   grid-gap: 0;
+   font-family: 'Archivo', sans-serif;
+   width: 400px;
+   margin: 0 auto;
+ }
+
+ .big-letter, .first-word, .second-word, .third-word, .line {
+   align-self: center;
+   text-transform: uppercase;
+
+ }
+
+.big-letter {
+  grid-area: big-letter;
+  grid-row: span 3;
+  font-size: 20rem;
+  font-weight: 700;
+  justify-self: start;
+}
+
+.line {
+  grid-area: line;
+   grid-row: span 3;
+}
+
+.hyphen{
+  height: 15px;
+  width: 25px;
+  background: #373a3c;
+  margin: 0 0 5px 0;
+}
+
+.first-word {
+  grid-area: first-word;
+  align-self: self-end;
+}
+
+.first-word, .third-word  {
+  font-size:3rem;
+  font-weight: 400;
+  text-indent: -25px;
+}
+
+.second-word {
+ grid-area: second-word;
+  font-size: 10em;
+  font-weight: 700;
+
+}
+
+.third-word {
+ grid-area: third-word;
+  align-self: self-start;
+}
+
+@media screen and (max-width: 812px) {
+  .logo-wrap {
+    margin: 0 0 25px 0;
+  }
+}
+
+@media screen and (max-width: 415px) {
+
+  .logo-wrap {
+    grid-template-columns: 1fr auto 3fr;
+    grid-template-rows: 10px 60px 10px;
+    width:300px;
+  }
+
+  .hyphen {
+    height: 5px;
+    width: 15px;
+  }
+
+  .big-letter {
+    font-size: 13rem;
+  }
+
+  .first-word, .third-word  {
+    font-size: 1.5rem;
+    text-indent: -10px;
+  }
+  .second-word {
+    font-size:5rem;
+  }
+
+}
 /*
     construct  /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -252,6 +352,7 @@ h2#headline span {
 #bg-top-bar {
   width: 100%;
   height: auto;
+  padding: 25px 0 0 0;
   -webkit-animation: bg-pan-left 8s  infinite both;
   animation: bg-pan-left 2s infinite both;
    background: linear-gradient(90deg, #EF9967, #F3C1A2 );
@@ -298,9 +399,9 @@ h2#headline span {
   }
 }
 
-@media screen and (max-width: 334px) {
-  #top-bar #top-bar-contact li:first-child {
-    margin:0 15px 15px 0;
+@media screen and (max-width: 412px) {
+ #top-bar-contact li:first-child  {
+    margin:0 10px 15px 0;
   }
 
 }
