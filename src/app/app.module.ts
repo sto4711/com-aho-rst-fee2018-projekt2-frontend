@@ -1,12 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule, LOCALE_ID} from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './components/admin/user/user.component';
@@ -30,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog-confirm-delete/dialog-confirm-delete.component';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +48,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     FooterComponent,
     DialogConfirmDeleteComponent,
     OrderDetailComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    BreadcrumbComponent
    ],
   imports: [
     BrowserModule,

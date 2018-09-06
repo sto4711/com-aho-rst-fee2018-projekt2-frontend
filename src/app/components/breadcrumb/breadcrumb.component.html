@@ -1,0 +1,9 @@
+ <ul class="breadcrumb">
+   <li><a routerLink="/home">Home</a></li>
+  <li>{{title}}</li>
+
+   <ng-container  *ngIf="articleName !== undefined ">
+   <li >{{articleName}}</li>
+   </ng-container>
+</ul>
+

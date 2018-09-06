@@ -10,7 +10,9 @@ import {ArticleService} from '../../services/articles/article.service';
   styleUrls: ['./article-listing.component.css']
 })
 export class ArticleListingComponent implements OnInit {
-  articles$: Observable<Article[]>;
+
+  public title: string;
+  public articles$: Observable<Article[]>;
 
   p: number = 1;
 
@@ -18,6 +20,7 @@ export class ArticleListingComponent implements OnInit {
     private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
+    this.title = 'Unsere Artikel';
   }
 
   ngOnInit() {
