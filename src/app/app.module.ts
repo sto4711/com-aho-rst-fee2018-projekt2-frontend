@@ -28,6 +28,7 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {DeTrimPipe} from './de-trim.pipe';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {DeTrimPipe} from './de-trim.pipe';
     TrimPipe,
     DeTrimPipe,
     AmountConverterPipe,
+    NotFoundComponent,
    ],
   imports: [
     BrowserModule,

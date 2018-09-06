@@ -649,12 +649,18 @@ h2.claim {
   width: 25%;
   padding: 0 10px;
   margin: 0 0 20px 0;
-
 }
 
 .product-content {
   border: 1px solid #CFD4E6;
   border-radius: 5px;
+  transition: all .2s ease-in-out;
+  cursor:pointer;
+}
+
+.product-content:hover {
+  transform: scale(1.02);
+  box-shadow: #CFD4E6;
 }
 
 .product-img {

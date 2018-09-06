@@ -9,6 +9,7 @@ import {ArticleDetailComponent} from './components/article-detail/article-detail
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
 import {ArticleComponent} from './components/admin/article/article.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/user', component: UserComponent},
   {path: 'admin/article', component: ArticleComponent},
+  {path: '**', component: NotFoundComponent},
 
 ];
 
