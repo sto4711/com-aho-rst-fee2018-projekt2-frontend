@@ -14,7 +14,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { SearchComponent } from './components/search/search.component';
 import {TrimPipe} from './trim.pipe';
-import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
+import { ShoppingBasketComponent } from './components/shopping-basket/shopping-basket.component';
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {AmountConverterPipe} from './currency.pipe';
@@ -37,7 +37,7 @@ import {DeTrimPipe} from './de-trim.pipe';
     ArticleListingComponent,
     MyAccountComponent,
     ArticleDetailComponent,
-    ShoppingBasketPlayComponent,
+    ShoppingBasketComponent,
     DialogConfirmComponent,
     ArticleComponent,
     ArticleTemplateComponent,
@@ -65,7 +65,7 @@ import {DeTrimPipe} from './de-trim.pipe';
 
   ],
   entryComponents: [
-    DialogConfirmComponent, ShoppingBasketPlayComponent, DialogConfirmDeleteComponent ],
+    DialogConfirmComponent, ShoppingBasketComponent, DialogConfirmDeleteComponent ],
   providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
 
   ],

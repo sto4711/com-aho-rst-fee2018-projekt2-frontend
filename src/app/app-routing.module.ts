@@ -6,7 +6,7 @@ import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
-import {ShoppingBasketPlayComponent} from './components/shopping-basket-play/shopping-basket-play.component';
+import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
 import {ArticleComponent} from './components/admin/article/article.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 
@@ -31,7 +31,7 @@ const routes: Routes = [
 
     }
     },
-  {path: 'shopping-basket-play', component: ShoppingBasketPlayComponent,
+  {path: 'shopping-basket', component: ShoppingBasketComponent,
     data: {
       breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Mein Warenkorb'} ]
 

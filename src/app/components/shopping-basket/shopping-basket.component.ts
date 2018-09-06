@@ -11,16 +11,16 @@ import {ClientContextService} from "../../services/client-context/client-context
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-shopping-basket-play',
-  templateUrl: './shopping-basket-play.component.html',
-  styleUrls: ['./shopping-basket-play.component.css']
+  selector: 'app-shopping-basket',
+  templateUrl: './shopping-basket.component.html',
+  styleUrls: ['./shopping-basket.component.css']
 })
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class ShoppingBasketPlayComponent implements OnInit {
+export class ShoppingBasketComponent implements OnInit {
   public shoppingBasket: ShoppingBasket = new ShoppingBasket();
   public message: string;
   public messageSource = new BehaviorSubject<string>('0');
@@ -42,7 +42,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   public checkBasketExists() {
-    if (ShoppingBasketPlayComponent.getLocalBasketId() === null) {
+    if (ShoppingBasketComponent.getLocalBasketId() === null) {
       this.createShoppingBasket();
     } else {
       this.getShoppingBasket();
@@ -55,7 +55,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   private routeToLogin() {
     this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
-    this.clientContextService.nextRoute = 'shopping-basket-play';
+    this.clientContextService.nextRoute = 'shopping-basket';
     this.router.navigate(['my-account']).then();
   }
 
@@ -79,7 +79,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   getShoppingBasket() {
-    this.shoppingBasketService.get(ShoppingBasketPlayComponent.getLocalBasketId())
+    this.shoppingBasketService.get(ShoppingBasketComponent.getLocalBasketId())
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
          this.messageSource.next((this.shoppingBasket['items'].length).toString());
@@ -90,7 +90,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   addShoppingBasketItem(articleId, articleName, articleAmount) {
-    const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
+    const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketComponent.getLocalBasketId(), articleId, articleAmount);
     this.shoppingBasketService.addItem(shoppingBasketItem)
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
@@ -102,7 +102,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
 
   changeItemAmount_ShoppingBasket(articleId, articleName, articleAmount) {
     if (articleAmount >= 1 && articleAmount <= 3) {
-       const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, articleAmount);
+       const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketComponent.getLocalBasketId(), articleId, articleAmount);
 
       this.shoppingBasketService.changeItemAmount(shoppingBasketItem)
         .subscribe(shoppingBasket => {
@@ -123,7 +123,7 @@ export class ShoppingBasketPlayComponent implements OnInit {
   }
 
   removeShoppingBasketItem(articleId, articleName) {
-    this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketPlayComponent.getLocalBasketId(), articleId, 0))
+    this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketComponent.getLocalBasketId(), articleId, 0))
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
           console.log(this.shoppingBasket.items.length);
