@@ -1,3 +1,12 @@
+<div id="bg-top-bar">
+<div class="logo-wrap">
+  <div class="big-letter">E</div>
+  <div class="line"><div class="hyphen"></div></div>
+  <div class="first-word">The</div>
+  <div class="second-word">bike</div>
+  <div class="third-word">store</div>
+</div>
+  <div class="row">
 <div id="top-bar">
   <div id="top-bar-contact">
     <ul>
@@ -35,7 +44,7 @@
            <p *ngIf="BasketTotalSum"> <span class="overview-price"><strong>Zwischensumme</strong></span><br>
              <span class="overview-price">CHF {{BasketTotalSum | amountConverter}}</span></p>
          <br>
-         <a [routerLink]="['/shopping-basket-play/']">
+         <a [routerLink]="['/shopping-basket/']">
             <button class="btn form-btn mat-menu-btn"  >
               <i class="fas fa-shopping-cart"></i>Zum Warenkorb</button></a>
          </div>
@@ -52,3 +61,5 @@
     </ul>
   </div><!-- end #top-bar-service -->
 </div><!-- end #top-bar -->
+</div>
+</div><!-- end .row -->

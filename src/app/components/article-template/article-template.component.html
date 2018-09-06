@@ -1,5 +1,5 @@
 
-  <div class="product-content">
+  <div class="product-content" (click)="goToDetail(article.name, article._id)">
     <img class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
     <div class="product-data">
       <p><span class="product-listing-title">{{article.name}}</span><br>

@@ -14,7 +14,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { SearchComponent } from './components/search/search.component';
 import {TrimPipe} from './trim.pipe';
-import { ShoppingBasketPlayComponent } from './components/shopping-basket-play/shopping-basket-play.component';
+import { ShoppingBasketComponent } from './components/shopping-basket/shopping-basket.component';
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {AmountConverterPipe} from './currency.pipe';
@@ -27,6 +27,8 @@ import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
+import {DeTrimPipe} from './de-trim.pipe';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,9 @@ import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component'
     ArticleListingComponent,
     MyAccountComponent,
     ArticleDetailComponent,
-    SearchComponent,
-    TrimPipe,
-    AmountConverterPipe,
-    ShoppingBasketPlayComponent,
-    ArticleComponent,
+    ShoppingBasketComponent,
     DialogConfirmComponent,
+    ArticleComponent,
     ArticleTemplateComponent,
     HeaderComponent,
     TopBarComponent,
@@ -49,7 +48,12 @@ import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component'
     DialogConfirmDeleteComponent,
     OrderDetailComponent,
     CheckoutComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    SearchComponent,
+    TrimPipe,
+    DeTrimPipe,
+    AmountConverterPipe,
+    NotFoundComponent,
    ],
   imports: [
     BrowserModule,
@@ -63,7 +67,7 @@ import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component'
 
   ],
   entryComponents: [
-    DialogConfirmComponent, ShoppingBasketPlayComponent, DialogConfirmDeleteComponent ],
+    DialogConfirmComponent, ShoppingBasketComponent, DialogConfirmDeleteComponent ],
   providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
 
   ],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
+import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
 
 
 @Component({
@@ -16,20 +16,20 @@ export class TopBarComponent implements OnInit {
 
    constructor(
      private articleService: ArticleService,
-     private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent
+     private shoppingBasketComponent: ShoppingBasketComponent
 
 
    ) {  }
 
     ngOnInit() {
-      this.ShoppingBasketPlayComponent.checkBasketExists();
-      this.ShoppingBasketPlayComponent.currentMessage.subscribe(message => this.itemAmount = message );
+      this.shoppingBasketComponent.checkBasketExists();
+      // this.shoppingBasketComponent.currentMessage.subscribe(message => this.itemAmount = message );
       this.displayBasket();
   }
 
   displayBasket(){
-    this.BasketOverview = this.ShoppingBasketPlayComponent.shoppingBasketService
-      .get(ShoppingBasketPlayComponent.getLocalBasketId())
+    this.BasketOverview = this.shoppingBasketComponent.shoppingBasketService
+      .get(ShoppingBasketComponent.getLocalBasketId())
       .subscribe(result => {
         this.BasketOverview =  result;
         this.BasketTotalSum = this.BasketOverview['totalSum'];

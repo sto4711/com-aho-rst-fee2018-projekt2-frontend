@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketPlayComponent} from '../shopping-basket-play/shopping-basket-play.component';
+import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Article} from "../../services/articles/article";
 
@@ -29,7 +29,7 @@ export class ArticleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private ShoppingBasketPlayComponent: ShoppingBasketPlayComponent,
+    private shoppingBasketComponent: ShoppingBasketComponent,
     private clientContextService: ClientContextService
   ) {
     // reload page when ID changes
@@ -46,7 +46,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   addShoppingBasketItem() {
-    this.ShoppingBasketPlayComponent.addShoppingBasketItem(this.article._id, this.article.name, this.articleAmount);
+    this.shoppingBasketComponent.addShoppingBasketItem(this.article._id, this.article.name, this.articleAmount);
   }
 
   public ngOnInit() {

@@ -1,9 +1,17 @@
- <ul class="breadcrumb">
-   <li><a routerLink="/home">Home</a></li>
-  <li>{{title}}</li>
+<ul class="breadcrumb">
 
-   <ng-container  *ngIf="articleName !== undefined ">
-   <li >{{articleName}}</li>
-   </ng-container>
+  <li><a  routerLink="/home">Home</a></li>
+
+  <ng-container *ngIf="breadcrumbPath[0].mainUrl !== '' ">
+    <li><a  routerLink="/{{breadcrumbPath[0].mainUrl}}">{{breadcrumbPath[0].breadcrumb}}</a></li>
+  </ng-container>
+
+  <ng-container *ngIf="breadcrumbPath[0].mainUrl == '' ">
+    <li>{{breadcrumbPath[0].breadcrumb}}</li>
+  </ng-container>
+
+  <ng-container *ngIf="firstParam !== 'undefinied' ">
+    <li>{{firstParam | detrim}}</li>
+  </ng-container>
 </ul>
 

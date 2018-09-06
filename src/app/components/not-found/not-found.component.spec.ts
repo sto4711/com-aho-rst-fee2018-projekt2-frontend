@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShoppingBasketPlayComponent } from './shopping-basket-play.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('ShoppingBasketPlayComponent', () => {
-  let component: ShoppingBasketPlayComponent;
-  let fixture: ComponentFixture<ShoppingBasketPlayComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingBasketPlayComponent ]
+      declarations: [ NotFoundComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShoppingBasketPlayComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

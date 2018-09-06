@@ -28,9 +28,6 @@ export class SearchComponent {
 
   }
 
-  public getSelectedArticle(event) {
-    console.log('getSelectedArticle(), selected one  ' + JSON.stringify(event.option.value));
-  }
 
   private searchArticle(term: string): Article[] {
     if (term && term.length > 3) {
