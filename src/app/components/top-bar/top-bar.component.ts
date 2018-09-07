@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
+import {Component, OnInit} from '@angular/core';
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 
 
@@ -10,12 +8,12 @@ import {ShoppingBasketService} from "../../services/shopping-basket/shopping-bas
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-   constructor(
-     private articleService: ArticleService
-     ,private shoppingBasketComponent: ShoppingBasketComponent
-     ,public shoppingBasketService: ShoppingBasketService
-   ) {  }
+  constructor(
+    public shoppingBasketService: ShoppingBasketService
+  ) {
+  }
 
-    ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

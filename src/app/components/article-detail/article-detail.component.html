@@ -18,14 +18,24 @@
     <div id="article-detail-content">
       <h4>{{article?.name }}</h4>
       <p>{{article?.description}}</p>
-      <p class="article-detail-nr">Artikel Nr. <span>{{article?.itemNumber}}</span></p>
-      <p *ngIf='article?.availability'  class="article-detail-availability available" >Ab Lager verfügbar</p>
-      <p *ngIf='!article?.availability'  class="article-detail-availability available" >In 3 Wochen lieferbar</p>
-      <p class="article-detail-price">CHF {{article?.price}}</p>
+
+    <div class="article-detail-rating">
+      <span  *ngFor="let rating of article?.rating ">
+        <i class="fas fa-star" *ngIf="rating"></i>
+        <i class="far fa-star" *ngIf="!rating"></i>
+      </span>
+    </div>
+
+
+      <p class="article-detail-nr">Artikel Nr. <span>{{article?.price}}</span></p>
+      <p *ngIf='article?.availability' class="article-detail-availability available">Ab Lager verfügbar</p>
+      <p *ngIf='!article?.availability' class="article-detail-availability available">In 3 Wochen lieferbar</p>
+
 
       <p>
         <mat-form-field>
-          <mat-select name="artikel-anzahl"  placeholder="Bitte Anzahl auswählen" [(ngModel)]="selectedValue"  (selectionChange)="selectedArticleAmount($event.value)">
+          <mat-select name="artikel-anzahl" placeholder="Bitte Anzahl auswählen" [(ngModel)]="selectedValue"
+                      (selectionChange)="selectedArticleAmount($event.value)">
             <mat-option *ngFor="let anzahl of amount" [value]="anzahl.value">
               {{anzahl.viewValue}}
             </mat-option>
@@ -36,11 +46,11 @@
 
       <form class="form" #f1="ngForm" (ngSubmit)="addShoppingBasketItem()">
         <p>
-         <button class="btn form-btn" type="submit" ><i class="fas fa-shopping-cart"></i>In den Warenkorb</button>
-      </p>
-    </form>
+          <button class="btn form-btn" type="submit"><i class="fas fa-shopping-cart"></i>In den Warenkorb</button>
+        </p>
+      </form>
 
-      <p><a href="#" class="continue-shopping"  routerLink="/article-listing">Weiter Einkaufen</a></p>
+      <p><a href="#" class="continue-shopping" routerLink="/article-listing">Weiter Einkaufen</a></p>
     </div><!-- end #article-detail-content -->
   </div><!--- end #article-detail-wrap -->
 

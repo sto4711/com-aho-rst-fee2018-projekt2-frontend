@@ -7,5 +7,6 @@ export class Article {
   imageURL: string;
   imageSmallURL : string;
   availability: boolean;
+  rating: number[];
   _id: string;
 }

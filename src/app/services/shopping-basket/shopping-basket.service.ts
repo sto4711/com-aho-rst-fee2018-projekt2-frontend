@@ -5,6 +5,8 @@ import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
+import {TestBed} from "@angular/core/testing";
+import {HomeComponent} from "../../components/home/home.component";
 
 @Injectable({
   providedIn: 'root'
@@ -61,30 +63,33 @@ export class ShoppingBasketService {
   }
 
 
-  addItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+  addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'addItem', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('addItem ok'))
+      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
     );
   }
 
-  changeItemAmount(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+  changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'changeItemAmount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))
+      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
     );
   }
 
-  removeItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+  removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'removeItem', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))
+      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
     );
   }
 
