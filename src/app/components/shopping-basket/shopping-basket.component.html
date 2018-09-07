@@ -2,7 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>Warenkorb</h2>
-  <div *ngIf="shoppingBasket.items.length !==0">
+  <div *ngIf="shoppingBasketService.shoppingBasket?.items.length !==0">
     <div class="cart-items-listing">
 
       <table>
@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let article of shoppingBasket.items">
+        <tr *ngFor="let article of shoppingBasketService.shoppingBasket?.items">
           <td class="article-row">{{article.itemNumber}}</td>
           <td class="article-row">{{article.articleName}}</td>
           <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
@@ -52,9 +52,16 @@
             <p><span class="result-text"><strong>Gesamtsumme</strong></span></p>
           </td>
           <td>
-            <p><span>CHF {{shoppingBasket.totalSum | amountConverter}}</span></p>
-            <p><span>CHF 15.00</span></p>
-            <p><strong><span>CHF {{shoppingBasket.totalSum + 15 | amountConverter}}</span></strong></p>
+
+            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
+              <span>CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}</span>
+            </p>
+            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
+              <span>CHF 15.00</span>
+            </p>
+            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
+              <strong><span>CHF {{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}}</span></strong>
+            </p>
           </td>
         </tr>
 
@@ -72,7 +79,7 @@
     </div>
 
   </div>
-  <p *ngIf="shoppingBasket.items.length ==0">
+  <p *ngIf="shoppingBasketService.shoppingBasket?.items.length ==0">
     <strong>Ihr Warenkorb ist leer.</strong><br>
     <a role="link" routerLink="/article-listing" class="continue-shopping">Hier</a> gehts zu unseren Artikeln.
   </p>
