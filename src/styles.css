@@ -722,6 +722,15 @@ h2.claim {
   padding: 15px 0 0 0;
 }
 
+.article-detail-rating {
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+.article-detail-rating i{
+  color: gold;
+}
+
 .article-detail-nr span {
   color: #f3c1a2;
 }
