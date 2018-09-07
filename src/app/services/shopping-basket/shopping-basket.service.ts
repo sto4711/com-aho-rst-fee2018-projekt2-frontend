@@ -11,7 +11,7 @@ import {ShoppingBasketItem} from "./shopping-basket-item";
 })
 export class ShoppingBasketService {
 
-  public shoppingBasket: ShoppingBasket  = null;
+  public shoppingBasket: ShoppingBasket = null;
 
   constructor(
     private http: HttpClient
@@ -23,12 +23,19 @@ export class ShoppingBasketService {
 
   private init() {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
-    if(shoppingBasketId == null || this.shoppingBasket == null)  {
+    if (shoppingBasketId == null) {
       this.postCreate()
         .subscribe(shoppingBasket => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            console.log('init(), no shoppingBasketId in loacal storage OR shoppingBasket is null -> created');
+            console.log('init(), no shoppingBasket -> created');
+          }
+        );
+    } else {
+      this.get(shoppingBasketId)
+        .subscribe(shoppingBasket => {
+            this.shoppingBasket = shoppingBasket;
+            console.log('init(), shoppingBasket loaded');
           }
         );
     }
@@ -44,7 +51,7 @@ export class ShoppingBasketService {
     );
   }
 
-  get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
+  public get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
     return this.http.get<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + '?id=' + shoppingBasketID, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -60,7 +67,6 @@ export class ShoppingBasketService {
       }
     ).pipe(
       tap(() => console.log('addItem ok'))
-
     );
   }
 
