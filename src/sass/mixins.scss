@@ -1,0 +1,12 @@
+
+
+/*
+    mixins  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+@mixin slideIn($keyframe, $time, $option, $delay) {
+  animation: $keyframe $time+s $option ;
+  -webkit-animation: $keyframe $time+s $option;
+  animation-delay: $delay+s;
+}
+

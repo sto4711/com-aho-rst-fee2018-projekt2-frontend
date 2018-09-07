@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Article} from "../../services/articles/article";
+import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.css']
+  styleUrls: ['./article-detail.component.scss']
 })
 
 
@@ -29,8 +30,9 @@ export class ArticleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private shoppingBasketComponent: ShoppingBasketComponent,
-    private clientContextService: ClientContextService
+    private clientContextService: ClientContextService,
+    private shoppingBasketService: ShoppingBasketService,
+    private snackBar: MatSnackBar
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -46,7 +48,12 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   addShoppingBasketItem() {
-    this.shoppingBasketComponent.addShoppingBasketItem(this.article._id, this.article.name, this.articleAmount);
+    this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
+      .subscribe(shoppingBasket => {
+          this.snackBar.open(this.article.name + ' zum Warenkorb hinzugefügt.', null, {duration: 1500});
+        }
+      );
+
   }
 
   public ngOnInit() {

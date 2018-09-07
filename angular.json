@@ -9,6 +9,7 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -123,5 +124,10 @@
       }
     }
   },
-  "defaultProject": "com-aho-rst-fee2018-projekt2-frontend"
+  "defaultProject": "com-aho-rst-fee2018-projekt2-frontend",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

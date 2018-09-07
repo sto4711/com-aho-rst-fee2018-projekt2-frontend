@@ -1,39 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
+import {Component, OnInit} from '@angular/core';
+import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.css']
+  styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-  public itemAmount: string
-  public BasketOverview: object;
-  public BasketTotalSum: string;
-
-
-   constructor(
-     private articleService: ArticleService,
-     private shoppingBasketComponent: ShoppingBasketComponent
-
-
-   ) {  }
-
-    ngOnInit() {
-      this.shoppingBasketComponent.checkBasketExists();
-      // this.shoppingBasketComponent.currentMessage.subscribe(message => this.itemAmount = message );
-      this.displayBasket();
+  constructor(
+    public shoppingBasketService: ShoppingBasketService
+  ) {
   }
 
-  displayBasket(){
-    this.BasketOverview = this.shoppingBasketComponent.shoppingBasketService
-      .get(ShoppingBasketComponent.getLocalBasketId())
-      .subscribe(result => {
-        this.BasketOverview =  result;
-        this.BasketTotalSum = this.BasketOverview['totalSum'];
-        }
-      );
+  ngOnInit() {
   }
+
 }

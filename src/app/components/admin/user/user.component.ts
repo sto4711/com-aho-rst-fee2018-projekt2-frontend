@@ -10,7 +10,7 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
   title: string = 'User';
