@@ -83,13 +83,13 @@ export class ShoppingBasketService {
     );
   }
 
-  removeItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
-    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
+  removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'removeItem', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))
+      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
     );
   }
 

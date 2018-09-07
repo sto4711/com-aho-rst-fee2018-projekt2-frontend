@@ -1,5 +1,5 @@
 import {Injectable, Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 import {OrderService} from "../../services/order/order.service";
@@ -67,39 +67,31 @@ export class ShoppingBasketComponent implements OnInit {
     }
   }
 
-  removeShoppingBasketItem(articleId, articleName) {
-    console.log('removeShoppingBasketItem() -> NOT YET IMPLEMENTED!');
-    // this.shoppingBasketService.removeItem(new ShoppingBasketItem(ShoppingBasketComponent.getLocalBasketId(), articleId, 0))
-    //   .subscribe(shoppingBasket => {
-    //       this.shoppingBasket = shoppingBasket;
-    //       console.log(this.shoppingBasket.items.length);
-    //
-    //       this.messageSource.next((this.shoppingBasket.items.length).toString());
-    //       console.log(this.messageSource);
-    //     this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
-    //
-    //     }
-    //   );
+  removeShoppingBasketItem(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
+    this.shoppingBasketService.removeItem(articleId)
+      .subscribe(shoppingBasket => {
+        this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
+
+        }
+      );
   }
 
   public pay() {
-    console.log('pay() -> NOT YET IMPLEMENTED!');
-
-    // if (this.clientContextService.getToken().value === '') {
-    //   this.routeToLogin();
-    // } else {
-    //   this.orderService.create(this.shoppingBasket._id, this.clientContextService.getToken())
-    //     .subscribe(order => {
-    //         this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
-    //         this.router.navigate(['/order-detail'], { queryParams: { id: order._id } }).then();
-    //       },
-    //       error => {
-    //         if (error.status === 401) {
-    //           this.routeToLogin();
-    //         }
-    //       }
-    //     );
-    // }
+    if (this.clientContextService.getToken().value === '') {
+      this.routeToLogin();
+    } else {
+      this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
+        .subscribe(order => {
+            this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
+            this.router.navigate(['/order-detail'], { queryParams: { id: order._id } }).then();
+          },
+          error => {
+            if (error.status === 401) {
+              this.routeToLogin();
+            }
+          }
+        );
+    }
   }
 
 

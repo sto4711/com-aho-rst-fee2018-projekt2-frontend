@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 
 

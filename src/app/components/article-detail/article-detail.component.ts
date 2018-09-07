@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Article} from "../../services/articles/article";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";

@@ -67,7 +67,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
   ],
   entryComponents: [
-    DialogConfirmComponent, ShoppingBasketComponent, DialogConfirmDeleteComponent ],
+    DialogConfirmComponent, DialogConfirmDeleteComponent ],
   providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
 
   ],
