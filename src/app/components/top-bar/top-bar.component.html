@@ -23,14 +23,14 @@
 
       <li>
         <i class="fas fa-shopping-cart "></i>
-        <span (click)="displayBasket()"  class="basket-link"
-           [matMenuTriggerFor]="menu" matBadge="{{itemAmount}}"
+        <span class="basket-link"
+           [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
            matBadgeOverlap="false" matBadgeSize="medium">Warenkorb
         </span>
 
         <mat-menu #menu="matMenu">
-         <div  *ngIf="BasketOverview['items']?.length  !== 0">
-          <div *ngFor="let article of BasketOverview['items']">
+         <div  *ngIf="shoppingBasketService.shoppingBasket?.items.length  !== 0">
+          <div *ngFor="let article of shoppingBasketService.shoppingBasket?.items">
             <ul>
               <li>
                 <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleName | trim, id:article.articleID }">
@@ -41,14 +41,14 @@
             </ul>
           </div>
           <br>
-           <p *ngIf="BasketTotalSum"> <span class="overview-price"><strong>Zwischensumme</strong></span><br>
-             <span class="overview-price">CHF {{BasketTotalSum | amountConverter}}</span></p>
+           <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> <span class="overview-price"><strong>Zwischensumme</strong></span><br>
+             <span class="overview-price">CHF {{shoppingBasketService.shoppingBasket.totalSum | amountConverter}}</span></p>
          <br>
          <a [routerLink]="['/shopping-basket/']">
             <button class="btn form-btn mat-menu-btn"  >
               <i class="fas fa-shopping-cart"></i>Zum Warenkorb</button></a>
          </div>
-          <div *ngIf="BasketOverview['items']?.length  == 0"  >
+          <div *ngIf="shoppingBasketService.shoppingBasket?.items.length  === 0"  >
             <p>Es befinden sich keine Artikel im Warenkorb.</p>
           </div>
         </mat-menu>

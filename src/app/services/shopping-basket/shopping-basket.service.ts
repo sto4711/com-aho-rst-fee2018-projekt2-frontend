@@ -11,19 +11,36 @@ import {ShoppingBasketItem} from "./shopping-basket-item";
 })
 export class ShoppingBasketService {
 
+  public shoppingBasket: ShoppingBasket  = null;
+
   constructor(
     private http: HttpClient
     , private clientContextService: ClientContextService
   ) {
+    this.init();
   }
 
-  create(): Observable<ShoppingBasket> {
+
+  private init() {
+    const shoppingBasketId = localStorage.getItem('shoppingBasketId');
+    if(shoppingBasketId == null || this.shoppingBasket == null)  {
+      this.postCreate()
+        .subscribe(shoppingBasket => {
+            this.shoppingBasket = shoppingBasket;
+            localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+            console.log('init(), no shoppingBasketId in loacal storage OR shoppingBasket is null -> created');
+          }
+        );
+    }
+  }
+
+
+  public postCreate(): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'create', {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))/*,
-      catchError(this.handleError<Token>('signin'))*/
+      tap(() => console.log('create ok'))
     );
   }
 

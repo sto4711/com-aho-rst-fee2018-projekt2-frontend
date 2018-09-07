@@ -70,7 +70,7 @@ export class ShoppingBasketComponent implements OnInit {
   }
 
   createShoppingBasket() {
-    this.shoppingBasketService.create()
+    this.shoppingBasketService.postCreate()
       .subscribe(shoppingBasket => {
           this.shoppingBasket = shoppingBasket;
           localStorage.setItem('cartId', this.shoppingBasket._id);
