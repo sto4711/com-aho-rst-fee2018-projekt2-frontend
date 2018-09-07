@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-shopping-basket',
   templateUrl: './shopping-basket.component.html',
-  styleUrls: ['./shopping-basket.component.css']
+  styleUrls: ['./shopping-basket.component.scss']
 })
 
 @Injectable({

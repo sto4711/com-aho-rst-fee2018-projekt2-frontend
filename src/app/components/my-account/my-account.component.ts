@@ -10,7 +10,7 @@ import {MatSnackBar} from "@angular/material";
 @Component({
   selector: 'app-my-account',
   templateUrl: './my-account.component.html',
-  styleUrls: ['./my-account.component.css']
+  styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements OnInit {
   invalidLogin: boolean;

@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-article-template',
   templateUrl: './article-template.component.html',
-  styleUrls: ['./article-template.component.css']
+  styleUrls: ['./article-template.component.scss']
 })
 export class ArticleTemplateComponent implements OnInit {
 
