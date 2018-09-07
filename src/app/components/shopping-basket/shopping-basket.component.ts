@@ -1,10 +1,11 @@
 import {Injectable, Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
- import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
+import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 import {OrderService} from "../../services/order/order.service";
 import {ClientContextService} from "../../services/client-context/client-context.service";
 import {Router} from "@angular/router";
+import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket-item";
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ShoppingBasketComponent implements OnInit {
   ) {
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+  }
 
   private routeToLogin() {
     this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
@@ -38,36 +40,31 @@ export class ShoppingBasketComponent implements OnInit {
     this.router.navigate(['my-account']).then();
   }
 
-  confirmDelete(articleId, articleName) {
+  confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.confirmDeleteService.confirm(articleName).subscribe(
-    result => {
-          if (result === 'ja') {
-            this.removeShoppingBasketItem(articleId, articleName);
-          }
+      result => {
+        if (result === 'ja') {
+          this.removeShoppingBasketItem(articleId, articleName);
         }
-      );
+      }
+    );
   }
 
-  changeItemAmount_ShoppingBasket(articleId, articleName, articleAmount) {
-    console.log('changeItemAmount_ShoppingBasket() -> NOT YET IMPLEMENTED!');
-    // if (articleAmount >= 1 && articleAmount <= 3) {
-    //    const shoppingBasketItem = new ShoppingBasketItem(ShoppingBasketComponent.getLocalBasketId(), articleId, articleAmount);
-    //
-    //   this.shoppingBasketService.changeItemAmount(shoppingBasketItem)
-    //     .subscribe(shoppingBasket => {
-    //         this.shoppingBasket = shoppingBasket;
-    //
-    //       this.snackBar.open('Artikelmenge für ' + articleName + ' ist angepasst.', null, {duration: 1500});
-    //       }
-    //     );
-    // }
-    // if (articleAmount < 1) {
-    //   this.snackBar.open(   'Sie können nicht 0 Bikes bestellen.', null, {duration: 1500});
-    //
-    // } else {
-    //   this.snackBar.open(   '3 Bikes ist die maximale Bestellmenge für diesen Artikel.', null, {duration: 1500});
-    //
-    // }
+  changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"], articleAmount: ShoppingBasketItem["articleAmount"]) {
+    if (articleAmount >= 1 && articleAmount <= 3) {
+      this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
+        .subscribe(shoppingBasket => {
+            this.snackBar.open('Artikelmenge für ' + articleName + ' wurde angepasst.', null, {duration: 1500});
+          }
+        );
+    }
+    else if (articleAmount < 1) {
+      this.snackBar.open('Sie können nicht 0 Bikes bestellen.', null, {duration: 1500});
+
+    } else {
+      this.snackBar.open('3 Bikes ist die maximale Bestellmenge für diesen Artikel.', null, {duration: 1500});
+
+    }
   }
 
   removeShoppingBasketItem(articleId, articleName) {

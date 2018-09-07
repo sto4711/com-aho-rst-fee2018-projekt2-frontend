@@ -73,16 +73,18 @@ export class ShoppingBasketService {
     );
   }
 
-  changeItemAmount(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+  changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'changeItemAmount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))
+      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
     );
   }
 
-  removeItem(shoppingBasketItem: ShoppingBasketItem): Observable<ShoppingBasket> {
+  removeItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'removeItem', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
