@@ -22,7 +22,7 @@ export class SearchComponent {
   ) {
     this.filteredArticle = this.stateCtrl.valueChanges
       .pipe(
-        startWith(''),
+        startWith(null),
         map(term => this.searchArticle(term))
       );
 
