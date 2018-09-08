@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {BreadcrumbPath} from "./breadcrumb-path";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -7,10 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit {
+  public firstParam: string;
+  public breadcrumbPath: BreadcrumbPath[];
 
-
-  private firstParam: string;
-  private breadcrumbPath: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -18,17 +18,13 @@ export class BreadcrumbComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-     this.route.paramMap
-      .subscribe( (result) => {
-
-         this.firstParam = this.route.snapshot.queryParams.article;
-
-        this.route.data.subscribe( data => {
-
+  public ngOnInit() {
+    this.route.paramMap
+      .subscribe((result) => {
+        this.firstParam = this.route.snapshot.queryParams.article;
+        this.route.data.subscribe(data => {
           this.breadcrumbPath = data.breadcrumbPath;
-         });
-
+        });
       });
   }
 

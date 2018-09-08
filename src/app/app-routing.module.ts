@@ -10,33 +10,35 @@ import {ShoppingBasketComponent} from './components/shopping-basket/shopping-bas
 import {ArticleComponent} from './components/admin/article/article.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'article-listing', component: ArticleListingComponent,
+  {
+    path: 'article-listing', component: ArticleListingComponent,
     data: {
-      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Unsere Artikel'} ]
-
+      breadcrumbPath: [new BreadcrumbPath('', 'Unsere Artikel')]
     }
   },
-
-  {path: 'article-detail', component: ArticleDetailComponent,
+  {
+    path: 'article-detail', component: ArticleDetailComponent,
     data: {
-         breadcrumbPath: [{'mainUrl': 'article-listing', 'breadcrumb': 'Unsere Artikel'} ]
+      breadcrumbPath: [new BreadcrumbPath('article-listing', 'Unsere Artikel')]
     }
   },
-  {path: 'my-account', component: MyAccountComponent,
+  {
+    path: 'my-account', component: MyAccountComponent,
     data: {
-      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Mein Konto'} ]
-
+      breadcrumbPath: [new BreadcrumbPath('', 'Mein Konto')]
     }
-    },
-  {path: 'shopping-basket', component: ShoppingBasketComponent,
+  },
+  {
+    path: 'shopping-basket', component: ShoppingBasketComponent,
     data: {
-      breadcrumbPath: [{'mainUrl': '', 'breadcrumb': 'Mein Warenkorb'} ]
-
-    }},
+      breadcrumbPath: [new BreadcrumbPath('', 'Mein Warenkorb')]
+    }
+  },
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/user', component: UserComponent},
   {path: 'admin/article', component: ArticleComponent},

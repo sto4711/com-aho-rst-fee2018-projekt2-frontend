@@ -2,7 +2,7 @@
 
   <li><a  routerLink="/home">Home</a></li>
 
-  <ng-container *ngIf="breadcrumbPath[0].mainUrl !== '' ">
+  <ng-container *ngIf="breadcrumbPath[0].mainUrl.toString() !== '' ">
     <li><a  routerLink="/{{breadcrumbPath[0].mainUrl}}">{{breadcrumbPath[0].breadcrumb}}</a></li>
   </ng-container>
 
