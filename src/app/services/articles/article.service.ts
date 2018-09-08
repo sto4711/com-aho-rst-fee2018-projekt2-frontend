@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {EMPTY, Observable} from 'rxjs';
+import {EMPTY, Observable, of} from 'rxjs';
 import {share, tap} from 'rxjs/operators';
 
 import {Article} from 'src/app/services/articles/article';
@@ -23,7 +23,7 @@ export class ArticleService {
 
   searchArticles(term: string): Observable<Article[]> {
     if (term === null) {
-      return EMPTY;
+      return of<Article[]>([]);
     }
 
     return this.http.get<Article[]>(this.clientContextService.getBackendURL_allArticles() + '?filter=' + term, {

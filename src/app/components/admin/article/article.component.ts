@@ -32,7 +32,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles$ = this.searchTerms.pipe(
-      startWith(''),
+      startWith(null),
       debounceTime(300), // wait 300ms after each keystroke before considering the term
       distinctUntilChanged(), // ignore new term if same as previous term
       switchMap((term: string) => this.articleService.searchArticles(term)),
