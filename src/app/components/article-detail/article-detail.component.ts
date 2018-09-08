@@ -67,7 +67,6 @@ export class ArticleDetailComponent implements OnInit {
   public changeArticleRating(rateUp) {
     this.articleService.changeRating(new ArticleRating(this.article._id,rateUp))
       .subscribe(article => {
-        debugger;
         this.article = article;
           this.snackBar.open(this.article.name + ' Bewertung geändert.', null, {duration: 1500});
         }
