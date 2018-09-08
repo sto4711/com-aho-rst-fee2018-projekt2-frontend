@@ -11,7 +11,7 @@ import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket
 @Component({
   selector: 'app-shopping-basket',
   templateUrl: './shopping-basket.component.html',
-  styleUrls: ['./shopping-basket.component.css']
+  styleUrls: ['./shopping-basket.component.scss']
 })
 
 @Injectable({

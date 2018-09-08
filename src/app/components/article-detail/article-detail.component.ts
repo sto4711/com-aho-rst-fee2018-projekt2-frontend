@@ -10,7 +10,7 @@ import {ArticleRating} from "../../services/articles/article-rating";
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.css']
+  styleUrls: ['./article-detail.component.scss']
 })
 
 
