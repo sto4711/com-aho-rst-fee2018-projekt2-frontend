@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
- import {MatInputModule} from '../../../node_modules/@angular/material/input';
-import {MatFormFieldModule} from '../../../node_modules/@angular/material/form-field';
-import {MatCheckboxModule} from '../../../node_modules/@angular/material/checkbox';
-import {MatAutocompleteModule} from '../../../node_modules/@angular/material/autocomplete';
-import {MatDialogModule} from '../../../node_modules/@angular/material/dialog';
-import { MatSnackBarModule} from '@angular/material';
-import {MatSelectModule} from '../../../node_modules/@angular/material/select';
-import {MatBadgeModule} from '../../../node_modules/@angular/material/badge';
+ import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   exports: [
@@ -19,7 +21,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSnackBarModule,
     MatSelectModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatIconModule
   ]
 })
 export class MatComponentsModule { }

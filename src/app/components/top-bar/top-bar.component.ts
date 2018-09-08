@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,11 +9,14 @@ import {ShoppingBasketService} from "../../services/shopping-basket/shopping-bas
 })
 export class TopBarComponent implements OnInit {
   constructor(
-    public shoppingBasketService: ShoppingBasketService
+    public shoppingBasketService: ShoppingBasketService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
   }
-
+  goToHome(){
+    this.router.navigate(['home']);
+  }
 }

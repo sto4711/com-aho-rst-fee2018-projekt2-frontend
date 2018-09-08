@@ -1,1 +1,55 @@
+<div class="row">
+  <app-breadcrumb></app-breadcrumb>
 
+  <h2>Warenkorb</h2>
+  <mat-icon svgIcon="thumbs-up">dd</mat-icon>
+<mat-vertical-stepper>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Meine Adresse</ng-template>
+    <ng-template matStepperIcon="create ">
+      <mat-icon><i class="fas check"></i> </mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="done">
+      <mat-icon>done_all</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done_all</mat-icon>
+    </ng-template>
+    <form [formGroup]="firstFormGroup">
+       <mat-form-field>
+        <input matInput placeholder="Vorname" formControlName="vorname" required>
+      </mat-form-field><br>
+       <mat-form-field>
+         <input matInput placeholder="Nachname" formControlName="nachname" required>
+       </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup"><ng-template matStepLabel>Bezahlen mit</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+
+</mat-vertical-stepper>
+</div><!-- end .row -->

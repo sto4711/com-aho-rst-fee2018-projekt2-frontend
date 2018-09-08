@@ -11,6 +11,7 @@ import {ArticleComponent} from './components/admin/article/article.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
+import {CheckoutComponent} from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -39,6 +40,10 @@ const routes: Routes = [
       breadcrumbPath: [new BreadcrumbPath('', 'Mein Warenkorb')]
     }
   },
+  {path: 'checkout', component: CheckoutComponent,
+    data: {
+      breadcrumbPath: [new BreadcrumbPath('', 'Bestellabschluss')]
+    }},
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/user', component: UserComponent},
   {path: 'admin/article', component: ArticleComponent},
