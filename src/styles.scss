@@ -268,8 +268,6 @@ h2#headline span {
   width: 100%;
   height: auto;
   padding: 25px 0 0 0;
-  -webkit-animation: bg-pan-left 8s  infinite both;
-  animation: bg-pan-left 2s infinite both;
   background: linear-gradient(90deg, #EF9967, #F3C1A2 );
   background-size: 400% 400%;
   -webkit-animation: Gradient 15s ease infinite;
@@ -459,6 +457,7 @@ nav.main-nav {
   text-align: center;
   overflow: hidden;
   transition:  height 700ms ;
+  z-index: 999;
 }
 
 nav.main-nav li{
@@ -484,7 +483,7 @@ nav.main-nav li a{
 .expand {
   background-color: #fff;
   height: 200px;
-  opacity: 0.7;
+  opacity: 1;
 
 }
 
@@ -507,7 +506,7 @@ nav.xs-nav {
 
 }
 
-.bar1, .bar2, .bar3 {
+.hamburge-line1, .hamburge-line2, .hamburge-line3 {
   width: 35px;
   height: 5px;
   background-color: #333;
@@ -515,14 +514,14 @@ nav.xs-nav {
   transition: 0.4s;
 }
 
-.change .bar1 {
+.change .hamburge-line1 {
   -webkit-transform: rotate(-45deg) translate(-9px, 6px);
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
-.change .bar2 {opacity: 0;}
+.change .hamburge-line2 {opacity: 0;}
 
-.change .bar3 {
+.change .hamburge-line3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
@@ -691,6 +690,17 @@ figcaption .fab {
 
 }
 
+.article-like {
+  display: block;
+  cursor: pointer;
+
+     .fas {
+       color: $green;
+       &:hover {
+         color: $font-color;
+       }
+     }
+  }
 
 
 
@@ -1136,8 +1146,8 @@ select {
     misc ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-.fas {
-  margin: 0 5px 0 0;
+.fas, .far {
+  margin: 0 0.5em 0;
 }
 
 .fa-search {
@@ -1148,6 +1158,9 @@ select {
   padding: 0;
 }
 
+.fa-thumbs-up, .fa-thumbs-down {
+  margin: 0 0.5em 0 0.5em;
+}
 .fa-times {
   float:right;
   color: #e11313;
