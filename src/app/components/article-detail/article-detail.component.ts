@@ -5,6 +5,7 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {Article} from "../../services/articles/article";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 import {MatSnackBar} from "@angular/material";
+import {ArticleRating} from "../../services/articles/article-rating";
 
 @Component({
   selector: 'app-article-detail',
@@ -42,20 +43,6 @@ export class ArticleDetailComponent implements OnInit {
 
   }
 
-
-  selectedArticleAmount(amount) {
-    this.articleAmount = amount;
-  }
-
-  addShoppingBasketItem() {
-    this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
-      .subscribe(shoppingBasket => {
-          this.snackBar.open(this.article.name + ' zum Warenkorb hinzugefügt.', null, {duration: 1500});
-        }
-      );
-
-  }
-
   public ngOnInit() {
 
     this.route.paramMap
@@ -69,6 +56,26 @@ export class ArticleDetailComponent implements OnInit {
       });
   }
 
+  public selectedArticleAmount(amount) {
+    this.articleAmount = amount;
+  }
+
+  public addShoppingBasketItem() {
+    this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
+      .subscribe(shoppingBasket => {
+          this.snackBar.open(this.article.name + ' zum Warenkorb hinzugefügt.', null, {duration: 1500});
+        }
+      );
+  }
+
+  public changeArticleRating(rateUp) {
+    this.articleService.changeRating(new ArticleRating(this.article._id,rateUp))
+      .subscribe(article => {
+        this.article = article;
+          this.snackBar.open(this.article.name + ' Bewertung geändert.', null, {duration: 1500});
+        }
+      );
+  }
 
 }
 

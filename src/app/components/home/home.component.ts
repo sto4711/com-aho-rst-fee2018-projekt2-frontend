@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   articles: Observable<Article[]>;
 
   imageURL: string = this.clientContextService.getBackendURL_public();
-  p: number = 1;
 
   constructor(
     private clientContextService: ClientContextService

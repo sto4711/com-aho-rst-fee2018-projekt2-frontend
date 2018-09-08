@@ -13,18 +13,19 @@ export class ClientContextService {
   public nextRoute = '';
 
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
-  private backendURL_allArticles :string  = 'http://localhost:3000/webshop/articles/';
-  private backendURL_newestArticles :string  = 'http://localhost:3000/webshop/articles/newest';
-  private backendURL_articleDetails :string  = 'http://localhost:3000/webshop/article-details/';
 
-  private backendURL_allUsers :string  = 'http://localhost:3000/webshop/users/';
-  private backendURL_userDetails :string  = 'http://localhost:3000/webshop/user-details/';
-  private backendURL_user :string  = 'http://localhost:3000/webshop/user/';
+  private backendURL_allArticles :string  = this.backendURL_public + 'webshop/articles/';
+  private backendURL_newestArticles :string  = this.backendURL_public + 'webshop/articles/newest';
+  private backendURL_articleDetails :string  = this.backendURL_public + 'webshop/article-details/';
 
-  private backendURL_shoppingBasket :string  = 'http://localhost:3000/webshop/shopping-basket/';
+  private backendURL_allUsers :string  = this.backendURL_public + 'webshop/users/';
+  private backendURL_userDetails :string  = this.backendURL_public + 'webshop/user-details/';
+  private backendURL_user :string  = this.backendURL_public + 'webshop/user/';
 
-  private backendURL_order :string  = 'http://localhost:3000/webshop/order/';
-  private backendURL_orderDetails = 'http://localhost:3000/webshop/order-details/';
+  private backendURL_shoppingBasket :string  = this.backendURL_public + 'webshop/shopping-basket/';
+
+  private backendURL_order :string  = this.backendURL_public + 'webshop/order/';
+  private backendURL_orderDetails = this.backendURL_public + 'webshop/order-details/';
 
   constructor() {}
 
