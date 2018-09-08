@@ -65,7 +65,7 @@ export class ShoppingBasketService {
 
   addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'addItem', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -75,7 +75,7 @@ export class ShoppingBasketService {
 
   changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'changeItemAmount', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'change_item_amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -85,7 +85,7 @@ export class ShoppingBasketService {
 
   removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'removeItem', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(this.clientContextService.getBackendURL_shoppingBasket() + 'remove_item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

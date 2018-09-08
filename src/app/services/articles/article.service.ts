@@ -5,6 +5,8 @@ import {tap} from 'rxjs/operators';
 
 import {Article} from 'src/app/services/articles/article';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {ShoppingBasket} from "../shopping-basket/shopping-basket";
+import {ArticleRating} from "./article-rating";
 
 
 @Injectable({
@@ -35,13 +37,25 @@ export class ArticleService {
     );
   }
 
-  getArticleDetails( term: string): Observable<Article> {
-      return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?id=' + term , {
+
+  getArticleDetails( id: Article["_id"]): Observable<Article> {
+      return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?id=' + id , {
         headers: {'Content-Type': 'application/json' }
       }
     ).pipe(
       tap(() => console.log('getArticleDetails ok'))
     );
   }
+
+  changeRating( articleRating: ArticleRating): Observable<Article> {
+    return this.http.post<Article>(this.clientContextService.getBackendURL_articleDetails() + 'change-rating', articleRating, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap((article: Article) => console.log('changeRating ok'))
+    );
+  }
+
+
 
 }

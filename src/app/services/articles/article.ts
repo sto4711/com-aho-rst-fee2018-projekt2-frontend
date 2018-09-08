@@ -1,12 +1,12 @@
 export class Article {
-  brand: string;
-  name: string;
-  itemNumber : string;
-  description: string;
-  price: number;
-  imageURL: string;
-  imageSmallURL : string;
-  availability: boolean;
-  rating: number[];
-  _id: string;
+  public brand: string;
+  public name: string;
+  public itemNumber : string;
+  public description: string;
+  public price: number;
+  public imageURL: string;
+  public imageSmallURL : string;
+  public availability: boolean;
+  public rating: boolean[];
+  public _id: string;
 }

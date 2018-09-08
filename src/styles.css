@@ -754,6 +754,11 @@ figcaption .fab {
   padding: 0 10px;
 }
 
+figcaption .fa-thumbs-up {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
 @media screen and (max-width: 852px) {
   #article-detail-wrap {
     flex-direction: column;
