@@ -8,18 +8,27 @@ import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  deliveryAdress: FormGroup;
+  contactData: FormGroup;
+  delieveryType: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
+    this.deliveryAdress = this._formBuilder.group({
       vorname: ['', Validators.required],
-      nachname: ['', Validators.required]
+      nachname: ['', Validators.required],
+      strasse: ['', Validators.required],
+      plz: ['', Validators.required],
+      stadt: ['', Validators.required]
+
 
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.contactData = this._formBuilder.group({
+      email: ['', Validators.required],
+      telefonnummer: ['', Validators.required]
+    });
+    this.delieveryType = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
   }

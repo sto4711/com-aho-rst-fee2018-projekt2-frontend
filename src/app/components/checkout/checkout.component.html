@@ -2,35 +2,50 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>Warenkorb</h2>
-  <mat-icon svgIcon="thumbs-up">dd</mat-icon>
-<mat-vertical-stepper>
+<mat-vertical-stepper [linear]="isLinear" #stepper>
 
-  <mat-step [stepControl]="firstFormGroup">
-    <ng-template matStepLabel>Meine Adresse</ng-template>
-    <ng-template matStepperIcon="create ">
-      <mat-icon><i class="fas check"></i> </mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="done">
-      <mat-icon>done_all</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="edit">
-      <mat-icon>done_all</mat-icon>
-    </ng-template>
-    <form [formGroup]="firstFormGroup">
+  <mat-step [stepControl]="deliveryAdress">
+    <ng-template matStepLabel>Lieferadresse</ng-template>
+    <form [formGroup]="deliveryAdress">
        <mat-form-field>
         <input matInput placeholder="Vorname" formControlName="vorname" required>
       </mat-form-field><br>
        <mat-form-field>
          <input matInput placeholder="Nachname" formControlName="nachname" required>
-       </mat-form-field>
+       </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Strasse und Hausnummer" formControlName="strasse" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Postleitzahl" formControlName="plz" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Stadt" formControlName="stadt" required>
+      </mat-form-field><br>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup"><ng-template matStepLabel>Bezahlen mit</ng-template>
-    <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="contactData">
+    <ng-template matStepLabel>Kontaktdaten</ng-template>
+    <form [formGroup]="contactData">
+      <mat-form-field>
+        <input matInput placeholder="E-Mail" formControlName="email" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" required>
+      </mat-form-field><br>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="delieveryType"><ng-template matStepLabel>Bezahlen mit</ng-template>
+    <form [formGroup]="delieveryType">
       <ng-template matStepLabel>Fill out your address</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
