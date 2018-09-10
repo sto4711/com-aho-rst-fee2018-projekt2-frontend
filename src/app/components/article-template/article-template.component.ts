@@ -21,8 +21,8 @@ export class ArticleTemplateComponent implements OnInit {
 
   ngOnInit() {
   }
-  goToDetail(articleName, articleId){
-    articleName = articleName.replace(/ /g,"-");
-    this.router.navigate(['article-detail'], { queryParams: { article: articleName, id: articleId  } });
+  goToDetail(articleQueryParameter){
+    //articleName = articleName.replace(/ /g,"-");
+    this.router.navigate(['article-detail'], { queryParams: {article: articleQueryParameter} });
   }
 }

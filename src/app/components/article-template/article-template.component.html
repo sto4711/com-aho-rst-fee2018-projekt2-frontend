@@ -1,5 +1,5 @@
 
-  <div class="product-content" (click)="goToDetail(article.name, article._id)">
+  <div class="product-content" (click)="goToDetail(article.articleQueryParameter)">
     <img class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
     <div class="product-data">
       <p><span class="product-listing-title">{{article.name}}</span><br>
@@ -7,7 +7,7 @@
         <span class="product-listing-price">CHF {{article.price}}</span>
       </p>
       <a class="btn prod-listing" type="button" role="button"  aria-label="Zum Artikel"
-         [routerLink]="['/article-detail/']" [queryParams]="{article:article.name | trim, id:article._id }" >Zum Artikel</a>
+         [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleQueryParameter | trim}" >Zum Artikel</a>
     </div><!-- end .product-data -->
   </div><!-- end .product-content -->
 

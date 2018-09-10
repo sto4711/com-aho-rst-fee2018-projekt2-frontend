@@ -7,6 +7,7 @@ export class ShoppingBasketItem {
   public articleAvailability :boolean =  null;
   public articleAmount :number =  null;
   public itemNumber :string =  null;
+  public articleQueryParameter :string =  '';
 
   constructor(shoppingBasketID: string, articleID: string, articleAmount : number) {
     this.shoppingBasketID = shoppingBasketID;
