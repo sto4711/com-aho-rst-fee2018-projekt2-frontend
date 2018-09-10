@@ -44,8 +44,8 @@ export class ArticleService {
       );
   }
 
-  getArticleDetails(id: Article["_id"]): Observable<Article> {
-    return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?id=' + id, {
+  getArticleDetails(articleQueryParameter: Article["articleQueryParameter"]): Observable<Article> {
+    return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?article=' + articleQueryParameter, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
