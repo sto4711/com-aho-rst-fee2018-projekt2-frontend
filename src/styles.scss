@@ -156,6 +156,9 @@ ul.ngx-pagination {
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $green !important;
 }
+.mat-input-element {
+  font-size: 1.8rem !important;
+}
 
 .mat-option-text a {
   display: block;
@@ -184,8 +187,84 @@ a button.mat-menu-btn {
   margin: 0 0 0 20px;
 }
 
+.mat-vertical-content-container {
+  margin-left: 45px !important;
+}
+.mat-step-label {
+   font-size: 2.4rem;
+}
 
+.matStepperPrevious,.matStepperNext, .matStepperReset {
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 400;
+  max-width: 150px;
+  width: 100%;
+  padding: 5px 0;
+  color: #000000;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  margin: 5px 0;
+}
+.matStepperNext::after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  line-height: inherit;
+  vertical-align: baseline;
+  content: "\f061";
+  margin: 0 0 0 5px;
+}
+.matStepperPrevious::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  line-height: inherit;
+  vertical-align: baseline;
+  content: "\f060";
+  margin: 0 5px 0 0;
+}
 
+.matStepperReset::after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  line-height: inherit;
+  vertical-align: baseline;
+  content: "\f0e2";
+  margin: 0 0 0 5px;
+}
+
+.mat-radio-button {
+  margin: 0 0 5px 0;
+}
+
+.mat-step-icon {
+  height: 44px;
+  width: 44px;
+}
+
+.mat-step-icon-size {
+  height: 44px;
+  width: 44px;
+  font-size: 1.8rem;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: $green;
+  color: $font-color;
+  @extend .mat-step-icon-size;
+}
+
+.mat-step-header .mat-step-icon-not-touched {
+  background-color: $orange;
+  color: $font-color;
+  @extend .mat-step-icon-size;
+}
+
+.mat-vertical-content-container {
+  margin-left: 45px;
+  border: 0;
+  position: relative;
+}
 /*
     rows, cols ////////////////////////////////////////////////////////////////////////////////////////////////
  */

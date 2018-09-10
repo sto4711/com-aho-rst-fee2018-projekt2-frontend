@@ -1,7 +1,7 @@
 <div class="row">
   <app-breadcrumb></app-breadcrumb>
 
-  <h2>Warenkorb</h2>
+  <h2>Meine Bestellung</h2>
 <mat-vertical-stepper [linear]="isLinear" #stepper>
 
   <mat-step [stepControl]="deliveryAdress">
@@ -17,14 +17,13 @@
         <input matInput placeholder="Strasse und Hausnummer" formControlName="strasse" required>
       </mat-form-field><br>
       <mat-form-field>
-        <input matInput placeholder="Postleitzahl" formControlName="plz" required>
+        <input matInput placeholder="Postleitzahl" maxlength="4" minlength="4" formControlName="plz" required>
       </mat-form-field><br>
       <mat-form-field>
         <input matInput placeholder="Stadt" formControlName="stadt" required>
       </mat-form-field><br>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+
     </form>
   </mat-step>
 
@@ -37,32 +36,58 @@
       <mat-form-field>
         <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" required>
       </mat-form-field><br>
-
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
+      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="delieveryType"><ng-template matStepLabel>Bezahlen mit</ng-template>
-    <form [formGroup]="delieveryType">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+  <mat-step [stepControl]="delieveryType"><ng-template matStepLabel>Versandart</ng-template>
+    <form [formGroup]="delieveryType"  >
+      <p>Wir versenden ausschliesslich mit der Schweizer Post.</p><br>
+      <mat-radio-group >
+        <mat-radio-button value="priority" ngDefaultControl name="delievery" formControlName="priority">PostPac Priority</mat-radio-button><br>
+        <mat-radio-button value="economy" ngDefaultControl name="delievery" formControlName="economy">PostPac Economy</mat-radio-button><br>
+
+      </mat-radio-group><br>
+        <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
+        <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+     </form>
+  </mat-step>
+  <mat-step [stepControl]="paymentType"><ng-template matStepLabel>Bezahlen mit</ng-template>
+    <form [formGroup]="paymentType">
+      <mat-radio-group>
+        <mat-radio-button value="paypal" ngDefaultControl formControlName="paypal">Paypal</mat-radio-button><br>
+        <mat-radio-button value="mastecard" ngDefaultControl formControlName="mastercard">Mastercard</mat-radio-button><br>
+        <mat-radio-button value="visa" ngDefaultControl formControlName="visa">Visa</mat-radio-button>
+
+      </mat-radio-group><br>
+      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
+      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
     </form>
   </mat-step>
-
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+    <ng-template matStepLabel>Übersicht</ng-template>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <h4>Meine Bestelldaten</h4>
+      <p><strong>Vorname: </strong>{{deliveryAdress.getRawValue().vorname}}</p>
+      <p><strong>Nachname: </strong>{{deliveryAdress.getRawValue().nachname}}</p>
+      <p><strong>Strasse: </strong>{{deliveryAdress.getRawValue().strasse}}</p>
+      <p><strong>Postleitzahl: </strong>{{deliveryAdress.getRawValue().plz}}</p>
+      <p><strong>Stadt: </strong>{{deliveryAdress.getRawValue().stadt}}</p>
+      <br>
+      <p><strong>E-Mail: </strong>{{contactData.getRawValue().email}}</p>
+      <p><strong>Telefonnummer: </strong>{{contactData.getRawValue().telefonnummer}}</p>
+      <br>
+      <p><strong>Versandart:{{delieveryType.value.value}} </strong></p>
+
+
+    </div>
+    <div>
+      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
+      <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
+      <p>
+        <button class="btn form-btn" type="submit" (click)="placeOrder()"><i class="fas form-btn"></i>Jetzt bestellen</button>
+      </p>
     </div>
   </mat-step>
 
