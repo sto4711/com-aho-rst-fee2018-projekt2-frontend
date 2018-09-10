@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
       visa: ['', Validators.required]
 
     });
-  
+
   }
 
   placeOrder() {
