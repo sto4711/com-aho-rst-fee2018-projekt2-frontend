@@ -4,6 +4,17 @@
     mixins  /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
+@mixin font-size($sizeValue) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+@mixin line-height($heightValue) {
+  line-height: ($heightValue * 10) + px;
+  line-height: $heightValue + rem;
+}
+
+
 @mixin slideIn($keyframe, $time, $option, $delay) {
   animation: $keyframe $time+s $option ;
   -webkit-animation: $keyframe $time+s $option;
