@@ -1,8 +1,8 @@
 <header>
 
+  <app-lang-switch></app-lang-switch>
+
   <app-top-bar></app-top-bar>
-
-
   <div id="top-banner">
     <div class="bg-main-nav"></div><!-- end #main-nav-wrap -->
     <nav class="main-nav">
@@ -12,9 +12,9 @@
         <div class="hamburge-line3"></div>
       </div>
       <ul>
-        <li><a routerLinkActive="active" role="link" routerLink="/home" (click)="hamburger()">Home</a></li>
-        <li><a routerLinkActive="active" role="link" routerLink="/article-listing" (click)="hamburger()">Artikel</a></li>
-        <li><a routerLinkActive="active" role="link" routerLink="/my-account" (click)="hamburger()">Mein Konto</a></li>
+        <li><a routerLinkActive="active" role="link" routerLink="/home" (click)="hamburger()">{{'HOME' | translate}}</a></li>
+        <li><a routerLinkActive="active" role="link" routerLink="/article-listing" (click)="hamburger()">{{'ARTICLES' | translate}}</a></li>
+        <li><a routerLinkActive="active" role="link" routerLink="/my-account" (click)="hamburger()">{{'MY-ACCOUNT' | translate}}</a></li>
       </ul>
     </nav>
     <div id="banner">

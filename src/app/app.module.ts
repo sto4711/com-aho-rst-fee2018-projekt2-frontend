@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './components/admin/user/user.component';
@@ -20,6 +22,7 @@ import { DialogConfirmComponent } from './components/commons/dialog/dialog-confi
 import {AmountConverterPipe} from './currency.pipe';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
+import {MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './components/header/header.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -29,6 +32,12 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {DeTrimPipe} from './de-trim.pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LangSwitchComponent } from './components/lang-switch/lang-switch.component';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -54,6 +63,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     DeTrimPipe,
     AmountConverterPipe,
     NotFoundComponent,
+    LangSwitchComponent,
    ],
   imports: [
     BrowserModule,
@@ -63,8 +73,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatComponentsModule
-
+    MatComponentsModule,
+    MatCardModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent ],
