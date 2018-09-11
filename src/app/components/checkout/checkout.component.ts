@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit {
   contactData: FormGroup;
   delieveryType: FormGroup;
   paymentType: FormGroup;
+  itemChangePossible = false;
 
   constructor(
     private _formBuilder: FormBuilder

@@ -20,11 +20,13 @@ import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket
 
 export class ShoppingBasketComponent implements OnInit {
 
+  itemChangePossible = true;
+
   constructor(
-    public shoppingBasketService: ShoppingBasketService
-    , private snackBar: MatSnackBar
+      public shoppingBasketService: ShoppingBasketService
     , public dialog: MatDialog
     , public confirmDeleteService: ConfirmDeleteService
+    , private snackBar: MatSnackBar
     , private clientContextService: ClientContextService
     , private router: Router
     , private orderService: OrderService
@@ -52,6 +54,7 @@ export class ShoppingBasketComponent implements OnInit {
 
   changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"], articleAmount: ShoppingBasketItem["articleAmount"]) {
     if (articleAmount >= 1 && articleAmount <= 3) {
+
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
             this.snackBar.open('Artikelmenge für ' + articleName + ' wurde angepasst.', null, {duration: 1500});
