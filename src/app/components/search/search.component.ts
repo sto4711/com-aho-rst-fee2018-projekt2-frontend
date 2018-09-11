@@ -6,6 +6,8 @@ import {ArticleService} from '../../services/articles/article.service';
 import {Article} from "../../services/articles/article";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DialogService} from "../../services/commons/dialog/dialog.service";
+import {Router} from "@angular/router";
+import {ClientContextService} from "../../services/client-context/client-context.service";
 
 
 @Component({
@@ -18,9 +20,11 @@ export class SearchComponent {
   public stateCtrl = new FormControl();
   public articles$: Observable<Article[]>;
 
+
   constructor(
     private articleService: ArticleService
     , private dialogService: DialogService
+    , private router: Router
   ) {
     this.articles$ = this.stateCtrl.valueChanges
       .pipe(
@@ -43,9 +47,13 @@ export class SearchComponent {
     }
   }
 
-  private handleError<T>(operation = 'operation', error: any): Observable<Article[]>  {
+  private handleError<T>(operation = 'operation', error: any): Observable<Article[]> {
     this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
     return of<Article[]>([]); //empty Observable<Article[]>
+  }
+
+  public onSelected(article: Article) {
+    this.router.navigate(['/article-detail'], {queryParams: {article: article.articleQueryParameter}}).then();
   }
 
 

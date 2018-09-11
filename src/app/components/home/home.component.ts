@@ -10,20 +10,13 @@ import {Observable} from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
-  articles: Observable<Article[]>;
-
-  imageURL: string = this.clientContextService.getBackendURL_public();
+export class HomeComponent  {
+  public articles: Observable<Article[]>;
 
   constructor(
-    private clientContextService: ClientContextService
-    , private articleService: ArticleService,
+    private articleService: ArticleService,
   ) {
     this.articles = this.articleService.getArticlesNewest(4);
-  }
-
-  ngOnInit() {
   }
 
 }

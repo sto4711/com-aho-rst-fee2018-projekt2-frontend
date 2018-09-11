@@ -16,8 +16,10 @@ export class LangSwitchComponent {
   }
 
   public onLangChanged(langCode) {
-    console.log('onLangChanged ' + langCode);
-    this.translate.use(langCode);
+    if(langCode !== this.selectedLanguage)  {
+      this.translate.use(langCode);
+      this.selectedLanguage = langCode;
+    }
   }
 
 

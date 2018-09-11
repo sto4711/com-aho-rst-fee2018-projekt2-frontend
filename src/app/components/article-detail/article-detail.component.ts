@@ -44,7 +44,6 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   public ngOnInit() {
-
     this.route.paramMap
       .subscribe(params => {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
@@ -69,9 +68,9 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   public changeArticleRating(rateUp) {
-    this.articleService.changeRating(new ArticleRating(this.article._id,rateUp))
+    this.articleService.changeRating(new ArticleRating(this.article._id, rateUp))
       .subscribe(article => {
-        this.article = article;
+          this.article = article;
           this.snackBar.open(this.article.name + ' Bewertung geändert.', null, {duration: 1500});
         }
       );
