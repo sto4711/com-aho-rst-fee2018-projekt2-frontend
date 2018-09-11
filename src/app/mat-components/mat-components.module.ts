@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   exports: [
@@ -25,7 +26,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatMenuModule,
     MatStepperModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule
   ]
 })
 export class MatComponentsModule { }
