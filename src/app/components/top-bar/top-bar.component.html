@@ -27,7 +27,7 @@
         <i class="fas fa-shopping-cart "></i>
         <span class="basket-link"
            [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
-           matBadgeOverlap="false" matBadgeSize="medium">Warenkorb
+           matBadgeOverlap="false" matBadgeSize="medium">{{'SHOPPING-BASKET' | translate}}
         </span>
 
         <mat-menu #menu="matMenu">
