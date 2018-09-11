@@ -14,7 +14,9 @@
   "NEXT": "next",
   "CONTACT": "contact",
   "INFORMATION": "information",
-  "PAYMENT-OPTIONS": "payment options"
-
-
+  "PAYMENT-OPTIONS": "payment options",
+  "ABOUT-US": "about us",
+  "PRIVACY": "privacy",
+  "TERMS-AND-CONDITIONS": "terms and conditions",
+  "TERMS-OF-SHIPMENT-AND-PAYMENT": "terms of shipment and payment"
 }

@@ -14,6 +14,9 @@
   "NEXT": "weiter",
   "CONTACT": "Kontakt",
   "INFORMATION": "Informationen",
-  "PAYMENT-OPTIONS": "Zahlungsmöglichkeiten"
-
+  "PAYMENT-OPTIONS": "Zahlungsmöglichkeiten",
+  "ABOUT-US": "Impressum",
+  "PRIVACY": "Datenschutz",
+  "TERMS-AND-CONDITIONS": "Allgemeine Geschäftsbedingungen",
+  "TERMS-OF-SHIPMENT-AND-PAYMENT": "Versand- und Zahlungsbedingungen"
 }
