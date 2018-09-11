@@ -88,54 +88,7 @@
     </div>
     <div>
 
-      <table>
-        <thead>
-        <tr>
-          <th>Nr</th>
-          <th>Artikel</th>
-          <th>Preis</th>
-          <th>Anzahl</th>
-          <th>Gesamtsumme</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let article of shoppingBasketService.shoppingBasket?.items">
-          <td class="article-row">{{article.itemNumber}}</td>
-          <td class="article-row">{{article.articleName}}</td>
-          <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
-          <td class="article-row"> {{article.articleAmount}} </td>
-          <td class="article-row ">CHF {{article.articlePriceSum | amountConverter}}
-          </td>
-        </tr>
-
-
-        </tbody>
-        <tfoot>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <p><span class="result-text">Zwischensumme</span></p>
-            <p><span class="result-text">Lieferkosten</span></p>
-            <p><span class="result-text"><strong>Gesamtsumme</strong></span></p>
-          </td>
-          <td>
-
-            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-              <span>CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}</span>
-            </p>
-            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-              <span>CHF 15.00</span>
-            </p>
-            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-              <strong><span>CHF {{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}}</span></strong>
-            </p>
-          </td>
-        </tr>
-
-        </tfoot>
-      </table>
+     <app-shopping-basket-listing [itemChangePossible]= 'itemChangePossible'></app-shopping-basket-listing>
 
     </div><!-- end article listing -->
     <div>
