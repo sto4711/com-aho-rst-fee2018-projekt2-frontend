@@ -30,8 +30,10 @@
       {{article.articleAmount}}
     </td>
     <td class="article-row ">CHF {{article.articlePriceSum | amountConverter}}
+      <ng-container *ngIf="itemChangePossible== true ">
       <i class="fa fa-times" aria-hidden="true"
          (click)="confirmDelete2($event, article.articleID, article.articleName)"></i>
+      </ng-container>
     </td>
   </tr>
 
