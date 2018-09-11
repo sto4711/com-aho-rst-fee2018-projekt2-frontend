@@ -1,10 +1,13 @@
 .langSwitchContainer {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  margin-left: 10px;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 15px;
+  text-align: right;
 }
 
+
 .langSwitch {
-  margin-left: 5px;
+  cursor: pointer;
+
 }
+
