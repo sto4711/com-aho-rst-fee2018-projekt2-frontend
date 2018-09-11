@@ -9,23 +9,13 @@ import {ArticleService} from '../../services/articles/article.service';
   templateUrl: './article-listing.component.html',
   styleUrls: ['./article-listing.component.scss']
 })
-export class ArticleListingComponent implements OnInit {
-
-  public title: string;
+export class ArticleListingComponent  {
   public articles$: Observable<Article[]>;
-
-  p: number = 1;
 
   constructor(
     private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
-    this.title = 'Unsere Artikel';
   }
-
-  ngOnInit() {
-  }
-
-
 }
 

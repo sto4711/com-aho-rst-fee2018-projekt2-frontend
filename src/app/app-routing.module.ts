@@ -12,6 +12,7 @@ import {OrderDetailComponent} from './components/order-detail/order-detail.compo
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
+import {ClientContextService} from "./services/client-context/client-context.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,13 +20,13 @@ const routes: Routes = [
   {
     path: 'article-listing', component: ArticleListingComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'Unsere Artikel')]
+      breadcrumbPath: [new BreadcrumbPath('',  'OUR-ARTICLES')]
     }
   },
   {
     path: 'article-detail', component: ArticleDetailComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('article-listing', 'Unsere Artikel')]
+      breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]
     }
   },
   {

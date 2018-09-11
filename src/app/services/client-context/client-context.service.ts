@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Token} from '../login/token';
+import {BreadcrumbPath} from "../../components/breadcrumb/breadcrumb-path";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,8 @@ export class ClientContextService {
   private backendURL_order :string  = this.backendURL_public + 'webshop/order/';
   private backendURL_orderDetails = this.backendURL_public + 'webshop/order-details/';
 
-  constructor() {}
+  constructor(private translate: TranslateService) {
+  }
 
   setToken(token: Token){
     this.token = token;

@@ -18,10 +18,8 @@ export class ArticleDetailComponent implements OnInit {
   public article: Article;
   public imageURL: string = this.clientContextService.getBackendURL_public();
   public selectedValue = 1;
-  public articleName: string;
   private articleAmount: number = 1;
-  public title: string;
-  amount = [
+  public amount = [
     {value: 1, viewValue: '1'},
     {value: 2, viewValue: '2'},
     {value: 3, viewValue: '3'}
@@ -39,8 +37,6 @@ export class ArticleDetailComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.title = 'Unsere Artikel';
-
   }
 
   public ngOnInit() {
