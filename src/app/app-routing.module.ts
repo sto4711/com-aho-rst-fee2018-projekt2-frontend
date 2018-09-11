@@ -32,18 +32,18 @@ const routes: Routes = [
   {
     path: 'my-account', component: MyAccountComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'Mein Konto')]
+      breadcrumbPath: [new BreadcrumbPath('', 'MY-ACCOUNT')]
     }
   },
   {
     path: 'shopping-basket', component: ShoppingBasketComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'Mein Warenkorb')]
+      breadcrumbPath: [new BreadcrumbPath('', 'MY-SHOPPING-BASKET')]
     }
   },
   {path: 'checkout', component: CheckoutComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'Bestellabschluss')]
+      breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }},
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/user', component: UserComponent},

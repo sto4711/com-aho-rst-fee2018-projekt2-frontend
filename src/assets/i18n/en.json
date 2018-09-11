@@ -3,12 +3,14 @@
   "HOME": "home",
   "ARTICLES": "articles",
   "MY-ACCOUNT": "my account",
-  "SHOPPING-BASKET": "my basket",
+  "SHOPPING-BASKET": "shopping basket",
+  "MY-SHOPPING-BASKET": "my shopping basket",
   "SEARCH-FOR-ARTICLES": "find articles",
   "LATEST-ARTICLES": "latest articles",
   "VIEW-ARTICLE": "view article",
-  "OUR-ARTICLES": "our articles"
-
-
+  "OUR-ARTICLES": "our articles",
+  "CHECKOUT": "checkout",
+  "BACK": "back",
+  "NEXT": "next"
 
 }

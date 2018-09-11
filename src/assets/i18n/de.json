@@ -4,12 +4,12 @@
   "ARTICLES": "Artikel",
   "MY-ACCOUNT": "Mein Konto",
   "SHOPPING-BASKET": "Warenkorb",
+  "MY-SHOPPING-BASKET": "Mein Warenkorb",
   "SEARCH-FOR-ARTICLES": "Artikel suchen",
   "LATEST-ARTICLES": "Neu eingetroffen",
   "VIEW-ARTICLE": "Zum Artikel",
-  "OUR-ARTICLES": "Unsere Artikel"
-
-
-
-
+  "OUR-ARTICLES": "Unsere Artikel",
+  "CHECKOUT": "Bestellabschluss",
+  "BACK": "zurück",
+  "NEXT": "weiter"
 }

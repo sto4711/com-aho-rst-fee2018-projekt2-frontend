@@ -22,7 +22,7 @@
       <mat-form-field>
         <input matInput placeholder="Stadt" formControlName="stadt" required>
       </mat-form-field><br>
-      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+      <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
 
     </form>
   </mat-step>
@@ -36,8 +36,8 @@
       <mat-form-field>
         <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" required>
       </mat-form-field><br>
-      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
-      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+      <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+      <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
     </form>
   </mat-step>
 
@@ -49,8 +49,8 @@
         <mat-radio-button value="economy" ngDefaultControl name="delievery" formControlName="economy">PostPac Economy</mat-radio-button><br>
 
       </mat-radio-group><br>
-        <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
-        <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+        <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+        <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
      </form>
   </mat-step>
   <mat-step [stepControl]="paymentType"><ng-template matStepLabel>Bezahlen mit</ng-template>
@@ -61,8 +61,8 @@
         <mat-radio-button value="visa" ngDefaultControl formControlName="visa">Visa</mat-radio-button>
 
       </mat-radio-group><br>
-      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
-      <button mat-button matStepperNext class="matStepperNext">Weiter</button>
+      <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+      <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
     </form>
   </mat-step>
   <mat-step>
@@ -87,7 +87,7 @@
       <br>
     </div>
     <div>
-      <button mat-button matStepperPrevious class="matStepperPrevious">Zurück</button>
+      <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
       <p>
         <button class="btn form-btn" type="submit" (click)="placeOrder()"><i class="fas form-btn"></i>Jetzt bestellen</button>
