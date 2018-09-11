@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BreadcrumbPath} from "./breadcrumb-path";
-import {BreadcrumbService} from "../../services/breadcrumb/breadcrumb.service";
+import {BreadcrumbTranslationService} from "../../services/breadcrumb-translation/breadcrumb-translation.service";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,17 +11,17 @@ export class BreadcrumbComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public breadcrumbService: BreadcrumbService
+    public breadcrumbTranslationService: BreadcrumbTranslationService
   ) {
   }
 
   public ngOnInit() {
     this.route.paramMap
       .subscribe((result) => {
-        this.breadcrumbService.firstParam = this.route.snapshot.queryParams.article;
+        this.breadcrumbTranslationService.firstParam = this.route.snapshot.queryParams.article;
         this.route.data.subscribe(data => {
-          this.breadcrumbService.breadcrumbPath = data.breadcrumbPath;
-          this.breadcrumbService.translateBreadcrumb();
+          this.breadcrumbTranslationService.breadcrumbPath = data.breadcrumbPath;
+          this.breadcrumbTranslationService.translateBreadcrumb();
         });
       });
   }
