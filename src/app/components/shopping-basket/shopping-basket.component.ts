@@ -38,12 +38,6 @@ export class ShoppingBasketComponent {
   ) {
   }
 
-  private routeToLogin() {
-    this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
-    this.clientContextService.nextRoute = 'shopping-basket';
-    this.router.navigate(['my-account']).then();
-  }
-
   confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
         const confirmTitle = articleName + ' ' + translated + '?';
@@ -90,23 +84,7 @@ export class ShoppingBasketComponent {
       );
   }
 
-  public pay() {
-    if (this.clientContextService.getToken().value === '') {
-      this.routeToLogin();
-    } else {
-      this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
-        .subscribe(order => {
-            this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
-            this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-          },
-          error => {
-            if (error.status === 401) {
-              this.routeToLogin();
-            }
-          }
-        );
-    }
-  }
+
 
 
 }

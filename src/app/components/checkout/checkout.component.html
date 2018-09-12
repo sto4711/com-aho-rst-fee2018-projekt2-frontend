@@ -94,9 +94,12 @@
     <div>
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
-      <p>
-        <button class="btn form-btn" type="submit" (click)="placeOrder()"><i class="fas form-btn"></i>Jetzt bestellen</button>
-      </p>
+
+      <form #fPay="ngForm" (ngSubmit)="pay(fPay.value)">
+        <p>
+          <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>Jetzt bestellen</button>
+        </p>
+      </form>
     </div>
   </mat-step>
 

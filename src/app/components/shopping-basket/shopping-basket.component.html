@@ -13,15 +13,12 @@
     </div><!-- end .cart-items-listing -->
 
     <div class="cart-next-wrap float-right">
-      <form #fPay="ngForm" (ngSubmit)="pay(fPay.value)">
-        <p>
-          <button class="btn form-btn"><i class="fas fa-shopping-cart"></i>Zur Kasse</button>
+         <p>
+          <a type="button" routerLink="/checkout" class="btn form-btn"><i class="fas fa-shopping-cart"></i>Zur Kasse</a>
         </p>
-      </form>
-      <p><a role="link" routerLink="/article-listing" class="continue-shopping">{{'CONTINUE-SHOPPING' | translate}}</a></p>
+       <p><a role="link" routerLink="/article-listing" class="continue-shopping">{{'CONTINUE-SHOPPING' | translate}}</a></p>
     </div>
-    <a routerLink="/checkout">Temporärer Link zum Checkout</a>
-  </div>
+   </div>
   <p *ngIf="shoppingBasketService.shoppingBasket?.items.length ==0">
     <strong>{{'SHOPPING-BASKET-IS-EMPTY' | translate}}</strong><br>
     <a role="link" routerLink="/article-listing" class="continue-shopping">{{'VIEW-OUR-ARTICLES' | translate}}</a>
