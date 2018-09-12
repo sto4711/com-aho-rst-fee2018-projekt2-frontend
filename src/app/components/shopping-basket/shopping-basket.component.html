@@ -23,7 +23,7 @@
     <a routerLink="/checkout">Temporärer Link zum Checkout</a>
   </div>
   <p *ngIf="shoppingBasketService.shoppingBasket?.items.length ==0">
-    <strong>Ihr Warenkorb ist leer.</strong><br>
-    <a role="link" routerLink="/article-listing" class="continue-shopping">Hier</a> gehts zu unseren Artikeln.
+    <strong>{{'SHOPPING-BASKET-IS-EMPTY' | translate}}</strong><br>
+    <a role="link" routerLink="/article-listing" class="continue-shopping">{{'VIEW-OUR-ARTICLES' | translate}}</a>
   </p>
 </div><!-- end .row -->
