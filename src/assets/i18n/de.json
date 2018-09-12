@@ -29,7 +29,18 @@
   "ADD-TO-SHOPPING-BASKET": "In den Warenkorb",
   "CONTINUE-SHOPPING": "Weiter Einkaufen",
   "SHOPPING-BASKET-IS-EMPTY": "Ihr Warenkorb ist leer",
-  "VIEW-OUR-ARTICLES": "Hier gehts zu unseren Artikeln"
+  "VIEW-OUR-ARTICLES": "Hier gehts zu unseren Artikeln",
+  "I-ALREADY-HAVE-AN-ACCOUNT": "Ich habe bereits ein Konto",
+  "CREATE-NEW-ACCOUNT": "Neues Konto erstellen",
+  "E-Mail": "E-Mail",
+  "MY-E-Mail": "Meine E-Mail",
+  "PASSWORD": "Passwort",
+  "MY-PASSWORD": "Mein Passwort",
+  "LOGIN": "Login",
+  "CREATE-ACCOUNT": "Konto erstellen"
+
+
+
 
 
 

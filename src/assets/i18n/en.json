@@ -29,7 +29,16 @@
   "ADD-TO-SHOPPING-BASKET": "add to shopping basket",
   "CONTINUE-SHOPPING": "continue shopping",
   "SHOPPING-BASKET-IS-EMPTY": "shopping basket is empty",
-  "VIEW-OUR-ARTICLES": "view our articles"
+  "VIEW-OUR-ARTICLES": "view our articles",
+  "I-ALREADY-HAVE-AN-ACCOUNT": "I already have an account",
+  "CREATE-NEW-ACCOUNT": "create new account",
+  "E-Mail": "email",
+  "MY-E-Mail": "my email",
+  "PASSWORD": "password",
+  "MY-PASSWORD": "my password",
+  "LOGIN": "login",
+  "CREATE-ACCOUNT": "create account"
+
 
 
 
