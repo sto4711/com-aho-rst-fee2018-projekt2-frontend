@@ -43,7 +43,7 @@
             </ul>
           </div>
           <br>
-           <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> <span class="overview-price"><strong>Zwischensumme</strong></span><br>
+           <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> <span class="overview-price"><strong>{{'SUBTOTAL' | translate}}</strong></span><br>
              <span class="overview-price">CHF {{shoppingBasketService.shoppingBasket.totalSum | amountConverter}}</span></p>
          <br>
          <a [routerLink]="['/shopping-basket/']">

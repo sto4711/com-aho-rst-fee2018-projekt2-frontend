@@ -2,6 +2,7 @@
   "LANGUAGE": "Language",
   "HOME": "home",
   "ARTICLES": "articles",
+  "ARTICLE": "article",
   "MY-ACCOUNT": "my account",
   "SHOPPING-BASKET": "shopping basket",
   "MY-SHOPPING-BASKET": "my shopping basket",
@@ -45,15 +46,11 @@
   "MINIMUM-ORDER-QUANTITY-IS": "minimum order quantity is",
   "MAXIMUM-ORDER-QUANTITY-IS": "maximum order quantity is",
   "YES": "yes",
-  "NO": "no"
-
-
-
-
-
-
-
-
-
-
+  "NO": "no",
+  "PRICE": "price",
+  "AMOUNT": "amount",
+  "SUM-ARTICLE": "sum article",
+  "SUBTOTAL": "subtotal",
+  "DELIVERY-COSTS": "delivery costs",
+  "TOTAL": "total"
 }

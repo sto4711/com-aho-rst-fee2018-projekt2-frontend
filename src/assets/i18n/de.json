@@ -2,6 +2,7 @@
   "LANGUAGE": "Sprache",
   "HOME": "Home",
   "ARTICLES": "Artikel",
+  "ARTICLE": "Artikel",
   "MY-ACCOUNT": "Mein Konto",
   "SHOPPING-BASKET": "Warenkorb",
   "MY-SHOPPING-BASKET": "Mein Warenkorb",
@@ -45,7 +46,15 @@
   "MINIMUM-ORDER-QUANTITY-IS": "Die Mindestbestellmenge ist",
   "MAXIMUM-ORDER-QUANTITY-IS": "Die maximale Bestellmenge ist",
   "YES": "Ja",
-  "NO": "Nein"
+  "NO": "Nein",
+  "PRICE": "Preis",
+  "AMOUNT": "Menge",
+  "SUM-ARTICLE": "Summe Artikel",
+  "SUBTOTAL": "Zwischensumme",
+  "DELIVERY-COSTS": "Lieferkosten",
+  "TOTAL": "Gesamtsumme"
+
+
 
 
 }
