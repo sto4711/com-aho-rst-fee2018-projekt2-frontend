@@ -8,13 +8,13 @@
       <source media="(min-width: 320px)" srcset="{{imageURL + article?.imageURL}}">
       <figure>
         <img src="{{imageURL + article?.imageURL}}" width="100%" height="auto">
-        <figcaption> <p>Teile diesen Artikel auf
+        <figcaption> <p>{{'SHARE-ARTICLE' | translate}}
         <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
           <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
           <span class="article-like">
-          {{'LIKE-IT' | translate}}<i (click)="changeArticleRating(true)" class="fas fa-thumbs-up"></i>
-          Gefällt mir nicht<i (click)="changeArticleRating(false)" class="fas fa-thumbs-down" ></i>
+          {{'LIKE' | translate}}<i (click)="changeArticleRating(true)" class="fas fa-thumbs-up"></i>
+          {{'DISLIKE' | translate}}<i (click)="changeArticleRating(false)" class="fas fa-thumbs-down" ></i>
         </span>
         </p>
         </figcaption>
