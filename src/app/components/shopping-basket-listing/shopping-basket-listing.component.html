@@ -42,23 +42,24 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>
-      <p><span class="result-text">{{'SUBTOTAL' | translate}}</span></p>
-      <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span></p>
-      <p><span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span></p>
-    </td>
-    <td>
+    <td colspan="2" class="basket-total-amount">
+      <p>
+        <span class="result-text">{{'SUBTOTAL' | translate}}</span>
+        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}  </span>
+      </p>
+      <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
+        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF 15.00 </span>
+      </p>
+      <p>
+        <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
+        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
+        <strong> CHF {{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}} </strong>
+      </span>
 
-      <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-        <span>CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}</span>
       </p>
-      <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-        <span>CHF 15.00</span>
-      </p>
-      <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-        <strong><span>CHF {{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}}</span></strong>
-      </p>
+
     </td>
+
   </tr>
 
   </tfoot>

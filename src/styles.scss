@@ -194,12 +194,15 @@ a button.mat-menu-btn {
    font-size: 2.4rem;
 }
 
+.mat-stepper-vertical {
+  margin: 0 0 0 -25px;
+}
+
 .matStepperPrevious,.matStepperNext, .matStepperReset {
   display: inline-block;
   font-size: 1.8rem;
   font-weight: 400;
-  max-width: 150px;
-  width: 100%;
+   width: auto;
   padding: 5px 0;
   color: #000000;
   background-color: transparent;
@@ -875,11 +878,12 @@ figcaption .fab {
 
 .result-text {
   display: inline-block;
-  width: 180px;
+  width: 56.55555%;
 }
 .cart-next-wrap {
   width: 250px;
   margin: 5em 0 0 0;
+  float:right;
 
 }
 
@@ -889,6 +893,7 @@ figcaption .fab {
   top: 1px;
 
 }
+
 
 button#minus, button#plus {
 
@@ -957,8 +962,7 @@ tfoot tr:nth-of-type(odd) {
     margin: 0;
   }
   .cart-next-wrap {
-    width: 250px;
-    margin: 5em 8em 0 0;
+    float: left;
 
   }
   button#count {
@@ -967,14 +971,10 @@ tfoot tr:nth-of-type(odd) {
 
   }
 
-
-  /* Force table to not be like tables anymore */
   table, thead, tfoot, tbody, th, td, tr {
     display: block;
   }
 
-
-  /* Hide table headers (but not display: none;, for accessibility) */
   thead tr {
     position: absolute;
     top: -9999px;
@@ -984,32 +984,39 @@ tfoot tr:nth-of-type(odd) {
   tr {  }
 
   td {
-    /* Behave  like a "row" */
+
     border: none;
     position: relative;
     padding-left: 50%;
   }
 
   td:before {
-    /* Now like a table header */
-    position: absolute;
-    /* Top/left values mimic padding */
-    top: 6px;
+     position: absolute;
+     top: 6px;
     left: 6px;
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
   }
 
+  .basket-total-amount {
+    padding: 0;
+  }
+  .result-text {
+     width: 100%;
+    margin: 10px 0 0 0;
+  }
   /*
-  Label the data de
+  Label checkout mobile de
   */
   td.de:nth-of-type(1):before { content: "Artikelnummer"; }
   td.de:nth-of-type(2):before { content: "Artikel"; }
   td.de:nth-of-type(3):before { content: "Preis"; }
   td.de:nth-of-type(4):before { content: "Anzahl"; }
   td.de:nth-of-type(5):before { content: "Gesamtsumme"; }
-
+  /*
+  Label checkout mobile en
+  */
   td.en:nth-of-type(1):before { content: "item number"; }
   td.en:nth-of-type(2):before { content: "article"; }
   td.en:nth-of-type(3):before { content: "price"; }
@@ -1019,11 +1026,22 @@ tfoot tr:nth-of-type(odd) {
 
 /*
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
- */
+ */checkout-review
 
 #order-review span {
   display: inline-block;
   width: 150px;
+}
+.checkout-nav {
+  display: flex;
+  flex-flow:row wrap;
+  justify-content: space-between;
+  max-width: 250px;
+}
+@media screen and (max-width: 420px){
+ #checkout-review{
+   margin: 0 0 0 -56px;
+ }
 }
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////

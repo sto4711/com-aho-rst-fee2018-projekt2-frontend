@@ -22,8 +22,9 @@
       <mat-form-field>
         <input matInput placeholder="Stadt" formControlName="stadt" required>
       </mat-form-field><br>
+      <div class="checkout-nav">
       <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
-
+      </div>
     </form>
   </mat-step>
 
@@ -36,8 +37,10 @@
       <mat-form-field>
         <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" required>
       </mat-form-field><br>
+      <div class="checkout-nav">
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+      </div>
     </form>
   </mat-step>
 
@@ -49,8 +52,10 @@
         <mat-radio-button value="economy" ngDefaultControl name="delievery" formControlName="economy">PostPac Economy</mat-radio-button><br>
 
       </mat-radio-group><br>
+      <div class="checkout-nav">
         <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
         <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+      </div>
      </form>
   </mat-step>
   <mat-step [stepControl]="paymentType"><ng-template matStepLabel>Bezahlen mit</ng-template>
@@ -61,13 +66,16 @@
         <mat-radio-button value="visa" ngDefaultControl formControlName="visa">Visa</mat-radio-button>
 
       </mat-radio-group><br>
+      <div class="checkout-nav">
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+      </div>
     </form>
   </mat-step>
-  <mat-step>
+  <mat-step id="checkout-review">
     <ng-template matStepLabel>Übersicht</ng-template>
     <div id="order-review">
+      <br>
       <h4>Meine Bestelldaten</h4>
       <p><span>Vorname: </span>{{deliveryAdress.getRawValue().vorname}}</p>
       <p><span>Nachname: </span>{{deliveryAdress.getRawValue().nachname}}</p>
@@ -91,10 +99,11 @@
      <app-shopping-basket-listing [itemChangePossible]= 'itemChangePossible'></app-shopping-basket-listing>
 
     </div><!-- end article listing -->
-    <div>
+    <div class="cart-next-wrap">
+      <div class="checkout-nav">
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
-
+      </div>
       <form #fPay="ngForm" (ngSubmit)="pay(fPay.value)">
         <p>
           <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>Jetzt bestellen</button>
