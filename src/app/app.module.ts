@@ -34,6 +34,7 @@ import {DeTrimPipe} from './de-trim.pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LangSwitchComponent } from './components/lang-switch/lang-switch.component';
 import { ShoppingBasketListingComponent } from './components/shopping-basket-listing/shopping-basket-listing.component';
+import {LangService} from './services/lang-service/lang.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -87,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent ],
-  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"},
+  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, LangService
 
   ],
   bootstrap: [AppComponent]

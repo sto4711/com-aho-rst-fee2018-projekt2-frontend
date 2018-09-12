@@ -2,11 +2,11 @@ import {Injectable, Component, OnInit} from '@angular/core';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
-import {OrderService} from "../../services/order/order.service";
-import {ClientContextService} from "../../services/client-context/client-context.service";
-import {Router} from "@angular/router";
-import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket-item";
-import {TranslateService} from "@ngx-translate/core";
+import {OrderService} from '../../services/order/order.service';
+import {ClientContextService} from '../../services/client-context/client-context.service';
+import {Router} from '@angular/router';
+import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
-
+import {LangService} from '../../services/lang-service/lang.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-shopping-basket-listing',
@@ -12,12 +13,23 @@ export class ShoppingBasketListingComponent implements OnInit {
   @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(public shoppingBasketService: ShoppingBasketService ) { }
-
-  ngOnInit(
+  language: string;
+  langSwitch: boolean;
+  constructor(
+      public shoppingBasketService: ShoppingBasketService
+    , private langService: LangService
   ) {
-    console.log(this.itemChangePossible);
-  }
+
+    this.language = 'de';
+    this.langSwitch = true;
+    this.langService.getLanguage().subscribe(language => {
+      this.langSwitch = !this.langSwitch;
+      this.language = language.lang;
+   });
+
+   }
+
+  ngOnInit( ) { }
 
   changeItemAmount_ShoppingBasket2(event, articleId , articleName ,  articleAmount )
   {

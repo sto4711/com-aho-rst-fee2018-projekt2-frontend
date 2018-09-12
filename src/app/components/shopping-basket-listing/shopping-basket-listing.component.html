@@ -10,10 +10,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let article of shoppingBasketService.shoppingBasket?.items">
-    <td class="article-row">{{article.itemNumber}}</td>
-    <td class="article-row">{{article.articleName}}</td>
-    <td class="article-row">CHF {{article.articlePrice | amountConverter}}</td>
-    <td class="article-row" *ngIf="itemChangePossible== true ">
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF {{article.articlePrice | amountConverter}}</td>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form id="add-to-chart">
         <button type="button" role="button" id="minus" name="articleMinus"
                 (click)="changeItemAmount_ShoppingBasket2($event, article.articleID, article.articleName, article.articleAmount-1)">
