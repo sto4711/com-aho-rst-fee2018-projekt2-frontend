@@ -21,6 +21,10 @@
   "TERMS-OF-SHIPMENT-AND-PAYMENT": "terms of shipment and payment",
   "LIKE": "like",
   "DISLIKE": "dislike",
-  "SHARE-ARTICLE": "share article"
+  "SHARE-ARTICLE": "share article",
+  "ITEM-NUMBER": "item number",
+  "WILL-BE-DELIVERED-WITHIN-THREE-WEEKS": "will be delivered within 3 weeks",
+  "ON-STOCK": "on stock"
+
 
 }

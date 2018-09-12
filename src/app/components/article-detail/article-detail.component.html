@@ -31,9 +31,9 @@
       </span>
       </div>
 
-      <p class="article-detail-nr">Artikel Nr. <span>{{article?.itemNumber}}</span></p>
-      <p *ngIf='article?.availability' class="article-detail-availability available">Ab Lager verfügbar</p>
-      <p *ngIf='!article?.availability' class="article-detail-availability available">In 3 Wochen lieferbar</p>
+      <p class="article-detail-nr">{{'ITEM-NUMBER' | translate}} <span>{{article?.itemNumber}}</span></p>
+      <p *ngIf='article?.availability' class="article-detail-availability available">{{'ON-STOCK' | translate}}</p>
+      <p *ngIf='!article?.availability' class="article-detail-availability available">{{'WILL-BE-DELIVERED-WITHIN-THREE-WEEKS' | translate}}</p>
       <p class="article-detail-price">CHF {{article?.price}}</p>
 
       <p>
