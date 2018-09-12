@@ -26,10 +26,10 @@
       </form>
 
     </td>
-    <td class="article-row" *ngIf="itemChangePossible==false">
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible==false">
       {{article.articleAmount}}
     </td>
-    <td class="article-row ">CHF {{article.articlePriceSum | amountConverter}}
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF {{article.articlePriceSum | amountConverter}}
       <ng-container *ngIf="itemChangePossible== true ">
       <i class="fa fa-times" aria-hidden="true"
          (click)="confirmDelete2($event, article.articleID, article.articleName)"></i>
