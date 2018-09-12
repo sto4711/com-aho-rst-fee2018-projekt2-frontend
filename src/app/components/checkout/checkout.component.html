@@ -87,6 +87,11 @@
       <br>
     </div>
     <div>
+
+     <app-shopping-basket-listing [itemChangePossible]= 'itemChangePossible'></app-shopping-basket-listing>
+
+    </div><!-- end article listing -->
+    <div>
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
       <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
       <p>

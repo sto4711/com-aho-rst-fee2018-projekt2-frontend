@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
+
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
+
 export class CheckoutComponent implements OnInit {
   isLinear = false;
   deliveryAdress: FormGroup;
   contactData: FormGroup;
   delieveryType: FormGroup;
   paymentType: FormGroup;
-  delievery: 'economy';
+  itemChangePossible = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder
+  , public shoppingBasketService: ShoppingBasketService
+  ) { }
 
   ngOnInit() {
     this.deliveryAdress = this._formBuilder.group({
@@ -48,4 +54,5 @@ export class CheckoutComponent implements OnInit {
   placeOrder() {
     console.log(this.delieveryType);
   }
+
 }
