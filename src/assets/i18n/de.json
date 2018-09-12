@@ -38,13 +38,14 @@
   "MY-PASSWORD": "Mein Passwort",
   "LOGIN": "Login",
   "CREATE-ACCOUNT": "Konto erstellen",
-  "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben"
-
-
-
-
-
-
+  "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben",
+  "ADDED-TO-SHOPPING-BASKET": "zum Warenkorb hinzugefügt",
+  "REMOVED-FROM-SHOPPING-BASKET": "aus dem Warenkorb entfernt",
+  "TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE": "wirklich aus dem Warenkorb entfernen",
+  "MINIMUM-ORDER-QUANTITY-IS": "Die Mindestbestellmenge ist",
+  "MAXIMUM-ORDER-QUANTITY-IS": "Die maximale Bestellmenge ist",
+  "YES": "Ja",
+  "NO": "Nein"
 
 
 }

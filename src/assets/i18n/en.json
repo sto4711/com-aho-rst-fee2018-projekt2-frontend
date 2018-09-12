@@ -38,7 +38,17 @@
   "MY-PASSWORD": "my password",
   "LOGIN": "login",
   "CREATE-ACCOUNT": "create account",
-  "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "all prices incl VAT excl shipping unless otherwise stated"
+  "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "all prices incl VAT excl shipping unless otherwise stated",
+  "ADDED-TO-SHOPPING-BASKET": "added to shopping basket",
+  "REMOVED-FROM-SHOPPING-BASKET": "removed from shopping basket",
+  "TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE": "to remove from shopping basket for sure",
+  "MINIMUM-ORDER-QUANTITY-IS": "minimum order quantity is",
+  "MAXIMUM-ORDER-QUANTITY-IS": "maximum order quantity is",
+  "YES": "yes",
+  "NO": "no"
+
+
+
 
 
 

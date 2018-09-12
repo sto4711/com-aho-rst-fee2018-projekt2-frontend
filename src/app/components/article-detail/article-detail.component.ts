@@ -6,6 +6,7 @@ import {Article} from "../../services/articles/article";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 import {MatSnackBar} from "@angular/material";
 import {ArticleRating} from "../../services/articles/article-rating";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-article-detail',
@@ -24,6 +25,7 @@ export class ArticleDetailComponent implements OnInit {
     {value: 2, viewValue: '2'},
     {value: 3, viewValue: '3'}
   ];
+  private static CODE_TRANSLATION_ADDED = 'ADDED-TO-SHOPPING-BASKET';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +33,8 @@ export class ArticleDetailComponent implements OnInit {
     private articleService: ArticleService,
     private clientContextService: ClientContextService,
     private shoppingBasketService: ShoppingBasketService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -58,7 +61,10 @@ export class ArticleDetailComponent implements OnInit {
   public addShoppingBasketItem() {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
-          this.snackBar.open(this.article.name + ' zum Warenkorb hinzugefügt.', null, {duration: 1500});
+          this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
+              this.snackBar.open(this.article.name + ' ' + translated, null, {duration: 1500});
+            }
+          );
         }
       );
   }
@@ -67,7 +73,6 @@ export class ArticleDetailComponent implements OnInit {
     this.articleService.changeRating(new ArticleRating(this.article._id, rateUp))
       .subscribe(article => {
           this.article = article;
-          this.snackBar.open(this.article.name + ' Bewertung geändert.', null, {duration: 1500});
         }
       );
   }

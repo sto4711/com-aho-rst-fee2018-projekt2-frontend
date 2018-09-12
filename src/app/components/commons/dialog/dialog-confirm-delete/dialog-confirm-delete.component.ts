@@ -6,12 +6,10 @@ import { MatDialog, MatDialogRef } from '@angular/material'
   templateUrl: './dialog-confirm-delete.component.html',
   styleUrls: ['./dialog-confirm-delete.component.scss']
 })
-export class DialogConfirmDeleteComponent implements OnInit {
-  public artName: string;
+export class DialogConfirmDeleteComponent {
+  public title: string;
 
   constructor(public dialogRef: MatDialogRef<DialogConfirmDeleteComponent>) { }
 
-  ngOnInit() {
-  }
 
 }

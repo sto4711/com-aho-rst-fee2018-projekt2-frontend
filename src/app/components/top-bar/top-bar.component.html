@@ -48,10 +48,10 @@
          <br>
          <a [routerLink]="['/shopping-basket/']">
             <button class="btn form-btn mat-menu-btn"  >
-              <i class="fas fa-shopping-cart"></i>Zum Warenkorb</button></a>
+              <i class="fas fa-shopping-cart"></i>{{'SHOPPING-BASKET' | translate}}</button></a>
          </div>
           <div *ngIf="shoppingBasketService.shoppingBasket?.items.length  === 0"  >
-            <p>Es befinden sich keine Artikel im Warenkorb.</p>
+            <p>{{'SHOPPING-BASKET-IS-EMPTY' | translate}}</p>
           </div>
         </mat-menu>
 

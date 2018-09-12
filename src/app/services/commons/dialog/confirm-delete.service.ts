@@ -10,12 +10,12 @@ export class ConfirmDeleteService {
 
   constructor(private dialog: MatDialog) { }
 
-  public confirm(name: string ): Observable<string> {
+  public confirm(title: string ): Observable<string> {
 
     let dialogRef: MatDialogRef<DialogConfirmDeleteComponent>;
 
     dialogRef = this.dialog.open(DialogConfirmDeleteComponent);
-    dialogRef.componentInstance.artName = name;
+    dialogRef.componentInstance.title = title;
 
     return dialogRef.afterClosed();
   }

@@ -6,6 +6,7 @@ import {OrderService} from "../../services/order/order.service";
 import {ClientContextService} from "../../services/client-context/client-context.service";
 import {Router} from "@angular/router";
 import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket-item";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -18,22 +19,23 @@ import {ShoppingBasketItem} from "../../services/shopping-basket/shopping-basket
   providedIn: 'root',
 })
 
-export class ShoppingBasketComponent implements OnInit {
-
-  itemChangePossible = true;
+export class ShoppingBasketComponent {
+  public itemChangePossible = true;
+  private static CODE_TRANSLATION_REMOVED = 'REMOVED-FROM-SHOPPING-BASKET';
+  private static CODE_TRANSLATION_REMOVE_FOR_SURE = 'TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE';
+  private static CODE_TRANSLATION_MIN_QUANTITY = 'MINIMUM-ORDER-QUANTITY-IS';
+  private static CODE_TRANSLATION_MAX_QUANTITY = 'MAXIMUM-ORDER-QUANTITY-IS';
 
   constructor(
-      public shoppingBasketService: ShoppingBasketService
+    public shoppingBasketService: ShoppingBasketService
     , public dialog: MatDialog
     , public confirmDeleteService: ConfirmDeleteService
     , private snackBar: MatSnackBar
     , private clientContextService: ClientContextService
     , private router: Router
     , private orderService: OrderService
+    , private translate: TranslateService
   ) {
-  }
-
-  public ngOnInit() {
   }
 
   private routeToLogin() {
@@ -43,18 +45,21 @@ export class ShoppingBasketComponent implements OnInit {
   }
 
   confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
-    this.confirmDeleteService.confirm(articleName).subscribe(
-      result => {
-        if (result === 'ja') {
-          this.removeShoppingBasketItem(articleId, articleName);
-        }
+    this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
+        const confirmTitle = articleName + ' ' + translated + '?';
+        this.confirmDeleteService.confirm(confirmTitle).subscribe(
+          result => {
+            if (result === 'yes') {
+              this.removeShoppingBasketItem(articleId, articleName);
+            }
+          }
+        );
       }
     );
   }
 
   changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"], articleAmount: ShoppingBasketItem["articleAmount"]) {
     if (articleAmount >= 1 && articleAmount <= 3) {
-
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
             this.snackBar.open('Artikelmenge für ' + articleName + ' wurde angepasst.', null, {duration: 1500});
@@ -62,19 +67,25 @@ export class ShoppingBasketComponent implements OnInit {
         );
     }
     else if (articleAmount < 1) {
-      this.snackBar.open('Sie können nicht 0 Bikes bestellen.', null, {duration: 1500});
-
+      this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY).subscribe(translated => {
+          this.snackBar.open(translated + ' 1', null, {duration: 1500});
+        }
+      );
     } else {
-      this.snackBar.open('3 Bikes ist die maximale Bestellmenge für diesen Artikel.', null, {duration: 1500});
-
+      this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MAX_QUANTITY).subscribe(translated => {
+          this.snackBar.open(translated + ' 3', null, {duration: 1500});
+        }
+      );
     }
   }
 
   removeShoppingBasketItem(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.shoppingBasketService.removeItem(articleId)
       .subscribe(shoppingBasket => {
-        this.snackBar.open(articleName + ' aus dem Warenkorb entfernt.', null, {duration: 1500});
-
+          this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED).subscribe(translated => {
+              this.snackBar.open(articleName + ' ' + translated, null, {duration: 1500});
+            }
+          );
         }
       );
   }
@@ -86,7 +97,7 @@ export class ShoppingBasketComponent implements OnInit {
       this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
         .subscribe(order => {
             this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
-            this.router.navigate(['/order-detail'], { queryParams: { id: order._id } }).then();
+            this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
           },
           error => {
             if (error.status === 401) {
