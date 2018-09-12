@@ -24,7 +24,12 @@
   "SHARE-ARTICLE": "share article",
   "ITEM-NUMBER": "item number",
   "WILL-BE-DELIVERED-WITHIN-THREE-WEEKS": "will be delivered within 3 weeks",
-  "ON-STOCK": "on stock"
+  "ON-STOCK": "on stock",
+  "PLEASE-CHOOSE-AMOUNT": "please choose amount",
+  "ADD-TO-SHOPPING-BASKET": "add to shopping basket",
+  "CONTINUE-SHOPPING": "continue shopping"
+
+
 
 
 }

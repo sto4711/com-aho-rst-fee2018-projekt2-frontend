@@ -7,7 +7,7 @@ import {BreadcrumbPath} from "../../components/breadcrumb/breadcrumb-path";
 })
 export class BreadcrumbTranslationService {
   public firstParam: string;
-  public breadcrumbPath: BreadcrumbPath[];
+  public breadcrumbPath: BreadcrumbPath[] = [];
 
   constructor(
     private translate: TranslateService

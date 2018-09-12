@@ -38,7 +38,7 @@
 
       <p>
         <mat-form-field>
-          <mat-select name="artikel-anzahl" placeholder="Bitte Anzahl auswählen" [(ngModel)]="selectedValue"
+          <mat-select name="artikel-anzahl" placeholder="{{'PLEASE-CHOOSE-AMOUNT' | translate}}" [(ngModel)]="selectedValue"
                       (selectionChange)="selectedArticleAmount($event.value)">
             <mat-option *ngFor="let anzahl of amount" [value]="anzahl.value">
               {{anzahl.viewValue}}
@@ -50,11 +50,11 @@
 
       <form class="form" #f1="ngForm" (ngSubmit)="addShoppingBasketItem()">
         <p>
-          <button class="btn form-btn" type="submit"><i class="fas fa-shopping-cart"></i>In den Warenkorb</button>
+          <button class="btn form-btn" type="submit"><i class="fas fa-shopping-cart"></i>{{'ADD-TO-SHOPPING-BASKET' | translate}}</button>
         </p>
       </form>
 
-      <p><a href="#" class="continue-shopping" routerLink="/article-listing">Weiter Einkaufen</a></p>
+      <p><a href="#" class="continue-shopping" routerLink="/article-listing">{{'CONTINUE-SHOPPING' | translate}}</a></p>
     </div><!-- end #article-detail-content -->
   </div><!--- end #article-detail-wrap -->
 
