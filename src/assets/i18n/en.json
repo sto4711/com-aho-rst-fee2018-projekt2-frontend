@@ -37,7 +37,9 @@
   "PASSWORD": "password",
   "MY-PASSWORD": "my password",
   "LOGIN": "login",
-  "CREATE-ACCOUNT": "create account"
+  "CREATE-ACCOUNT": "create account",
+  "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "all prices incl VAT excl shipping unless otherwise stated"
+
 
 
 
