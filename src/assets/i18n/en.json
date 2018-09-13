@@ -52,5 +52,7 @@
   "SUM-ARTICLE": "sum article",
   "SUBTOTAL": "subtotal",
   "DELIVERY-COSTS": "delivery costs",
-  "TOTAL": "total"
+  "TOTAL": "total",
+  "NO-ARTICLES-FOUND": "no articles found"
+
 }

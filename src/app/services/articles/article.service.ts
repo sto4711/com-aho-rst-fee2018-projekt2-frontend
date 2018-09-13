@@ -34,9 +34,9 @@ export class ArticleService {
     );
   }
 
-  getArticlesNewest(limit: number): Observable<Article[]> {
+  getArticlesLatest(limit: number): Observable<Article[]> {
     return this.http
-      .get<Article[]>(this.clientContextService.getBackendURL_newestArticles() + '?limit=' + limit, {
+      .get<Article[]>(this.clientContextService.getBackendURL_latestArticles() + '?limit=' + limit, {
           headers: {'Content-Type': 'application/json'}
         }
       ).pipe(
