@@ -13,19 +13,16 @@ export class ShoppingBasketListingComponent implements OnInit {
   @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
 
-  language: string;
-  langSwitch: boolean;
+   langSwitch: boolean;
   constructor(
       public shoppingBasketService: ShoppingBasketService
     , private langService: LangService
   ) {
 
-    this.language = 'de';
-    this.langSwitch = true;
+     this.langSwitch = true;
     this.langService.getLanguage().subscribe(language => {
       this.langSwitch = !this.langSwitch;
-      this.language = language.lang;
-   });
+    });
 
    }
 
