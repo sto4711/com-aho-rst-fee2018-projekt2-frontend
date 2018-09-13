@@ -62,7 +62,7 @@ export class ArticleDetailComponent implements OnInit {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
-              this.snackBar.open(this.article.name + ' ' + translated, null, {duration: 1500});
+              this.snackBar.open(this.article.name + ' ' + translated, null, {duration: 2500, panelClass: 'snackbar' });
             }
           );
         }
