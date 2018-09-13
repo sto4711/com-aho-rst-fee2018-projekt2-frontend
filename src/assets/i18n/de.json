@@ -46,12 +46,6 @@
   "MINIMUM-ORDER-QUANTITY-IS": "Die Mindestbestellmenge ist",
   "MAXIMUM-ORDER-QUANTITY-IS": "Die maximale Bestellmenge ist",
   "ARTICLE-AMOUNT-CHANGED": "Artikelmenge wurde angepasst",
-
-
-
-
-
-
   "YES": "Ja",
   "NO": "Nein",
   "PRICE": "Preis",
@@ -65,6 +59,24 @@
   "BROKEN-LINK-WE-WORKED-HARD-BUT-SITE-IS-LOST": "Wir haben alles gegeben aber die von dir gesuchte Seite bleibt verschollen",
   "BROKEN-LINK-SUGGESTION": "Nun, wie wäre es wenn du bei unseren Artikeln vorbeischaust",
   "BROKEN-LINK-YOU-WILL-LIKE": "Bestimmt ist auch für dich etwas dabei",
+
+
+  "MY-ORDER": "Meine Bestellung",
+  "DELIVERY-ADDRESS": "Lieferadresse",
+  "GIVEN-NAME": "Vorname",
+  "SURNAME": "Nachname",
+  "STREET-AND-HOUSE-NUMBER": "Strasse und Hausnummer",
+  "POST-CODE": "Postleitzahl",
+
+
+
+
+
+
+
+
+
+
   "ARTICLE-DESCRIPTION-10000001": "DE DE DE habitasse litora dis malorum mentitum arcu altera dolore fringilla prodesset ad vituperata sonet propriae propriae graeco antiopam nonumy quis oporteat nec ei fringilla elementum aliquip voluptaria fusce auctor fastidii sumo sea oporteat constituto sale deterruisset DE DE DE",
   "ARTICLE-DESCRIPTION-10000002": "DE DE DE inciderint eleifend suspendisse donec veniam impetus esse taciti facilisis malorum integer libris numquam dico elitr consetetur referrentur sollicitudin has tota eleifend utroque pri curabitur ridiculus utinam reque graece commodo utinam alienum splendide oporteat urbanitas dignissim honestatis mucius tractatos suspendisse orci recteque quisque bibendum consetetur homero augue DE DE DE",
   "ARTICLE-DESCRIPTION-10000003": "DE DE DE conubia nisl urbanitas sanctus tritani referrentur penatibus gloriatur doming quisque accusata non eu salutatus persius ipsum ferri convallis vehicula conubia ei class ancillae graeco fastidii menandri disputationi duo qualisque eum cum definitionem invidunt nam senectus signiferumque his fastidii patrioque feugiat fames turpis fastidii finibus conubia DE DE DE",

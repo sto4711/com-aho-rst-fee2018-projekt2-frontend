@@ -1,23 +1,23 @@
 <div class="row">
   <app-breadcrumb></app-breadcrumb>
 
-  <h2>Meine Bestellung</h2>
+  <h2>{{'MY-ORDER' | translate}}</h2>
 <mat-vertical-stepper [linear]="isLinear" #stepper>
 
   <mat-step [stepControl]="deliveryAdress">
-    <ng-template matStepLabel>Lieferadresse</ng-template>
+    <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
     <form [formGroup]="deliveryAdress">
        <mat-form-field>
-        <input matInput placeholder="Vorname" formControlName="vorname" required>
+        <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="vorname" required>
       </mat-form-field><br>
        <mat-form-field>
-         <input matInput placeholder="Nachname" formControlName="nachname" required>
+         <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="nachname" required>
        </mat-form-field><br>
       <mat-form-field>
-        <input matInput placeholder="Strasse und Hausnummer" formControlName="strasse" required>
+        <input matInput placeholder="{{'STREET-AND-HOUSE-NUMBER' | translate}}" formControlName="strasse" required>
       </mat-form-field><br>
       <mat-form-field>
-        <input matInput placeholder="Postleitzahl" maxlength="4" minlength="4" formControlName="plz" required>
+        <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4" formControlName="plz" required>
       </mat-form-field><br>
       <mat-form-field>
         <input matInput placeholder="Stadt" formControlName="stadt" required>
@@ -77,10 +77,10 @@
     <div id="order-review">
       <br>
       <h4>Meine Bestelldaten</h4>
-      <p><span>Vorname: </span>{{deliveryAdress.getRawValue().vorname}}</p>
-      <p><span>Nachname: </span>{{deliveryAdress.getRawValue().nachname}}</p>
+      <p><span>{{'GIVEN-NAME' | translate}}: </span>{{deliveryAdress.getRawValue().vorname}}</p>
+      <p><span>{{'SURNAME' | translate}}: </span>{{deliveryAdress.getRawValue().nachname}}</p>
       <p><span>Strasse: </span>{{deliveryAdress.getRawValue().strasse}}</p>
-      <p><span>Postleitzahl: </span>{{deliveryAdress.getRawValue().plz}}</p>
+      <p><span>{{'POST-CODE' | translate}}: </span>{{deliveryAdress.getRawValue().plz}}</p>
       <p><span>Stadt: </span>{{deliveryAdress.getRawValue().stadt}}</p>
       <br>
       <p><span>E-Mail: </span>{{contactData.getRawValue().email}}</p>
