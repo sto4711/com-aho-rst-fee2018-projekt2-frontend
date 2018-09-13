@@ -25,6 +25,8 @@ export class ShoppingBasketComponent {
   private static CODE_TRANSLATION_REMOVE_FOR_SURE = 'TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE';
   private static CODE_TRANSLATION_MIN_QUANTITY = 'MINIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_MAX_QUANTITY = 'MAXIMUM-ORDER-QUANTITY-IS';
+  private static CODE_TRANSLATION_AMOUNT_CHANGED = 'ARTICLE-AMOUNT-CHANGED';
+
 
   constructor(
     public shoppingBasketService: ShoppingBasketService
@@ -56,7 +58,10 @@ export class ShoppingBasketComponent {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
-            this.snackBar.open('Artikelmenge für ' + articleName + ' wurde angepasst.', null, {duration: 1500});
+          this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
+              this.snackBar.open(translated , null, {duration: 1500});
+            }
+          );
           }
         );
     }
