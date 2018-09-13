@@ -53,6 +53,10 @@
   "SUBTOTAL": "subtotal",
   "DELIVERY-COSTS": "delivery costs",
   "TOTAL": "total",
-  "NO-ARTICLES-FOUND": "no articles found"
+  "NO-ARTICLES-FOUND": "no articles found",
+  "BROKEN-LINK-OOPS-SITE-NOT-FOUND": "oops site not found",
+  "BROKEN-LINK-WE-WORKED-HARD-BUT-SITE-IS-LOST": "we worked hard but site is lost",
+  "BROKEN-LINK-SUGGESTION": "wanna visit our articles",
+  "BROKEN-LINK-YOU-WILL-LIKE": "there is something for you too"
 
 }

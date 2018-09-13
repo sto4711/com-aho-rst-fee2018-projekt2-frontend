@@ -53,7 +53,15 @@
   "SUBTOTAL": "Zwischensumme",
   "DELIVERY-COSTS": "Lieferkosten",
   "TOTAL": "Gesamtsumme",
-  "NO-ARTICLES-FOUND": "Keine Artikel gefunden"
+  "NO-ARTICLES-FOUND": "Keine Artikel gefunden",
+  "BROKEN-LINK-OOPS-SITE-NOT-FOUND": "Huch wo ist denn die Seite hin",
+  "BROKEN-LINK-WE-WORKED-HARD-BUT-SITE-IS-LOST": "Wir haben alles gegeben aber die von dir gesuchte Seite bleibt verschollen",
+  "BROKEN-LINK-SUGGESTION": "Nun, wie wäre es wenn du bei unseren Artikeln vorbeischaust",
+  "BROKEN-LINK-YOU-WILL-LIKE": "Bestimmt ist auch für dich etwas dabei"
+
+
+
+
 
 
 

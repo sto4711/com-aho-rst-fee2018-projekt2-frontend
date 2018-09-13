@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {LangService} from '../../services/lang-service/lang.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-shopping-basket-listing',
