@@ -12,8 +12,7 @@ export class ShoppingBasketListingComponent implements OnInit {
   @Input()  itemChangePossible: boolean;
   @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
-
-   langSwitch: boolean;
+  private langSwitch: boolean;
   constructor(
       public shoppingBasketService: ShoppingBasketService
     , private langService: LangService

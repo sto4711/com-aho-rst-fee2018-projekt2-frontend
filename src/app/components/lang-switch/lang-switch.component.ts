@@ -12,13 +12,16 @@ import {LangService} from '../../services/lang-service/lang.service';
 export class LangSwitchComponent {
   public selectedLanguage = 'de';
   public languages = [new LangDef('de', 'Deutsch'), new LangDef('en', 'English')];
+  private langSwitch: boolean;
 
   constructor(
     private translate: TranslateService
     , private breadcrumbTranslationService: BreadcrumbTranslationService
-    , private langService : LangService
+    , private langService: LangService
    ) {
     translate.setDefaultLang(this.selectedLanguage);
+    this.langSwitch = true;
+
   }
 
   public onLangChanged(langCode) {
@@ -27,6 +30,7 @@ export class LangSwitchComponent {
       this.selectedLanguage = langCode;
       this.breadcrumbTranslationService.translateBreadcrumb();
       this.langService.sendLanguage(this.selectedLanguage);
+      this.langSwitch = !this.langSwitch;
 
     }
   }

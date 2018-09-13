@@ -672,7 +672,7 @@ h2.claim {
   img {
     width: 40%;
     height: auto;
-    padding:  0 15px 0 0;
+    padding:  0 15px 0 15px;
     border-radius: 50%;
     shape-outside: circle(50%);
   }
@@ -1246,9 +1246,11 @@ select {
  */
 
 .snackbar, .mat-simple-snackbar {
-  font-size: 1.8rem !important;
+  font-size: 2.4rem !important;
+  line-height: 2.8rem !important;
   color: $font-color;
   background-color: $green;
+  min-height: 50px;
 }
 /*
     misc ////////////////////////////////////////////////////////////////////////////////////////////////

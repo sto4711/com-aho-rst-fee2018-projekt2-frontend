@@ -75,7 +75,7 @@ export class ShoppingBasketComponent {
     this.shoppingBasketService.removeItem(articleId)
       .subscribe(shoppingBasket => {
           this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED).subscribe(translated => {
-              this.snackBar.open(articleName + ' ' + translated, null, {duration: 2500});
+              this.snackBar.open(articleName + ' ' + translated, null, {duration: 2500, panelClass: 'snackbar' });
             }
           );
         }
