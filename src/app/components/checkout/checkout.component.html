@@ -20,7 +20,7 @@
         <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4" formControlName="plz" required>
       </mat-form-field><br>
       <mat-form-field>
-        <input matInput placeholder="Stadt" formControlName="stadt" required>
+        <input matInput placeholder="{{'CITY' | translate}}" formControlName="stadt" required>
       </mat-form-field><br>
       <div class="checkout-nav">
       <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
@@ -29,13 +29,13 @@
   </mat-step>
 
   <mat-step [stepControl]="contactData">
-    <ng-template matStepLabel>Kontaktdaten</ng-template>
+    <ng-template matStepLabel>{{'CONTACT-DETAILS' | translate}}</ng-template>
     <form [formGroup]="contactData">
       <mat-form-field>
-        <input matInput placeholder="E-Mail" formControlName="email" required>
+        <input matInput placeholder="{{'E-MAIL' | translate}}" formControlName="email" required>
       </mat-form-field><br>
       <mat-form-field>
-        <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" required>
+        <input matInput placeholder="{{'PHONE' | translate}}" formControlName="telefonnummer" required>
       </mat-form-field><br>
       <div class="checkout-nav">
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
@@ -44,9 +44,9 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="delieveryType"><ng-template matStepLabel>Versandart</ng-template>
+  <mat-step [stepControl]="delieveryType"><ng-template matStepLabel>{{'DELIVERY' | translate}}</ng-template>
     <form [formGroup]="delieveryType"  >
-      <p>Wir versenden ausschliesslich mit der Schweizer Post.</p><br>
+      <p>{{'WE-SHIP-EXCLUSIVELY-WITH-SWISS-POST' | translate}}.</p><br>
       <mat-radio-group >
         <mat-radio-button value="priority" ngDefaultControl name="delievery" formControlName="priority">PostPac Priority</mat-radio-button><br>
         <mat-radio-button value="economy" ngDefaultControl name="delievery" formControlName="economy">PostPac Economy</mat-radio-button><br>
@@ -58,7 +58,7 @@
       </div>
      </form>
   </mat-step>
-  <mat-step [stepControl]="paymentType"><ng-template matStepLabel>Bezahlen mit</ng-template>
+  <mat-step [stepControl]="paymentType"><ng-template matStepLabel>{{'PAYING-WITH' | translate}}</ng-template>
     <form [formGroup]="paymentType">
       <mat-radio-group>
         <mat-radio-button value="paypal" ngDefaultControl formControlName="paypal">Paypal</mat-radio-button><br>
@@ -73,25 +73,25 @@
     </form>
   </mat-step>
   <mat-step id="checkout-review">
-    <ng-template matStepLabel>Übersicht</ng-template>
+    <ng-template matStepLabel>{{'OVERVIEW' | translate}}</ng-template>
     <div id="order-review">
       <br>
-      <h4>Meine Bestelldaten</h4>
+      <h4>{{'MY-ORDER-DATA' | translate}}</h4>
       <p><span>{{'GIVEN-NAME' | translate}}: </span>{{deliveryAdress.getRawValue().vorname}}</p>
       <p><span>{{'SURNAME' | translate}}: </span>{{deliveryAdress.getRawValue().nachname}}</p>
-      <p><span>Strasse: </span>{{deliveryAdress.getRawValue().strasse}}</p>
+      <p><span>{{'STREET' | translate}}: </span>{{deliveryAdress.getRawValue().strasse}}</p>
       <p><span>{{'POST-CODE' | translate}}: </span>{{deliveryAdress.getRawValue().plz}}</p>
-      <p><span>Stadt: </span>{{deliveryAdress.getRawValue().stadt}}</p>
+      <p><span>{{'CITY' | translate}}: </span>{{deliveryAdress.getRawValue().stadt}}</p>
       <br>
-      <p><span>E-Mail: </span>{{contactData.getRawValue().email}}</p>
-      <p><span>Telefonnummer: </span>{{contactData.getRawValue().telefonnummer}}</p>
+      <p><span>{{'E-MAIL' | translate}}: </span>{{contactData.getRawValue().email}}</p>
+      <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().telefonnummer}}</p>
       <br>
-      <p *ngIf="delieveryType.getRawValue().economy =='on'"><span>Versandart:  </span>PostPac Economy </p>
-      <p *ngIf="delieveryType.getRawValue().priority =='on'"><span>Versandart: </span> PostPac Priority</p>
+      <p *ngIf="delieveryType.getRawValue().economy =='on'"><span>{{'DELIVERY' | translate}}:  </span>PostPac Economy </p>
+      <p *ngIf="delieveryType.getRawValue().priority =='on'"><span>{{'DELIVERY' | translate}}: </span> PostPac Priority</p>
       <br>
-      <p *ngIf="paymentType.getRawValue().paypal =='on'"><span>Versandart:  </span>PayPal</p>
-      <p *ngIf="paymentType.getRawValue().mastercard =='on'"><span>Versandart:  </span>Mastercard</p>
-      <p *ngIf="paymentType.getRawValue().visa =='on'"><span>Versandart:  </span>Visa</p>
+      <p *ngIf="paymentType.getRawValue().paypal =='on'"><span>{{'DELIVERY' | translate}}:  </span>PayPal</p>
+      <p *ngIf="paymentType.getRawValue().mastercard =='on'"><span>{{'DELIVERY' | translate}}:  </span>Mastercard</p>
+      <p *ngIf="paymentType.getRawValue().visa =='on'"><span>{{'DELIVERY' | translate}}:  </span>Visa</p>
       <br>
     </div>
     <div>
@@ -102,11 +102,11 @@
     <div class="cart-next-wrap">
       <div class="checkout-nav">
       <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
-      <button mat-button (click)="stepper.reset()" class="matStepperReset">Reset</button>
+      <button mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
       </div>
       <form #fPay="ngForm" (ngSubmit)="pay(fPay.value)">
         <p>
-          <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>Jetzt bestellen</button>
+          <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
         </p>
       </form>
     </div>

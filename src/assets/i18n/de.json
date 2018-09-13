@@ -33,8 +33,8 @@
   "VIEW-OUR-ARTICLES": "Hier gehts zu unseren Artikeln",
   "I-ALREADY-HAVE-AN-ACCOUNT": "Ich habe bereits ein Konto",
   "CREATE-NEW-ACCOUNT": "Neues Konto erstellen",
-  "E-Mail": "E-Mail",
-  "MY-E-Mail": "Meine E-Mail",
+  "E-MAIL": "E-Mail",
+  "MY-E-MAIL": "Meine E-Mail",
   "PASSWORD": "Passwort",
   "MY-PASSWORD": "Mein Passwort",
   "LOGIN": "Login",
@@ -59,14 +59,33 @@
   "BROKEN-LINK-WE-WORKED-HARD-BUT-SITE-IS-LOST": "Wir haben alles gegeben aber die von dir gesuchte Seite bleibt verschollen",
   "BROKEN-LINK-SUGGESTION": "Nun, wie wäre es wenn du bei unseren Artikeln vorbeischaust",
   "BROKEN-LINK-YOU-WILL-LIKE": "Bestimmt ist auch für dich etwas dabei",
-
-
   "MY-ORDER": "Meine Bestellung",
   "DELIVERY-ADDRESS": "Lieferadresse",
   "GIVEN-NAME": "Vorname",
   "SURNAME": "Nachname",
   "STREET-AND-HOUSE-NUMBER": "Strasse und Hausnummer",
   "POST-CODE": "Postleitzahl",
+  "STREET": "Strasse",
+  "CITY": "Stadt",
+  "PHONE": "Telefonnummer",
+  "CONTACT-DETAILS": "Kontaktdaten",
+  "DELIVERY": "Versandart",
+  "WE-SHIP-EXCLUSIVELY-WITH-SWISS-POST": "Wir versenden ausschliesslich mit der Schweizer Post",
+  "PAYING-WITH": "Bezahlen mit",
+  "OVERVIEW": "Übersicht",
+  "MY-ORDER-DATA": "Meine Bestelldaten",
+  "RESET": "zurücksetzen",
+  "ORDER-NOW": "Jetzt bestellen",
+
+
+
+
+
+
+
+
+
+
 
 
 
