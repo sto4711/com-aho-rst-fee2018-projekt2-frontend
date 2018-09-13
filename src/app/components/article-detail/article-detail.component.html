@@ -22,8 +22,7 @@
     </picture>
     <div id="article-detail-content">
       <h4>{{article?.name }}</h4>
-      <p>{{article?.description}}</p>
-
+      <p>{{article?.descriptionLangCode | translate}}</p>
       <div class="article-detail-rating">
       <span *ngFor="let rating of article?.rating; index as i ">
         <i class="fas fa-star" *ngIf="rating" ></i>
