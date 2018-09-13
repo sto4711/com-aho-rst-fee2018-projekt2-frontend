@@ -67,7 +67,7 @@ export class CheckoutComponent implements OnInit {
     this.router.navigate(['my-account']).then();
   }
 
-  public pay() {
+  public pay(value) {
     if (this.clientContextService.getToken().value === '') {
       this.routeToLogin();
     } else {
