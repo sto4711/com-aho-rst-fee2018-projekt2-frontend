@@ -18,5 +18,6 @@ export class TopBarComponent implements OnInit {
   }
   goToHome(){
     this.router.navigate(['home']);
+
   }
 }

@@ -581,15 +581,6 @@ h2.claim {
 
 }
 
-.frontpage-content-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  flex-direction: column;
-  max-width: 1200px;
-  margin: 65px auto 0 auto;
-  padding: 0 10px;
-}
 
 .frontpage-content-row {
   width: 100%;
