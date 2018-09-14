@@ -25,13 +25,6 @@ export class CheckoutComponent implements OnInit {
   private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
   private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
 
-  private static STEP_DELIVERY_ADDRESS: number = 1;
-  private static STEP_CONTACT_DATA: number = 2;
-  private static STEP_CONTACT_DELIVERY_TYPE: number = 3;
-  private static STEP_CONTACT_PAYING_TYPE: number = 4;
-  private static STEP_CONTACT_CHECKOUT_REVIEW: number = 5;
-
-
   constructor(
     private _formBuilder: FormBuilder
     , public shoppingBasketService: ShoppingBasketService
