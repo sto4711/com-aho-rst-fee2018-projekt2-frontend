@@ -60,20 +60,14 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.deliveryType = this._formBuilder.group({
-      priority: ['', Validators.required],
-      economy: ['', Validators.required]
+      priority: [false, Validators.required],
+      economy: [false, Validators.required]
     });
     this.paymentType = this._formBuilder.group({
-      paypal: ['', Validators.required],
-      mastercard: ['', Validators.required],
-      visa: ['', Validators.required]
-
+      paypal: [false, Validators.required],
+      mastercard: [false, Validators.required],
+      visa: [false, Validators.required]
     });
-
-
-
-
-
   }
 
   private routeToLogin() {
@@ -86,24 +80,32 @@ export class CheckoutComponent implements OnInit {
   }
 
   public createOrder() {
-    if (this.clientContextService.getToken().value === '') {
-      this.routeToLogin();
-    } else {
-      this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
-        .subscribe(order => {
-            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 1500});
-                this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-              }
-            );
-          },
-          error => {
-            if (error.status === 401) {
-              this.routeToLogin();
-            }
-          }
-        );
-    }
+
+
+    let obj = this.deliveryType.getRawValue();
+    debugger;
+
+
+
+
+    // if (this.clientContextService.getToken().value === '') {
+    //   this.routeToLogin();
+    // } else {
+    //   this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
+    //     .subscribe(order => {
+    //         this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
+    //             this.snackBar.open(translated, null, {duration: 1500});
+    //             this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+    //           }
+    //         );
+    //       },
+    //       error => {
+    //         if (error.status === 401) {
+    //           this.routeToLogin();
+    //         }
+    //       }
+    //     );
+    // }
   }
 
 }

@@ -107,6 +107,8 @@
         <p><span>{{'E-MAIL' | translate}}: </span>{{contactData.getRawValue().email}}</p>
         <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().telefonnummer}}</p>
         <br>
+
+
         <p *ngIf="deliveryType.getRawValue().economy =='on'"><span>{{'DELIVERY' | translate}}:  </span>PostPac Economy
         </p>
         <p *ngIf="deliveryType.getRawValue().priority =='on'"><span>{{'DELIVERY' | translate}}: </span> PostPac
