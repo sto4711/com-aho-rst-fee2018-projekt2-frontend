@@ -2,11 +2,11 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>{{'MY-ORDER' | translate}}</h2>
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-vertical-stepper [linear]="isLinear" #stepper >
 
-    <mat-step [stepControl]="deliveryAdress">
+    <mat-step [stepControl]="deliveryAddress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
-      <form [formGroup]="deliveryAdress">
+      <form [formGroup]="deliveryAddress">
         <mat-form-field>
           <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="vorname" required>
         </mat-form-field>
@@ -98,11 +98,11 @@
       <div id="order-review">
         <br>
         <h4>{{'MY-ORDER-DATA' | translate}}</h4>
-        <p><span>{{'GIVEN-NAME' | translate}}: </span>{{deliveryAdress.getRawValue().vorname}}</p>
-        <p><span>{{'SURNAME' | translate}}: </span>{{deliveryAdress.getRawValue().nachname}}</p>
-        <p><span>{{'STREET' | translate}}: </span>{{deliveryAdress.getRawValue().strasse}}</p>
-        <p><span>{{'POST-CODE' | translate}}: </span>{{deliveryAdress.getRawValue().plz}}</p>
-        <p><span>{{'CITY' | translate}}: </span>{{deliveryAdress.getRawValue().stadt}}</p>
+        <p><span>{{'GIVEN-NAME' | translate}}: </span>{{deliveryAddress.getRawValue().vorname}}</p>
+        <p><span>{{'SURNAME' | translate}}: </span>{{deliveryAddress.getRawValue().nachname}}</p>
+        <p><span>{{'STREET' | translate}}: </span>{{deliveryAddress.getRawValue().strasse}}</p>
+        <p><span>{{'POST-CODE' | translate}}: </span>{{deliveryAddress.getRawValue().plz}}</p>
+        <p><span>{{'CITY' | translate}}: </span>{{deliveryAddress.getRawValue().stadt}}</p>
         <br>
         <p><span>{{'E-MAIL' | translate}}: </span>{{contactData.getRawValue().email}}</p>
         <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().telefonnummer}}</p>

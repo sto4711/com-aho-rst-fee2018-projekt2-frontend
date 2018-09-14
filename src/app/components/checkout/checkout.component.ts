@@ -15,13 +15,22 @@ import {TranslateService} from "@ngx-translate/core";
 })
 
 export class CheckoutComponent implements OnInit {
-  public isLinear = false;
-  public deliveryAdress: FormGroup;
+  public isLinear = true;
+  public deliveryAddress: FormGroup;
   public contactData: FormGroup;
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
-  public itemChangePossible = false;
-  private static CODE_TRANSLATION_ORDER_CREATED = 'ORDER-CREATED';
+  public itemChangePossible: boolean = false;
+  private static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
+  private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
+  private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
+
+  private static STEP_DELIVERY_ADDRESS: number = 1;
+  private static STEP_CONTACT_DATA: number = 2;
+  private static STEP_CONTACT_DELIVERY_TYPE: number = 3;
+  private static STEP_CONTACT_PAYING_TYPE: number = 4;
+  private static STEP_CONTACT_CHECKOUT_REVIEW: number = 5;
+
 
   constructor(
     private _formBuilder: FormBuilder
@@ -32,11 +41,10 @@ export class CheckoutComponent implements OnInit {
     , private clientContextService: ClientContextService
     , private router: Router
     , private translate: TranslateService
-  ) {
-  }
+  ) {}
 
   public ngOnInit() {
-    this.deliveryAdress = this._formBuilder.group({
+    this.deliveryAddress = this._formBuilder.group({
       vorname: ['', Validators.required],
       nachname: ['', Validators.required],
       strasse: ['', Validators.required],
@@ -62,12 +70,19 @@ export class CheckoutComponent implements OnInit {
 
     });
 
+
+
+
+
   }
 
   private routeToLogin() {
-    this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
-    this.clientContextService.nextRoute = 'checkout';
-    this.router.navigate(['my-account']).then();
+    this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
+        this.snackBar.open(translated, null, {duration: 1500});
+        this.clientContextService.nextRoute = 'checkout';
+        this.router.navigate(['my-account']).then();
+      }
+    );
   }
 
   public createOrder() {
