@@ -6,6 +6,7 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
+import {Address} from "../../services/order/address";
 
 
 @Component({
@@ -34,18 +35,19 @@ export class CheckoutComponent implements OnInit {
     , private clientContextService: ClientContextService
     , private router: Router
     , private translate: TranslateService
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.deliveryAddress = this._formBuilder.group({
-      vorname: ['', Validators.required],
-      nachname: ['', Validators.required],
-      strasse: ['', Validators.required],
-      plz: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
+      givenname: ['', Validators.required],
+      surname: ['', Validators.required],
+      streetHousenumber: ['', Validators.required],
+      postCode: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
         Validators.maxLength(4),
         Validators.minLength(4)]
       ],
-      stadt: ['', Validators.required]
+      city: ['', Validators.required]
 
     });
     this.contactData = this._formBuilder.group({
@@ -80,12 +82,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   public createOrder() {
-
-
-    let obj = this.deliveryType.getRawValue();
-    debugger;
-
-
+    const address = new Address(
+      this.deliveryAddress.getRawValue().givenname
+      , this.deliveryAddress.getRawValue().surname
+      , this.deliveryAddress.getRawValue().streetHousenumber
+      , this.deliveryAddress.getRawValue().postCode
+      , this.deliveryAddress.getRawValue().city);
 
 
     // if (this.clientContextService.getToken().value === '') {
