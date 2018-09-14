@@ -2,7 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>{{'MY-ORDER' | translate}}</h2>
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onStepChange($event)">
 
     <mat-step [stepControl]="deliveryAdress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>

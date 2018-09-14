@@ -20,8 +20,17 @@ export class CheckoutComponent implements OnInit {
   public contactData: FormGroup;
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
-  public itemChangePossible = false;
-  private static CODE_TRANSLATION_ORDER_CREATED = 'ORDER-CREATED';
+  public itemChangePossible: boolean = false;
+  private static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
+  private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
+  private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
+
+  private static STEP_DELIVERY_ADDRESS: number = 1;
+  private static STEP_CONTACT_DATA: number = 2;
+  private static STEP_CONTACT_DELIVERY_TYPE: number = 3;
+  private static STEP_CONTACT_PAYING_TYPE: number = 4;
+  private static STEP_CONTACT_CHECKOUT_REVIEW: number = 5;
+
 
   constructor(
     private _formBuilder: FormBuilder
@@ -32,8 +41,7 @@ export class CheckoutComponent implements OnInit {
     , private clientContextService: ClientContextService
     , private router: Router
     , private translate: TranslateService
-  ) {
-  }
+  ) {}
 
   public ngOnInit() {
     this.deliveryAdress = this._formBuilder.group({
@@ -62,12 +70,50 @@ export class CheckoutComponent implements OnInit {
 
     });
 
+
+
+
+
   }
 
   private routeToLogin() {
-    this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
-    this.clientContextService.nextRoute = 'checkout';
-    this.router.navigate(['my-account']).then();
+    this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
+        this.snackBar.open(translated, null, {duration: 1500});
+        this.clientContextService.nextRoute = 'checkout';
+        this.router.navigate(['my-account']).then();
+      }
+    );
+  }
+
+  public onStepChange(event: any) {
+    let statusFormGroup: string = 'VALID';
+//    let selectedIndex =
+//    this.stepper.selectedIndex = 2;
+
+    switch (event.selectedIndex) {
+      case CheckoutComponent.STEP_DELIVERY_ADDRESS:
+        statusFormGroup = this.deliveryAdress.status;
+        break;
+      case CheckoutComponent.STEP_CONTACT_DATA:
+        statusFormGroup = this.contactData.status;
+        break;
+      case CheckoutComponent.STEP_CONTACT_DELIVERY_TYPE:
+        statusFormGroup = this.deliveryType.status;
+        break;
+      case CheckoutComponent.STEP_CONTACT_PAYING_TYPE:
+        statusFormGroup = this.paymentType.status;
+        break;
+      case CheckoutComponent.STEP_CONTACT_CHECKOUT_REVIEW:
+        console.log('onStepChange(), STEP_CONTACT_CHECKOUT_REVIEW ');
+        break;
+    }
+
+    if(statusFormGroup !== 'VALID')  {
+      this.translate.get(CheckoutComponent.CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION).subscribe(translated => {
+          this.snackBar.open(translated, null, {duration: 1500});
+        }
+      );
+    }
   }
 
   public createOrder() {
