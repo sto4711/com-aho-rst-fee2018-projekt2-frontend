@@ -153,6 +153,17 @@ ul.ngx-pagination {
   font-weight: 300;
   min-width: 250px;
 }
+
+input.mat-input-element {
+  margin-top: 0.0625em;
+}
+
+ .mat-form-field-label {
+   font-size: 1.4rem !important;
+   top: 1.28125em;
+}
+
+ 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $green !important;
 }
