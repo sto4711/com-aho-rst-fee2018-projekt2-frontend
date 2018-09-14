@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component } from '@angular/core';
 
 import {Article} from 'src/app/services/articles/article';
 import {Observable} from 'rxjs';
@@ -17,6 +17,6 @@ export class ArticleListingComponent  {
     private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
-  }
+   }
 }
 

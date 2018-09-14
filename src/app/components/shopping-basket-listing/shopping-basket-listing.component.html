@@ -12,7 +12,7 @@
   <tr *ngFor="let article of shoppingBasketService.shoppingBasket?.items">
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
-    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF {{article.articlePrice | amountConverter}}</td>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form id="add-to-chart">
         <button type="button" role="button" id="minus" name="articleMinus"
@@ -27,9 +27,9 @@
 
     </td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible==false">
-      {{article.articleAmount}}
+     {{article.articleAmount}}
     </td>
-    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF {{article.articlePriceSum | amountConverter}}
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF <span class="amount-spacer">{{article.articlePriceSum | amountConverter}}</span>
       <ng-container *ngIf="itemChangePossible== true ">
       <i class="fa fa-times" aria-hidden="true"
          (click)="confirmDelete2($event, article.articleID, article.articleName)"></i>
@@ -45,15 +45,15 @@
     <td colspan="2" class="basket-total-amount">
       <p>
         <span class="result-text">{{'SUBTOTAL' | translate}}</span>
-        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}  </span>
+        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF <span class="amount-spacer">{{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}</span>  </span>
       </p>
       <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
-        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF 15.00 </span>
+        <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> CHF <span class="amount-spacer">15.00</span> </span>
       </p>
       <p>
         <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
         <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum">
-        <strong> CHF {{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}} </strong>
+          <strong> CHF <span class="amount-spacer">{{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
       </span>
 
       </p>

@@ -864,7 +864,7 @@ figcaption .fab {
 
 .result-text {
   display: inline-block;
-  width: 56.55555%;
+  width: 58.7788888%;
 }
 .cart-next-wrap {
   width: 250px;
@@ -925,6 +925,7 @@ th {
 td, th {
   padding: 0.8em;
   text-align: left;
+  width: 21%;
 }
 
 td {
@@ -935,7 +936,11 @@ tfoot tr:nth-of-type(odd) {
   background: #fff;
 }
 
-
+.amount-spacer {
+  display: inline-block;
+  min-width: 90px;
+  text-align: right;
+}
 
 @media screen and (max-width: 1024px)  {
 
@@ -967,7 +972,9 @@ tfoot tr:nth-of-type(odd) {
     left: -9999px;
   }
 
-  tr {  }
+  td, th {
+    width: auto;
+  }
 
   td {
 
@@ -992,6 +999,7 @@ tfoot tr:nth-of-type(odd) {
      width: 100%;
     margin: 10px 0 0 0;
   }
+
   /*
   Label checkout mobile de
   */
