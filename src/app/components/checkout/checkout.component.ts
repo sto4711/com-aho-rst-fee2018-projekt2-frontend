@@ -15,8 +15,8 @@ import {TranslateService} from "@ngx-translate/core";
 })
 
 export class CheckoutComponent implements OnInit {
-  public isLinear = false;
-  public deliveryAdress: FormGroup;
+  public isLinear = true;
+  public deliveryAddress: FormGroup;
   public contactData: FormGroup;
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
@@ -44,7 +44,7 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.deliveryAdress = this._formBuilder.group({
+    this.deliveryAddress = this._formBuilder.group({
       vorname: ['', Validators.required],
       nachname: ['', Validators.required],
       strasse: ['', Validators.required],
@@ -83,37 +83,6 @@ export class CheckoutComponent implements OnInit {
         this.router.navigate(['my-account']).then();
       }
     );
-  }
-
-  public onStepChange(event: any) {
-    let statusFormGroup: string = 'VALID';
-//    let selectedIndex =
-//    this.stepper.selectedIndex = 2;
-
-    switch (event.selectedIndex) {
-      case CheckoutComponent.STEP_DELIVERY_ADDRESS:
-        statusFormGroup = this.deliveryAdress.status;
-        break;
-      case CheckoutComponent.STEP_CONTACT_DATA:
-        statusFormGroup = this.contactData.status;
-        break;
-      case CheckoutComponent.STEP_CONTACT_DELIVERY_TYPE:
-        statusFormGroup = this.deliveryType.status;
-        break;
-      case CheckoutComponent.STEP_CONTACT_PAYING_TYPE:
-        statusFormGroup = this.paymentType.status;
-        break;
-      case CheckoutComponent.STEP_CONTACT_CHECKOUT_REVIEW:
-        console.log('onStepChange(), STEP_CONTACT_CHECKOUT_REVIEW ');
-        break;
-    }
-
-    if(statusFormGroup !== 'VALID')  {
-      this.translate.get(CheckoutComponent.CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION).subscribe(translated => {
-          this.snackBar.open(translated, null, {duration: 1500});
-        }
-      );
-    }
   }
 
   public createOrder() {
