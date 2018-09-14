@@ -58,21 +58,21 @@ export class ShoppingBasketComponent {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
-          this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
-              this.snackBar.open(translated , null, {duration: 1500});
-            }
-          );
+            this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
+                this.snackBar.open(translated , null, {duration: 1500, panelClass: 'snackbar'});
+              }
+            );
           }
         );
     }
     else if (articleAmount < 1) {
       this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY).subscribe(translated => {
-          this.snackBar.open(translated + ' 1', null, {duration: 1500});
+          this.snackBar.open(translated + ' 1', null, {duration: 1500, panelClass: 'snackbar'});
         }
       );
     } else {
       this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MAX_QUANTITY).subscribe(translated => {
-          this.snackBar.open(translated + ' 3', null, {duration: 1500});
+          this.snackBar.open(translated + ' 3', null, {duration: 1500, panelClass: 'snackbar'});
         }
       );
     }
@@ -82,7 +82,7 @@ export class ShoppingBasketComponent {
     this.shoppingBasketService.removeItem(articleId)
       .subscribe(shoppingBasket => {
           this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED).subscribe(translated => {
-              this.snackBar.open(articleName + ' ' + translated, null, {duration: 1500});
+              this.snackBar.open(articleName + ' ' + translated, null, {duration: 1500, panelClass: 'snackbar'});
             }
           );
         }
@@ -93,3 +93,4 @@ export class ShoppingBasketComponent {
 
 
 }
+

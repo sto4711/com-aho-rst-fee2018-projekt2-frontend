@@ -659,16 +659,6 @@ h2.claim {
 
 }
 
-.frontpage-content-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  flex-direction: column;
-  max-width: 1200px;
-  margin: 65px auto 0 auto;
-  padding: 0 10px;
-}
-
 .frontpage-content-row {
   width: 100%;
   min-height: 386px;
@@ -677,39 +667,35 @@ h2.claim {
 
 }
 
-.frontpage-content-img {
-  width: 50%;
-  display: block;
-  padding: 0 65px 0 0;
+.frontpage-content {
+
+  img {
+    width: 40%;
+    height: auto;
+    padding:  0 15px 0 15px;
+    border-radius: 50%;
+    shape-outside: circle(50%);
+  }
 }
 
-.frontpage-content-text {
-  width: 50%;
-  padding: 0 65px 0 0;
-}
-.frontpage-content-text h3 {
+.frontpage-content  h3 {
   font-size: 3.2rem;
   font-weight: 300;
 }
 
-@media screen and (max-width: 1024px) {
 
-  .frontpage-content-img {
-    padding: 0 0 35px;
-    width: 100%;
-  }
-  .frontpage-content-text {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+@media screen and (max-width: 492px) {
 
+  .frontpage-content {
+
+    img {
+      width: 100%;
+      float: none;
+      margin: 0 0 25px 0;
+    }
   }
-  .frontpage-content-row {
-    margin: 0 0 55px 0;
-    min-height: inherit;
-  }
+
 }
-
 
 /*
     article detail page ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1255,6 +1241,17 @@ select {
   background-color: crimson;
 }
 
+/*
+    messages ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.snackbar, .mat-simple-snackbar {
+  font-size: 2.4rem !important;
+  line-height: 2.8rem !important;
+  color: $font-color;
+  background-color: $green;
+  min-height: 50px;
+}
 /*
     misc ////////////////////////////////////////////////////////////////////////////////////////////////
  */
