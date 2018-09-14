@@ -38,11 +38,11 @@
       <ng-template matStepLabel>{{'CONTACT-DETAILS' | translate}}</ng-template>
       <form [formGroup]="contactData">
         <mat-form-field>
-          <input matInput placeholder="{{'E-MAIL' | translate}}" formControlName="email" required>
+          <input matInput placeholder="{{'E-MAIL' | translate}}" formControlName="email" type="email" required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'PHONE' | translate}}" formControlName="telefonnummer" required>
+          <input matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="telefonnummer" required>
         </mat-form-field>
         <br>
         <div class="checkout-nav">
