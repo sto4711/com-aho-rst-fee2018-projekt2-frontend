@@ -56,9 +56,16 @@ export class CheckoutComponent implements OnInit {
 
     });
     this.contactData = this._formBuilder.group({
-      email: ['', Validators.required, Validators.email],
-      telefonnummer: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
+        Validators.maxLength(100),
+        Validators.minLength(10)]
+      ],
+      telefonnummer: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
+        Validators.maxLength(30),
+        Validators.minLength(10)]
+      ]
     });
+
     this.deliveryType = this._formBuilder.group({
       priority: ['', Validators.required],
       economy: ['', Validators.required]
