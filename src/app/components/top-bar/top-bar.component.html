@@ -28,6 +28,12 @@
         <span class="basket-link"
            [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
            matBadgeOverlap="false" matBadgeSize="medium">{{'SHOPPING-BASKET' | translate}}
+            <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== null">
+                CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}
+            </span>
+          <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum == null">
+            0.00
+          </span>
         </span>
 
         <mat-menu #menu="matMenu">
