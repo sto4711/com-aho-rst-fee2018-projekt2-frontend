@@ -17,7 +17,7 @@ export class ClientContextService {
   private backendURL_public :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
 
   private backendURL_allArticles :string  = this.backendURL_public + 'webshop/articles/';
-  private backendURL_newestArticles :string  = this.backendURL_public + 'webshop/articles/newest';
+  private backendURL_latestArticles :string  = this.backendURL_public + 'webshop/articles/latest';
   private backendURL_articleDetails :string  = this.backendURL_public + 'webshop/article-details/';
 
   private backendURL_allUsers :string  = this.backendURL_public + 'webshop/users/';
@@ -48,8 +48,8 @@ export class ClientContextService {
     return this.backendURL_allArticles;
   }
 
-  getBackendURL_newestArticles():string  {
-    return this.backendURL_newestArticles;
+  getBackendURL_latestArticles():string  {
+    return this.backendURL_latestArticles;
   }
 
   getBackendURL_articleDetails():string  {

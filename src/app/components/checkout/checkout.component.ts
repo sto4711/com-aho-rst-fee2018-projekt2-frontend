@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -15,31 +15,34 @@ import {OrderService} from '../../services/order/order.service';
 })
 
 export class CheckoutComponent implements OnInit {
-  isLinear = false;
-  deliveryAdress: FormGroup;
-  contactData: FormGroup;
-  delieveryType: FormGroup;
-  paymentType: FormGroup;
-  itemChangePossible = false;
+  public isLinear = false;
+  public deliveryAdress: FormGroup;
+  public contactData: FormGroup;
+  public deliveryType: FormGroup;
+  public paymentType: FormGroup;
+  public itemChangePossible = false;
+  private static CODE_TRANSLATION_ORDER_CREATED = 'ORDER-CREATED';
 
   constructor(
     private _formBuilder: FormBuilder
-  , public shoppingBasketService: ShoppingBasketService
+    , public shoppingBasketService: ShoppingBasketService
     , private orderService: OrderService
     , public dialog: MatDialog
     , private snackBar: MatSnackBar
     , private clientContextService: ClientContextService
     , private router: Router
-  ) { }
+    , private translate: TranslateService
+  ) {
+  }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.deliveryAdress = this._formBuilder.group({
       vorname: ['', Validators.required],
       nachname: ['', Validators.required],
       strasse: ['', Validators.required],
       plz: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
-                 Validators.maxLength(4),
-                 Validators.minLength(4)]
+        Validators.maxLength(4),
+        Validators.minLength(4)]
       ],
       stadt: ['', Validators.required]
 
@@ -48,7 +51,7 @@ export class CheckoutComponent implements OnInit {
       email: ['', Validators.required, Validators.email],
       telefonnummer: ['', Validators.required]
     });
-    this.delieveryType = this._formBuilder.group({
+    this.deliveryType = this._formBuilder.group({
       priority: ['', Validators.required],
       economy: ['', Validators.required]
     });
@@ -63,18 +66,21 @@ export class CheckoutComponent implements OnInit {
 
   private routeToLogin() {
     this.snackBar.open('Bitte melden Sie sich zuerst an', null, {duration: 1500});
-    this.clientContextService.nextRoute = 'shopping-basket';
+    this.clientContextService.nextRoute = 'checkout';
     this.router.navigate(['my-account']).then();
   }
 
-  public pay() {
+  public createOrder() {
     if (this.clientContextService.getToken().value === '') {
       this.routeToLogin();
     } else {
       this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
         .subscribe(order => {
-            this.snackBar.open('Auftrag wurde erstellt', null, {duration: 1500});
-            this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
+                this.snackBar.open(translated, null, {duration: 1500});
+                this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+              }
+            );
           },
           error => {
             if (error.status === 401) {

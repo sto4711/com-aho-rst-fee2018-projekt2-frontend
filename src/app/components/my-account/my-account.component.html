@@ -7,8 +7,8 @@
 
     <form class="form login-form" #f="ngForm" (ngSubmit)="onLogin()">
       <h4>{{'I-ALREADY-HAVE-AN-ACCOUNT' | translate}}</h4>
-      <label for="login-email">{{'E-Mail' | translate}}</label>
-      <input id="login-email" name="mail" ngModel placeholder="{{'E-Mail' | translate}}" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
+      <label for="login-email">{{'E-MAIL' | translate}}</label>
+      <input id="login-email" name="mail" ngModel placeholder="{{'E-MAIL' | translate}}" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
       <label for="login-password">{{'PASSWORD' | translate}}</label>
       <input id="login-password" name="pwd" ngModel type="password"  placeholder="{{'PASSWORD' | translate}}" required autofocus [(ngModel)]="login.pwd" autocomplete="off"/>
       <div *ngIf="invalidLogin" class="alert danger">
@@ -19,8 +19,8 @@
     </form>
     <form class="form new-account-form">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
-      <label for="create-email">{{'E-Mail' | translate}}</label>
-      <input id="create-email" placeholder="{{'MY-E-Mail' | translate}}" type="email" required autofocus autocomplete="off"/>
+      <label for="create-email">{{'E-MAIL' | translate}}</label>
+      <input id="create-email" placeholder="{{'MY-E-MAIL' | translate}}" type="email" required autofocus autocomplete="off"/>
       <label for="create-password">{{'PASSWORD' | translate}}</label>
       <input type="password" placeholder="{{'MY-PASSWORD' | translate}}" id="create-password" required autofocus autocomplete="off"/>
       <button class="btn form-btn" type="submit"><span class="btn-form-text"> {{'CREATE-ACCOUNT' | translate}}</span></button>
