@@ -42,7 +42,7 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="telefonnummer" required>
+          <input matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="phone" required>
         </mat-form-field>
         <br>
         <div class="checkout-nav">
@@ -105,7 +105,7 @@
         <p><span>{{'CITY' | translate}}: </span>{{deliveryAddress.getRawValue().city}}</p>
         <br>
         <p><span>{{'E-MAIL' | translate}}: </span>{{contactData.getRawValue().email}}</p>
-        <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().telefonnummer}}</p>
+        <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().phone}}</p>
         <br>
 
 

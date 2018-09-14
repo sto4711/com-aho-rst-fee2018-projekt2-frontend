@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
 import {Address} from "../../services/order/address";
+import {ContactData} from "../../services/order/contact-data";
+
 
 
 @Component({
@@ -55,7 +57,7 @@ export class CheckoutComponent implements OnInit {
         Validators.maxLength(100),
         Validators.minLength(10)]
       ],
-      telefonnummer: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
+      phone: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
         Validators.maxLength(30),
         Validators.minLength(10)]
       ]
@@ -88,6 +90,13 @@ export class CheckoutComponent implements OnInit {
       , this.deliveryAddress.getRawValue().streetHousenumber
       , this.deliveryAddress.getRawValue().postCode
       , this.deliveryAddress.getRawValue().city);
+    const contactData = new ContactData(
+      this.contactData.getRawValue().email
+      , this.contactData.getRawValue().phone);
+
+
+    console.log(JSON.stringify(address));
+    console.log(JSON.stringify(contactData));
 
 
     // if (this.clientContextService.getToken().value === '') {
