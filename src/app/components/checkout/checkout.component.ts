@@ -6,6 +6,9 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
+import {Address} from "../../services/order/address";
+import {ContactData} from "../../services/order/contact-data";
+
 
 
 @Component({
@@ -25,13 +28,6 @@ export class CheckoutComponent implements OnInit {
   private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
   private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
 
-  private static STEP_DELIVERY_ADDRESS: number = 1;
-  private static STEP_CONTACT_DATA: number = 2;
-  private static STEP_CONTACT_DELIVERY_TYPE: number = 3;
-  private static STEP_CONTACT_PAYING_TYPE: number = 4;
-  private static STEP_CONTACT_CHECKOUT_REVIEW: number = 5;
-
-
   constructor(
     private _formBuilder: FormBuilder
     , public shoppingBasketService: ShoppingBasketService
@@ -41,18 +37,19 @@ export class CheckoutComponent implements OnInit {
     , private clientContextService: ClientContextService
     , private router: Router
     , private translate: TranslateService
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.deliveryAddress = this._formBuilder.group({
-      vorname: ['', Validators.required],
-      nachname: ['', Validators.required],
-      strasse: ['', Validators.required],
-      plz: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
+      givenname: ['', Validators.required],
+      surname: ['', Validators.required],
+      streetHousenumber: ['', Validators.required],
+      postCode: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
         Validators.maxLength(4),
         Validators.minLength(4)]
       ],
-      stadt: ['', Validators.required]
+      city: ['', Validators.required]
 
     });
     this.contactData = this._formBuilder.group({
@@ -60,27 +57,21 @@ export class CheckoutComponent implements OnInit {
         Validators.maxLength(100),
         Validators.minLength(10)]
       ],
-      telefonnummer: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
+      phone: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
         Validators.maxLength(30),
         Validators.minLength(10)]
       ]
     });
 
     this.deliveryType = this._formBuilder.group({
-      priority: ['', Validators.required],
-      economy: ['', Validators.required]
+      priority: [false, Validators.required],
+      economy: [false, Validators.required]
     });
     this.paymentType = this._formBuilder.group({
-      paypal: ['', Validators.required],
-      mastercard: ['', Validators.required],
-      visa: ['', Validators.required]
-
+      paypal: [false, Validators.required],
+      mastercard: [false, Validators.required],
+      visa: [false, Validators.required]
     });
-
-
-
-
-
   }
 
   private routeToLogin() {
@@ -93,24 +84,39 @@ export class CheckoutComponent implements OnInit {
   }
 
   public createOrder() {
-    if (this.clientContextService.getToken().value === '') {
-      this.routeToLogin();
-    } else {
-      this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
-        .subscribe(order => {
-            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 1500});
-                this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-              }
-            );
-          },
-          error => {
-            if (error.status === 401) {
-              this.routeToLogin();
-            }
-          }
-        );
-    }
+    const address = new Address(
+      this.deliveryAddress.getRawValue().givenname
+      , this.deliveryAddress.getRawValue().surname
+      , this.deliveryAddress.getRawValue().streetHousenumber
+      , this.deliveryAddress.getRawValue().postCode
+      , this.deliveryAddress.getRawValue().city);
+    const contactData = new ContactData(
+      this.contactData.getRawValue().email
+      , this.contactData.getRawValue().phone);
+
+
+    console.log(JSON.stringify(address));
+    console.log(JSON.stringify(contactData));
+
+
+    // if (this.clientContextService.getToken().value === '') {
+    //   this.routeToLogin();
+    // } else {
+    //   this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
+    //     .subscribe(order => {
+    //         this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
+    //             this.snackBar.open(translated, null, {duration: 1500});
+    //             this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+    //           }
+    //         );
+    //       },
+    //       error => {
+    //         if (error.status === 401) {
+    //           this.routeToLogin();
+    //         }
+    //       }
+    //     );
+    // }
   }
 
 }
