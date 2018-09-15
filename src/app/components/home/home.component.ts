@@ -16,7 +16,6 @@ export class HomeComponent  {
     private articleService: ArticleService,
   ) {
     this.articles$ = this.articleService.getArticlesLatest(4);
-    console.log(this.articles$);
   }
 
 }

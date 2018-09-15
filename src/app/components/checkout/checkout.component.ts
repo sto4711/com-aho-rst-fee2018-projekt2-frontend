@@ -41,6 +41,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   public ngOnInit() {
+    this.initValidation();
+    this.orderService.initLazy();
+    console.log('CheckoutComponent.ngOnInit()');
+  }
+
+  private initValidation() {
     this.deliveryAddress = this._formBuilder.group({
       givenname: ['', Validators.required],
       surname: ['', Validators.required],
