@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
+import {PaymentType} from "./payment-type";
 
 @Injectable({
   providedIn: 'root'
@@ -80,8 +81,11 @@ export class OrderService {
   }
 
   public updateDeliveryType(deliveryType: DeliveryType): Observable<Order> {
-    debugger;
     return this.change('change-delivery-type', {"orderId": this.order._id, "deliveryType": deliveryType});
+  }
+
+  public updatePaymentType(paymentType: PaymentType): Observable<Order> {
+    return this.change('change-payment-type', {"orderId": this.order._id, "paymentType": paymentType});
   }
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {

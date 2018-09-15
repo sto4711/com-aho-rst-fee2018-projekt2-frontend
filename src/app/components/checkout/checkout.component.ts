@@ -73,9 +73,7 @@ export class CheckoutComponent implements OnInit {
       delivery: [null, Validators.required]
     });
     this.paymentType = this._formBuilder.group({
-      paypal: [false, Validators.required],
-      mastercard: [false, Validators.required],
-      visa: [false, Validators.required]
+      payment: [null, Validators.required]
     });
   }
 
@@ -83,6 +81,7 @@ export class CheckoutComponent implements OnInit {
     this.deliveryAddress.setValue(order.deliveryAddress);
     this.contactData.setValue(order.contactData);
     this.deliveryType.setValue(order.deliveryType);
+    this.paymentType.setValue(order.paymentType);
   }
 
   private routeToLogin() {
@@ -105,8 +104,14 @@ export class CheckoutComponent implements OnInit {
       case 3:
         this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
         break;
-
+      case 4:
+        this.orderService.updatePaymentType(this.paymentType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
+        break;
     }
+  }
+
+  public commitOrder()  {
+    console.log('commitOrder()');
   }
 
 

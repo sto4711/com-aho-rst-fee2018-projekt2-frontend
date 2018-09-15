@@ -2,29 +2,31 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>{{'MY-ORDER' | translate}}</h2>
-  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange($event)" >
+  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange($event)">
 
     <mat-step [stepControl]="deliveryAddress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
         <mat-form-field>
-          <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname"  required>
+          <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname" required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname"  required>
+          <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname" required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'STREET-AND-HOUSE-NUMBER' | translate}}" formControlName="streetHousenumber" required>
+          <input matInput placeholder="{{'STREET-AND-HOUSE-NUMBER' | translate}}" formControlName="streetHousenumber"
+                 required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4" formControlName="postCode"  required>
+          <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4"
+                 formControlName="postCode" required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'CITY' | translate}}" formControlName="city"  required>
+          <input matInput placeholder="{{'CITY' | translate}}" formControlName="city" required>
         </mat-form-field>
         <br>
         <div class="checkout-nav">
@@ -56,11 +58,10 @@
       <form [formGroup]="deliveryType">
         <p>{{'WE-SHIP-EXCLUSIVELY-WITH-SWISS-POST' | translate}}.</p><br>
         <mat-radio-group formControlName="delivery">
-          <mat-radio-button value="priority"  >PostPac Priority</mat-radio-button>
+          <mat-radio-button value="PostPac Priority">PostPac Priority</mat-radio-button>
           <br>
-          <mat-radio-button value="economy"   >PostPac Economy</mat-radio-button>
+          <mat-radio-button value="PostPac Economy">PostPac Economy</mat-radio-button>
           <br>
-
         </mat-radio-group>
         <br>
         <div class="checkout-nav">
@@ -72,13 +73,12 @@
     <mat-step [stepControl]="paymentType">
       <ng-template matStepLabel>{{'PAYING-WITH' | translate}}</ng-template>
       <form [formGroup]="paymentType">
-        <mat-radio-group>
-          <mat-radio-button value="paypal" ngDefaultControl formControlName="paypal">Paypal</mat-radio-button>
+        <mat-radio-group formControlName="payment">
+          <mat-radio-button value="Paypal">Paypal</mat-radio-button>
           <br>
-          <mat-radio-button value="mastecard" ngDefaultControl formControlName="mastercard">Mastercard
-          </mat-radio-button>
+          <mat-radio-button value="Mastecard">Mastercard</mat-radio-button>
           <br>
-          <mat-radio-button value="visa" ngDefaultControl formControlName="visa">Visa</mat-radio-button>
+          <mat-radio-button value="Visa" >Visa</mat-radio-button>
 
         </mat-radio-group>
         <br>
@@ -102,29 +102,20 @@
         <p><span>{{'E-MAIL' | translate}}: </span>{{contactData.getRawValue().email}}</p>
         <p><span>{{'PHONE' | translate}}: </span>{{contactData.getRawValue().phone}}</p>
         <br>
-
-
-        <p *ngIf="deliveryType.getRawValue().economy =='on'"><span>{{'DELIVERY' | translate}}:  </span>PostPac Economy
-        </p>
-        <p *ngIf="deliveryType.getRawValue().priority =='on'"><span>{{'DELIVERY' | translate}}: </span> PostPac
-          Priority</p>
+        <p><span>{{'DELIVERY' | translate}}: </span>{{deliveryType.getRawValue().delivery}}</p>
         <br>
-        <p *ngIf="paymentType.getRawValue().paypal =='on'"><span>{{'DELIVERY' | translate}}:  </span>PayPal</p>
-        <p *ngIf="paymentType.getRawValue().mastercard =='on'"><span>{{'DELIVERY' | translate}}:  </span>Mastercard</p>
-        <p *ngIf="paymentType.getRawValue().visa =='on'"><span>{{'DELIVERY' | translate}}:  </span>Visa</p>
+        <p><span>{{'PAYING-WITH' | translate}}: </span>{{paymentType.getRawValue().payment}}</p>
         <br>
       </div>
       <div>
-
         <app-shopping-basket-listing [itemChangePossible]='itemChangePossible'></app-shopping-basket-listing>
-
       </div><!-- end article listing -->
       <div class="cart-next-wrap">
         <div class="checkout-nav">
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
         </div>
-        <form #fCreateOrder="ngForm" (ngSubmit)="createOrder()">
+        <form #fCreateOrder="ngForm" (ngSubmit)="commitOrder()">
           <p>
             <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
           </p>
