@@ -16,10 +16,10 @@ export class ShoppingBasketService {
   constructor(
     private http: HttpClient
   ) {
-    this.init();
+    this.initBasket();
   }
 
-  private init() {
+  public initBasket() {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
     if (shoppingBasketId == null) {
       this.create()
@@ -39,7 +39,10 @@ export class ShoppingBasketService {
     }
   }
 
-
+  public clear()  {
+    localStorage.removeItem('shoppingBasketId');
+    this.initBasket();
+  }
 
   public create(): Observable<ShoppingBasket> {
     return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'create', {

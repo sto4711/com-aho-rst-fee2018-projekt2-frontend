@@ -111,7 +111,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public commitOrder()  {
-    console.log('commitOrder()');
+    this.orderService.commit();
   }
 
 

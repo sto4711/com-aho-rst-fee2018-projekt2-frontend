@@ -88,6 +88,21 @@ export class OrderService {
     return this.change('change-payment-type', {"orderId": this.order._id, "paymentType": paymentType});
   }
 
+
+  public commit() {
+    this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'commit', {"orderId": this.order._id}, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).subscribe(order => this.clearBasketOrder(order));
+  }
+
+  private clearBasketOrder(order: Order) {
+    this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+    this.order = null;
+    localStorage.removeItem('orderId');
+    this.shoppingBasketService.clear();
+  }
+
   private change(urlPath: string, bodyJson: any): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
         headers: {'Content-Type': 'application/json'}
