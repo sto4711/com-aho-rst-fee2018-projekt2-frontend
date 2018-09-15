@@ -72,7 +72,7 @@ export class ShoppingBasketService {
 
   changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'change_item_amount', shoppingBasketItem, {
+    return this.http.patch<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'change-item-amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -82,7 +82,7 @@ export class ShoppingBasketService {
 
   removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'remove_item', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'remove-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

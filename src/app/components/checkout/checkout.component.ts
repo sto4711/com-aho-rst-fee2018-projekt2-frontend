@@ -8,6 +8,7 @@ import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
 import {Address} from "../../services/order/address";
 import {ContactData} from "../../services/order/contact-data";
+import {Order} from "../../services/order/order";
 
 
 @Component({
@@ -41,9 +42,8 @@ export class CheckoutComponent implements OnInit {
 
   public ngOnInit() {
     this.initValidation();
-    this.orderService.initLazy().subscribe(order => {
-      this.deliveryAddress.setValue(order.deliveryAddress);
-    });
+    this.orderService.initLazy()
+      .subscribe(order => this.setFormGroupValues(order));
   }
 
   private initValidation() {
@@ -80,6 +80,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  private setFormGroupValues(order: Order)  {
+    this.deliveryAddress.setValue(order.deliveryAddress);
+  }
+
   private routeToLogin() {
     this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
         this.snackBar.open(translated, null, {duration: 1500});
@@ -87,6 +91,17 @@ export class CheckoutComponent implements OnInit {
         this.router.navigate(['my-account']).then();
       }
     );
+  }
+
+  public onSelectionChange(event) {
+    switch (event.selectedIndex) {
+      case 1:  {
+        console.log('address changed');
+        this.orderService.updateDeliveryAddress(this.deliveryAddress.getRawValue())
+          .subscribe(order => this.setFormGroupValues(order)
+          );
+      }
+    }
   }
 
   public createOrder() {

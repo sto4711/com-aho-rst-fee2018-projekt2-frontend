@@ -53,7 +53,7 @@ export class ArticleService {
   }
 
   changeRating(articleRating: ArticleRating): Observable<Article> {
-    return this.http.post<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + 'change-rating', articleRating, {
+    return this.http.patch<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + 'change-rating', articleRating, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
-import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 import {tap} from "rxjs/operators";
 import {ClientContextService} from "../client-context/client-context.service";
 import {HttpClient} from "@angular/common/http";
-import {Token} from "../login/token";
-import {ShoppingBasketItem} from "../shopping-basket/shopping-basket-item";
-import {Article} from "../articles/article";
 import {Order} from "./order";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 import {Router} from "@angular/router";
+import {Address} from "./address";
+import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +28,14 @@ export class OrderService {
 
     if (!this.shoppingBasketService.shoppingBasket) {
       //hack....
-      console.log('OrderService.initLazy() THIS IS NOT FINAL... Basket not yet loaded, route to Basket')
+      console.log('OrderService.initLazy() THIS IS NOT FINAL... Basket not yet loaded, redirect to Basket')
       this.router.navigate(['shopping-basket']).then();
       return of<Order>(new Order());
     }
     else if (!orderId) {
       console.log('OrderService.initLazy(), no order -> will be created');
-      return this.create(
-      ).pipe(
+      return this.create()
+        .pipe(
         tap((order) => {
           this.order = order;
           localStorage.setItem('orderId', this.order._id);
@@ -46,8 +44,8 @@ export class OrderService {
     }
     else {
       console.log('OrderService.initLazy() order already exists, get order');
-      return this.get(orderId
-      ).pipe(
+      return this.get(orderId)
+        .pipe(
         tap((order) => this.order = order)
       );
     }
@@ -65,6 +63,16 @@ export class OrderService {
 
   public get(id: string): Observable<Order> {
     return this.http.get<Order>(ClientContextService.BACKEND_URL_ORDER_DETAILS + '?id=' + id, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap(() => console.log('OrderService.get() ok'))
+    );
+  }
+
+  public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
+    const bodyJson = {"orderId": this.order._id, "deliveryAddress": deliveryAddress};
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'change-delivery-address' ,bodyJson, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
