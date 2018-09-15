@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 import {tap} from "rxjs/operators";
 import {ClientContextService} from "../client-context/client-context.service";
@@ -23,36 +23,33 @@ export class OrderService {
     , private shoppingBasketService: ShoppingBasketService
     , private router: Router
   ) {
-    console.log('OrderService.init()');
-    this.initLazy();
   }
 
-  public initLazy() {
+  public initLazy(): Observable<Order> {
     const orderId: string = localStorage.getItem('orderId');
 
     if (!this.shoppingBasketService.shoppingBasket) {
       //hack....
-      console.log('THIS IS NOT FINAL... Basket not yet loaded, route to Basket')
+      console.log('OrderService.initLazy() THIS IS NOT FINAL... Basket not yet loaded, route to Basket')
       this.router.navigate(['shopping-basket']).then();
-    } else if (!orderId) {
-      this.create()
-        .subscribe(order => {
-            this.order = order;
-            localStorage.setItem('orderId', this.order._id);
-            console.log('init(), no order -> created');
-
-            console.log('init(), order ' + order);
-
-          }
-        );
-    } else if (!this.order) {
-      console.log('order already exists, get order');
-      this.get(orderId)
-        .subscribe(order => {
-            this.order = order;
-            console.log('init(), order loaded');
-          }
-        );
+      return of<Order>(new Order());
+    }
+    else if (!orderId) {
+      console.log('OrderService.initLazy(), no order -> will be created');
+      return this.create(
+      ).pipe(
+        tap((order) => {
+          this.order = order;
+          localStorage.setItem('orderId', this.order._id);
+        })
+      );
+    }
+    else {
+      console.log('OrderService.initLazy() order already exists, get order');
+      return this.get(orderId
+      ).pipe(
+        tap((order) => this.order = order)
+      );
     }
   }
 

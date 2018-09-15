@@ -7,7 +7,7 @@ export class Order {
   public shoppingBasket : ShoppingBasket;
   public orderDate : Date;
   public state :string =  '';
-  public deliveryAddress: Address;
+  public deliveryAddress: Address = new Address('','','','','');
 
   constructor() {
   }

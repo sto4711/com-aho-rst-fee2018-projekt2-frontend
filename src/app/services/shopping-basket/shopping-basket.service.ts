@@ -16,7 +16,6 @@ export class ShoppingBasketService {
   constructor(
     private http: HttpClient
   ) {
-    console.log('ShoppingBasketService.init()');
     this.init();
   }
 

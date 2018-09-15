@@ -10,7 +10,6 @@ import {Address} from "../../services/order/address";
 import {ContactData} from "../../services/order/contact-data";
 
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -42,8 +41,9 @@ export class CheckoutComponent implements OnInit {
 
   public ngOnInit() {
     this.initValidation();
-    this.orderService.initLazy();
-    console.log('CheckoutComponent.ngOnInit()');
+    this.orderService.initLazy().subscribe(order => {
+      this.deliveryAddress.setValue(order.deliveryAddress);
+    });
   }
 
   private initValidation() {

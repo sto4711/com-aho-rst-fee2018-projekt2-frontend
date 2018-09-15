@@ -8,11 +8,11 @@
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
         <mat-form-field>
-          <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname" required>
+          <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname"  required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname" required>
+          <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname"  required>
         </mat-form-field>
         <br>
         <mat-form-field>
@@ -20,12 +20,11 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4" formControlName="postCode"
-                 required>
+          <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4" formControlName="postCode"  required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="{{'CITY' | translate}}" formControlName="city" required>
+          <input matInput placeholder="{{'CITY' | translate}}" formControlName="city"  required>
         </mat-form-field>
         <br>
         <div class="checkout-nav">
