@@ -40,7 +40,7 @@ export class MyAccountComponent implements OnInit {
         () => {
           this.login = new Login();
           this.snackBar.open('login ok', null, {duration: 1500, panelClass: 'snackbar'});
-          this.router.navigate([this.clientContextService.nextRoute]).then();
+          this.router.navigate([this.clientContextService.nextRoute] /*, {fragment: 'checkout-review'}*/).then();
         }
       );
   }

@@ -110,7 +110,6 @@ export class CheckoutComponent implements OnInit {
         },
         error => {
           if (error.status === 401) {
-            debugger;
             this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
                 this.clientContextService.nextRoute = 'checkout';
