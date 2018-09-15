@@ -10,6 +10,7 @@ import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
 import {PaymentType} from "./payment-type";
+import {Token} from "../login/token";
 
 @Injectable({
   providedIn: 'root'
@@ -89,15 +90,16 @@ export class OrderService {
   }
 
 
-  public commit() {
-    this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'commit', {"orderId": this.order._id}, {
-        headers: {'Content-Type': 'application/json'}
+  public commit(token: Token):Observable<Order>  {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'commit', {"orderId": this.order._id}, {
+      headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
-    ).subscribe(order => this.clearBasketOrder(order));
+    ).pipe(
+      tap((order) => this.clearBasketOrder(order))
+    );
   }
 
   private clearBasketOrder(order: Order) {
-    this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
     this.order = null;
     localStorage.removeItem('orderId');
     this.shoppingBasketService.clear();

@@ -6,8 +6,6 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
-import {Address} from "../../services/order/address";
-import {ContactData} from "../../services/order/contact-data";
 import {Order} from "../../services/order/order";
 
 
@@ -84,15 +82,6 @@ export class CheckoutComponent implements OnInit {
     this.paymentType.setValue(order.paymentType);
   }
 
-  private routeToLogin() {
-    this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
-        this.snackBar.open(translated, null, {duration: 1500});
-        this.clientContextService.nextRoute = 'checkout';
-        this.router.navigate(['my-account']).then();
-      }
-    );
-  }
-
   public onSelectionChange(event) {
     switch (event.selectedIndex) {
       case 1:
@@ -110,8 +99,27 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  public commitOrder()  {
-    this.orderService.commit();
+  public commitOrder() {
+    this.orderService.commit(this.clientContextService.getToken())
+      .subscribe(order => {
+          this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
+              this.snackBar.open(translated, null, {duration: 1500});
+              this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            debugger;
+            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
+                this.snackBar.open(translated, null, {duration: 1500});
+                this.clientContextService.nextRoute = 'checkout';
+                this.router.navigate(['my-account']).then();
+              }
+            );
+          }
+        }
+      );
   }
 
 
