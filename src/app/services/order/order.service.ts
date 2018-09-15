@@ -21,7 +21,7 @@ export class OrderService {
     ,private clientContextService: ClientContextService
     ,private shoppingBasketService: ShoppingBasketService
   ) {
-
+    console.log('OrderService.init()');
   }
 
   private init() {

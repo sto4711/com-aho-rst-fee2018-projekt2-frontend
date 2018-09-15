@@ -23,7 +23,6 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private loginService: LoginService
-    , private clientContextService: ClientContextService
     , private articleService: ArticleService
     , private dialogService: DialogService
     , private router: Router

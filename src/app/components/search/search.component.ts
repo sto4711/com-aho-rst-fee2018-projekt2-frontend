@@ -7,7 +7,6 @@ import {Article} from "../../services/articles/article";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DialogService} from "../../services/commons/dialog/dialog.service";
 import {Router} from "@angular/router";
-import {ClientContextService} from "../../services/client-context/client-context.service";
 
 
 @Component({

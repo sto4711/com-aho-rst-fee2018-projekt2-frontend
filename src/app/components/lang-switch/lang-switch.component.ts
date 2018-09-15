@@ -12,7 +12,7 @@ import {LangService} from '../../services/lang-service/lang.service';
 export class LangSwitchComponent {
   public selectedLanguage = 'de';
   public languages = [new LangDef('de', 'Deutsch'), new LangDef('en', 'English')];
-  private langSwitch: boolean;
+  public langSwitch: boolean;
 
   constructor(
     private translate: TranslateService

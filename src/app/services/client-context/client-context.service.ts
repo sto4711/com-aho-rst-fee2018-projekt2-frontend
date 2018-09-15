@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Token} from '../login/token';
+import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,11 @@ export class ClientContextService {
   public static BACKEND_URL_USERS :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/users/';
   public static BACKEND_URL_USER :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/user/';
   public static BACKEND_URL_USER_DETAILS :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/user-details/';
-  public static BACKEND_URL_SHOPPINGBASKET :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/shopping-basket/';
+  public static BACKEND_URL_SHOPPING_BASKET :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/shopping-basket/';
   public static BACKEND_URL_ORDER :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order/';
   public static BACKEND_URL_ORDER_DETAILS = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order-details/';
 
   public nextRoute = '';
-
 
   constructor() {
   }
@@ -34,6 +34,7 @@ export class ClientContextService {
   public getToken() :Token {
     return this.token;
   }
+
 
 
 

@@ -31,7 +31,6 @@ export class ArticleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private clientContextService: ClientContextService,
     private shoppingBasketService: ShoppingBasketService,
     private snackBar: MatSnackBar,
     private translate: TranslateService

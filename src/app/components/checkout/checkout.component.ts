@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder
     , public shoppingBasketService: ShoppingBasketService
-    , private orderService: OrderService
+    , public orderService: OrderService
     , public dialog: MatDialog
     , private snackBar: MatSnackBar
     , private clientContextService: ClientContextService

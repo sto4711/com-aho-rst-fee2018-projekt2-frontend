@@ -14,9 +14,7 @@ export class ArticleTemplateComponent implements OnInit {
   imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
 
   constructor(
-    private clientContextService: ClientContextService,
     private router: Router
-
   ) { }
 
   ngOnInit() {

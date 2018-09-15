@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ClientContextService} from "../client-context/client-context.service";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
@@ -16,33 +16,34 @@ export class ShoppingBasketService {
   constructor(
     private http: HttpClient
   ) {
+    console.log('ShoppingBasketService.init()');
     this.init();
   }
-
 
   private init() {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
     if (shoppingBasketId == null) {
-      this.postCreate()
+      this.create()
         .subscribe(shoppingBasket => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            console.log('init(), no shoppingBasket -> created');
+            console.log('initShoppingBasket(), no shoppingBasket -> created');
           }
         );
     } else {
       this.get(shoppingBasketId)
         .subscribe(shoppingBasket => {
             this.shoppingBasket = shoppingBasket;
-            console.log('init(), shoppingBasket loaded');
+            console.log('initShoppingBasket(), shoppingBasket loaded');
           }
         );
     }
   }
 
 
-  public postCreate(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPINGBASKET + 'create', {
+
+  public create(): Observable<ShoppingBasket> {
+    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'create', {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -51,7 +52,7 @@ export class ShoppingBasketService {
   }
 
   public get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
-    return this.http.get<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPINGBASKET + '?id=' + shoppingBasketID, {
+    return this.http.get<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + '?id=' + shoppingBasketID, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -62,7 +63,7 @@ export class ShoppingBasketService {
 
   addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPINGBASKET + 'add-item', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -72,7 +73,7 @@ export class ShoppingBasketService {
 
   changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPINGBASKET + 'change_item_amount', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'change_item_amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -82,7 +83,7 @@ export class ShoppingBasketService {
 
   removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPINGBASKET + 'remove_item', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'remove_item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
