@@ -6,6 +6,7 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
 import {Login} from "../../services/login/login";
 import {DialogService} from "../../services/commons/dialog/dialog.service";
 import {MatSnackBar} from "@angular/material";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-my-account',
@@ -22,7 +23,7 @@ export class MyAccountComponent implements OnInit {
     , private router: Router
     , private dialogService: DialogService
     , private snackBar: MatSnackBar
-
+    ,private location: Location
   ) {
   }
 
@@ -40,7 +41,7 @@ export class MyAccountComponent implements OnInit {
         () => {
           this.login = new Login();
           this.snackBar.open('login ok', null, {duration: 1500, panelClass: 'snackbar'});
-          this.router.navigate([this.clientContextService.nextRoute] /*, {fragment: 'checkout-review'}*/).then();
+          this.location.back();
         }
       );
   }

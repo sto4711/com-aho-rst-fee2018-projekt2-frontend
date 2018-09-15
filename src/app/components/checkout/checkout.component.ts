@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from "@ngx-translate/core";
 import {Order} from "../../services/order/order";
-
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-checkout',
@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   private static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
   private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
   private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
+  @ViewChild('stepper') stepper: MatStepper;
 
   constructor(
     private _formBuilder: FormBuilder
@@ -40,9 +41,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.orderService.initLazy()
-      .subscribe(order => this.setFormGroupValues(order));
   }
+
+  public ngAfterViewInit() {
+    this.orderService.initLazy()
+      .subscribe(order => {
+        this.setFormGroupValues(order);
+        this.handleStepps(order);
+      });
+  }
+
 
   private initValidation() {
     this.deliveryAddress = this._formBuilder.group({
@@ -82,6 +90,20 @@ export class CheckoutComponent implements OnInit {
     this.paymentType.setValue(order.paymentType);
   }
 
+  private handleStepps(order: Order) {
+    let countSteps = 0;
+    countSteps = countSteps + (order.deliveryAddress? 1 : 0);
+    countSteps = countSteps + (order.contactData? 1 : 0);
+    countSteps = countSteps + (order.deliveryType? 1 : 0);
+    countSteps = countSteps + (order.paymentType? 1 : 0);
+    for (let i = 0; i<countSteps; i++)  {
+      this.stepper.next();
+      if(i===3) {
+        document.querySelector('#approveButton').scrollIntoView();
+      }
+    }
+  }
+
   public onSelectionChange(event) {
     switch (event.selectedIndex) {
       case 1:
@@ -99,8 +121,8 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  public commitOrder() {
-    this.orderService.commit(this.clientContextService.getToken())
+  public approveOrder() {
+    this.orderService.approve(this.clientContextService.getToken())
       .subscribe(order => {
           this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
               this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
@@ -112,7 +134,6 @@ export class CheckoutComponent implements OnInit {
           if (error.status === 401) {
             this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
-                this.clientContextService.nextRoute = 'checkout';
                 this.router.navigate(['my-account']).then();
               }
             );

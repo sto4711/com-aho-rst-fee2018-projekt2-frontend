@@ -1,9 +1,7 @@
 <div class="row">
   <app-breadcrumb></app-breadcrumb>
-
   <h2>{{'MY-ORDER' | translate}}</h2>
-  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange($event)">
-
+  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange($event)" >
     <mat-step [stepControl]="deliveryAddress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
@@ -78,7 +76,7 @@
           <br>
           <mat-radio-button value="Mastecard">Mastercard</mat-radio-button>
           <br>
-          <mat-radio-button value="Visa" >Visa</mat-radio-button>
+          <mat-radio-button value="Visa">Visa</mat-radio-button>
 
         </mat-radio-group>
         <br>
@@ -115,9 +113,9 @@
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
         </div>
-        <form #fCreateOrder="ngForm" (ngSubmit)="commitOrder()">
+        <form #fCreateOrder="ngForm" (ngSubmit)="approveOrder()">
           <p>
-            <button class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
+            <button id="approveButton" class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
           </p>
         </form>
       </div>

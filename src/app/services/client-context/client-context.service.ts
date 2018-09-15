@@ -22,8 +22,6 @@ export class ClientContextService {
   public static BACKEND_URL_ORDER :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order/';
   public static BACKEND_URL_ORDER_DETAILS = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order-details/';
 
-  public nextRoute = '';
-
   constructor() {
   }
 

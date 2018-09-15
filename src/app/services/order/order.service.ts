@@ -90,8 +90,8 @@ export class OrderService {
   }
 
 
-  public commit(token: Token):Observable<Order>  {
-    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'commit', {"orderId": this.order._id}, {
+  public approve(token: Token):Observable<Order>  {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'approve', {"orderId": this.order._id}, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(
