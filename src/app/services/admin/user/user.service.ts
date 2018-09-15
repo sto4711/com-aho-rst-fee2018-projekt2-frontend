@@ -15,13 +15,12 @@ export class UserService {
 
   constructor(
     private http: HttpClient
-    , private clientContextService: ClientContextService
   ) {
   }
 
   /** gets all the users back */
   get(token: Token): Observable<User[]> {
-    return this.http.get<User[]>(     this.clientContextService.getBackendURL_user() , {
+    return this.http.get<User[]>(     ClientContextService.BACKEND_URL_USERS , {
         headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(

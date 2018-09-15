@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class ArticleTemplateComponent implements OnInit {
 
   @Input() article: Article;
-  imageURL: string = this.clientContextService.getBackendURL_public();
+  imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
 
   constructor(
     private clientContextService: ClientContextService,

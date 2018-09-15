@@ -16,12 +16,12 @@ export class LoginService {
 
   constructor(
     private http: HttpClient
-    , private clientContextService: ClientContextService) {
+  ) {
   }
 
   /** gets token back */
   signin(login: Login): Observable<Token> {
-    return this.http.post<Token>(this.clientContextService.getBackendURL_user() + 'signin', login, {
+    return this.http.post<Token>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -31,7 +31,7 @@ export class LoginService {
   }
 
   signout(token: Token): Observable<any> {
-    return this.http.post<Token>(this.clientContextService.getBackendURL_user()+ 'signout', null, {
+    return this.http.post<Token>(ClientContextService.BACKEND_URL_USER + 'signout', null, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
     },).pipe(
       tap((/*result: string*/) => console.log('signout ok'))
@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   isloggediIn(email: string): Observable<boolean> {
-    return this.http.get<boolean>(     this.clientContextService.getBackendURL_user() , {
+    return this.http.get<boolean>(     ClientContextService.BACKEND_URL_USER , {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

@@ -16,8 +16,7 @@ export class ArticleService {
   articles$: Observable<Article[]>;
 
   constructor(
-    protected http: HttpClient
-    , private clientContextService: ClientContextService
+    private http: HttpClient
   ) {
   }
 
@@ -26,7 +25,7 @@ export class ArticleService {
       return of<Article[]>([]);
     }
 
-    return this.http.get<Article[]>(this.clientContextService.getBackendURL_allArticles() + '?filter=' + term, {
+    return this.http.get<Article[]>(ClientContextService.BACKEND_URL_ARTICLES + '?filter=' + term, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -36,7 +35,7 @@ export class ArticleService {
 
   getArticlesLatest(limit: number): Observable<Article[]> {
     return this.http
-      .get<Article[]>(this.clientContextService.getBackendURL_latestArticles() + '?limit=' + limit, {
+      .get<Article[]>(ClientContextService.BACKEND_URL_ARTICLES_LATEST + '?limit=' + limit, {
           headers: {'Content-Type': 'application/json'}
         }
       ).pipe(
@@ -45,7 +44,7 @@ export class ArticleService {
   }
 
   getArticleDetails(articleQueryParameter: Article["articleQueryParameter"]): Observable<Article> {
-    return this.http.get<Article>(this.clientContextService.getBackendURL_articleDetails() + '?article=' + articleQueryParameter, {
+    return this.http.get<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + '?article=' + articleQueryParameter, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -54,7 +53,7 @@ export class ArticleService {
   }
 
   changeRating(articleRating: ArticleRating): Observable<Article> {
-    return this.http.post<Article>(this.clientContextService.getBackendURL_articleDetails() + 'change-rating', articleRating, {
+    return this.http.post<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + 'change-rating', articleRating, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

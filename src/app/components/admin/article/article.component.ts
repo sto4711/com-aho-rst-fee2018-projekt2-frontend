@@ -18,7 +18,7 @@ import {Article} from "../../../services/articles/article";
 export class ArticleComponent implements OnInit {
   title: string = 'Demo searching by enter letters';
   articles$: Observable<Article[]>;
-  imageURL: string =  this.clientContextService.getBackendURL_public();
+  imageURL: string =  ClientContextService.BACKEND_URL_PUBLIC;
   private searchTerms = new Subject<string>();
 
   constructor(

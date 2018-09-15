@@ -17,7 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 
 export class ArticleDetailComponent implements OnInit {
   public article: Article;
-  public imageURL: string = this.clientContextService.getBackendURL_public();
+  public imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
   public selectedValue = 1;
   private articleAmount: number = 1;
   public amount = [
