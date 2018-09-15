@@ -38,10 +38,10 @@ export class CheckoutComponent implements OnInit {
     , private router: Router
     , private translate: TranslateService
   ) {
+    this.initValidation();
   }
 
   public ngOnInit() {
-    this.initValidation();
     this.orderService.initLazy()
       .subscribe(order => this.setFormGroupValues(order));
   }
@@ -70,8 +70,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.deliveryType = this._formBuilder.group({
-      priority: [false, Validators.required],
-      economy: [false, Validators.required]
+      delivery: [null, Validators.required]
     });
     this.paymentType = this._formBuilder.group({
       paypal: [false, Validators.required],
@@ -80,8 +79,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  private setFormGroupValues(order: Order)  {
+  private setFormGroupValues(order: Order) {
     this.deliveryAddress.setValue(order.deliveryAddress);
+    this.contactData.setValue(order.contactData);
+    this.deliveryType.setValue(order.deliveryType);
   }
 
   private routeToLogin() {
@@ -95,49 +96,18 @@ export class CheckoutComponent implements OnInit {
 
   public onSelectionChange(event) {
     switch (event.selectedIndex) {
-      case 1:  {
-        console.log('address changed');
-        this.orderService.updateDeliveryAddress(this.deliveryAddress.getRawValue())
-          .subscribe(order => this.setFormGroupValues(order)
-          );
-      }
+      case 1:
+        this.orderService.updateDeliveryAddress(this.deliveryAddress.getRawValue()).subscribe(order => this.setFormGroupValues(order));
+        break;
+      case 2:
+        this.orderService.updateContactData(this.contactData.getRawValue()).subscribe(order => this.setFormGroupValues(order));
+        break;
+      case 3:
+        this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
+        break;
+
     }
   }
 
-  public createOrder() {
-    const address = new Address(
-      this.deliveryAddress.getRawValue().givenname
-      , this.deliveryAddress.getRawValue().surname
-      , this.deliveryAddress.getRawValue().streetHousenumber
-      , this.deliveryAddress.getRawValue().postCode
-      , this.deliveryAddress.getRawValue().city);
-    const contactData = new ContactData(
-      this.contactData.getRawValue().email
-      , this.contactData.getRawValue().phone);
-
-
-    console.log(JSON.stringify(address));
-    console.log(JSON.stringify(contactData));
-
-
-    // if (this.clientContextService.getToken().value === '') {
-    //   this.routeToLogin();
-    // } else {
-    //   this.orderService.create(this.shoppingBasketService.shoppingBasket._id, this.clientContextService.getToken())
-    //     .subscribe(order => {
-    //         this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-    //             this.snackBar.open(translated, null, {duration: 1500});
-    //             this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-    //           }
-    //         );
-    //       },
-    //       error => {
-    //         if (error.status === 401) {
-    //           this.routeToLogin();
-    //         }
-    //       }
-    //     );
-    // }
-  }
 
 }

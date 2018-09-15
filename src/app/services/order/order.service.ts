@@ -7,7 +7,8 @@ import {Order} from "./order";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 import {Router} from "@angular/router";
 import {Address} from "./address";
-import {ShoppingBasket} from "../shopping-basket/shopping-basket";
+import {ContactData} from "./contact-data";
+import {DeliveryType} from "./delivery-type";
 
 @Injectable({
   providedIn: 'root'
@@ -36,18 +37,18 @@ export class OrderService {
       console.log('OrderService.initLazy(), no order -> will be created');
       return this.create()
         .pipe(
-        tap((order) => {
-          this.order = order;
-          localStorage.setItem('orderId', this.order._id);
-        })
-      );
+          tap((order) => {
+            this.order = order;
+            localStorage.setItem('orderId', this.order._id);
+          })
+        );
     }
     else {
       console.log('OrderService.initLazy() order already exists, get order');
       return this.get(orderId)
         .pipe(
-        tap((order) => this.order = order)
-      );
+          tap((order) => this.order = order)
+        );
     }
   }
 
@@ -71,13 +72,24 @@ export class OrderService {
   }
 
   public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
-    const bodyJson = {"orderId": this.order._id, "deliveryAddress": deliveryAddress};
-    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'change-delivery-address' ,bodyJson, {
+    return this.change('change-delivery-address', {"orderId": this.order._id, "deliveryAddress": deliveryAddress});
+  }
+
+  public updateContactData(contactData: ContactData): Observable<Order> {
+    return this.change('change-contact-data', {"orderId": this.order._id, "contactData": contactData});
+  }
+
+  public updateDeliveryType(deliveryType: DeliveryType): Observable<Order> {
+    debugger;
+    return this.change('change-delivery-type', {"orderId": this.order._id, "deliveryType": deliveryType});
+  }
+
+  private change(urlPath: string, bodyJson: any): Observable<Order> {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
         headers: {'Content-Type': 'application/json'}
       }
-    ).pipe(
-      tap(() => console.log('OrderService.get() ok'))
     );
+
   }
 
 

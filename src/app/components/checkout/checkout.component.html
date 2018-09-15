@@ -55,14 +55,10 @@
       <ng-template matStepLabel>{{'DELIVERY' | translate}}</ng-template>
       <form [formGroup]="deliveryType">
         <p>{{'WE-SHIP-EXCLUSIVELY-WITH-SWISS-POST' | translate}}.</p><br>
-        <mat-radio-group>
-          <mat-radio-button value="priority" ngDefaultControl name="delivery" formControlName="priority">PostPac
-            Priority
-          </mat-radio-button>
+        <mat-radio-group formControlName="delivery">
+          <mat-radio-button value="priority"  >PostPac Priority</mat-radio-button>
           <br>
-          <mat-radio-button value="economy" ngDefaultControl name="delivery" formControlName="economy">PostPac
-            Economy
-          </mat-radio-button>
+          <mat-radio-button value="economy"   >PostPac Economy</mat-radio-button>
           <br>
 
         </mat-radio-group>
