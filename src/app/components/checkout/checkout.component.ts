@@ -5,8 +5,8 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
-import {TranslateService} from "@ngx-translate/core";
-import {Order} from "../../services/order/order";
+import {TranslateService} from '@ngx-translate/core';
+import {Order} from '../../services/order/order';
 import { MatStepper } from '@angular/material';
 
 @Component({

@@ -1033,7 +1033,8 @@ tfoot tr:nth-of-type(odd) {
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
  */checkout-review
 
-#order-review span {
+#order-review span, .review-data {
+  font-weight: 500;
   display: inline-block;
   width: 150px;
 }

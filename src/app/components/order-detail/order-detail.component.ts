@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrderService} from "../../services/order/order.service";
 import {Order} from "../../services/order/order";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-order-detail',
@@ -15,8 +16,11 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private translate: TranslateService
+
   ) {
+
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
@@ -29,7 +33,7 @@ export class OrderDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.order = result;
-              this.jsonOrder = JSON.stringify(result);
+               console.log(this.order);
             }
           );
       });
