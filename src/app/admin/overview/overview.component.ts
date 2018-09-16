@@ -13,6 +13,7 @@ import {LangService} from '../../services/lang-service/lang.service';
 export class OverviewComponent implements OnInit {
   public orders: Order;
   private langSwitch: boolean;
+  private panelOpenState = false;
 
   constructor(
     private route: ActivatedRoute,
