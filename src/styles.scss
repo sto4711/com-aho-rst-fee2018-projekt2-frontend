@@ -1061,14 +1061,23 @@ tfoot tr:nth-of-type(odd) {
 
 }
 
-.admin-customer-data {
-
+.admin-customer-data, .admin-customer-articles {
+  flex-grow: 1;
 }
 
 .admin-customer-articles {
 
 }
 
+.admin-article-data {
+
+}
+
+.admin-article-attr {
+  display: inline-block;
+  min-width: 150px;
+  font-weight: 500;
+}
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////
  */
