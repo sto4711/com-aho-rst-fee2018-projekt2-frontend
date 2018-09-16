@@ -40,8 +40,7 @@ export class OrderDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.order = result;
-              console.log(this.order);
-             }
+              }
           );
       });
   }
