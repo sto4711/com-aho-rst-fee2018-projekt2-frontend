@@ -2,7 +2,7 @@
   <h2>Admin Bereich</h2>
 <mat-accordion>
 
-   <mat-expansion-panel *ngFor="let order of orders| keyvalue"
+   <mat-expansion-panel *ngFor="let order of orders| keyvalue | paginate: { itemsPerPage: 6, currentPage: p } "
     (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -55,6 +55,11 @@
       </div><!-- end .admin-orders -->
 
   </mat-expansion-panel>
-
+  <br><br>
+  <pagination-controls
+    (pageChange)="p = $event"
+    previousLabel="{{'BACK' | translate}}"
+    nextLabel="{{'NEXT' | translate}}"
+  ></pagination-controls>
 </mat-accordion>
 </div>

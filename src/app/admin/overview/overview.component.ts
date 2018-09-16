@@ -13,6 +13,7 @@ import {LangService} from '../../services/lang-service/lang.service';
 export class OverviewComponent implements OnInit {
   public orders: Order;
   public selectedState = 1;
+  public p: number = 1;
   private langSwitch: boolean;
   private panelOpenState = false;
   private newOrderState: number = 1;
