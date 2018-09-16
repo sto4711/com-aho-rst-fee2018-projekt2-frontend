@@ -22,9 +22,11 @@ export class CheckoutComponent implements OnInit {
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
   public itemChangePossible: boolean = false;
+  public isAutoStepping: boolean = false;
   private static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
   private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
   private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
+
   @ViewChild('stepper') stepper: MatStepper;
 
   constructor(
@@ -41,16 +43,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   public ngOnInit() {
+
+  }
+
+  public ngOnChanges() {
   }
 
   public ngAfterViewInit() {
-    this.orderService.initLazy()
+    this.isAutoStepping = true;
+    this.orderService.getOrder()
       .subscribe(order => {
-        this.setFormGroupValues(order);
-        this.handleStepps(order);
+        Promise.resolve(null).then(() => {//delay; not final solution
+          this.setFormGroupValues(order);
+          this.handleSteps(order);
+//        this.changeDetectorRef.detectChanges();
+          this.isAutoStepping = false;
+        });
       });
   }
-
 
   private initValidation() {
     this.deliveryAddress = this._formBuilder.group({
@@ -90,34 +100,38 @@ export class CheckoutComponent implements OnInit {
     this.paymentType.setValue(order.paymentType);
   }
 
-  private handleStepps(order: Order) {
+  private handleSteps(order: Order) {
     let countSteps = 0;
-    countSteps = countSteps + (order.deliveryAddress? 1 : 0);
-    countSteps = countSteps + (order.contactData? 1 : 0);
-    countSteps = countSteps + (order.deliveryType? 1 : 0);
-    countSteps = countSteps + (order.paymentType? 1 : 0);
-    for (let i = 0; i<countSteps; i++)  {
+    countSteps = countSteps + (order.deliveryAddress ? 1 : 0);
+    countSteps = countSteps + (order.contactData ? 1 : 0);
+    countSteps = countSteps + (order.deliveryType ? 1 : 0);
+    countSteps = countSteps + (order.paymentType ? 1 : 0);
+    for (let i = 0; i < countSteps; i++) {
       this.stepper.next();
-      if(i===3) {
-        document.querySelector('#approveButton').scrollIntoView();
+      if (i === 3) {
+        document.querySelector('#order-review').scrollIntoView(false);
       }
     }
   }
 
   public onSelectionChange(event) {
-    switch (event.selectedIndex) {
-      case 1:
+    if (!this.isAutoStepping) {
+      if (this.deliveryAddress.dirty) {
+        this.deliveryAddress.markAsPristine();
         this.orderService.updateDeliveryAddress(this.deliveryAddress.getRawValue()).subscribe(order => this.setFormGroupValues(order));
-        break;
-      case 2:
+      }
+      else if (this.contactData.dirty) {
+        this.contactData.markAsPristine();
         this.orderService.updateContactData(this.contactData.getRawValue()).subscribe(order => this.setFormGroupValues(order));
-        break;
-      case 3:
+      }
+      else if (this.deliveryType.dirty) {
+        this.contactData.markAsPristine();
         this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
-        break;
-      case 4:
+      }
+      else if (this.paymentType.dirty) {
+        this.contactData.markAsPristine();
         this.orderService.updatePaymentType(this.paymentType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
-        break;
+      }
     }
   }
 
