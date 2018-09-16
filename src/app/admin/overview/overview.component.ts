@@ -12,9 +12,16 @@ import {LangService} from '../../services/lang-service/lang.service';
 })
 export class OverviewComponent implements OnInit {
   public orders: Order;
+  public selectedState = 1;
   private langSwitch: boolean;
   private panelOpenState = false;
+  private newOrderState: number = 1;
 
+  public orderState = [
+    {value: 1, viewValue: 'In bearbeitung'},
+    {value: 2, viewValue: 'Versendet'},
+    {value: 3, viewValue: 'Annuliert'}
+  ];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -42,6 +49,8 @@ export class OverviewComponent implements OnInit {
               console.log(this.orders);
             }
           );
-
   }
+  updateOrderState(orderState) {
+    this.newOrderState = orderState;
+   }
 }

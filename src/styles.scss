@@ -1049,6 +1049,26 @@ tfoot tr:nth-of-type(odd) {
    margin: 0 0 0 -56px;
  }
 }
+
+/*
+    admin area ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.admin-order {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+
+}
+
+.admin-customer-data {
+
+}
+
+.admin-customer-articles {
+
+}
+
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////
  */

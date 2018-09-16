@@ -2,19 +2,51 @@
   <h2>Admin Bereich</h2>
 <mat-accordion>
 
-  {{orders}}
-  <mat-expansion-panel *ngFor="let order of orders| keyvalue"
+   <mat-expansion-panel *ngFor="let order of orders| keyvalue"
     (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <strong>Bestellung von: </strong>
+        <strong>Bestellung von:&nbsp;</strong>
         {{orders?.deliveryAddress.givenname}}
-        {{orders?.deliveryAddress.surname}} am {{orders?.orderDate}}
+        {{orders?.deliveryAddress.surname}}
       </mat-panel-title>
-      <mat-panel-description>
-       </mat-panel-description>
+      <mat-panel-description>Bestellt am: {{orders?.orderDate | date:'dd.MM.yyyy'  }} </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+
+     <div class="admin-order">
+       <div class="admin-customer-data">
+         <h4>Personalien</h4>
+    <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{orders?.deliveryAddress.givenname}} </p>
+    <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{orders?.deliveryAddress.surname}} </p>
+    <p><span class="review-data">{{'STREET' | translate}}: </span> {{orders?.deliveryAddress.streetHousenumber}}</p>
+    <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{orders?.deliveryAddress.postCode}} </p>
+    <p><span class="review-data">{{'CITY' | translate}}: </span>{{orders?.deliveryAddress.city}} </p>
+    <br>
+    <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{orders?.contactData.email}}</p>
+    <p><span class="review-data">{{'PHONE' | translate}}: </span>{{orders?.contactData.phone}} </p>
+    <br>
+    <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{orders?.deliveryType.delivery}}</p>
+    <br>
+    <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{orders?.paymentType.payment}}</p>
+    <br><br>
+    <p>
+      <mat-form-field>
+        <mat-select name="artikel-anzahl" placeholder="{{'ARTICLE-STATE' | translate}}" [(ngModel)]="selectedState"
+                    (selectionChange)="updateOrderState($event.value)">
+          <mat-option *ngFor="let anzahl of orderState" [value]="anzahl.value">
+            {{anzahl.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </p>
+   </div><!-- end .admin-customer-data -->
+       <div class="admin-customer-articles">
+        <h4>Bestellte Artikel</h4>
+       </div><!-- end .admin-customer-articles -->
+      {{orders?.state}}
+     </div><!-- end .admin-orders -->
+
   </mat-expansion-panel>
 
 </mat-accordion>

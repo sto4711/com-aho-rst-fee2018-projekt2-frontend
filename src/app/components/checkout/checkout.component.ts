@@ -139,7 +139,7 @@ export class CheckoutComponent implements OnInit {
     this.orderService.approve(this.clientContextService.getToken())
       .subscribe(order => {
           this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-              this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
+              this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
               this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
             }
           );
@@ -147,7 +147,7 @@ export class CheckoutComponent implements OnInit {
         error => {
           if (error.status === 401) {
             this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
+                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
               }
             );

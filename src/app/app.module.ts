@@ -65,7 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchComponent,
     TrimPipe,
     DeTrimPipe,
-    AmountConverterPipe,
+     AmountConverterPipe,
     NotFoundComponent,
     LangSwitchComponent,
     ShoppingBasketListingComponent,
@@ -91,7 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent ],
-  providers: [LoginService, {provide: LOCALE_ID, useValue: "de-CH"}, LangService
+  providers: [LoginService, LangService
 
   ],
   bootstrap: [AppComponent]
