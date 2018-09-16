@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {OrderService} from "../../services/order/order.service";
-import {Order} from "../../services/order/order";
-import {TranslateService} from "@ngx-translate/core";
+import {ActivatedRoute, Router} from '@angular/router';
+import {OrderService} from '../../services/order/order.service';
+import {Order} from '../../services/order/order';
+import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
 
 @Component({
@@ -11,7 +11,6 @@ import {LangService} from '../../services/lang-service/lang.service';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-  public jsonOrder: string = '';
   public order: Order;
   private langSwitch: boolean;
 

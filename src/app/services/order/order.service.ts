@@ -73,6 +73,15 @@ export class OrderService {
     );
   }
 
+  public getAll(): Observable<Order> {
+    return this.http.get<Order>(ClientContextService.BACKEND_URL_ORDER_ALL, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap(() => console.log('OrderService.get() ok'))
+    );
+  }
+
   public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
     return this.change('change-delivery-address', {"orderId": this.order._id, "deliveryAddress": deliveryAddress});
   }
