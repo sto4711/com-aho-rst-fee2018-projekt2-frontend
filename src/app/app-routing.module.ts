@@ -13,7 +13,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ClientContextService} from "./services/client-context/client-context.service";
-import {OverviewComponent} from './admin/overview/overview.component';
+import {OverviewComponent} from './components/admin/overview/overview.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

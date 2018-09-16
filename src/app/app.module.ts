@@ -36,7 +36,7 @@ import { LangSwitchComponent } from './components/lang-switch/lang-switch.compon
 import { ShoppingBasketListingComponent } from './components/shopping-basket-listing/shopping-basket-listing.component';
 import {LangService} from './services/lang-service/lang.service';
 import {MessageService} from './services/message/message.service';
-import { OverviewComponent } from './admin/overview/overview.component';
+import { OverviewComponent } from './components/admin/overview/overview.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

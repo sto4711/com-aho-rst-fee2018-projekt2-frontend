@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   exports: [
@@ -29,7 +30,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatIconModule,
     MatRadioModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ]
 })
 export class MatComponentsModule { }

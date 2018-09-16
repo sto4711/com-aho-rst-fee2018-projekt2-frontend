@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {OrderService} from '../../services/order/order.service';
-import {Order} from '../../services/order/order';
+import {OrderService} from '../../../services/order/order.service';
+import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LangService} from '../../../services/lang-service/lang.service';
 
 @Component({
   selector: 'app-overview',
