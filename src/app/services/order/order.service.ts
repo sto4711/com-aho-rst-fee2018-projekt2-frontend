@@ -16,7 +16,7 @@ import {Token} from "../login/token";
   providedIn: 'root'
 })
 export class OrderService {
-  public order: Order = null;
+  private order: Order = null;
 
   constructor(
     private http: HttpClient
@@ -26,12 +26,14 @@ export class OrderService {
   ) {
   }
 
-  public initLazy(): Observable<Order> {
+  public getOrder(): Observable<Order> {
     const orderId: string = localStorage.getItem('orderId');
 
-    if (!this.shoppingBasketService.shoppingBasket) {
-      //hack....
-      console.log('OrderService.initLazy() THIS IS NOT FINAL... Basket not yet loaded, redirect to Basket')
+    if (this.order) {
+      return of<Order>(this.order);
+    }
+    else if (!orderId && !this.shoppingBasketService.shoppingBasket) {
+      console.log('no Basket found, redirect to Basket')
       this.router.navigate(['shopping-basket']).then();
       return of<Order>(new Order());
     }
@@ -54,7 +56,7 @@ export class OrderService {
     }
   }
 
-  public create(): Observable<Order> {
+  private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
     return this.http.post<Order>(ClientContextService.BACKEND_URL_ORDER + 'create', {"shoppingBasketId": shoppingBasketId}, {
         headers: {'Content-Type': 'application/json'}
