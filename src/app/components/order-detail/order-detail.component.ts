@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {OrderService} from "../../services/order/order.service";
 import {Order} from "../../services/order/order";
 import {TranslateService} from "@ngx-translate/core";
+import {LangService} from '../../services/lang-service/lang.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -12,18 +13,24 @@ import {TranslateService} from "@ngx-translate/core";
 export class OrderDetailComponent implements OnInit {
   public jsonOrder: string = '';
   public order: Order;
+  private langSwitch: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private langService: LangService
 
   ) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
+    this.langSwitch = true;
+    this.langService.getLanguage().subscribe(language => {
+      this.langSwitch = !this.langSwitch;
+    });
   }
 
   public ngOnInit() {
@@ -33,8 +40,8 @@ export class OrderDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.order = result;
-               console.log(this.order);
-            }
+              console.log(this.order);
+             }
           );
       });
   }

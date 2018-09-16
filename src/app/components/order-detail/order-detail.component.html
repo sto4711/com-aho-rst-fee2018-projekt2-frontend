@@ -2,7 +2,7 @@
  <h2>Vielen Dank für Ihre Bestellung!</h2>
 <p>Ihre Bestellung befindet sich in bearbeitung.</p>
 
-<br>
+<br><br>
 <div id="order-review">
   <h4>{{'MY-ORDER-DATA' | translate}}</h4>
   <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname}} </p>
@@ -17,6 +17,55 @@
   <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
   <br>
   <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
-  <br>
+  <br><br><br>
 </div>
- </div>
+  <h4>Bestellte Artikel</h4>
+  <table>
+    <thead>
+    <tr>
+      <th>{{'ITEM-NUMBER' | translate}}</th>
+      <th>{{'ARTICLE' | translate}}</th>
+      <th>{{'PRICE' | translate}}</th>
+      <th>{{'AMOUNT' | translate}}</th>
+      <th>{{'SUM-ARTICLE' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let article of order?.ShoppingBasket.items">
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
+       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}"> {{article.articleAmount}} </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >
+        CHF <span class="amount-spacer">{{article.articlePriceSum | amountConverter}}</span>
+
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td colspan="2" class="basket-total-amount">
+
+        <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
+          <span> CHF <span class="amount-spacer">15.00</span> </span>
+        </p>
+        <p>
+          <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
+          <span>
+          <strong> CHF <span class="amount-spacer">{{order?.ShoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
+      </span>
+
+        </p>
+
+      </td>
+
+    </tr>
+
+    </tfoot>
+  </table>
+
+</div>
