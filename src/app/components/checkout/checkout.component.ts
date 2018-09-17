@@ -145,7 +145,7 @@ export class CheckoutComponent implements OnInit {
           );
         },
         error => {
-          if (error.status === 401) {
+         if (error.status === 401) {
             this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
