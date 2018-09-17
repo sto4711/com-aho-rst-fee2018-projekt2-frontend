@@ -8,6 +8,7 @@ import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Order} from '../../services/order/order';
 import { MatStepper } from '@angular/material';
+import {LoginService} from "../../services/login/login.service";
 
 @Component({
   selector: 'app-checkout',
@@ -23,9 +24,6 @@ export class CheckoutComponent  {
   public paymentType: FormGroup;
   public itemChangePossible: boolean = false;
   public isAutoStepping: boolean = false;
-  private static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
-  private static CODE_TRANSLATION_MANDATORY_FIELDS_NOTIFICATION: string = 'FILL-OUT-MANDATORY-FIELDS-PLEASE';
-  private static CODE_TRANSLATION_ORDER_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -131,15 +129,15 @@ export class CheckoutComponent  {
   public approveOrder() {
     this.orderService.approve(this.clientContextService.getToken())
       .subscribe(order => {
-          this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
+          this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
               this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
               this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
             }
           );
         },
         error => {
-         if (error.status === 401) {
-            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
+          if (error.status === 401) {
+            this.translate.get(LoginService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
               }
