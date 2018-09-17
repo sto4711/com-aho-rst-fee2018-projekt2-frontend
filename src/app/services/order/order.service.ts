@@ -120,8 +120,9 @@ export class OrderService {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
         headers: {'Content-Type': 'application/json'}
       }
+    ).pipe(
+      tap((order) => this.order = order)
     );
-
   }
 
 
