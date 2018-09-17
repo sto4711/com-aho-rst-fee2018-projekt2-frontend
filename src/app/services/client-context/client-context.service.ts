@@ -21,6 +21,8 @@ export class ClientContextService {
   public static BACKEND_URL_SHOPPING_BASKET :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/shopping-basket/';
   public static BACKEND_URL_ORDER :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order/';
   public static BACKEND_URL_ORDER_DETAILS = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order-details/';
+  public static BACKEND_URL_ORDER_ALL = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/order-all/';
+
 
   constructor() {
   }

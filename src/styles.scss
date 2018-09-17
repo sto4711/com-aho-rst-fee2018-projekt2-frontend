@@ -1033,7 +1033,8 @@ tfoot tr:nth-of-type(odd) {
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
  */checkout-review
 
-#order-review span {
+#order-review span, .review-data {
+  font-weight: 500;
   display: inline-block;
   width: 150px;
 }
@@ -1047,6 +1048,35 @@ tfoot tr:nth-of-type(odd) {
  #checkout-review{
    margin: 0 0 0 -56px;
  }
+}
+
+/*
+    admin area ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.admin-order {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+
+}
+
+.admin-customer-data, .admin-customer-articles {
+  flex-grow: 1;
+}
+
+.admin-customer-articles {
+
+}
+
+.admin-article-data {
+
+}
+
+.admin-article-attr {
+  display: inline-block;
+  min-width: 150px;
+  font-weight: 500;
 }
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1267,7 +1297,7 @@ select {
 .snackbar, .mat-simple-snackbar {
   font-size: 2.4rem !important;
   line-height: 2.8rem !important;
-  color: $font-color;
+  color: #ffffff;
   background-color: $green;
   min-height: 50px;
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
- import {MatInputModule} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -12,6 +12,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   exports: [
@@ -27,7 +29,9 @@ import {MatTableModule} from '@angular/material/table';
     MatStepperModule,
     MatIconModule,
     MatRadioModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatTabsModule
   ]
 })
 export class MatComponentsModule { }

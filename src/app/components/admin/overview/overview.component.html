@@ -1,0 +1,74 @@
+<div class="row">
+  <h2>Admin Bereich</h2>
+
+  <mat-tab-group>
+    <mat-tab label="Bestellungen">
+      <mat-accordion>
+
+        <mat-expansion-panel *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p } "
+                             (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Bestellung von:&nbsp;</strong>
+              {{order?.deliveryAddress.givenname}}
+              {{order?.deliveryAddress.surname}}
+            </mat-panel-title>
+            <mat-panel-description>
+               <strong>Bestellt am:</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}&nbsp;|&nbsp;
+              <strong >Bestellstatus:&nbsp;</strong>{{order?.state}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="admin-order">
+            <div class="admin-customer-data">
+              <h4>Personalien</h4>
+              <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname}} </p>
+              <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{order?.deliveryAddress.surname}} </p>
+              <p><span class="review-data">{{'STREET' | translate}}: </span> {{order?.deliveryAddress.streetHousenumber}}</p>
+              <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{order?.deliveryAddress.postCode}} </p>
+              <p><span class="review-data">{{'CITY' | translate}}: </span>{{order?.deliveryAddress.city}} </p>
+              <br>
+              <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{order?.contactData.email}}</p>
+              <p><span class="review-data">{{'PHONE' | translate}}: </span>{{order?.contactData.phone}} </p>
+              <br>
+              <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
+              <br>
+              <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
+              <br><br>
+              <p>
+                <mat-form-field>
+                  <mat-select name="order-state" placeholder="{{'ARTICLE-STATE' | translate}}" [(ngModel)]="order.state"
+                              (selectionChange)="updateOrderState($event.value)">
+                    <mat-option *ngFor="let selectedState of orderState" [value]="selectedState.value">
+                      {{selectedState.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </p>
+            </div><!-- end .admin-customer-data -->
+            <div class="admin-customer-articles">
+              <h4>Bestellte Artikel</h4>
+              <div *ngFor="let articles of order?.ShoppingBasket.items">
+                <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
+                <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
+                <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
+                <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
+                <br>
+              </div>
+
+              <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.ShoppingBasket.totalSum}}</p>
+            </div><!-- end .admin-customer-articles -->
+          </div><!-- end .admin-orders -->
+
+        </mat-expansion-panel>
+        <br><br>
+        <pagination-controls
+          (pageChange)="p = $event"
+          previousLabel="{{'BACK' | translate}}"
+          nextLabel="{{'NEXT' | translate}}"
+        ></pagination-controls>
+      </mat-accordion>
+    </mat-tab><!-- end tab Bestellungen -->
+    <mat-tab label="Benutzer">Benutzer</mat-tab>
+   </mat-tab-group>
+</div>

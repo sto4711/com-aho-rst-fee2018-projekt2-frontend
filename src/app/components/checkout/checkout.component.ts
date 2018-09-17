@@ -5,9 +5,9 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
-import {TranslateService} from "@ngx-translate/core";
-import {Order} from "../../services/order/order";
-import {MatStepper} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
+import {Order} from '../../services/order/order';
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-checkout',
@@ -132,7 +132,7 @@ export class CheckoutComponent  {
     this.orderService.approve(this.clientContextService.getToken())
       .subscribe(order => {
           this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-              this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
+              this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
               this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
             }
           );
@@ -140,7 +140,7 @@ export class CheckoutComponent  {
         error => {
           if (error.status === 401) {
             this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_SIGN_IN_FIRST).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 1500, panelClass: 'snackbar'});
+                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
               }
             );

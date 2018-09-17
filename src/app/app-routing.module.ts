@@ -13,6 +13,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ClientContextService} from "./services/client-context/client-context.service";
+import {OverviewComponent} from './components/admin/overview/overview.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -46,9 +47,8 @@ const routes: Routes = [
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }},
   {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/user', component: UserComponent},
-  {path: 'admin/article', component: ArticleComponent},
-  {path: '**', component: NotFoundComponent},
+  {path: 'admin/overview', component: OverviewComponent},
+   {path: '**', component: NotFoundComponent},
 
 ];
 
