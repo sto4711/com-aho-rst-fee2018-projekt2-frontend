@@ -4,9 +4,6 @@ import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
-import {LoginService} from "../../../services/login/login.service";
-import {ClientContextService} from "../../../services/client-context/client-context.service";
-import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-overview',
@@ -14,7 +11,8 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public orders = [];
+  public orders: Order;
+  public selectedState = 'APPROVED';
   public p: number = 1;
   public panelOpenState: boolean = false;
 
@@ -29,9 +27,7 @@ export class OverviewComponent implements OnInit {
     private router: Router,
     private orderService: OrderService,
     private translate: TranslateService,
-    private langService: LangService,
-    private clientContextService: ClientContextService,
-    private snackBar: MatSnackBar
+    private langService: LangService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -48,30 +44,13 @@ export class OverviewComponent implements OnInit {
     this.orderService.getAll()
       .subscribe(
         result => {
-          this.orders.push(result);
+          this.orders = result;
         }
       );
   }
 
-  public onSelectionChange(orderState) {
-    debugger;
-    // this.orderService.updateState(this.clientContextService.getToken(), OrderService.STATE_APPROVED)
-    //   .subscribe(order => {
-    //       this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-    //           this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //         }
-    //       );
-    //     },
-    //     error => {
-    //       if (error.status === 401) {
-    //         this.translate.get(LoginService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
-    //             this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //             this.router.navigate(['my-account']).then();
-    //           }
-    //         );
-    //       }
-    //     }
-    //   );
+  public updateOrderState(orderState) {
+    this.selectedState = orderState;
   }
 
   private translateOrderState() {
