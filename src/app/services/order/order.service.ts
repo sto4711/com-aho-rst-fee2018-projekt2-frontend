@@ -17,6 +17,11 @@ import {Token} from "../login/token";
 })
 export class OrderService {
   private order: Order = null;
+  public static STATE_APPROVED: string = 'APPROVED';
+  public static STATE_COMPLETED: string = 'COMPLETED';
+  public static STATE_CANCELED: string = 'CANCELED';
+  public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
+
 
   constructor(
     private http: HttpClient
@@ -102,13 +107,19 @@ export class OrderService {
 
 
   public approve(token: Token):Observable<Order>  {
-    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'approve', {"orderId": this.order._id}, {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {"orderId": this.order._id, "state": OrderService.STATE_APPROVED}, {
       headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
-    ).pipe(
-      tap((order) => this.clearBasketOrder(order))
     );
   }
+
+  public updateState(token: Token, orderId: string, state: string):Observable<Order>  {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {"orderId": orderId, "state": state}, {
+        headers: {'Content-Type': 'application/json', 'Authorization': token.value}
+      }
+    );
+  }
+
 
   private clearBasketOrder(order: Order) {
     this.order = null;

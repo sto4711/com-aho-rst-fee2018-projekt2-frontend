@@ -13,6 +13,7 @@ import {User} from "../admin/user/user";
   providedIn: 'root'
 })
 export class LoginService {
+  public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
 
   constructor(
     private http: HttpClient
