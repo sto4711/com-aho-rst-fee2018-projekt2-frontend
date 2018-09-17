@@ -27,7 +27,7 @@
   "WILL-BE-DELIVERED-WITHIN-THREE-WEEKS": "will be delivered within 3 weeks",
   "ON-STOCK": "on stock",
   "PLEASE-CHOOSE-AMOUNT": "please choose amount",
-  "ARTICLE-STATE": "change article state",
+  "CHANGE-ORDER-STATE": "change order state",
   "STATE": "state",
   "ADD-TO-SHOPPING-BASKET": "add to shopping basket",
   "CONTINUE-SHOPPING": "continue shopping",
@@ -80,6 +80,12 @@
   "USERS": "users",
   "CUSTOMER": "customer",
   "ORDERED-ON": "ordered on",
+  "NEW": "new",
+  "APPROVED": "approved",
+  "COMPLETED": "completed",
+  "CANCELED": "canceled",
+  "PARTICULARS": "particulars",
+  "ORDERED-ITEMS": "ordered items",
 
 
   "MY-ORDER-DATA": "my order data",

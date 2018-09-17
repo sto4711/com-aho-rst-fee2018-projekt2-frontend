@@ -27,7 +27,7 @@
   "WILL-BE-DELIVERED-WITHIN-THREE-WEEKS": "In 3 Wochen lieferbar",
   "ON-STOCK": "Ab Lager verfügbar",
   "PLEASE-CHOOSE-AMOUNT": "Bitte Menge auswählen",
-  "ARTICLE-STATE": "Artikel Status",
+  "CHANGE-ORDER-STATE": "Bestellungsstatus ändern",
   "STATE": "Status",
   "ADD-TO-SHOPPING-BASKET": "In den Warenkorb",
   "CONTINUE-SHOPPING": "Weiter Einkaufen",
@@ -80,6 +80,16 @@
   "USERS": "Benutzer",
   "CUSTOMER": "Kunde",
   "ORDERED-ON": "bestellt am",
+  "NEW": "neu",
+  "APPROVED": "bestättigt",
+  "COMPLETED": "abgeschlossen",
+  "CANCELED": "storniert",
+  "PARTICULARS": "Personalien",
+  "ORDERED-ITEMS": "Bestellte Artikel",
+
+
+
+
 
   "MY-ORDER-DATA": "Meine Bestelldaten",
   "RESET": "zurücksetzen",
