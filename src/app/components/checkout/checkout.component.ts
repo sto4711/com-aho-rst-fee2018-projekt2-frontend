@@ -116,11 +116,11 @@ export class CheckoutComponent  {
         this.orderService.updateContactData(this.contactData.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
       else if (this.deliveryType.dirty) {
-        this.contactData.markAsPristine();
+        this.deliveryType.markAsPristine();
         this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
       else if (this.paymentType.dirty) {
-        this.contactData.markAsPristine();
+        this.paymentType.markAsPristine();
         this.orderService.updatePaymentType(this.paymentType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
     }
