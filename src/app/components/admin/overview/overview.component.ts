@@ -12,7 +12,7 @@ import {LangService} from '../../../services/lang-service/lang.service';
 })
 export class OverviewComponent implements OnInit {
   public orders = [];
-  public selectedState = 'approved';
+  public selectedState = 'APPROVED';
   public p: number = 1;
   public panelOpenState: boolean = false;
 

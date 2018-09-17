@@ -38,7 +38,7 @@
                 <mat-form-field>
                   <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"
                               (selectionChange)="updateOrderState($event.value)">
-                    <mat-option *ngFor="let selectedState of orderState" [value]="selectedState.value | translate">
+                    <mat-option *ngFor="let selectedState of orderState" [value]="selectedState.value">
                       {{selectedState.viewValue}}
                     </mat-option>
                   </mat-select>
@@ -48,13 +48,11 @@
             </div><!-- end .admin-customer-data -->
             <div class="admin-customer-articles">
 
-              <h4>Bestellte Artikel</h4>
+              <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
               <div class="admin-order-item-listing">
               <div class="admin-order-item" *ngFor="let articles of order?.ShoppingBasket.items">
 
-              <h4>{{'ORDERED-ITEMS' | translate}}</h4>
-              <div *ngFor="let articles of order?.ShoppingBasket.items">
-                <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
+                 <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                 <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
                 <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
                 <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
@@ -63,8 +61,7 @@
               <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.ShoppingBasket.totalSum}}</p>
             </div><!-- end .admin-customer-articles -->
           </div><!-- end .admin-orders -->
-
-        </mat-expansion-panel>
+         </mat-expansion-panel>
         <br><br>
         <pagination-controls
           (pageChange)="p = $event"
