@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Directive } from '@angular/core';
+import {Component, OnInit, Input, Directive} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
@@ -14,43 +14,52 @@ export class OverviewComponent implements OnInit {
   public orders = [];
   public selectedState = 'approved';
   public p: number = 1;
-  private langSwitch: boolean;
-  private panelOpenState = false;
+  public panelOpenState: boolean = false;
 
   public orderState = [
-    {value: 'approved', viewValue: 'In bearbeitung'},
-    {value: 'completed', viewValue: 'Versendet'},
-    {value: 'canceled', viewValue: 'Annuliert'}
+    {value: 'APPROVED', viewValue: '???'},
+    {value: 'COMPLETED', viewValue: '???'},
+    {value: 'CANCELED', viewValue: '???'}
   ];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
     private translate: TranslateService,
     private langService: LangService
-
   ) {
-
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.langSwitch = true;
+
     this.langService.getLanguage().subscribe(language => {
-      this.langSwitch = !this.langSwitch;
+      this.translateOrderState();
     });
+
+    this.translateOrderState();
   }
 
   public ngOnInit() {
-
-        this.orderService.getAll( )
-          .subscribe(
-            result => {
-             this.orders.push(result);
-
-            }
-          );
+    this.orderService.getAll()
+      .subscribe(
+        result => {
+          this.orders.push(result);
+        }
+      );
   }
-  updateOrderState(orderState) {
+
+  public updateOrderState(orderState) {
     this.selectedState = orderState;
-   }
+  }
+
+  private translateOrderState() {
+    for (let i = 0; i < this.orderState.length; i++) {
+      this.translate.get(this.orderState[i].value).subscribe(translated => {
+          this.orderState[i].viewValue = translated;
+        }
+      );
+    }
+  }
+
 }
