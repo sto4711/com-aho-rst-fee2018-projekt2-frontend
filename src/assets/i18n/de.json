@@ -80,6 +80,14 @@
   "USERS": "Benutzer",
   "CUSTOMER": "Kunde",
   "ORDERED-ON": "bestellt am",
+  "NEW": "neu",
+  "APPROVED": "bestättigt",
+  "PARTICULARS": "Personalien",
+  "ORDERED-ITEMS": "Bestellte Artikel",
+
+
+
+
 
   "MY-ORDER-DATA": "Meine Bestelldaten",
   "RESET": "zurücksetzen",

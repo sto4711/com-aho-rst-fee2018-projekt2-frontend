@@ -80,6 +80,10 @@
   "USERS": "users",
   "CUSTOMER": "customer",
   "ORDERED-ON": "ordered on",
+  "NEW": "new",
+  "APPROVED": "approved",
+  "PARTICULARS": "particulars",
+  "ORDERED-ITEMS": "ordered items",
 
 
   "MY-ORDER-DATA": "my order data",
