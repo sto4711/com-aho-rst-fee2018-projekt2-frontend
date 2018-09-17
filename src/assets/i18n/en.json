@@ -28,6 +28,7 @@
   "ON-STOCK": "on stock",
   "PLEASE-CHOOSE-AMOUNT": "please choose amount",
   "ARTICLE-STATE": "change article state",
+  "STATE": "state",
   "ADD-TO-SHOPPING-BASKET": "add to shopping basket",
   "CONTINUE-SHOPPING": "continue shopping",
   "SHOPPING-BASKET-IS-EMPTY": "shopping basket is empty",
@@ -74,6 +75,13 @@
   "WE-SHIP-EXCLUSIVELY-WITH-SWISS-POST": "we ship exclusively with swiss post",
   "PAYING-WITH": "paying with",
   "OVERVIEW": "overview",
+  "ADMIN": "admin",
+  "ORDERS": "orders",
+  "USERS": "users",
+  "CUSTOMER": "customer",
+  "ORDERED-ON": "ordered on",
+
+
   "MY-ORDER-DATA": "my order data",
   "RESET": "reset",
   "ORDER-NOW": "order now",
