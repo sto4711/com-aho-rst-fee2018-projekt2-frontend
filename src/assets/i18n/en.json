@@ -28,6 +28,7 @@
   "ON-STOCK": "on stock",
   "PLEASE-CHOOSE-AMOUNT": "please choose amount",
   "CHANGE-ORDER-STATE": "change order state",
+  "ORDER-STATE-CHANGED": "order state changed",
   "STATE": "state",
   "ADD-TO-SHOPPING-BASKET": "add to shopping basket",
   "CONTINUE-SHOPPING": "continue shopping",
