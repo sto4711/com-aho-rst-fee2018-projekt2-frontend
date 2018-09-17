@@ -1,21 +1,21 @@
 <div class="row">
-  <h2>Admin Bereich</h2>
+  <h2>{{'ADMIN' | translate}}</h2>
 
   <mat-tab-group>
-    <mat-tab label="Bestellungen">
+    <mat-tab label="{{'ORDERS' | translate}}">
       <mat-accordion>
 
         <mat-expansion-panel *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p } "
                              (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <strong>Bestellung von:&nbsp;</strong>
+              <strong>{{'CUSTOMER' | translate}}:&nbsp;</strong>
               {{order?.deliveryAddress.givenname}}
               {{order?.deliveryAddress.surname}}
             </mat-panel-title>
             <mat-panel-description>
-               <strong>Bestellt am:</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}&nbsp;|&nbsp;
-              <strong >Bestellstatus:&nbsp;</strong>{{order?.state}}</mat-panel-description>
+               <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}&nbsp;|&nbsp;
+              <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state}}</mat-panel-description>
           </mat-expansion-panel-header>
 
           <div class="admin-order">
@@ -69,6 +69,6 @@
         ></pagination-controls>
       </mat-accordion>
     </mat-tab><!-- end tab Bestellungen -->
-    <mat-tab label="Benutzer">Benutzer</mat-tab>
+    <mat-tab label="{{'USERS' | translate}}"></mat-tab>
    </mat-tab-group>
 </div>

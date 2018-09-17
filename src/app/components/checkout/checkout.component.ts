@@ -15,7 +15,7 @@ import { MatStepper } from '@angular/material';
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent  {
   public isLinear = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
@@ -40,13 +40,6 @@ export class CheckoutComponent implements OnInit {
     , private translate: TranslateService
   ) {
     this.initValidation();
-  }
-
-  public ngOnInit() {
-
-  }
-
-  public ngOnChanges() {
   }
 
   public ngAfterViewInit() {
