@@ -280,6 +280,10 @@ a button.mat-menu-btn {
   border: 0;
   position: relative;
 }
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+  width: 21%;
+}
 /*
     rows, cols ////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -918,33 +922,33 @@ button#count {
   cursor: default;
 }
 
-table {
+table#shopping-basket-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 
-tr:nth-of-type(odd) {
+table#shopping-basket-table tr:nth-of-type(odd) {
   background: #eeeeee;
 }
 
-th {
+table#shopping-basket-table th {
   background: #fff;
   color: $font-color;
   font-size: 1.8rem;
   font-weight: 400;
 }
-td, th {
+table#shopping-basket-table td, table#shopping-basket-table th {
   padding: 0.8em;
   text-align: left;
   width: 21%;
 }
 
-td {
+table#shopping-basket-table td {
   font-size:1.6rem;
 }
 
-tfoot tr:nth-of-type(odd) {
+table#shopping-basket-table tfoot tr:nth-of-type(odd) {
   background: #fff;
 }
 
@@ -974,28 +978,29 @@ tfoot tr:nth-of-type(odd) {
 
   }
 
-  table, thead, tfoot, tbody, th, td, tr {
+  table#shopping-basket-tabletable, table#shopping-basket-tablethead, table#shopping-basket-tabletfoot,
+  table#shopping-basket-table tbody, table#shopping-basket-table th, table#shopping-basket-table td, table#shopping-basket-table tr {
     display: block;
   }
 
-  thead tr {
+  table#shopping-basket-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  td, th {
+  table#shopping-basket-table td, table#shopping-basket-table th {
     width: auto;
   }
 
-  td {
+  table#shopping-basket-table td {
 
     border: none;
     position: relative;
     padding-left: 50%;
   }
 
-  td:before {
+  table#shopping-basket-table  td:before {
      position: absolute;
      top: 6px;
     left: 6px;
@@ -1094,6 +1099,26 @@ tfoot tr:nth-of-type(odd) {
   }
 
 }
+#admin-order-table {
+  width: 100%;
+}
+#admin-order-table th{
+  background: #fff;
+  color: $font-color;
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 10px 24px ;
+}
+#admin-order-table thead th, #admin-order-table thead td {
+  width: auto;
+
+}
+#admin-order-table tbody th, #admin-order-table tbody td {
+  width: auto;
+  padding:0;
+
+}
+
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -1183,10 +1208,6 @@ p#disclaimer{
 #payment-logos li {
   margin: 0 0 15px 0;
 }
-
-
-
-
 
 
 /*

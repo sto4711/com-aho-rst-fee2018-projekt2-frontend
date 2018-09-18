@@ -6,7 +6,7 @@
       <mat-tab label="{{'ORDERS' | translate}}">
 
       <mat-accordion>
-        <table matSort (matSortChange)="sortData($event)">
+        <table id="admin-order-table" matSort (matSortChange)="sortData($event)">
           <thead>
           <tr>
             <th mat-sort-header="name">Name</th>
@@ -25,8 +25,9 @@
                     {{order?.deliveryAddress.surname}}
                   </mat-panel-title>
                   <mat-panel-description>
-                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}&nbsp;|&nbsp;
-                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
+                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}</mat-panel-description>
+                   <mat-panel-description>
+                     <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="admin-order">
@@ -78,10 +79,14 @@
 
           </tr>
           </tbody>
+          <tfoot>
+          <tr><td colspan="3">
            <pagination-controls
             (pageChange)="p = $event"
             previousLabel="{{'BACK' | translate}}"
             nextLabel="{{'NEXT' | translate}}"></pagination-controls>
+          </td></tr>
+          </tfoot>
         </table>
 
       </mat-accordion>
