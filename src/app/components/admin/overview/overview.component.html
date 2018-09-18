@@ -38,7 +38,7 @@
                 <mat-form-field>
                   <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"
                               (selectionChange)="onSelectionChange($event)">
-                    <mat-option *ngFor="let state of orderState" [value]="state.value | translate">
+                    <mat-option *ngFor="let state of orderState" [value]="state.value">
                       {{state.viewValue}}
                     </mat-option>
                   </mat-select>

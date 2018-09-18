@@ -14,7 +14,7 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public orders = [];
+  public orders: Order;
   public p: number = 1;
   public panelOpenState: boolean = false;
 
@@ -48,7 +48,7 @@ export class OverviewComponent implements OnInit {
     this.orderService.getAll()
       .subscribe(
         result => {
-          this.orders.push(result);
+          this.orders = result;
         }
       );
   }
