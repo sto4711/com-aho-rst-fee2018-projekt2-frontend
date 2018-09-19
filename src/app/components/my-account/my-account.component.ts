@@ -13,9 +13,10 @@ import {Location} from '@angular/common';
   templateUrl: './my-account.component.html',
   styleUrls: ['./my-account.component.scss']
 })
-export class MyAccountComponent implements OnInit {
+export class MyAccountComponent {
   invalidLogin: boolean;
   login: Login = new Login();
+  loginCreate: Login = new Login();
 
   constructor(
     private loginService: LoginService
@@ -27,8 +28,6 @@ export class MyAccountComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {}
-
   onLogin() {
     this.loginService.signin(this.login)
       .subscribe(token => {
@@ -36,7 +35,7 @@ export class MyAccountComponent implements OnInit {
         },
         error => {
           this.invalidLogin = true;
-          this.dialogService.confirm('Fehler login', 'Es ist ein Fehler aufgetreten ' + error);
+          this.dialogService.confirm('Fehler onLogin', 'Es ist ein Fehler aufgetreten ' + error);
         },
         () => {
           this.login = new Login();
@@ -52,8 +51,23 @@ export class MyAccountComponent implements OnInit {
           //
         },
         error => {
-          this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
+          this.dialogService.confirm('Fehler onLogout', 'Es ist ein Fehler aufgetreten ' + error);
         });
   }
+
+  onCreate() {
+    this.loginService.create(this.loginCreate)
+      .subscribe(token => {
+          //
+        },
+        error => {
+          this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
+        },
+        () => {
+          this.loginCreate = new Login();
+          this.snackBar.open('user created ok', null, {duration: 1500, panelClass: 'snackbar'});
+        });
+  }
+
 
 }

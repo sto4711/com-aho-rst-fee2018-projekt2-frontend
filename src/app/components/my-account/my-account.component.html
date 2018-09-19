@@ -17,12 +17,12 @@
       <button class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
 
     </form>
-    <form class="form new-account-form">
+    <form class="form new-account-form" #f2="ngForm"(ngSubmit)="onCreate()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
       <label for="create-email">{{'E-MAIL' | translate}}</label>
-      <input id="create-email" placeholder="{{'MY-E-MAIL' | translate}}" type="email" required autofocus autocomplete="off"/>
+      <input id="create-email" name="mail" placeholder="{{'MY-E-MAIL' | translate}}" type="email" required autofocus [(ngModel)]="loginCreate.email" autocomplete="off"/>
       <label for="create-password">{{'PASSWORD' | translate}}</label>
-      <input type="password" placeholder="{{'MY-PASSWORD' | translate}}" id="create-password" required autofocus autocomplete="off"/>
+      <input type="password" name="pwd" placeholder="{{'MY-PASSWORD' | translate}}" id="create-password" required autofocus [(ngModel)]="loginCreate.pwd" autocomplete="off"/>
       <button class="btn form-btn" type="submit"><span class="btn-form-text"> {{'CREATE-ACCOUNT' | translate}}</span></button>
 
     </form>
