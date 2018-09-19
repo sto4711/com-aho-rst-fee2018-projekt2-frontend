@@ -35,6 +35,8 @@ export class OverviewComponent implements OnInit {
     private userService: UserService,
     private translate: TranslateService,
     private langService: LangService
+    , private clientContextService: ClientContextService
+
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -48,6 +50,7 @@ export class OverviewComponent implements OnInit {
   }
 
   public ngOnInit() {
+  //  this.getUsers();
     this.orderService.getAll()
       .subscribe(
         result => {
@@ -106,6 +109,17 @@ export class OverviewComponent implements OnInit {
         }
       );
     }
+  }
+
+  getUsers(): void {
+    this.userService.get(this.clientContextService.getToken())
+      .subscribe(users => {
+          this.users = users;
+        },
+        error => {
+          this.router.navigate(['login']).then();
+        }
+      );
   }
 
 }

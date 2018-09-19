@@ -3,8 +3,8 @@
 
   <h2>{{article?.brand}}</h2>
   <div id="article-detail-wrap">
-    <picture>
-      <source media="(min-width: 475px)" srcset="{{imageURL + article?.imageURL}}">
+    <picture *ngIf="!loading">
+       <source  media="(min-width: 475px)" srcset="{{imageURL + article?.imageURL}}">
       <source media="(min-width: 320px)" srcset="{{imageURL + article?.imageURL}}">
       <figure>
         <img src="{{imageURL + article?.imageURL}}" width="100%" height="auto">
@@ -20,7 +20,7 @@
         </figcaption>
       </figure>
     </picture>
-    <div id="article-detail-content">
+     <div id="article-detail-content">
       <h4>{{article?.name }}</h4>
       <p>{{article?.descriptionLangCode | translate}}</p>
       <div class="article-detail-rating">
