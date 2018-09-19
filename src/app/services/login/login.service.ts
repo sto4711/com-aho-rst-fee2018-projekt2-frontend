@@ -39,6 +39,14 @@ export class LoginService {
     );
   }
 
+  create(login: Login): Observable<User> {
+    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'create', login, {
+      headers: {'Content-Type': 'application/json'}
+    },).pipe(
+      tap((/*result: string*/) => console.log('create ok'))
+    );
+  }
+
   isloggediIn(email: string): Observable<boolean> {
     return this.http.get<boolean>(     ClientContextService.BACKEND_URL_USER , {
         headers: {'Content-Type': 'application/json'}
