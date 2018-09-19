@@ -26,6 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'article-detail', component: ArticleDetailComponent,
+    /* resolve: [], */
     data: {
       breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]
     }
