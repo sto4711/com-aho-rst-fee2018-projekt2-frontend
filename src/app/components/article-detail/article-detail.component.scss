@@ -1,2 +1,79 @@
 @import '../../../sass/mixins.scss';
 @import '../../../sass/variables.scss';
+
+/*
+    article detail page ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+#article-detail-wrap {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
+#article-detail-wrap picture {
+  flex:1;
+}
+
+#article-detail-content {
+  flex: 1;
+  padding: 0 0 0 25px;
+}
+.article-detail-nr, .article-detail-availability, .article-detail-price {
+  padding: 15px 0 0 0;
+}
+
+.article-detail-rating {
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+.article-detail-rating i{
+  color: gold;
+}
+
+.article-detail-nr span {
+  color: $orange;
+}
+.article-detail-price {
+  font-size: 2.6rem;
+  padding:15px 0;
+
+}
+
+.available {
+  color: $green;
+}
+
+figcaption {
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 10px 0 0 0;
+}
+
+figcaption .fab {
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 852px) {
+  #article-detail-wrap {
+    flex-direction: column;
+  }
+  #article-detail-content {
+    padding: 25px 0 0 0;
+  }
+
+}
+
+.article-like {
+  display: block;
+  cursor: pointer;
+
+  .fas {
+    color: $green;
+    &:hover {
+      color: $font-color;
+    }
+  }
+}
+

@@ -14,6 +14,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   exports: [
@@ -31,7 +32,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatRadioModule,
     MatTableModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSortModule
   ]
 })
 export class MatComponentsModule { }

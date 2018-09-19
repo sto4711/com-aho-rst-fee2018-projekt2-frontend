@@ -12,15 +12,19 @@ export class ArticleTemplateComponent implements OnInit {
 
   @Input() article: Article;
   imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
-
+  loading: boolean = true;
   constructor(
     private router: Router
   ) { }
 
+
+  onLoad() {
+    this.loading = false;
+  }
+
   ngOnInit() {
   }
   goToDetail(articleQueryParameter){
-    //articleName = articleName.replace(/ /g,"-");
-    this.router.navigate(['article-detail'], { queryParams: {article: articleQueryParameter} });
+     this.router.navigate(['article-detail'], { queryParams: {article: articleQueryParameter} });
   }
 }
