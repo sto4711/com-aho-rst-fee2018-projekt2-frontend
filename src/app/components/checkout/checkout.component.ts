@@ -44,10 +44,9 @@ export class CheckoutComponent  {
     this.isAutoStepping = true;
     this.orderService.getOrder()
       .subscribe(order => {
-        Promise.resolve(null).then(() => {//delay; not final solution
+        Promise.resolve(null).then(() => {//delay with a Promise
           this.setFormGroupValues(order);
           this.handleSteps(order);
-//        this.changeDetectorRef.detectChanges();
           this.isAutoStepping = false;
         });
       });
