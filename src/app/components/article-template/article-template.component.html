@@ -1,6 +1,9 @@
-
+<div *ngIf="loading" id="loaderOverlay"></div>
+<div *ngIf="loading" class="loader"></div>
   <div class="product-content" (click)="goToDetail(article.articleQueryParameter)">
-    <img class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
+
+    <img [hidden]="loading" (load)="onLoad()" class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
+
     <div class="product-data">
       <p><span class="product-listing-title">{{article.name}}</span><br>
         <span class="product-listing-descr">{{article.brand}}</span><br>
