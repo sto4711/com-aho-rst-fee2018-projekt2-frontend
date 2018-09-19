@@ -166,7 +166,7 @@ input.mat-input-element {
    top: 1.28125em;
 }
 
- 
+
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $green !important;
 }
@@ -1214,11 +1214,9 @@ select {
  */
 
 .loader {
-  position: fixed;
+  position: relative;
   z-index: 999;
-  left: 50%;
-  top: 50%;
-  margin: 0;
+    margin: 25px auto;
   display: block;
   width: 100px;
   height: 100px;
