@@ -6,6 +6,33 @@
 // ng config schematics.@schematics/angular:component.styleext scss
 
 /*
+    resets  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  outline: none;
+}
+
+*  {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.hover {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+
+}
+
+img {
+  border: 0;
+}
+
+/*
     construct  /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
@@ -60,37 +87,36 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
  */
 
 h1, h2, h3, h4 {
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   margin: 0 0 2rem;
 }
 
 h1 {
-  font-size: 4.2rem;
+   @include font-size($sizeValue:4.2);
 }
 
 h2 {
-  font-size: 3.2rem ;
+  @include font-size($sizeValue:3.2);
+
 
 }
 
 h3 {
-  font-size: 2.4rem;
+   @include font-size($sizeValue:2.4);
 
 }
 
 h4 {
-  font-size: 2rem;
-  font-weight: 400;
+  @include font-size($sizeValue:2);
+  font-weight: $font-weight-medium;
 }
 
 p {
-  font-size: 1.8rem;
-  line-height: 2.4rem;
-  font-weight: 300;
+  @include base-font-style();
+  font-weight: $font-weight-light;
 }
 
 a {
-
   text-decoration: none;
   color: $green;
 }
@@ -100,36 +126,8 @@ a:hover {
 }
 
 li {
-  font-size: 1.8rem;
+  @include base-font-style();
   list-style-type: none;
-  line-height: 2.4rem;
-}
-
-/*
-    resets  /////////////////////////////////////////////////////////////////////////////////////////////////////////
- */
-
-* {
-  margin: 0px;
-  padding: 0px;
-  border: none;
-  outline: none;
-}
-
-*  {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.hover {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-
-}
-
-img {
-  border: 0;
 }
 
 /*
@@ -152,25 +150,23 @@ ul.ngx-pagination {
 }
 
 .mat-form-field {
-  font-weight: 300;
+  font-weight: $font-weight-light;
   min-width: 250px;
 }
 
 input.mat-input-element {
+  @include font-size($sizeValue:1.8, $important:!important);
   margin-top: 0.0625em;
 }
 
  .mat-form-field-label {
-   font-size: 1.4rem !important;
+   @include font-size($sizeValue:1.4, $important:!important);
    top: 1.28125em;
 }
 
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $green !important;
-}
-.mat-input-element {
-  font-size: 1.8rem !important;
 }
 
 .mat-option-text a {
@@ -179,21 +175,22 @@ input.mat-input-element {
 }
 
 .mat-menu-content:not(:empty){
-  padding: 10px;
+  padding: 15px;
 }
+
 .mat-menu-content ul li  {
-  font-size: 1.6rem;
-  line-height: 1.8rem;
+  @include base-font-style();
   padding: 10px 0;
   border-bottom: 1px solid #cccccc;
 }
+
 .mat-menu-content p {
-  font-size: 1.6rem;
-  line-height: 1.8rem;
+  @include base-font-style();
+
 }
 
 a button.mat-menu-btn {
-  font-size: 1.4rem;
+  @include base-font-style();
 }
 
 .overview-price {

@@ -1,15 +1,21 @@
+@import 'variables';
 
 /*
     mixins  /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-@mixin font-size($sizeValue) {
-  font-size: ($sizeValue * 10) + px;
-  font-size: $sizeValue + rem;
+@mixin base-font-style(){
+      @include font-size(1.8);
+      @include line-height(2.4);
+}
+
+@mixin font-size($sizeValue:1.8, $important:"") {
+  font-size: ($sizeValue * $base-font-size);
+  font-size: $sizeValue + rem  + $important;
 }
 
 @mixin line-height($heightValue) {
-  line-height: ($heightValue * 10) + px;
+  line-height: ($heightValue * $base-font-size);
   line-height: $heightValue + rem;
 }
 
@@ -18,6 +24,18 @@
   animation: $keyframe $time+s $option ;
   -webkit-animation: $keyframe $time+s $option;
   animation-delay: $delay+s;
+}
+
+@mixin margin($values) {
+  @each $var in $values {
+    margin: #{$var};
+  }
+}
+
+@mixin padding($values) {
+  @each $var in $values {
+    padding: #{$var};
+  }
 }
 
 /*
@@ -29,3 +47,4 @@
   flex-flow:row wrap;
   justify-content: center;
 }
+
