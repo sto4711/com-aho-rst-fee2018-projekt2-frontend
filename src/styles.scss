@@ -11,15 +11,14 @@
 
 html, body {
   height: 100%;
-  font-size: 10px;
+  font-size: $base-font-size;
 
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  display: flex;
-  justify-content: center;
+  font-family: $base-font-family;
+  font-weight: $font-weight-light;
+  @include flex;
   color: $font-color;
 }
 
@@ -1067,7 +1066,7 @@ footer a {
 
 
 p#disclaimer{
-  font-size: 14px;
+  font-size: 1.2rem;
   display: block;
   width: 100%;
   padding: 25px 0;
