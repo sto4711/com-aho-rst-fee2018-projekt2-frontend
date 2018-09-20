@@ -14,7 +14,6 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./article-detail.component.scss']
 })
 
-
 export class ArticleDetailComponent implements OnInit {
   public article: Article;
   public imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;

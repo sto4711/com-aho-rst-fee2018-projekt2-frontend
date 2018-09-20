@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID} from '@angular/core';
+import { NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -15,11 +15,11 @@ import {LoginService} from './services/login/login.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { SearchComponent } from './components/search/search.component';
-import {TrimPipe} from './trim.pipe';
+import {TrimPipe} from './pipes/trim.pipe';
 import { ShoppingBasketComponent } from './components/shopping-basket/shopping-basket.component';
 import { ArticleComponent } from './components/admin/article/article.component';
 import { DialogConfirmComponent } from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
-import {AmountConverterPipe} from './currency.pipe';
+import {AmountConverterPipe} from './pipes/currency.pipe';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
 import {MatCardModule} from '@angular/material/card';
@@ -30,12 +30,11 @@ import { DialogConfirmDeleteComponent } from './components/commons/dialog/dialog
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
-import {DeTrimPipe} from './de-trim.pipe';
+import {DeTrimPipe} from './pipes/de-trim.pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LangSwitchComponent } from './components/lang-switch/lang-switch.component';
 import { ShoppingBasketListingComponent } from './components/shopping-basket-listing/shopping-basket-listing.component';
 import {LangService} from './services/lang-service/lang.service';
-import {MessageService} from './services/message/message.service';
 import { OverviewComponent } from './components/admin/overview/overview.component';
 import {CheckoutResolverService} from "./services/route-resolver/checkout-resolver.service";
 
