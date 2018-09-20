@@ -31,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let article of order?.ShoppingBasket.items">
+    <tr *ngFor="let article of order?.shoppingBasket.items">
       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
@@ -56,7 +56,7 @@
         <p>
           <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
           <span>
-          <strong> CHF <span class="amount-spacer">{{order?.ShoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
+          <strong> CHF <span class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
       </span>
 
         </p>

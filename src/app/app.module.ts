@@ -37,6 +37,7 @@ import { ShoppingBasketListingComponent } from './components/shopping-basket-lis
 import {LangService} from './services/lang-service/lang.service';
 import {MessageService} from './services/message/message.service';
 import { OverviewComponent } from './components/admin/overview/overview.component';
+import {CheckoutResolverService} from "./services/route-resolver/checkout-resolver.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -91,9 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent ],
-  providers: [LoginService, LangService
-
-  ],
+  providers: [LoginService, LangService, CheckoutResolverService],
   bootstrap: [AppComponent]
 })
 

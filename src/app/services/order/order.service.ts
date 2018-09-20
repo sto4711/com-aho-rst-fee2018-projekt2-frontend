@@ -106,23 +106,36 @@ export class OrderService {
   }
 
 
-  public approve(token: Token):Observable<Order>  {
-    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {"orderId": this.order._id, "state": OrderService.STATE_APPROVED}, {
-      headers: {'Content-Type': 'application/json', 'Authorization': token.value}
+  private clear() {
+    this.order = null;
+    localStorage.removeItem('orderId');
+  }
+
+  public approve(token: Token): Observable<Order> {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {
+        "orderId": this.order._id,
+        "state": OrderService.STATE_APPROVED
+      }, {
+        headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(
-        tap(result => this.shoppingBasketService.clear() )
+      tap(result => {
+        this.clear();
+        this.shoppingBasketService.clear();
+      })
     );
 
   }
 
-  public updateState(token: Token, orderId: string, state: string):Observable<Order>  {
-    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {"orderId": orderId, "state": state}, {
+  public updateState(token: Token, orderId: string, state: string): Observable<Order> {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {
+        "orderId": orderId,
+        "state": state
+      }, {
         headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     );
   }
-
 
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {

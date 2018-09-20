@@ -14,6 +14,7 @@ import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ClientContextService} from "./services/client-context/client-context.service";
 import {OverviewComponent} from './components/admin/overview/overview.component';
+import {CheckoutResolverService} from "./services/route-resolver/checkout-resolver.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,12 +22,11 @@ const routes: Routes = [
   {
     path: 'article-listing', component: ArticleListingComponent,
     data: {
-      breadcrumbPath: [new BreadcrumbPath('',  'OUR-ARTICLES')]
+      breadcrumbPath: [new BreadcrumbPath('', 'OUR-ARTICLES')]
     }
   },
   {
     path: 'article-detail', component: ArticleDetailComponent,
-    /* resolve: [], */
     data: {
       breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]
     }
@@ -43,14 +43,16 @@ const routes: Routes = [
       breadcrumbPath: [new BreadcrumbPath('', 'MY-SHOPPING-BASKET')]
     }
   },
-  {path: 'checkout', component: CheckoutComponent,
+  {
+    path: 'checkout', component: CheckoutComponent,
+    resolve: {StartUpResolverService: CheckoutResolverService},
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
-    }},
+    }
+  },
   {path: 'order-detail', component: OrderDetailComponent},
   {path: 'admin/overview', component: OverviewComponent},
-   {path: '**', component: NotFoundComponent},
-
+  {path: '**', component: NotFoundComponent,}
 ];
 
 @NgModule({
