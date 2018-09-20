@@ -20,6 +20,8 @@ export class ArticleDetailComponent implements OnInit {
   public imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
   public selectedValue = 1;
   private articleAmount: number = 1;
+  public loading: boolean = true;
+
   public amount = [
     {value: 1, viewValue: '1'},
     {value: 2, viewValue: '2'},
@@ -48,11 +50,14 @@ export class ArticleDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.article = result;
+              this.loading = false;
+
             }
           );
       });
   }
 
+ 
   public selectedArticleAmount(amount) {
     this.articleAmount = amount;
   }

@@ -32,8 +32,10 @@ export class UserComponent implements OnInit {
     this.userService.get(this.clientContextService.getToken())
       .subscribe(users => {
           this.users = users;
+
         },
         error => {
+
           this.router.navigate(['login']).then();
         }
       );
