@@ -113,7 +113,8 @@
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
         </div>
-        <form #fCreateOrder="ngForm" (ngSubmit)="approveOrder()">
+
+        <form *ngIf="shoppingBasketService.shoppingBasket?.items.length>0" #fCreateOrder="ngForm" (ngSubmit)="approveOrder()">
           <p>
             <button id="order-button"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
           </p>

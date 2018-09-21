@@ -14,7 +14,8 @@ import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ClientContextService} from "./services/client-context/client-context.service";
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {CheckoutResolverService} from "./services/route-resolver/checkout-resolver.service";
+import {CheckoutResolverService} from "./services/checkout/checkout-resolver.service";
+import {LoginService} from "./services/login/login.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -45,7 +46,8 @@ const routes: Routes = [
   },
   {
     path: 'checkout', component: CheckoutComponent,
-    resolve: {StartUpResolverService: CheckoutResolverService},
+    canActivate: [LoginService],
+    resolve: {CheckoutResolverService},
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }

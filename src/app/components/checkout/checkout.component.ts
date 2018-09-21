@@ -24,6 +24,8 @@ export class CheckoutComponent  {
   public paymentType: FormGroup;
   public itemChangePossible: boolean = false;
   public isAutoStepping: boolean = false;
+  private static CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN: string = 'SESSION-IS-NO-MORE-VALID-PLEASE-SIGNIN-AGAIN';
+
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -136,13 +138,14 @@ export class CheckoutComponent  {
         },
         error => {
           if (error.status === 401) {
-            this.translate.get(LoginService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
+            this.translate.get(CheckoutComponent.CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
               }
             );
           }
         }
+
       );
   }
 

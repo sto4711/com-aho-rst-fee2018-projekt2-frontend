@@ -10,7 +10,7 @@ export class CheckoutResolverService implements Resolve<Observable<string>> {
 
   resolve(): Observable<string> {
     console.log('CheckoutResolverService.resolve()');
-    return of(null);
+    return of('');
   }
 
 }

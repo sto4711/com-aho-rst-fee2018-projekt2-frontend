@@ -19,6 +19,10 @@ export class ShoppingBasketService {
     this.initBasket();
   }
 
+  public getShoppingBasket(): ShoppingBasket  {
+    return this.shoppingBasket;
+  }
+
   public initBasket() {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
     if (shoppingBasketId == null) {
