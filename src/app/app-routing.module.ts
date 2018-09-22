@@ -1,20 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {UserComponent} from 'src/app/components/admin/user/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
-import {ArticleComponent} from './components/admin/article/article.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
-import {ClientContextService} from "./services/client-context/client-context.service";
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {CheckoutResolverService} from "./services/checkout/checkout-resolver.service";
 import {LoginService} from "./services/login/login.service";
 
 const routes: Routes = [
@@ -47,7 +43,6 @@ const routes: Routes = [
   {
     path: 'checkout', component: CheckoutComponent,
     canActivate: [LoginService],
-    resolve: {CheckoutResolverService},
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }

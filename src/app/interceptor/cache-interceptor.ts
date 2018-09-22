@@ -12,19 +12,22 @@ export class CacheInterceptor implements HttpInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const cachedResponse = this.requestCacheService.get(req);
-    if (cachedResponse) {
-      console.log('CacheInterceptor.intercept(), response is cached, no backend call');
-      return of(cachedResponse);
-    } else {
-      return next.handle(req).pipe(
-        tap(event => {
-          if (event instanceof HttpResponse) {
-            this.requestCacheService.put(req, event);
-          }
-        })
-      );
+    if (req.method === 'GET' && req.url.indexOf('article') > 0) {//cache articles only
+      const cachedResponse = this.requestCacheService.get(req);
+      if (cachedResponse) {
+        console.log('CacheInterceptor.intercept(), article response in cache, no backend call');
+        return of(cachedResponse);
+      } else {
+        return next.handle(req).pipe(
+          tap(event => {
+            if (event instanceof HttpResponse) {
+              this.requestCacheService.put(req, event);
+            }
+          })
+        );
+      }
     }
+    return next.handle(req);
   }
 
 }

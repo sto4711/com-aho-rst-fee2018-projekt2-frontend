@@ -36,7 +36,6 @@ import {LangSwitchComponent} from './components/lang-switch/lang-switch.componen
 import {ShoppingBasketListingComponent} from './components/shopping-basket-listing/shopping-basket-listing.component';
 import {LangService} from './services/lang-service/lang.service';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {CheckoutResolverService} from "./services/checkout/checkout-resolver.service";
 import {RequestCacheService} from "./services/request-cache/request-cache.service";
 import {CacheInterceptor} from "./interceptor/cache-interceptor";
 
@@ -93,7 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent],
-  providers: [LoginService, LangService, CheckoutResolverService,
+  providers: [LoginService, LangService,
     RequestCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
   ],

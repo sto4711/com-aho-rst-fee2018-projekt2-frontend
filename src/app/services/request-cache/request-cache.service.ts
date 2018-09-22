@@ -11,24 +11,22 @@ export class RequestCacheService  {
   private cache = new Map();
 
   public get(req: HttpRequest<any>): HttpResponse<any> | undefined {
-    const url = req.urlWithParams;
-    const cached = this.cache.get(url);
-
-    if (!cached) {
+    const cached = this.cache.get(req.urlWithParams);
+    if(cached){
+      const isExpired = cached.lastRead < (Date.now() - RequestCacheService.maxAge);
+      const expired = isExpired ? 'expired ' : '';
+      return cached.response;
+    }else {
       return undefined;
     }
-
-    const isExpired = cached.lastRead < (Date.now() - RequestCacheService.maxAge);
-    const expired = isExpired ? 'expired ' : '';
-    return cached.response;
   }
 
   public put(req: HttpRequest<any>, response: HttpResponse<any>): void {
+    const expired = Date.now() - RequestCacheService.maxAge;
     const url = req.url;
     const entry = { url, response, lastRead: Date.now() };
     this.cache.set(url, entry);
 
-    const expired = Date.now() - RequestCacheService.maxAge;
     this.cache.forEach(expiredEntry => {
       if (expiredEntry.lastRead < expired) {
         this.cache.delete(expiredEntry.url);
