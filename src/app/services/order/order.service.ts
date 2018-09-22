@@ -78,7 +78,7 @@ export class OrderService implements CanActivate {
           tap((order) => {
             this.order = order;
             localStorage.setItem('orderId', this.order._id);
-            if(this.order.state === 'NEW SETUP_FROM_LATEST')  {
+            if(this.order.valuesOvertakenFromLatestOrder)  {
               this.translate.get(OrderService.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST).subscribe(translated => {
                   this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 }
