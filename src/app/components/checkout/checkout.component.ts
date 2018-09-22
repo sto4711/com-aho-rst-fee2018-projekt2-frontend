@@ -35,7 +35,6 @@ export class CheckoutComponent  {
     , public orderService: OrderService
     , public dialog: MatDialog
     , private snackBar: MatSnackBar
-    , private clientContextService: ClientContextService
     , private router: Router
     , private translate: TranslateService
   ) {
@@ -128,7 +127,7 @@ export class CheckoutComponent  {
   }
 
   public approveOrder() {
-    this.orderService.approve(this.clientContextService.getToken())
+    this.orderService.approve()
       .subscribe(order => {
           this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
               this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});

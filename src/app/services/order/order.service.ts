@@ -13,7 +13,6 @@ import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
 import {PaymentType} from "./payment-type";
-import {Token} from "../login/token";
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +86,7 @@ export class OrderService implements CanActivate {
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
     return this.http.post<Order>(ClientContextService.BACKEND_URL_ORDER + 'create', {"shoppingBasketId": shoppingBasketId}, {
-        headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap(() => console.log('OrderService.create() ok'))
@@ -96,7 +95,7 @@ export class OrderService implements CanActivate {
 
   public get(id: string): Observable<Order> {
     return this.http.get<Order>(ClientContextService.BACKEND_URL_ORDER_DETAILS + '?id=' + id, {
-        headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap(() => console.log('OrderService.get() ok'))
@@ -134,12 +133,12 @@ export class OrderService implements CanActivate {
     localStorage.removeItem('orderId');
   }
 
-  public approve(token: Token): Observable<Order> {
+  public approve(): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {
         "orderId": this.order._id,
         "state": OrderService.STATE_APPROVED
       }, {
-        headers: {'Content-Type': 'application/json', 'Authorization': token.value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap(result => {
@@ -150,12 +149,12 @@ export class OrderService implements CanActivate {
 
   }
 
-  public updateState(token: Token, orderId: string, state: string): Observable<Order> {
+  public updateState(orderId: string, state: string): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'state', {
         "orderId": orderId,
         "state": state
       }, {
-        headers: {'Content-Type': 'application/json', 'Authorization': token.value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     );
   }
@@ -163,7 +162,7 @@ export class OrderService implements CanActivate {
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
-        headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap((order) => this.order = order)
