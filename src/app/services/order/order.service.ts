@@ -24,6 +24,8 @@ export class OrderService implements CanActivate {
   public static STATE_CANCELED: string = 'CANCELED';
   public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
   public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
+  public static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
+
 
 
   constructor(
@@ -76,6 +78,12 @@ export class OrderService implements CanActivate {
           tap((order) => {
             this.order = order;
             localStorage.setItem('orderId', this.order._id);
+            if(this.order.state === 'NEW SETUP_FROM_LATEST')  {
+              this.translate.get(OrderService.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST).subscribe(translated => {
+                  this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
+                }
+              );
+            }
           })
         );
     }

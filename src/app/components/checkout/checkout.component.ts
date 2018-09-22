@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Order} from '../../services/order/order';
-import { MatStepper } from '@angular/material';
+import {MatStepper} from '@angular/material';
 import {LoginService} from "../../services/login/login.service";
 
 @Component({
@@ -16,7 +16,7 @@ import {LoginService} from "../../services/login/login.service";
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent  {
+export class CheckoutComponent {
   public isLinear = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
@@ -144,7 +144,6 @@ export class CheckoutComponent  {
             );
           }
         }
-
       );
   }
 

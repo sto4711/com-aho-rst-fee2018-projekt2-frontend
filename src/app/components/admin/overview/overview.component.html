@@ -62,7 +62,7 @@
 
                     <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
                     <div class="admin-order-item-listing">
-                      <div class="admin-order-item" *ngFor="let articles of order?.ShoppingBasket.items">
+                      <div class="admin-order-item" *ngFor="let articles of order?.shoppingBasket.items">
 
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
@@ -70,7 +70,7 @@
                         <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
                       </div><!-- end .admin-order-item -->
                     </div><!-- end .admin-order-item-listing -->
-                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.ShoppingBasket.totalSum}}</p>
+                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum}}</p>
                   </div><!-- end .admin-customer-articles -->
                 </div><!-- end .admin-orders -->
               </mat-expansion-panel>
