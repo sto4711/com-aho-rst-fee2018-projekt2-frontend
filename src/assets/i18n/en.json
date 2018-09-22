@@ -87,9 +87,12 @@
   "CANCELED": "canceled",
   "PARTICULARS": "particulars",
   "ORDERED-ITEMS": "ordered items",
-
-
   "MY-ORDER-DATA": "my order data",
+  "THANK-YOU-FOR-YOUR-ORDER": "thank you for your order",
+  "YOUR-ORDER-IS-BEING-PROCESSED": "your order is being processed",
+  "ORDERED-ITEMS": "ordered items",
+
+
   "RESET": "reset",
   "ORDER-NOW": "order now",
   "TO-CHECKOUT": "to checkout",

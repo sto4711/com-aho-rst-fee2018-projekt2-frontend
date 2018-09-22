@@ -1,26 +1,26 @@
 <div class="row">
- <h2>Vielen Dank für Ihre Bestellung!</h2>
-<p>Ihre Bestellung befindet sich in bearbeitung.</p>
+  <h2>{{'THANK-YOU-FOR-YOUR-ORDER' | translate}}!</h2>
+  <p>{{'YOUR-ORDER-IS-BEING-PROCESSED' | translate}}.</p>
 
-<br><br>
-<div id="order-review">
-  <h4>{{'MY-ORDER-DATA' | translate}}</h4>
-  <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname}} </p>
-  <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{order?.deliveryAddress.surname}} </p>
-  <p><span class="review-data">{{'STREET' | translate}}: </span> {{order?.deliveryAddress.streetHousenumber}}</p>
-  <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{order?.deliveryAddress.postCode}} </p>
-  <p><span class="review-data">{{'CITY' | translate}}: </span>{{order?.deliveryAddress.city}} </p>
-  <br>
-  <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{order?.contactData.email}}</p>
-  <p><span class="review-data">{{'PHONE' | translate}}: </span>{{order?.contactData.phone}} </p>
-  <br>
-  <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
-  <br>
-  <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
-  <br><br><br>
-</div>
-  <h4>Bestellte Artikel</h4>
-  <table  id="shopping-basket-table">
+  <br><br>
+  <div id="order-review">
+    <h4>{{'MY-ORDER-DATA' | translate}}</h4>
+    <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname }} </p>
+    <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{order?.deliveryAddress.surname}} </p>
+    <p><span class="review-data">{{'STREET' | translate}}: </span> {{order?.deliveryAddress.streetHousenumber}}</p>
+    <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{order?.deliveryAddress.postCode}} </p>
+    <p><span class="review-data">{{'CITY' | translate}}: </span>{{order?.deliveryAddress.city}} </p>
+    <br>
+    <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{order?.contactData.email}}</p>
+    <p><span class="review-data">{{'PHONE' | translate}}: </span>{{order?.contactData.phone}} </p>
+    <br>
+    <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
+    <br>
+    <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
+    <br><br><br>
+  </div>
+  <h4>{{'ORDERED-ITEMS' | translate}}</h4>
+  <table id="shopping-basket-table">
     <thead>
     <tr>
       <th>{{'ITEM-NUMBER' | translate}}</th>
@@ -31,15 +31,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let article of order?.shoppingBasket.items">
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
+    <tr *ngFor="let shoppingBasketItem of order?.shoppingBasket.items">
       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
-       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}"> {{article.articleAmount}} </td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >
-        CHF <span class="amount-spacer">{{article.articlePriceSum | amountConverter}}</span>
-
+        {{shoppingBasketItem.itemNumber}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        {{shoppingBasketItem.articleName}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        CHF <span class="amount-spacer">{{shoppingBasketItem.articlePrice | amountConverter}}</span></td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        {{shoppingBasketItem.articleAmount}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        CHF <span class="amount-spacer">{{shoppingBasketItem.articlePriceSum | amountConverter}}</span>
       </td>
     </tr>
     </tbody>
@@ -49,23 +54,18 @@
       <td></td>
       <td></td>
       <td colspan="2" class="basket-total-amount">
-
         <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
           <span> CHF <span class="amount-spacer">15.00</span> </span>
         </p>
         <p>
           <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
           <span>
-          <strong> CHF <span class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
+          <strong> CHF <span
+            class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
       </span>
-
         </p>
-
       </td>
-
     </tr>
-
     </tfoot>
   </table>
-
 </div>

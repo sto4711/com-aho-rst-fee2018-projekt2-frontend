@@ -87,12 +87,14 @@
   "CANCELED": "storniert",
   "PARTICULARS": "Personalien",
   "ORDERED-ITEMS": "Bestellte Artikel",
-
-
-
-
-
   "MY-ORDER-DATA": "Meine Bestelldaten",
+  "THANK-YOU-FOR-YOUR-ORDER": "Vielen Dank für Ihre Bestellung",
+  "YOUR-ORDER-IS-BEING-PROCESSED": "Ihre Bestellung befindet sich in Bearbeitung.",
+  "ORDERED-ITEMS": "Bestellte Artikel",
+
+
+
+
   "RESET": "zurücksetzen",
   "ORDER-NOW": "Jetzt bestellen",
   "TO-CHECKOUT": "Zur Kasse",

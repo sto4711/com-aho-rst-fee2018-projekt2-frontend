@@ -65,11 +65,6 @@ export class OrderService implements CanActivate {
     if (this.order) {
       return of<Order>(this.order);
     }
-    // else if (!orderId && !this.shoppingBasketService.shoppingBasket) {
-    //   console.log('no Basket found, redirect to Basket')
-    //   this.router.navigate(['shopping-basket']).then();
-    //   return of<Order>(new Order());
-    // }
     else if (!orderId) {
       console.log('OrderService.initLazy(), no order -> will be created');
       return this.create()

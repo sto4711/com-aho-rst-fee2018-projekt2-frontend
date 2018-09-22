@@ -4,6 +4,8 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
+import {Observable} from "rxjs";
+import {Article} from "../../services/articles/article";
 
 @Component({
   selector: 'app-order-detail',
@@ -17,7 +19,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService,
+    public orderService: OrderService,
     private translate: TranslateService,
     private langService: LangService
 
