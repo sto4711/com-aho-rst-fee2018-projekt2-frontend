@@ -39,12 +39,17 @@ export class OrderService implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const orderId: string = localStorage.getItem('orderId');
     const notReady: boolean = (!orderId && !this.shoppingBasketService.shoppingBasket ? true : false);
-    const hasToken = (this.clientContextService.getToken().value == '' ? false : true);
+    const hasToken: boolean = (this.clientContextService.getToken().value == '' ? false : true);
+    let basketIsEmpty: boolean = false;
+    if (!notReady) {
+      basketIsEmpty = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
+    }
+    const checkoutOk = (!notReady && hasToken && !basketIsEmpty? true: false);
 
-    return of<boolean>(hasToken)
+    return of<boolean>(checkoutOk)
       .pipe(
         tap((ok: boolean) => {
-          if (notReady) {
+          if (notReady || basketIsEmpty) {
             this.router.navigate(['home']).then();
           }
           else if (!hasToken) {
@@ -86,7 +91,7 @@ export class OrderService implements CanActivate {
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
     return this.http.post<Order>(ClientContextService.BACKEND_URL_ORDER + 'create', {"shoppingBasketId": shoppingBasketId}, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap(() => console.log('OrderService.create() ok'))
@@ -95,7 +100,7 @@ export class OrderService implements CanActivate {
 
   public get(id: string): Observable<Order> {
     return this.http.get<Order>(ClientContextService.BACKEND_URL_ORDER_DETAILS + '?id=' + id, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap(() => console.log('OrderService.get() ok'))
@@ -162,7 +167,7 @@ export class OrderService implements CanActivate {
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
       tap((order) => this.order = order)
