@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
-import {ClientContextService} from "../client-context/client-context.service";
 import {HttpClient} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material";
+import {TranslateService} from "@ngx-translate/core";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
+
+import {ClientContextService} from "../client-context/client-context.service";
 import {Order} from "./order";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
-import {Router} from "@angular/router";
 import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
@@ -15,12 +18,13 @@ import {Token} from "../login/token";
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class OrderService implements CanActivate {
   private order: Order = null;
   public static STATE_APPROVED: string = 'APPROVED';
   public static STATE_COMPLETED: string = 'COMPLETED';
   public static STATE_CANCELED: string = 'CANCELED';
   public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
+  public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
 
 
   constructor(
@@ -28,7 +32,31 @@ export class OrderService {
     , private clientContextService: ClientContextService
     , private shoppingBasketService: ShoppingBasketService
     , private router: Router
+    , private translate: TranslateService
+    , private snackBar: MatSnackBar
   ) {
+  }
+
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    const orderId: string = localStorage.getItem('orderId');
+    const notReady: boolean = (!orderId && !this.shoppingBasketService.shoppingBasket ? true : false);
+    const hasToken = (this.clientContextService.getToken().value == '' ? false : true);
+
+    return of<boolean>(hasToken)
+      .pipe(
+        tap((ok: boolean) => {
+          if (notReady) {
+            this.router.navigate(['home']).then();
+          }
+          else if (!hasToken) {
+            this.translate.get(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
+                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
+                this.router.navigate(['my-account']).then();
+              }
+            );
+          }
+        })
+      );
   }
 
   public getOrder(): Observable<Order> {
@@ -37,11 +65,11 @@ export class OrderService {
     if (this.order) {
       return of<Order>(this.order);
     }
-    else if (!orderId && !this.shoppingBasketService.shoppingBasket) {
-      console.log('no Basket found, redirect to Basket')
-      this.router.navigate(['shopping-basket']).then();
-      return of<Order>(new Order());
-    }
+    // else if (!orderId && !this.shoppingBasketService.shoppingBasket) {
+    //   console.log('no Basket found, redirect to Basket')
+    //   this.router.navigate(['shopping-basket']).then();
+    //   return of<Order>(new Order());
+    // }
     else if (!orderId) {
       console.log('OrderService.initLazy(), no order -> will be created');
       return this.create()

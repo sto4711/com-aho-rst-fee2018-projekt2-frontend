@@ -11,7 +11,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {LoginService} from "./services/login/login.service";
+import {OrderService} from "./services/order/order.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'checkout', component: CheckoutComponent,
-    canActivate: [LoginService],
+    canActivate: [OrderService],
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }
