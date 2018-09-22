@@ -40,7 +40,7 @@ export class OrderService implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const orderId: string = localStorage.getItem('orderId');
-    const notReady: boolean = (!orderId && !this.shoppingBasketService.shoppingBasket ? true : false);
+    const notReady: boolean = (!orderId || !this.shoppingBasketService.shoppingBasket  ? true : false);
     const hasToken: boolean = (this.clientContextService.getToken().value == '' ? false : true);
     let basketIsEmpty: boolean = false;
     if (!notReady) {

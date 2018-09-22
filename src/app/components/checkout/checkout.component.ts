@@ -1,14 +1,17 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
-import {LoginService} from "../../services/login/login.service";
+import {Observable, of} from "rxjs";
+import {ConfirmDeleteService} from "../../services/commons/dialog/confirm-delete.service";
+import {CanComponentDeactivate} from "../../services/can-component-deactivate-guard/can-component-deactivate";
+import {CanComponentDeactivateGuard} from "../../services/can-component-deactivate-guard/can-component-deactivate-guard";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-checkout',
@@ -16,7 +19,7 @@ import {LoginService} from "../../services/login/login.service";
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent {
+export class CheckoutComponent implements CanComponentDeactivate {
   public isLinear = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
@@ -37,6 +40,7 @@ export class CheckoutComponent {
     , private snackBar: MatSnackBar
     , private router: Router
     , private translate: TranslateService
+    , private confirmDeleteService: ConfirmDeleteService
   ) {
     this.initValidation();
   }
@@ -51,6 +55,19 @@ export class CheckoutComponent {
           this.isAutoStepping = false;
         });
       });
+  }
+
+
+  public canDeactivate(): Observable<boolean> {
+    if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {
+      return this.confirmDeleteService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+        .pipe(
+          map((value) => (value==='yes'? true: false))
+        );
+    }
+    else {
+      return of(true);
+    }
   }
 
   private initValidation() {

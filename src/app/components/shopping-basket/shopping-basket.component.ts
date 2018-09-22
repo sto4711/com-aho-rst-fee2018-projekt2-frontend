@@ -59,7 +59,7 @@ export class ShoppingBasketComponent {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
             this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
-                this.snackBar.open(translated , null, {duration: 2500, panelClass: 'snackbar'});
+                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
               }
             );
           }
@@ -88,8 +88,6 @@ export class ShoppingBasketComponent {
         }
       );
   }
-
-
 
 
 }
