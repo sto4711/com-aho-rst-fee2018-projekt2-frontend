@@ -6,7 +6,7 @@ import {DialogConfirmYesNoComponent} from "../../../components/commons/dialog/di
 @Injectable({
   providedIn: 'root'
 })
-export class ConfirmDeleteService {
+export class ConfirmYesNoService {
 
   constructor(private dialog: MatDialog) { }
 

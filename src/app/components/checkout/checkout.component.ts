@@ -6,11 +6,11 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
 import {Observable, of} from "rxjs";
-import {ConfirmDeleteService} from "../../services/commons/dialog/confirm-delete.service";
 import {CanComponentDeactivate} from "../../services/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {map} from "rxjs/operators";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
+import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
 
 @Component({
   selector: 'app-checkout',
@@ -37,7 +37,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     , public shoppingBasketService: ShoppingBasketService
     , public orderService: OrderService
     , private router: Router
-    , private confirmDeleteService: ConfirmDeleteService
+    , private confirmYesNoService: ConfirmYesNoService
     , private snackBarService: SnackBarService
   ) {
     this.initValidation();
@@ -62,7 +62,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
 
   public canDeactivate(): Observable<boolean> {
     if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {
-      return this.confirmDeleteService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes' ? true : false))
         );

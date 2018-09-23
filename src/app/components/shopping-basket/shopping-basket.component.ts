@@ -1,12 +1,12 @@
 import {Injectable, Component} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
-import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 import {OrderService} from '../../services/order/order.service';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
 import {TranslateService} from '@ngx-translate/core';
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
+import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
 
 @Component({
   selector: 'app-shopping-basket',
@@ -24,7 +24,7 @@ export class ShoppingBasketComponent {
 
   constructor(
     public shoppingBasketService: ShoppingBasketService
-    , public confirmDeleteService: ConfirmDeleteService
+    , public confirmYesNoService: ConfirmYesNoService
     , private snackBarService: SnackBarService
     , private clientContextService: ClientContextService
     , private router: Router
@@ -35,7 +35,7 @@ export class ShoppingBasketComponent {
 
   private confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
-        this.confirmDeleteService.confirm(articleName + ' ' + translated).subscribe(
+        this.confirmYesNoService.confirm(articleName + ' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
               this.removeShoppingBasketItem(articleId, articleName);
