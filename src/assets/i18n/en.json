@@ -44,7 +44,7 @@
   "CREATE-ACCOUNT": "create account",
   "ALL-PRICE-INCL-VAT-EXCL-SHIPPING-FEES-UNLESS-OTHERWISE-STATED": "all prices incl VAT excl shipping unless otherwise stated",
   "ADDED-TO-SHOPPING-BASKET": "added to shopping basket",
-  "REMOVED-FROM-SHOPPING-BASKET": "removed from shopping basket",
+  "ARTICLE-REMOVED-FROM-SHOPPING-BASKET": "article removed from shopping basket",
   "TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE": "to remove from shopping basket for sure",
   "MINIMUM-ORDER-QUANTITY-IS": "minimum order quantity is 1",
   "MAXIMUM-ORDER-QUANTITY-IS": "maximum order quantity is 3",
