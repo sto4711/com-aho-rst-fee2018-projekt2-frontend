@@ -4,9 +4,9 @@ import {ArticleService} from '../../services/articles/article.service';
 import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Article} from "../../services/articles/article";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
-import {MatSnackBar} from "@angular/material";
 import {ArticleRating} from "../../services/articles/article-rating";
 import {TranslateService} from "@ngx-translate/core";
+import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 
 @Component({
   selector: 'app-article-detail',
@@ -33,8 +33,8 @@ export class ArticleDetailComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private shoppingBasketService: ShoppingBasketService,
-    private snackBar: MatSnackBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private snackBarService: SnackBarService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -50,13 +50,12 @@ export class ArticleDetailComponent implements OnInit {
             result => {
               this.article = result;
               this.loading = false;
-
             }
           );
       });
   }
 
- 
+
   public selectedArticleAmount(amount) {
     this.articleAmount = amount;
   }
@@ -65,7 +64,7 @@ export class ArticleDetailComponent implements OnInit {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
-              this.snackBar.open(this.article.name + ' ' + translated, null, {duration: 2500, panelClass: 'snackbar' });
+            this.snackBarService.showInfo(this.article.name + ' ' + translated)
             }
           );
         }
