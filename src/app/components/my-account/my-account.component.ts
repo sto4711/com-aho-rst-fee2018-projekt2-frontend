@@ -4,8 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Login} from "../../services/login/login";
-import {DialogService} from "../../services/commons/dialog/dialog.service";
-import {MatSnackBar} from "@angular/material";
+import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 
 @Component({
   selector: 'app-my-account',
@@ -13,58 +12,54 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent {
-  invalidLogin: boolean;
-  login: Login = new Login();
-  loginCreate: Login = new Login();
+  public invalidLogin: boolean;
+  public login: Login = new Login();
+  private loginCreate: Login = new Login();
+  private static CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED = 'AN-ERROR-HAS-OCCURRED';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
+  private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
 
   constructor(
     private loginService: LoginService
     , private clientContextService: ClientContextService
     , private router: Router
-    , private dialogService: DialogService
-    , private snackBar: MatSnackBar
+    , private snackBarService: SnackBarService
   ) {
   }
 
-  onLogin() {
+  public onLogin() {
     this.loginService.signin(this.login)
       .subscribe(token => {
           this.clientContextService.setToken(token);
+          this.login = new Login();
+          this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
+          this.router.navigate(['checkout']).then();
         },
         error => {
           this.invalidLogin = true;
-          this.dialogService.confirm('Fehler onLogin', 'Es ist ein Fehler aufgetreten ' + error);
-        },
-        () => {
-          this.login = new Login();
-          this.snackBar.open('login ok', null, {duration: 1500, panelClass: 'snackbar'});
-          this.router.navigate(['checkout']).then();
-          //this.location.back();
         }
       );
   }
 
-  onLogout() {
+  public onLogout() {
     this.loginService.signout(this.clientContextService.getToken())
       .subscribe(token => {
           //
         },
-        error => {
-          this.dialogService.confirm('Fehler onLogout', 'Es ist ein Fehler aufgetreten ' + error);
-        });
+      );
   }
 
-  onCreate() {
+  public onCreate() {
     this.loginService.create(this.loginCreate)
       .subscribe(token => {
           //
         },
         error => {
-          this.dialogService.confirm('Fehler logout', 'Es ist ein Fehler aufgetreten ' + error);
+          this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED);
         },
         () => {
           this.loginCreate = new Login();
-          this.snackBar.open('user created ok', null, {duration: 1500, panelClass: 'snackbar'});
+          this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
         });
   }
 

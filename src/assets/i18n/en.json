@@ -93,6 +93,10 @@
   "ORDERED-ITEMS": "ordered items",
   "ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER": "order detail taken over from latest order",
   "DISCARD-CHANGES": "discard changes",
+  "AN-ERROR-HAS-OCCURRED": "Es ist ein Fehler aufgetreten",
+  "LOGIN-SUCCESSFUL": "Login war erfolgreich",
+  "ACCOUNT-CREATED": "Konto erstellt",
+
 
 
   "RESET": "reset",
