@@ -1205,14 +1205,15 @@ select {
 }
 
 .snackbar-info {
-  background: $green;
+  background: $color-info;
 }
 .snackbar-warning {
-  background: $orange;
+  background: $color-warning;
 }
 .snackbar-error {
-  background: $red;
+  background: $color-error;
 }
+
 
 /*
     loader ////////////////////////////////////////////////////////////////////////////////////////////////

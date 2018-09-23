@@ -1,5 +1,4 @@
-import {Injectable, Component, OnInit} from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {Injectable, Component} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {ConfirmDeleteService} from '../../services/commons/dialog/confirm-delete.service';
 import {OrderService} from '../../services/order/order.service';
@@ -9,15 +8,10 @@ import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket
 import {TranslateService} from '@ngx-translate/core';
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 
-
 @Component({
   selector: 'app-shopping-basket',
   templateUrl: './shopping-basket.component.html',
   styleUrls: ['./shopping-basket.component.scss']
-})
-
-@Injectable({
-  providedIn: 'root',
 })
 
 export class ShoppingBasketComponent {
@@ -28,12 +22,10 @@ export class ShoppingBasketComponent {
   private static CODE_TRANSLATION_MAX_QUANTITY = 'MAXIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_AMOUNT_CHANGED = 'ARTICLE-AMOUNT-CHANGED';
 
-
   constructor(
     public shoppingBasketService: ShoppingBasketService
     , public confirmDeleteService: ConfirmDeleteService
-    , private snackBar: MatSnackBar
-    ,private snackBarService: SnackBarService
+    , private snackBarService: SnackBarService
     , private clientContextService: ClientContextService
     , private router: Router
     , private orderService: OrderService
@@ -41,10 +33,9 @@ export class ShoppingBasketComponent {
   ) {
   }
 
-  confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
+  private confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
-        const confirmTitle = articleName + ' ' + translated;
-        this.confirmDeleteService.confirm(confirmTitle).subscribe(
+        this.confirmDeleteService.confirm(articleName + ' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
               this.removeShoppingBasketItem(articleId, articleName);
@@ -55,46 +46,24 @@ export class ShoppingBasketComponent {
     );
   }
 
-  changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"], articleAmount: ShoppingBasketItem["articleAmount"]) {
+  public changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem["articleID"]
+                                         , articleName: ShoppingBasketItem["articleName"]
+                                         , articleAmount: ShoppingBasketItem["articleAmount"]) {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
-        .subscribe(shoppingBasket => {
-
-          this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED);
-
-
-
-            // this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
-            //     this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-            //   }
-            // );
-          }
-        );
+        .subscribe(shoppingBasket => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED));
     }
     else if (articleAmount < 1) {
-      this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY).subscribe(translated => {
-          this.snackBar.open(translated + ' 1', null, {duration: 2500, panelClass: 'snackbar'});
-        }
-      );
+      this.snackBarService.showWarning(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY);
     } else {
-      this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_MAX_QUANTITY).subscribe(translated => {
-          this.snackBar.open(translated + ' 3', null, {duration: 2500, panelClass: 'snackbar'});
-        }
-      );
+      this.snackBarService.showWarning(ShoppingBasketComponent.CODE_TRANSLATION_MAX_QUANTITY);
     }
   }
 
-  removeShoppingBasketItem(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
+  public removeShoppingBasketItem(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.shoppingBasketService.removeItem(articleId)
-      .subscribe(shoppingBasket => {
-          this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED).subscribe(translated => {
-              this.snackBar.open(articleName + ' ' + translated, null, {duration: 2500, panelClass: 'snackbar'});
-            }
-          );
-        }
-      );
+      .subscribe(shoppingBasket => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED));
   }
-
 
 }
 
