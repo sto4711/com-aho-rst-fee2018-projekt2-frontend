@@ -18,7 +18,6 @@ import {SearchComponent} from './components/search/search.component';
 import {TrimPipe} from './pipes/trim.pipe';
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
 import {ArticleComponent} from './components/admin/article/article.component';
-import {DialogConfirmComponent} from './components/commons/dialog/dialog-confirm/dialog-confirm.component';
 import {AmountConverterPipe} from './pipes/currency.pipe';
 import {ArticleTemplateComponent} from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
@@ -26,7 +25,6 @@ import {MatCardModule} from '@angular/material/card';
 import {HeaderComponent} from './components/header/header.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {DialogConfirmDeleteComponent} from './components/commons/dialog/dialog-confirm-delete/dialog-confirm-delete.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
@@ -40,6 +38,7 @@ import {RequestCacheService} from "./services/request-cache/request-cache.servic
 import {CacheInterceptor} from "./interceptors/cache-interceptor";
 import {CanComponentDeactivateGuard} from "./services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
+import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,13 +54,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyAccountComponent,
     ArticleDetailComponent,
     ShoppingBasketComponent,
-    DialogConfirmComponent,
     ArticleComponent,
     ArticleTemplateComponent,
     HeaderComponent,
     TopBarComponent,
     FooterComponent,
-    DialogConfirmDeleteComponent,
+    DialogConfirmYesNoComponent,
     OrderDetailComponent,
     CheckoutComponent,
     BreadcrumbComponent,
@@ -93,7 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   entryComponents: [
-    DialogConfirmComponent, DialogConfirmDeleteComponent],
+    DialogConfirmYesNoComponent],
   providers: [LoginService, LangService, CanComponentDeactivateGuard,SnackBarService,
     RequestCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
