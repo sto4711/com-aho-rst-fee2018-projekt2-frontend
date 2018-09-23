@@ -1,10 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
-import {TranslateService} from '@ngx-translate/core';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
 import {Observable, of} from "rxjs";
@@ -12,6 +10,7 @@ import {ConfirmDeleteService} from "../../services/commons/dialog/confirm-delete
 import {CanComponentDeactivate} from "../../services/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {map} from "rxjs/operators";
+import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 
 @Component({
   selector: 'app-checkout',
@@ -37,11 +36,9 @@ export class CheckoutComponent implements CanComponentDeactivate {
     private _formBuilder: FormBuilder
     , public shoppingBasketService: ShoppingBasketService
     , public orderService: OrderService
-    , public dialog: MatDialog
-    , private snackBar: MatSnackBar
     , private router: Router
-    , private translate: TranslateService
     , private confirmDeleteService: ConfirmDeleteService
+    , private snackBarService: SnackBarService
   ) {
     this.initValidation();
   }
@@ -56,10 +53,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
             this.handleSteps(order);
             this.isAutoStepping = false;
           } else {
-            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-              }
-            );
+            this.snackBarService.showInfo(CheckoutComponent.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST);
           }
         });
       });
@@ -154,19 +148,13 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public approveOrder() {
     this.orderService.approve()
       .subscribe(order => {
-          this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-              this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-              this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-            }
-          );
+          this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_ORDER_CREATED);
+          this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
         },
         error => {
           if (error.status === 401) {
-            this.translate.get(CheckoutComponent.CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-                this.router.navigate(['my-account']).then();
-              }
-            );
+            this.snackBarService.showInfo(CheckoutComponent.CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN);
+            this.router.navigate(['my-account']).then();
           }
         }
       );

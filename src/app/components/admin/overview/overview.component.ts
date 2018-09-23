@@ -6,7 +6,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
 import {LoginService} from '../../../services/login/login.service';
 import {ClientContextService} from '../../../services/client-context/client-context.service';
-import {MatSnackBar} from '@angular/material';
 import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
