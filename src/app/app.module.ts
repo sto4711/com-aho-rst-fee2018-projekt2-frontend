@@ -39,6 +39,7 @@ import {OverviewComponent} from './components/admin/overview/overview.component'
 import {RequestCacheService} from "./services/request-cache/request-cache.service";
 import {CacheInterceptor} from "./interceptor/cache-interceptor";
 import {CanComponentDeactivateGuard} from "./services/can-component-deactivate-guard/can-component-deactivate-guard";
+import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -93,7 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmComponent, DialogConfirmDeleteComponent],
-  providers: [LoginService, LangService, CanComponentDeactivateGuard,
+  providers: [LoginService, LangService, CanComponentDeactivateGuard,SnackBarService,
     RequestCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
   ],

@@ -7,6 +7,7 @@ import {ClientContextService} from '../../services/client-context/client-context
 import {Router} from '@angular/router';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
 import {TranslateService} from '@ngx-translate/core';
+import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 
 
 @Component({
@@ -30,9 +31,9 @@ export class ShoppingBasketComponent {
 
   constructor(
     public shoppingBasketService: ShoppingBasketService
-    , public dialog: MatDialog
     , public confirmDeleteService: ConfirmDeleteService
     , private snackBar: MatSnackBar
+    ,private snackBarService: SnackBarService
     , private clientContextService: ClientContextService
     , private router: Router
     , private orderService: OrderService
@@ -58,10 +59,15 @@ export class ShoppingBasketComponent {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => {
-            this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-              }
-            );
+
+          this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED);
+
+
+
+            // this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED).subscribe(translated => {
+            //     this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
+            //   }
+            // );
           }
         );
     }
