@@ -24,8 +24,6 @@ export class OrderService implements CanActivate {
   public static STATE_CANCELED: string = 'CANCELED';
   public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
   public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
-  public static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
-
 
 
   constructor(
@@ -39,22 +37,19 @@ export class OrderService implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const orderId: string = localStorage.getItem('orderId');
-    const notReady: boolean = (!orderId || !this.shoppingBasketService.shoppingBasket  ? true : false);
-    const hasToken: boolean = (this.clientContextService.getToken().value == '' ? false : true);
-    let basketIsEmpty: boolean = false;
-    if (!notReady) {
+    const hasNoToken: boolean = (this.clientContextService.getToken().value === '' ? true : false);
+    let basketIsEmpty: boolean = true;
+    if (this.shoppingBasketService.shoppingBasket) {
       basketIsEmpty = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
     }
-    const checkoutOk = (!notReady && hasToken && !basketIsEmpty? true: false);
 
-    return of<boolean>(checkoutOk)
+    return of<boolean>((basketIsEmpty || hasNoToken ? false : true))
       .pipe(
         tap((ok: boolean) => {
-          if (notReady || basketIsEmpty) {
+          if (basketIsEmpty) {
             this.router.navigate(['home']).then();
           }
-          else if (!hasToken) {
+          else if (hasNoToken) {
             this.translate.get(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
                 this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
                 this.router.navigate(['my-account']).then();
@@ -69,6 +64,7 @@ export class OrderService implements CanActivate {
     const orderId: string = localStorage.getItem('orderId');
 
     if (this.order) {
+      this.order.doNotStep = false;
       return of<Order>(this.order);
     }
     else if (!orderId) {
@@ -78,11 +74,8 @@ export class OrderService implements CanActivate {
           tap((order) => {
             this.order = order;
             localStorage.setItem('orderId', this.order._id);
-            if(this.order.valuesOvertakenFromLatestOrder)  {
-              this.translate.get(OrderService.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST).subscribe(translated => {
-                  this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-                }
-              );
+            if (this.order.state === 'NEW COPY OF') {
+              this.order.doNotStep = true;
             }
           })
         );
@@ -91,7 +84,10 @@ export class OrderService implements CanActivate {
       console.log('OrderService.initLazy() order already exists, get order');
       return this.get(orderId)
         .pipe(
-          tap((order) => this.order = order)
+          tap((order) => {
+            this.order = order;
+            this.order.doNotStep = false;
+          })
         );
     }
   }

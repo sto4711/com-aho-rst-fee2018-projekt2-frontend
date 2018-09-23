@@ -42,7 +42,7 @@ export class ShoppingBasketComponent {
 
   confirmDelete(articleId: ShoppingBasketItem["articleID"], articleName: ShoppingBasketItem["articleName"]) {
     this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
-        const confirmTitle = articleName + ' ' + translated + '?';
+        const confirmTitle = articleName + ' ' + translated;
         this.confirmDeleteService.confirm(confirmTitle).subscribe(
           result => {
             if (result === 'yes') {

@@ -28,6 +28,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public itemChangePossible: boolean = false;
   public isAutoStepping: boolean = false;
   private static CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN: string = 'SESSION-IS-NO-MORE-VALID-PLEASE-SIGNIN-AGAIN';
+  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
 
 
   @ViewChild('stepper') stepper: MatStepper;
@@ -46,13 +47,20 @@ export class CheckoutComponent implements CanComponentDeactivate {
   }
 
   public ngAfterViewInit() {
-    this.isAutoStepping = true;
     this.orderService.getOrder()
       .subscribe(order => {
         Promise.resolve(null).then(() => {//delay with a Promise
           this.setFormGroupValues(order);
-          this.handleSteps(order);
-          this.isAutoStepping = false;
+          if (!order.doNotStep) {
+            this.isAutoStepping = true;
+            this.handleSteps(order);
+            this.isAutoStepping = false;
+          } else {
+            this.translate.get(CheckoutComponent.CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST).subscribe(translated => {
+                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
+              }
+            );
+          }
         });
       });
   }
@@ -62,7 +70,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {
       return this.confirmDeleteService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
-          map((value) => (value==='yes'? true: false))
+          map((value) => (value === 'yes' ? true : false))
         );
     }
     else {
@@ -117,7 +125,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     for (let i = 0; i < countSteps; i++) {
       this.stepper.next();
       if (i === 3) {
-        document.querySelector('#order-review').scrollIntoView(false);
+        document.querySelector('#order-button').scrollIntoView(false);
       }
     }
   }

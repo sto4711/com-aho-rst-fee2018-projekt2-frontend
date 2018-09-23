@@ -14,7 +14,7 @@ export class Order {
   public contactData : ContactData = new ContactData();
   public deliveryType : DeliveryType = new DeliveryType();
   public paymentType : PaymentType = new PaymentType();
-  public valuesOvertakenFromLatestOrder: boolean = false;
+  public doNotStep: boolean = false;
 
   constructor() {
   }
