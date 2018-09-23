@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {TranslateService} from "@ngx-translate/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {ClientContextService} from "../client-context/client-context.service";
 import {Order} from "./order";
@@ -30,7 +29,6 @@ export class OrderService implements CanActivate {
     , private clientContextService: ClientContextService
     , private shoppingBasketService: ShoppingBasketService
     , private router: Router
-    , private translate: TranslateService
     , private snackBarService: SnackBarService
   ) {
   }

@@ -5,9 +5,7 @@ import {ClientContextService} from "../../../services/client-context/client-cont
 import {Router} from "@angular/router";
 import {Observable, of, Subject} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-
 import {ArticleService} from "../../../services/articles/article.service";
-import {DialogService} from "../../../services/commons/dialog/dialog.service";
 import {Article} from "../../../services/articles/article";
 
 @Component({
@@ -24,7 +22,6 @@ export class ArticleComponent implements OnInit {
   constructor(
     private loginService: LoginService
     , private articleService: ArticleService
-    , private dialogService: DialogService
     , private router: Router
   ) {
   }
@@ -36,7 +33,7 @@ export class ArticleComponent implements OnInit {
       distinctUntilChanged(), // ignore new term if same as previous term
       switchMap((term: string) => this.articleService.searchArticles(term)),
       catchError((error: HttpErrorResponse) => {
-        return of(this.handleError('search bikes', error));
+        return of<Article[]>([]);//continue with no message
       })
     );
   }
@@ -45,14 +42,5 @@ export class ArticleComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  private handleError<T>(operation = 'operation', error: any) {
-    if (error instanceof HttpErrorResponse && error.status == 401) {
-      this.router.navigate(['my-account']).then();
-    } else {
-      this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
-    }
-
-    return [];
-  }
 
 }

@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
 import {Article} from "../../services/articles/article";
 import {HttpErrorResponse} from "@angular/common/http";
-import {DialogService} from "../../services/commons/dialog/dialog.service";
 import {Router} from "@angular/router";
 
 
@@ -22,7 +21,6 @@ export class SearchComponent {
 
   constructor(
     private articleService: ArticleService
-    , private dialogService: DialogService
     , private router: Router
   ) {
     this.articles$ = this.stateCtrl.valueChanges
@@ -32,7 +30,7 @@ export class SearchComponent {
         distinctUntilChanged(), // ignore new term if same as previous term
         switchMap((term: string) => this.searchArticle(term)),
         catchError((error: HttpErrorResponse) => {
-          return this.handleError('search bikes', error);
+          return of<Article[]>([]);//continue with no message
         })
       );
   }
@@ -46,14 +44,8 @@ export class SearchComponent {
     }
   }
 
-  private handleError<T>(operation = 'operation', error: any): Observable<Article[]> {
-    this.dialogService.confirm('Error -> ' + operation, 'Es ist ein Fehler aufgetreten ' + error);
-    return of<Article[]>([]); //empty Observable<Article[]>
-  }
-
   public onSelected(article: Article) {
     this.router.navigate(['/article-detail'], {queryParams: {article: article.articleQueryParameter}}).then();
   }
-
 
 }

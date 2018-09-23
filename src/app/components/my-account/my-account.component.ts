@@ -14,7 +14,7 @@ import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.servic
 export class MyAccountComponent {
   public invalidLogin: boolean;
   public login: Login = new Login();
-  private loginCreate: Login = new Login();
+  public loginCreate: Login = new Login();
   private static CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED = 'AN-ERROR-HAS-OCCURRED';
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';

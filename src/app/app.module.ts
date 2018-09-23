@@ -37,7 +37,7 @@ import {ShoppingBasketListingComponent} from './components/shopping-basket-listi
 import {LangService} from './services/lang-service/lang.service';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {RequestCacheService} from "./services/request-cache/request-cache.service";
-import {CacheInterceptor} from "./interceptor/cache-interceptor";
+import {CacheInterceptor} from "./interceptors/cache-interceptor";
 import {CanComponentDeactivateGuard} from "./services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 
