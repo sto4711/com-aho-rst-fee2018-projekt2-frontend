@@ -2,10 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {MatSnackBar} from "@angular/material";
 import {TranslateService} from "@ngx-translate/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-
 import {ClientContextService} from "../client-context/client-context.service";
 import {Order} from "./order";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
@@ -13,6 +11,7 @@ import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
 import {PaymentType} from "./payment-type";
+import {SnackBarService} from "../commons/snack-bar/snack-bar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +31,7 @@ export class OrderService implements CanActivate {
     , private shoppingBasketService: ShoppingBasketService
     , private router: Router
     , private translate: TranslateService
-    , private snackBar: MatSnackBar
+    , private snackBarService: SnackBarService
   ) {
   }
 
@@ -50,11 +49,8 @@ export class OrderService implements CanActivate {
             this.router.navigate(['home']).then();
           }
           else if (hasNoToken) {
-            this.translate.get(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
-                this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-                this.router.navigate(['my-account']).then();
-              }
-            );
+            this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);
+            this.router.navigate(['my-account']).then();
           }
         })
       );
