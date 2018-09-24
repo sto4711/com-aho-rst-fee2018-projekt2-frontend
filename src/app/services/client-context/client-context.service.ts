@@ -9,7 +9,7 @@ import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service"
 export class ClientContextService {
   private static BACKEND_HOST : string = 'localhost';
   private static BACKEND_PORT : number = 3000;
-  private token: Token = {value : ''};
+  private token: Token = {value : 'ARMC6DMMPwetRaFnbcdbho'};
 
   public static BACKEND_URL_PUBLIC :string  = 'http://' + ClientContextService.BACKEND_HOST + ':' + ClientContextService.BACKEND_PORT + '/';
   public static BACKEND_URL_ARTICLES :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/articles/';

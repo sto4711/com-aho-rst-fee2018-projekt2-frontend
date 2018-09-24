@@ -17,8 +17,9 @@
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }">
             <td colspan="3">
+             <!-- <form [formGroup]="orderData"> </form> -->
               <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
+             <mat-expansion-panel-header>
                   <mat-panel-title>
                     <strong>{{'CUSTOMER' | translate}}:&nbsp;</strong>
                     {{order?.deliveryAddress.givenname}}
@@ -49,7 +50,7 @@
                     <p>
                       <mat-form-field>
                         <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"
-                                    (selectionChange)="onSelectionChange($event)">
+                                    (selectionChange)="onSelectionChange($event, order._id)">
                           <mat-option *ngFor="let state of orderState" [value]="state.value">
                             {{state.viewValue}}
                           </mat-option>
@@ -72,6 +73,7 @@
                     </div><!-- end .admin-order-item-listing -->
                     <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum}}</p>
                   </div><!-- end .admin-customer-articles -->
+
                 </div><!-- end .admin-orders -->
               </mat-expansion-panel>
 

@@ -4,11 +4,12 @@ import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
-import {LoginService} from '../../../services/login/login.service';
-import {ClientContextService} from '../../../services/client-context/client-context.service';
+ import {ClientContextService} from '../../../services/client-context/client-context.service';
 import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
+import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-overview',
@@ -21,11 +22,14 @@ export class OverviewComponent implements OnInit {
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
+  public orderData: FormGroup;
+
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
   ];
+  private static CODE_TRANSLATION_UPDATED = 'ORDER-STATUS-UPDATED';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +37,11 @@ export class OverviewComponent implements OnInit {
     private orderService: OrderService,
     private userService: UserService,
     private translate: TranslateService,
-    private langService: LangService
-    , private clientContextService: ClientContextService
+    private langService: LangService,
+    private clientContextService: ClientContextService,
+    private snackBarService: SnackBarService,
+    private formBuilder: FormBuilder,
+
 
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -50,6 +57,10 @@ export class OverviewComponent implements OnInit {
 
   public ngOnInit() {
   //  this.getUsers();
+    this.orderData = this.formBuilder.group({
+      delivery: [null, Validators.required]
+    });
+
     this.orderService.getAll()
       .subscribe(
         result => {
@@ -80,25 +91,25 @@ export class OverviewComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  public onSelectionChange(orderState) {
-    debugger;
-    // this.orderService.updateState(this.clientContextService.getToken(), OrderService.STATE_APPROVED)
-    //   .subscribe(order => {
-    //       this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-    //           this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //         }
-    //       );
-    //     },
-    //     error => {
-    //       if (error.status === 401) {
-    //         this.translate.get(LoginService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
-    //             this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //             this.router.navigate(['my-account']).then();
-    //           }
-    //         );
-    //       }
-    //     }
-    //   );
+  public onSelectionChange(orderState, orderId) {
+     this.orderService.updateState(orderState.value, orderId)
+      .subscribe(order => {
+          this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
+            this.snackBarService.showInfo(' ' + ' ' + translated);
+
+           }
+          );
+         },
+       error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+                 this.router.navigate(['my-account']).then();
+              }
+              );
+          }
+       }
+      );
   }
 
   private translateOrderState() {
