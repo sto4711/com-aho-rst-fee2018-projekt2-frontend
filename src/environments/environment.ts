@@ -1,10 +1,11 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+// ng build ---prod
 
 export const environment = {
-  production: false
+  production: false,
+  backendHost : 'localhost',
+  backendPort : 3000,
 };
+
 
 /*
  * In development mode, for easier debugging, you can ignore zone related error
