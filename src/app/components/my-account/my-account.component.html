@@ -1,32 +1,34 @@
 <div class="row">
   <app-breadcrumb></app-breadcrumb>
-
   <h2>{{'MY-ACCOUNT' | translate}}</h2>
-
   <div class="login-form-wrap">
-
-    <form class="form login-form" #f="ngForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="account" class="form login-form" (ngSubmit)="onLogin()">
       <h4>{{'I-ALREADY-HAVE-AN-ACCOUNT' | translate}}</h4>
-      <label for="login-email">{{'E-MAIL' | translate}}</label>
-      <input id="login-email" name="mail" ngModel placeholder="{{'E-MAIL' | translate}}" type="email" required autofocus [(ngModel)]="login.email" autocomplete="off"/>
-      <label for="login-password">{{'PASSWORD' | translate}}</label>
-      <input id="login-password" name="pwd" ngModel type="password"  placeholder="{{'PASSWORD' | translate}}" required autofocus [(ngModel)]="login.pwd" autocomplete="off"/>
-      <div *ngIf="invalidLogin" class="alert danger">
-        <p>Falscher Benutzername oder Passwort</p>
-      </div>
+      <mat-form-field>
+        <input matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="off">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="{{'PASSWORD' | translate}}" formControlName="pwd" required autocomplete="off">
+      </mat-form-field>
+      <br>
       <button class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
-
     </form>
-    <form class="form new-account-form" #f2="ngForm"(ngSubmit)="onCreate()">
+    <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
-      <label for="create-email">{{'E-MAIL' | translate}}</label>
-      <input id="create-email" name="mail" placeholder="{{'MY-E-MAIL' | translate}}" type="email" required autofocus [(ngModel)]="loginCreate.email" autocomplete="off"/>
-      <label for="create-password">{{'PASSWORD' | translate}}</label>
-      <input type="password" name="pwd" placeholder="{{'MY-PASSWORD' | translate}}" id="create-password" required autofocus [(ngModel)]="loginCreate.pwd" autocomplete="off"/>
+      <mat-form-field>
+        <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="firstname" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" placeholder="{{'MY-E-MAIL' | translate}}" formControlName="email" required autocomplete="off">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="{{'MY-PASSWORD' | translate}}" formControlName="pwd" required autocomplete="off">
+      </mat-form-field>
+      <br>
       <button class="btn form-btn" type="submit"><span class="btn-form-text"> {{'CREATE-ACCOUNT' | translate}}</span></button>
-
     </form>
   </div>
-
-
 </div><!-- end .row -->

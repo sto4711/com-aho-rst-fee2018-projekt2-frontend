@@ -97,6 +97,8 @@
   "LOGIN-SUCCESSFUL": "login successful",
   "ACCOUNT-CREATED": "account created",
   "OOPS-SOMETHING-WENT-WRONG": "oops something went wrong",
+  "WRONG-EMAIL-OR-PASSWORD": "wrong email or password",
+  "EMAIL-ALREADY-TAKEN": "email already taken",
   "ORDER-STATUS-UPDATED": "order state updated.",
 
 

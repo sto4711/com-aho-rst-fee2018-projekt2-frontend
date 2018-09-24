@@ -7,7 +7,7 @@
     "start-prod": "ng serve --prod",
     "build": "ng build",
     "build-prod": "ng build --prod",
-    "build-prod-tomcat": "ng build --prod --base-href=/webshop/",
+    "build-prod-base-href-frontend": "ng build --prod --base-href=/frontend/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

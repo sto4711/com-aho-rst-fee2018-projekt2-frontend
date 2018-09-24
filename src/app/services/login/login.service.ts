@@ -3,10 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
-import {Login} from 'src/app/services/login/login';
 import {Token} from 'src/app/services/login/token';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {User} from "../admin/user/user";
+import {Login} from "./login";
 
 
 @Injectable({
@@ -35,13 +35,6 @@ export class LoginService {
     );
   }
 
-  public create(login: Login): Observable<User> {
-    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'create', login, {
-      headers: {'Content-Type': 'application/json'}
-    },).pipe(
-      tap((/*result: string*/) => console.log('create ok'))
-    );
-  }
 
 
 }

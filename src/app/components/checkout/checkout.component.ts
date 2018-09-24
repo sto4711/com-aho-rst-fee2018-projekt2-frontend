@@ -59,7 +59,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
       });
   }
 
-
   public canDeactivate(): Observable<boolean> {
     if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
@@ -87,7 +86,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     this.contactData = this._formBuilder.group({
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
         Validators.maxLength(100),
-        Validators.minLength(10)]
+        Validators.minLength(5)]
       ],
       phone: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
         Validators.maxLength(30),
