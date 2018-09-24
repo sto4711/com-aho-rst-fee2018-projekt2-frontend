@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from 'src/app/services/admin/user/user';
 import {Token} from 'src/app/services/login/token';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
+import {Login} from "../../login/login";
 
 
 @Injectable({
@@ -24,9 +25,18 @@ export class UserService {
         headers: {'Content-Type': 'application/json', 'Authorization': token.value}
       }
     ).pipe(
-      tap((users: User[]) => console.log('get users ok'))/*,
+      tap((users: User[]) => console.log('UserService.get() ok'))/*,
       catchError(this.handleError<Token>('signin'))*/
     );
   }
+
+  public create(user: User): Observable<User> {
+    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'create', user, {
+      headers: {'Content-Type': 'application/json'}
+    },).pipe(
+      tap((/*result: string*/) => console.log('UserService.create() ok'))
+    );
+  }
+
 
 }

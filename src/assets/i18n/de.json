@@ -97,6 +97,9 @@
   "LOGIN-SUCCESSFUL": "Login war erfolgreich",
   "ACCOUNT-CREATED": "Konto erstellt",
   "OOPS-SOMETHING-WENT-WRONG": "Ups, irgendwas lief schief",
+  "WRONG-EMAIL-OR-PASSWORD": "Falsche Email oder Password",
+  "EMAIL-ALREADY-TAKEN": "Email bereits vergeben",
+
 
 
 

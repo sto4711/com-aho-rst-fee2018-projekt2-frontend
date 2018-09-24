@@ -31,6 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'my-account', component: MyAccountComponent,
+    canDeactivate: [CanComponentDeactivateGuard],
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'MY-ACCOUNT')]
     }
