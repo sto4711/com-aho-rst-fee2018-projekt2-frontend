@@ -68,8 +68,24 @@ export class OverviewComponent implements OnInit {
           this.orders = result;
          }
       );
+    this.initValidation();
 
   }
+  private initValidation() {
+    this.orderData = this.formBuilder.group({
+      givenname: ['', Validators.required],
+      unit_type: 'default value here'
+
+
+    });
+
+  }
+
+  public updateOrder(data){
+  console.log(data.value);
+
+  }
+
   public sortData(sort: Sort) {
     const data = this.orders ;
     if (!sort.active || sort.direction === '') {
