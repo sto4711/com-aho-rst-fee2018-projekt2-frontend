@@ -9,6 +9,7 @@ import {ClientContextService} from '../../../services/client-context/client-cont
 import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-overview',
@@ -17,8 +18,8 @@ import {Sort} from '@angular/material';
 })
 export class OverviewComponent implements OnInit {
   public orders: any;
-  public p: number = 1;
-  public panelOpenState: boolean = false;
+  public p = 1;
+  public panelOpenState = false;
   public users: User[];
   public sortedData: Order;
   public orderState = [
@@ -26,6 +27,7 @@ export class OverviewComponent implements OnInit {
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
   ];
+  public orderData: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +35,10 @@ export class OverviewComponent implements OnInit {
     private orderService: OrderService,
     private userService: UserService,
     private translate: TranslateService,
-    private langService: LangService
-    , private clientContextService: ClientContextService
+    private langService: LangService,
+    private clientContextService: ClientContextService,
+    private formBuilder: FormBuilder
+
 
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -56,8 +60,24 @@ export class OverviewComponent implements OnInit {
           this.orders = result;
          }
       );
+    this.initValidation();
 
   }
+  private initValidation() {
+    this.orderData = this.formBuilder.group({
+      givenname: ['', Validators.required],
+      unit_type: 'default value here'
+
+
+    });
+
+  }
+
+  public updateOrder(data){
+  console.log(data.value);
+
+  }
+
   public sortData(sort: Sort) {
     const data = this.orders ;
     if (!sort.active || sort.direction === '') {
