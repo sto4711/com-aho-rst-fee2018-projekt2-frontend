@@ -17,11 +17,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public orders: any;
+   public orders: any;
   public p: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
+
   public orderData: FormGroup;
 
   public orderState = [
@@ -58,7 +59,7 @@ export class OverviewComponent implements OnInit {
   public ngOnInit() {
   //  this.getUsers();
     this.orderData = this.formBuilder.group({
-      delivery: [null, Validators.required]
+      givenname: ['', Validators.required],
     });
 
     this.orderService.getAll()
@@ -77,8 +78,7 @@ export class OverviewComponent implements OnInit {
     }
 
     this.sortedData = data.sort((a, b) => {
-      console.log(a.deliveryAddress);
-      const isAsc = sort.direction === 'asc';
+       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'name': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
         case 'date': return this.compare(a.orderDate, b.orderDate, isAsc);
@@ -91,7 +91,12 @@ export class OverviewComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  public onSelectionChange(orderState, orderId) {
+
+  public updateOrder(orderData){
+    console.log(orderData);
+  }
+
+ /* public onSelectionChange(orderState, orderId) {
      this.orderService.updateState(orderState.value, orderId)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
@@ -111,7 +116,7 @@ export class OverviewComponent implements OnInit {
        }
       );
   }
-
+*/
   private translateOrderState() {
     for (let i = 0; i < this.orderState.length; i++) {
       this.translate.get(this.orderState[i].value).subscribe(translated => {

@@ -16,8 +16,8 @@
           </thead>
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }">
+
             <td colspan="3">
-             <!-- <form [formGroup]="orderData"> </form> -->
               <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
              <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -33,31 +33,73 @@
 
                 <div class="admin-order">
                   <div class="admin-customer-data">
+                    <form [formGroup]="orderData" (ngSubmit)="updateOrder(orderData)">
                     <h4>{{'PARTICULARS' | translate}}</h4>
-                    <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname}} </p>
-                    <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{order?.deliveryAddress.surname}} </p>
-                    <p><span class="review-data">{{'STREET' | translate}}: </span> {{order?.deliveryAddress.streetHousenumber}}</p>
-                    <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{order?.deliveryAddress.postCode}} </p>
-                    <p><span class="review-data">{{'CITY' | translate}}: </span>{{order?.deliveryAddress.city}} </p>
+                    <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.deliveryAddress.givenname}}" matInput placeholder="" formControlName="givenname" required>
+                      </mat-form-field>
+                    </p>
+                    <p><span class="review-data">{{'SURNAME' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                      <input value="{{order?.deliveryAddress.surname}}" matInput placeholder=""   required>
+                    </mat-form-field></p>
+                    <p><span class="review-data">{{'STREET' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.deliveryAddress.streetHousenumber}}" matInput placeholder=""  required>
+                      </mat-form-field>
+                    </p>
+                    <p><span class="review-data">{{'POST-CODE' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.deliveryAddress.postCode}}" matInput placeholder=""  required>
+                      </mat-form-field>
+
+                    </p>
+                    <p><span class="review-data">{{'CITY' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="  {{order?.deliveryAddress.city}}" matInput placeholder="  "  required>
+                      </mat-form-field>
+                     </p>
                     <br>
-                    <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{order?.contactData.email}}</p>
-                    <p><span class="review-data">{{'PHONE' | translate}}: </span>{{order?.contactData.phone}} </p>
+                    <p><span class="review-data">{{'E-MAIL' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.contactData.email}}" matInput placeholder=" "  required>
+                      </mat-form-field>
+                    </p>
+                    <p><span class="review-data">{{'PHONE' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.contactData.phone}}" matInput placeholder=" "  required>
+                      </mat-form-field>
+                       </p>
                     <br>
-                    <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
+                    <p><span class="review-data">{{'DELIVERY' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value="{{order?.deliveryType.delivery}}" matInput placeholder=""  required>
+                      </mat-form-field>
+                      </p>
                     <br>
-                    <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
+                    <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
+                      <mat-form-field class="overview-input">
+                        <input value=" {{order?.paymentType.payment}}" matInput placeholder=""  required>
+                      </mat-form-field>
+                     </p>
                     <br><br>
                     <p>
                       <mat-form-field>
-                        <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"
+                        <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}"
                                     (selectionChange)="onSelectionChange($event, order._id)">
-                          <mat-option *ngFor="let state of orderState" [value]="state.value">
+                          <mat-option *ngFor="let state of orderState" [value]="order.state" >
                             {{state.viewValue}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-
                     </p>
+
+
+                      <button id="order-button"  class="btn form-btn" type="submit">
+                      <i class="fas form-btn"></i>Bestellung aktualisieren</button>
+                    </form>
+
                   </div><!-- end .admin-customer-data -->
                   <div class="admin-customer-articles">
 

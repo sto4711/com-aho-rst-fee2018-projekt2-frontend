@@ -281,6 +281,7 @@ a button.mat-menu-btn {
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
   width: 21%;
+  color: rgba(0,0,0,.54);
 }
 /*
     rows, cols ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1038,6 +1039,21 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
   width: 50%;
 }
 
+
+/*
+    overview ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.overview-input {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.overview-input .mat-form-field-wrapper {
+  max-width: 200px;
+}
+
 /*
     footer ////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -1192,10 +1208,6 @@ select {
   border: 1px solid #e11313;
   background-color: crimson;
 }
-
-/*
-    messages ////////////////////////////////////////////////////////////////////////////////////////////////
- */
 
 .mat-simple-snackbar {
   font-size: 2.4rem !important;
