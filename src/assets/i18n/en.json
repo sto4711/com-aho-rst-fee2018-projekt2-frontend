@@ -99,7 +99,7 @@
   "OOPS-SOMETHING-WENT-WRONG": "oops something went wrong",
   "WRONG-EMAIL-OR-PASSWORD": "wrong email or password",
   "EMAIL-ALREADY-TAKEN": "email already taken",
-
+  "BACKEND-SERVER-IS-UNAVAILABLE-PLEASE-TRY-AGAIN-LATER": "backend server is unavailable please try again later",
 
   "RESET": "reset",
   "ORDER-NOW": "order now",
