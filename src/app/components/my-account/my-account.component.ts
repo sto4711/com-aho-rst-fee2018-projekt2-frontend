@@ -40,9 +40,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   private initValidation() {
     this.account = this._formBuilder.group({
-      email: ['', [Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
-        Validators.maxLength(100),
+      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
+        Validators.maxLength(60),
         Validators.minLength(5)]
       ],
       pwd: ['', Validators.minLength(3)],
@@ -50,12 +49,11 @@ export class MyAccountComponent implements CanComponentDeactivate {
     this.accountNew = this._formBuilder.group({
       name: ['', Validators.minLength(3)],
       firstname: ['', Validators.minLength(3)],
-      email: ['', [Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
-        Validators.maxLength(100),
+      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
+        Validators.maxLength(60),
         Validators.minLength(5)]
       ],
-      pwd: ['', Validators.minLength(3)],
+      pwd: ['', Validators.minLength(3)], //
     });
   }
 
@@ -89,14 +87,16 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public onCreate() {
-    this.userService.create(this.accountNew.getRawValue())
-      .subscribe(token => {
-          this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
-          this.router.navigate(['checkout']).then();
-        },
-        error => {
-          this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
-        });
+    if (this.accountNew.valid) {
+      this.userService.create(this.accountNew.getRawValue())
+        .subscribe(token => {
+            this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
+            this.router.navigate(['checkout']).then();
+          },
+          error => {
+            this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
+          });
+    }
   }
 
   public onLogout() {
