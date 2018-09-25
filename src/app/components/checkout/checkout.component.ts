@@ -76,8 +76,8 @@ export class CheckoutComponent implements CanComponentDeactivate {
       givenname: ['', Validators.required],
       surname: ['', Validators.required],
       streetHousenumber: ['', Validators.required],
-      postCode: ['', [Validators.required, Validators.pattern('^[0-9]+$'),
-        Validators.maxLength(4),
+      postCode: ['', [Validators.required,
+        Validators.maxLength(10),
         Validators.minLength(4)]
       ],
       city: ['', Validators.required]
