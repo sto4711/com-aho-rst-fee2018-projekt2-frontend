@@ -4,12 +4,12 @@ import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
-import {LoginService} from '../../../services/login/login.service';
 import {ClientContextService} from '../../../services/client-context/client-context.service';
 import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
+import {Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-overview',
@@ -18,8 +18,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class OverviewComponent implements OnInit {
   public orders: any;
-  public p = 1;
-  public panelOpenState = false;
+  public p: number = 1;
+  public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
   public orderState = [
@@ -38,9 +38,9 @@ export class OverviewComponent implements OnInit {
     private translate: TranslateService,
     private langService: LangService,
     private clientContextService: ClientContextService,
-    private formBuilder: FormBuilder
+    private snackBarService: SnackBarService,
 
-
+ 
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -54,20 +54,16 @@ export class OverviewComponent implements OnInit {
   }
 
   public ngOnInit() {
-  //  this.getUsers();
+    //  this.getUsers();
+
     this.orderService.getAll()
       .subscribe(
         result => {
           this.orders = result;
-         }
+        }
       );
-    this.initValidation();
 
   }
-  private initValidation() {
-    this.orderData = this.formBuilder.group({
-      givenname: ['', Validators.required],
-      unit_type: 'default value here'
 
 
   public updateOrder(orderData) {
@@ -76,8 +72,8 @@ export class OverviewComponent implements OnInit {
       userID: orderData.value.userID,
       state: orderData.value.state,
       deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
-                        streetHousenumber: orderData.value.streetHousenumber,
-                        postCode: orderData.value.postCode, city: orderData.value.city},
+        streetHousenumber: orderData.value.streetHousenumber,
+        postCode: orderData.value.postCode, city: orderData.value.city},
       contactData: {email: orderData.value.email, phone: orderData.value.phone},
       deliveryType: {delivery: orderData.value.delivery},
       paymentType: {payment: orderData.value.payment}
@@ -87,6 +83,18 @@ export class OverviewComponent implements OnInit {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
               this.snackBarService.showInfo(' ' + ' ' + translated);
 
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+              }
+            );
+          }
+        }
+      );
   }
 
   public deleteOrder(orderData) {
@@ -119,7 +127,6 @@ export class OverviewComponent implements OnInit {
     }
 
     this.sortedData = data.sort((a, b) => {
-      console.log(a.deliveryAddress);
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'name': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
@@ -131,27 +138,6 @@ export class OverviewComponent implements OnInit {
   }
   private compare(a, b, isAsc) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  }
-
-  public onSelectionChange(orderState) {
-    debugger;
-    // this.orderService.updateState(this.clientContextService.getToken(), OrderService.STATE_APPROVED)
-    //   .subscribe(order => {
-    //       this.translate.get(OrderService.CODE_TRANSLATION_ORDER_CREATED).subscribe(translated => {
-    //           this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //         }
-    //       );
-    //     },
-    //     error => {
-    //       if (error.status === 401) {
-    //         this.translate.get(LoginService.CODE_TRANSLATION_SIGN_IN_FIRST).subscribe(translated => {
-    //             this.snackBar.open(translated, null, {duration: 2500, panelClass: 'snackbar'});
-    //             this.router.navigate(['my-account']).then();
-    //           }
-    //         );
-    //       }
-    //     }
-    //   );
   }
 
   private translateOrderState() {
