@@ -9,7 +9,7 @@ import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-overview',
@@ -22,10 +22,7 @@ export class OverviewComponent implements OnInit {
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
-
-  public orderData: FormGroup;
-
-  public orderState = [
+   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
@@ -41,7 +38,6 @@ export class OverviewComponent implements OnInit {
     private langService: LangService,
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService,
-    private formBuilder: FormBuilder,
 
 
   ) {
@@ -58,9 +54,6 @@ export class OverviewComponent implements OnInit {
 
   public ngOnInit() {
   //  this.getUsers();
-    this.orderData = this.formBuilder.group({
-      givenname: ['', Validators.required],
-    });
 
     this.orderService.getAll()
       .subscribe(
@@ -68,21 +61,22 @@ export class OverviewComponent implements OnInit {
           this.orders = result;
          }
       );
-    this.initValidation();
-
-  }
-  private initValidation() {
-    this.orderData = this.formBuilder.group({
-      givenname: ['', Validators.required],
-      unit_type: 'default value here'
-
-
-    });
 
   }
 
-  public updateOrder(orderData){
-    this.orderService.updateOrder(orderData.value)
+
+  public updateOrder(orderData) {
+    const updatedOrder = {
+      _id: orderData.value.id,
+      userID: orderData.value.userID,
+      state: orderData.value.state,
+      deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname, streetHousenumber: orderData.value.streetHousenumber,
+                        postCode: orderData.value.postCode, city: orderData.value.city},
+      contactData: {email: orderData.value.email, phone: orderData.value.phone},
+      deliveryType: {delivery: orderData.value.delivery},
+      paymentType: {payment: orderData.value.payment}
+    };
+    this.orderService.updateOrder(updatedOrder)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
               this.snackBarService.showInfo(' ' + ' ' + translated);

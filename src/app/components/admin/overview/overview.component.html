@@ -34,7 +34,8 @@
                   <div class="admin-customer-data">
                      <h4>{{'PARTICULARS' | translate}}</h4>
                     <form #form="ngForm">
-                      <input type="hidden" name="_id" [(ngModel)]="order._id" #_id>
+                      <input type="hidden" name="id" [(ngModel)]="order._id" #id>
+                      <input type="hidden" name="userID" [(ngModel)]="order.userID" #userID>
                       <p>
                         <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
@@ -126,7 +127,7 @@
                     <br><br>
                     <p>
                       <mat-form-field>
-                        <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"  >
+                        <mat-select name="state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"  >
                           <mat-option *ngFor="let state of orderState" [value]="state.value">
                             {{state.viewValue}}
                           </mat-option>
