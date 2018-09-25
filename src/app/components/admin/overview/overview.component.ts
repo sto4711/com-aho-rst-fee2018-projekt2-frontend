@@ -27,7 +27,8 @@ export class OverviewComponent implements OnInit {
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
   ];
-  private static CODE_TRANSLATION_UPDATED = 'ORDER-STATUS-UPDATED';
+  private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
+  private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
 
   constructor(
     private route: ActivatedRoute,
@@ -67,10 +68,11 @@ export class OverviewComponent implements OnInit {
 
   public updateOrder(orderData) {
     const updatedOrder = {
-      _id: orderData.value.id,
+      _id: orderData.value._id,
       userID: orderData.value.userID,
       state: orderData.value.state,
-      deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname, streetHousenumber: orderData.value.streetHousenumber,
+      deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
+                        streetHousenumber: orderData.value.streetHousenumber,
                         postCode: orderData.value.postCode, city: orderData.value.city},
       contactData: {email: orderData.value.email, phone: orderData.value.phone},
       deliveryType: {delivery: orderData.value.delivery},
@@ -94,6 +96,28 @@ export class OverviewComponent implements OnInit {
         }
       );
   }
+
+  public deleteOrder(orderData) {
+
+    this.orderService.deleteOrder(orderData.value)
+      .subscribe(order => {
+          this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
+              this.snackBarService.showInfo(' ' + ' ' + translated);
+
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+              }
+            );
+          }
+        }
+      );
+  }
+
 
   public sortData(sort: Sort) {
     const data = this.orders ;

@@ -100,9 +100,10 @@
   "WRONG-EMAIL-OR-PASSWORD": "Falsche Email oder Password",
   "EMAIL-ALREADY-TAKEN": "Email bereits vergeben",
   "ORDER-STATUS-UPDATED": "Der Bestellstatus ist aktualisiert.",
-  "ORDER-UPDATE-SAVE": "Bestellung speichern",
-
-
+  "ORDER-UPDATE-SAVE": "Die Bestellung ist gespeichert.",
+  "ORDER-IS-DELETED": "Die Bestellung ist gelöscht.",
+  "ORDER-SAVE": "Bestellung speichern",
+  "ORDER-DELETE": "Bestellung löschen",
 
 
 

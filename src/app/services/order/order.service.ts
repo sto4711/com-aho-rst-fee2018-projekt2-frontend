@@ -153,8 +153,16 @@ export class OrderService implements CanActivate {
   }
 
   public updateOrder(orderData: any ): Observable<Order> {
-    console.log(  orderData);
-     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'update', orderData, {
+      return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'update', orderData, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    );
+  }
+
+  public deleteOrder(orderData: any ): Observable<Order> {
+     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'delete-order', {
+      '_id': orderData._id
+      }, {
         headers: {'Content-Type': 'application/json'}
       }
     );
