@@ -99,7 +99,8 @@
   "OOPS-SOMETHING-WENT-WRONG": "oops something went wrong",
   "WRONG-EMAIL-OR-PASSWORD": "wrong email or password",
   "EMAIL-ALREADY-TAKEN": "email already taken",
-  "ORDER-STATUS-UPDATED": "order state updated.",
+  "ORDER-STATUS-UPDATED": "order state updated",
+  "ORDER-UPDATE-SAVE": "save order",
 
 
   "RESET": "reset",

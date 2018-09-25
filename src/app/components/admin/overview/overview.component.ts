@@ -81,9 +81,24 @@ export class OverviewComponent implements OnInit {
 
   }
 
-  public updateOrder(data){
-  console.log(data.value);
+  public updateOrder(orderData){
+    this.orderService.updateOrder(orderData.value)
+      .subscribe(order => {
+          this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
+              this.snackBarService.showInfo(' ' + ' ' + translated);
 
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+               }
+            );
+          }
+        }
+      );
   }
 
   public sortData(sort: Sort) {
@@ -107,32 +122,6 @@ export class OverviewComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-
-  public updateOrder(orderData){
-    console.log(orderData);
-  }
-
- /* public onSelectionChange(orderState, orderId) {
-     this.orderService.updateState(orderState.value, orderId)
-      .subscribe(order => {
-          this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
-            this.snackBarService.showInfo(' ' + ' ' + translated);
-
-           }
-          );
-         },
-       error => {
-          if (error.status === 401) {
-            this.translate.get('').subscribe(translated => {
-                this.snackBarService.showInfo('' + ' ' + translated);
-                 this.router.navigate(['my-account']).then();
-              }
-              );
-          }
-       }
-      );
-  }
-*/
   private translateOrderState() {
     for (let i = 0; i < this.orderState.length; i++) {
       this.translate.get(this.orderState[i].value).subscribe(translated => {
