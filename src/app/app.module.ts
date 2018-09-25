@@ -36,9 +36,10 @@ import {LangService} from './services/lang-service/lang.service';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {RequestCacheService} from "./services/request-cache/request-cache.service";
 import {CacheInterceptor} from "./interceptors/cache-interceptor";
-import {CanComponentDeactivateGuard} from "./services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
+import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
+import {LoginRedirectInterceptor} from "./interceptors/login-redirect-interceptor";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [LoginService, LangService, CanComponentDeactivateGuard,SnackBarService,
     RequestCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoginRedirectInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
