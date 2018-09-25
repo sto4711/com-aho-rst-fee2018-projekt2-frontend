@@ -12,7 +12,6 @@ import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {OrderService} from "./services/order/order.service";
-import {UserComponent} from './components/admin/user/user.component';
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 
 const routes: Routes = [
@@ -52,11 +51,7 @@ const routes: Routes = [
     }
   },
   {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/user', component: UserComponent},
-
   {path: 'admin/overview', component: OverviewComponent},
-  {path: 'login', component: MyAccountComponent},
-
   {path: '**', component: NotFoundComponent,}
 ];
 

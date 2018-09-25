@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ClientContextService} from "../client-context/client-context.service";
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
 
@@ -12,7 +12,7 @@ import {ShoppingBasketItem} from "./shopping-basket-item";
 export class ShoppingBasketService {
 
   public shoppingBasket: ShoppingBasket = null;
-  private HttpErrorResponse: HttpErrorResponse;
+
   constructor(
     private http: HttpClient
   ) {
@@ -35,11 +35,9 @@ export class ShoppingBasketService {
         );
     } else {
       this.get(shoppingBasketId)
-        .subscribe((shoppingBasket) => {
-
-           this.shoppingBasket = shoppingBasket;
-
-            console.log(shoppingBasket + ', shoppingBasket loaded');
+        .subscribe(shoppingBasket => {
+            this.shoppingBasket = shoppingBasket;
+            console.log('initShoppingBasket(), shoppingBasket loaded');
           }
         );
     }

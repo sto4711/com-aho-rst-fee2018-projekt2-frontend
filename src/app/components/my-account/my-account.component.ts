@@ -57,8 +57,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
-   if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
-       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+    if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
+      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes' ? true : false))
         );
@@ -77,7 +77,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            if (error.status === 404) {
+            if (error.status === 401) {
               this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
             }
           }
@@ -93,9 +93,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            if (error.status === 404) {
-              this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
-            }
+            this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
           });
     }
   }
