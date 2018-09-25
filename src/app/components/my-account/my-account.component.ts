@@ -77,7 +77,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            if (error.status === 401) {
+            if (error.status === 404) {
               this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
             }
           }
@@ -93,7 +93,9 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
+            if (error.status === 404) {
+              this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
+            }
           });
     }
   }
