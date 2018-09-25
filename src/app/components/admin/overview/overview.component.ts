@@ -40,7 +40,7 @@ export class OverviewComponent implements OnInit {
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService,
 
- 
+
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;

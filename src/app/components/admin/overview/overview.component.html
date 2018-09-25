@@ -3,7 +3,7 @@
 
   <mat-tab-group>
 
-      <mat-tab label="{{'ORDERS' | translate}}">
+    <mat-tab label="{{'ORDERS' | translate}}">
 
       <mat-accordion>
         <table id="admin-order-table" matSort (matSortChange)="sortData($event)">
@@ -26,8 +26,8 @@
                   </mat-panel-title>
                   <mat-panel-description>
                     <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}</mat-panel-description>
-                   <mat-panel-description>
-                     <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
+                  <mat-panel-description>
+                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="admin-order">
@@ -38,47 +38,103 @@
                       <input type="hidden" name="userID" [(ngModel)]="order.userID" #userID>
                       <p>
                         <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
-                          <mat-form-field  class="overview-input">
-                              <input matInput placeholder=""
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
                                  name="givenname"
                                  [(ngModel)]="order?.deliveryAddress.givenname"
                                  #givenname
                                  required>
-                          </mat-form-field>
+                        </mat-form-field>
                       </p>
 
-                    <p><span class="review-data">{{'SURNAME' | translate}}: </span>
-                      <mat-form-field  class="overview-input">
-                        <input matInput placeholder=""
-                               name="surname"
-                               [(ngModel)]="order?.deliveryAddress.surname"
-                               #surname
-                               required>
-                      </mat-form-field>
-                    <p><span class="review-data">{{'GIVEN-NAME' | translate}}: </span>{{order?.deliveryAddress.givenname}} </p>
+                      <p><span class="review-data">{{'SURNAME' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="surname"
+                                 [(ngModel)]="order?.deliveryAddress.surname"
+                                 #surname
+                                 required>
+                        </mat-form-field>
+                      </p>
+                      <p><span class="review-data">{{'STREET' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="streetHousenumber"
+                                 [(ngModel)]=" order?.deliveryAddress.streetHousenumber"
+                                 #streetHousenumber
+                                 required>
+                        </mat-form-field>
+                      </p>
+                      <p><span class="review-data">{{'POST-CODE' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="postCode"
+                                 [(ngModel)]="order?.deliveryAddress.postCode"
+                                 #postCode
+                                 required>
+                        </mat-form-field>
+                      </p>
+                      <p><span class="review-data">{{'CITY' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="city"
+                                 [(ngModel)]="order?.deliveryAddress.city"
+                                 #city
+                                 required>
+                        </mat-form-field>
+                      </p>
 
-                    <p><span class="review-data">{{'SURNAME' | translate}}: </span>{{order?.deliveryAddress.surname}} </p>
-                    <p><span class="review-data">{{'STREET' | translate}}: </span> {{order?.deliveryAddress.streetHousenumber}}</p>
-                    <p><span class="review-data">{{'POST-CODE' | translate}}: </span>{{order?.deliveryAddress.postCode}} </p>
-                    <p><span class="review-data">{{'CITY' | translate}}: </span>{{order?.deliveryAddress.city}} </p>
-                    <br>
-                    <p><span class="review-data">{{'E-MAIL' | translate}}: </span>{{order?.contactData.email}}</p>
-                    <p><span class="review-data">{{'PHONE' | translate}}: </span>{{order?.contactData.phone}} </p>
-                    <br>
-                    <p><span class="review-data">{{'DELIVERY' | translate}}: </span>{{order?.deliveryType.delivery}}</p>
-                    <br>
-                    <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>{{order?.paymentType.payment}}</p>
-                    <br><br>
-                    <p>
-                      <mat-form-field>
-                        <mat-select name="order-state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"  >
-                          <mat-option *ngFor="let state of orderState" [value]="state.value">
-                            {{state.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
+                      <p><span class="review-data">{{'E-MAIL' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="email"
+                                 [(ngModel)]="order?.contactData.email"
+                                 #email
+                                 required>
+                        </mat-form-field>
+                      </p>
+                      <p><span class="review-data">{{'PHONE' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="phone"
+                                 [(ngModel)]="order?.contactData.phone"
+                                 #phone
+                                 required>
+                        </mat-form-field>
+                      </p>
 
-                    </p>
+                      <p><span class="review-data">{{'DELIVERY' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="delivery"
+                                 [(ngModel)]="order?.deliveryType.delivery"
+                                 #delivery
+                                 required>
+                        </mat-form-field>
+
+                      </p>
+                
+                      <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 name="payment"
+                                 [(ngModel)]="order?.paymentType.payment"
+                                 #payment
+                                 required>
+                        </mat-form-field>
+
+                      </p>
+                      <br><br>
+                      <p>
+                        <mat-form-field>
+                          <mat-select name="state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"  >
+                            <mat-option *ngFor="let state of orderState" [value]="state.value">
+                              {{state.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </p>
+
                       <p>
                         <button id="order-button" (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
                         <button id="order-button" (click)="deleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
@@ -100,6 +156,7 @@
                     </div><!-- end .admin-order-item-listing -->
                     <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum}}</p>
                   </div><!-- end .admin-customer-articles -->
+
                 </div><!-- end .admin-orders -->
               </mat-expansion-panel>
 
@@ -109,10 +166,10 @@
           </tbody>
           <tfoot>
           <tr><td colspan="3">
-           <pagination-controls
-            (pageChange)="p = $event"
-            previousLabel="{{'BACK' | translate}}"
-            nextLabel="{{'NEXT' | translate}}"></pagination-controls>
+            <pagination-controls
+              (pageChange)="p = $event"
+              previousLabel="{{'BACK' | translate}}"
+              nextLabel="{{'NEXT' | translate}}"></pagination-controls>
           </td></tr>
           </tfoot>
         </table>
@@ -124,5 +181,5 @@
     <mat-tab label="{{'USERS' | translate}}"></mat-tab>
 
 
-   </mat-tab-group>
+  </mat-tab-group>
 </div>

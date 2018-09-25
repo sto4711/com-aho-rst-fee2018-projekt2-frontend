@@ -92,7 +92,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-   @include font-size($sizeValue:4.2);
+  @include font-size($sizeValue:4.2);
 }
 
 h2 {
@@ -102,7 +102,7 @@ h2 {
 }
 
 h3 {
-   @include font-size($sizeValue:2.4);
+  @include font-size($sizeValue:2.4);
 
 }
 
@@ -159,9 +159,9 @@ input.mat-input-element {
   margin-top: 0.0625em;
 }
 
- .mat-form-field-label {
-   @include font-size($sizeValue:1.4, $important:!important);
-   top: 1.28125em;
+.mat-form-field-label {
+  @include font-size($sizeValue:1.4, $important:!important);
+  top: 1.28125em;
 }
 
 
@@ -201,7 +201,7 @@ a button.mat-menu-btn {
   margin-left: 45px !important;
 }
 .mat-step-label {
-   font-size: 2.4rem;
+  font-size: 2.4rem;
 }
 
 .mat-stepper-vertical {
@@ -212,7 +212,7 @@ a button.mat-menu-btn {
   display: inline-block;
   font-size: 1.8rem;
   font-weight: 400;
-   width: auto;
+  width: auto;
   padding: 5px 0;
   color: #000000;
   background-color: transparent;
@@ -281,6 +281,7 @@ a button.mat-menu-btn {
 
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
   width: 21%;
+  color: rgba(0,0,0,.54);
 }
 /*
     rows, cols ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -867,8 +868,8 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
   }
 
   table#shopping-basket-table  td:before {
-     position: absolute;
-     top: 6px;
+    position: absolute;
+    top: 6px;
     left: 6px;
     width: 45%;
     padding-right: 10px;
@@ -879,7 +880,7 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
     padding: 0;
   }
   .result-text {
-     width: 100%;
+    width: 100%;
     margin: 10px 0 0 0;
   }
 
@@ -905,11 +906,11 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
  */checkout-review
 
-#order-review span, .review-data {
-  font-weight: 500;
-  display: inline-block;
-  width: 150px;
-}
+   #order-review span, .review-data {
+     font-weight: 500;
+     display: inline-block;
+     width: 150px;
+   }
 .checkout-nav {
   display: flex;
   flex-flow:row wrap;
@@ -917,9 +918,9 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
   max-width: 250px;
 }
 @media screen and (max-width: 420px){
- #checkout-review{
-   margin: 0 0 0 -56px;
- }
+  #checkout-review{
+    margin: 0 0 0 -56px;
+  }
 }
 
 /*
@@ -947,7 +948,7 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
- }
+}
 
 .admin-order-item {
   margin: 0 0 25px 0;
@@ -1036,6 +1037,21 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
 
 .login-form, .new-account-form {
   width: 50%;
+}
+
+
+/*
+    overview ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.overview-input {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.overview-input .mat-form-field-wrapper {
+  max-width: 200px;
 }
 
 /*
@@ -1197,10 +1213,6 @@ select {
   background-color: crimson;
 }
 
-/*
-    messages ////////////////////////////////////////////////////////////////////////////////////////////////
- */
-
 .mat-simple-snackbar {
   font-size: 2.4rem !important;
   line-height: 2.8rem !important;
@@ -1226,11 +1238,11 @@ select {
 .loader {
   position: relative;
   z-index: 999;
-    margin: 25px auto;
+  margin: 25px auto;
   display: block;
   width: 100px;
   height: 100px;
-   -webkit-animation-duration: 1s;
+  -webkit-animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-name: loading;
   -webkit-animation-timing-function: linear;
