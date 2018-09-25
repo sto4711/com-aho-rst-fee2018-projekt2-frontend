@@ -6,11 +6,11 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
 import {Observable, of} from "rxjs";
-import {CanComponentDeactivate} from "../../services/can-component-deactivate-guard/can-component-deactivate";
-import {CanComponentDeactivateGuard} from "../../services/can-component-deactivate-guard/can-component-deactivate-guard";
 import {map} from "rxjs/operators";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
+import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
+import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +26,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public paymentType: FormGroup;
   public itemChangePossible: boolean = false;
   public isAutoStepping: boolean = false;
-  private static CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN: string = 'SESSION-IS-NO-MORE-VALID-PLEASE-SIGNIN-AGAIN';
   private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
 
 
@@ -149,12 +148,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
       .subscribe(order => {
           this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_ORDER_CREATED);
           this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-        },
-        error => {
-          if (error.status === 401) {
-            this.snackBarService.showInfo(CheckoutComponent.CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN);
-            this.router.navigate(['my-account']).then();
-          }
         }
       );
   }

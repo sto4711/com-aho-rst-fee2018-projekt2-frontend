@@ -1,16 +1,15 @@
 import {Router} from '@angular/router';
-
-import {Component, OnInit} from '@angular/core';
+import {map} from "rxjs/operators";
+import {Component} from '@angular/core';
 import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CanComponentDeactivate} from "../../services/can-component-deactivate-guard/can-component-deactivate";
 import {Observable, of} from "rxjs";
-import {CanComponentDeactivateGuard} from "../../services/can-component-deactivate-guard/can-component-deactivate-guard";
-import {map} from "rxjs/operators";
 import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
 import {UserService} from "../../services/admin/user/user.service";
+import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
+import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 
 @Component({
   selector: 'app-my-account',
@@ -78,7 +77,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            if (error.status === 401) {
+            if (error.status === 404) {
               this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
             }
           }
@@ -94,7 +93,9 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
+            if (error.status === 404) {
+              this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
+            }
           });
     }
   }
