@@ -19,7 +19,7 @@ import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public orders: any;
+   public orders: any;
   public p: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
@@ -73,21 +73,26 @@ export class OverviewComponent implements OnInit {
       );
   }
 
-  public formChange(){
-    this.orderChanged = true;
+  public formChange(orderId){
+
+   this.orderChanged = true;
   }
 
-  public updateOrder(orderData) {
+  public updateOrder(orderData, orderItems) {
+    console.log(orderItems.value );
+
+
     const updatedOrder = {
-      _id: orderData.value._id,
-      userID: orderData.value.userID,
-      state: orderData.value.state,
-      deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
+     //   shoppingBasket: '',
+        _id: orderData.value._id,
+        userID: orderData.value.userID,
+        state: orderData.value.state,
+        deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
         streetHousenumber: orderData.value.streetHousenumber,
         postCode: orderData.value.postCode, city: orderData.value.city},
-      contactData: {email: orderData.value.email, phone: orderData.value.phone},
-      deliveryType: {delivery: orderData.value.delivery},
-      paymentType: {payment: orderData.value.payment}
+        contactData: {email: orderData.value.email, phone: orderData.value.phone},
+        deliveryType: {delivery: orderData.value.delivery},
+        paymentType: {payment: orderData.value.payment}
     };
     this.orderService.updateOrder(updatedOrder)
       .subscribe(order => {
