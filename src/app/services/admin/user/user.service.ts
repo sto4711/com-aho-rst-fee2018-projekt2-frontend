@@ -30,8 +30,8 @@ export class UserService {
     );
   }
 
-  public create(user: User): Observable<User> {
-    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'create', user, {
+  public create(user: User): Observable<Token> {
+    return this.http.post<Token>(ClientContextService.BACKEND_URL_USER + 'create', user, {
       headers: {'Content-Type': 'application/json'}
     },).pipe(
       tap((/*result: string*/) => console.log('UserService.create() ok'))

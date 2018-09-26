@@ -89,11 +89,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (this.accountNew.valid) {
       this.userService.create(this.accountNew.getRawValue())
         .subscribe(token => {
+            this.clientContextService.setToken(token);
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
             this.router.navigate(['checkout']).then();
           },
           error => {
-            this.snackBarService.showError((error.status === 401 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
+            this.snackBarService.showError((error.status === 400 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
           });
     }
   }
