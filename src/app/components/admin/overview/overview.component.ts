@@ -10,6 +10,8 @@ import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {Validators} from '@angular/forms';
+import {ShoppingBasketComponent} from '../../shopping-basket/shopping-basket.component';
+import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
 
 @Component({
   selector: 'app-overview',
@@ -29,6 +31,7 @@ export class OverviewComponent implements OnInit {
   ];
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
+  private static CODE_TRANSLATION_DELETE_FOR_SURE = 'ORDER-DELETE-FOR-SURE';
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +42,7 @@ export class OverviewComponent implements OnInit {
     private langService: LangService,
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService,
+    public confirmYesNoService: ConfirmYesNoService
 
 
   ) {
@@ -55,16 +59,18 @@ export class OverviewComponent implements OnInit {
 
   public ngOnInit() {
     //  this.getUsers();
+    this.getAllOrders();
 
+  }
+
+  public getAllOrders(){
     this.orderService.getAll()
       .subscribe(
         result => {
           this.orders = result;
         }
       );
-
   }
-
 
   public updateOrder(orderData) {
     const updatedOrder = {
@@ -97,13 +103,25 @@ export class OverviewComponent implements OnInit {
       );
   }
 
-  public deleteOrder(orderData) {
+  private confirmDeleteOrder(orderData){
+    this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE).subscribe(translated => {
+        this.confirmYesNoService.confirm(' ' + translated).subscribe(
+          result => {
+            if (result === 'yes') {
+            this.deleteOrder(orderData);
+            }
+          }
+        );
+      }
+    );
+  }
 
+  public deleteOrder(orderData) {
     this.orderService.deleteOrder(orderData.value)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-
+            this.snackBarService.showInfo(' ' + ' ' + translated);
+            this.getAllOrders();
             }
           );
         },
