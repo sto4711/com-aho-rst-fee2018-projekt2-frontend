@@ -31,7 +31,7 @@ export class OverviewComponent implements OnInit {
   ];
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
-  private static CODE_TRANSLATION_DELETE_FOR_SURE = 'ORDER-DELETE-FOR-SURE';
+  private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
 
   constructor(
     private route: ActivatedRoute,
@@ -103,7 +103,7 @@ export class OverviewComponent implements OnInit {
       );
   }
 
-  private confirmDeleteOrder(orderData){
+  public confirmDeleteOrder(orderData){
     this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {

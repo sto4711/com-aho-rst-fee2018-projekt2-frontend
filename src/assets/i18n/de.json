@@ -32,8 +32,8 @@
   "STATE": "Status",
   "ADD-TO-SHOPPING-BASKET": "In den Warenkorb",
   "CONTINUE-SHOPPING": "Weiter Einkaufen",
-  "SHOPPING-BASKET-IS-EMPTY": "Ihr Warenkorb ist leer",
-  "VIEW-OUR-ARTICLES": "Hier gehts zu unseren Artikeln",
+  "SHOPPING-BASKET-IS-EMPTY": "Ihr Warenkorb ist leer", 
+  "VIEW-OUR-ARTICLES": "Hier gehts zu unseren Artikeln.",
   "I-ALREADY-HAVE-AN-ACCOUNT": "Ich habe bereits ein Konto",
   "CREATE-NEW-ACCOUNT": "Neues Konto erstellen",
   "E-MAIL": "E-Mail",
@@ -105,7 +105,7 @@
   "ORDER-IS-DELETED": "Die Bestellung ist gelöscht.",
   "ORDER-SAVE": "Bestellung speichern",
   "ORDER-DELETE": "Bestellung löschen",
-  "TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE": "Diese Bestellung wirklich löschen?",
+  "TO-DELETE-THIS-ORDER-FOR-SURE": "Diese Bestellung wirklich löschen?",
 
 
 
