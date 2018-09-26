@@ -158,7 +158,9 @@ input.mat-input-element {
   @include font-size($sizeValue:1.8, $important:!important);
   margin-top: 0.0625em;
 }
-
+.mat-form-field-infix {
+  border: 0 solid transparent;
+}
 .mat-form-field-label {
   @include font-size($sizeValue:1.4, $important:!important);
   top: 1.28125em;
@@ -167,6 +169,10 @@ input.mat-input-element {
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $green !important;
+}
+
+.overview-input .mat-form-field-infix {
+  padding: 0;
 }
 
 .mat-option-text a {
@@ -926,7 +932,10 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
 /*
     admin area ////////////////////////////////////////////////////////////////////////////////////////////////
  */
-
+form.order-form {
+  width: 100%;
+  display: inherit;
+}
 .admin-order {
   display: flex;
   justify-content: space-between;
@@ -1046,6 +1055,7 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
 
 .overview-input {
   height: 30px;
+  min-width: 200px;
   margin: 0;
   padding: 0;
 }
@@ -1139,7 +1149,7 @@ button.btn-confirm {
 }
 
 button.btn-warning {
-  background-color: #e11313;
+  background-color: $color-error;
 
 }
 
@@ -1209,8 +1219,8 @@ select {
 
 .danger {
   color: #fff;
-  border: 1px solid #e11313;
-  background-color: crimson;
+  border: 1px solid $color-error;
+  background-color: $color-error;
 }
 
 .mat-simple-snackbar {
@@ -1309,7 +1319,7 @@ select {
 }
 .fa-times {
   float:right;
-  color: #e11313;
+  color: $color-error;
   font-size: 1.8rem;
   cursor: pointer;
 }
@@ -1323,6 +1333,18 @@ select {
 
 .float-right {
   float: right;
+}
+
+.warning{
+  color: $color-error;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 .clearfix:after {

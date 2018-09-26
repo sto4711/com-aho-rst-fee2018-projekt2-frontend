@@ -16,8 +16,8 @@
           </thead>
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p } ">
-            <td colspan="3">
-              <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+            <td colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <strong>{{'CUSTOMER' | translate}}:&nbsp;</strong>
@@ -25,21 +25,27 @@
                     {{order?.deliveryAddress.surname}}
                   </mat-panel-title>
                   <mat-panel-description>
-                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}</mat-panel-description>
+                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}
+                  </mat-panel-description>
                   <mat-panel-description>
-                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
+                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}
+                  </mat-panel-description>
+                  <mat-panel-description >
+                   <p class="warning" #myVar [hidden]="myVar">Bestellung wurde verändert!</p>
+                  </mat-panel-description>
                 </mat-expansion-panel-header>
+                 <div class="admin-order">
+                   <form #form="ngForm" class="order-form">
 
-                <div class="admin-order">
-                  <div class="admin-customer-data">
+                   <div class="admin-customer-data">
                     <h4>{{'PARTICULARS' | translate}}</h4>
-                    <form #form="ngForm">
                       <input type="hidden" name="_id" [(ngModel)]="order._id" #_id>
                       <input type="hidden" name="userID" [(ngModel)]="order.userID" #userID>
                       <p>
                         <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
+                                 (change)="formChange(order._id);"
                                  name="givenname"
                                  [(ngModel)]="order?.deliveryAddress.givenname"
                                  #givenname
@@ -113,7 +119,7 @@
                         </mat-form-field>
 
                       </p>
-                
+
                       <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -135,29 +141,44 @@
                         </mat-form-field>
                       </p>
 
-                      <p>
-                        <button id="order-button" (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                        <button id="order-button" (click)="deleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
-                      </p>
-                    </form>
+
 
                   </div><!-- end .admin-customer-data -->
                   <div class="admin-customer-articles">
+                    <form  #formItems="ngForm">
 
                     <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
                     <div class="admin-order-item-listing">
                       <div class="admin-order-item" *ngFor="let articles of order?.shoppingBasket.items">
+                        <input type="hidden"  name="articleID_{{articles.articleID}}" [(ngModel)]="articles.articleID" #articleIDd>
+                        <input type="hidden" name="articleName_{{articles.articleID}}" [(ngModel)]="articles.articleName" #articleName>
+                         <input type="hidden" name="articlePrice_{{articles.articleID}}" [(ngModel)]="articles.articlePrice" #articlePrice>
 
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
-                        <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
-                        <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
+                        <p class="admin-article-data"><span class="admin-article-attr">{{'AMOUNT' | translate}}:</span>
+                           <mat-form-field  class="overview-input">
+                            <input matInput placeholder=""
+                                   name="articleAmount_{{articles.articleID}}"
+                                   [(ngModel)]="articles.articleAmount"
+                                    #articleAmount
+                                   required>
+                          </mat-form-field>
+                        </p>
+                        <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice | amountConverter}}</p>
+                        <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice * articles.articleAmount | amountConverter}}</p>
                       </div><!-- end .admin-order-item -->
                     </div><!-- end .admin-order-item-listing -->
-                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum}}</p>
+                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum | amountConverter}}</p>
+                   </form>
                   </div><!-- end .admin-customer-articles -->
-
+                   </form>
                 </div><!-- end .admin-orders -->
+                <p>
+                  <button id="order-button" (click)="updateOrder(form,formItems)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
+                  <button id="order-button" (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                </p>
+
               </mat-expansion-panel>
 
             </td>

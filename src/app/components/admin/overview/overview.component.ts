@@ -10,6 +10,8 @@ import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {Validators} from '@angular/forms';
+import {ShoppingBasketComponent} from '../../shopping-basket/shopping-basket.component';
+import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
 
 @Component({
   selector: 'app-overview',
@@ -17,11 +19,12 @@ import {Validators} from '@angular/forms';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public orders: any;
+   public orders: any;
   public p: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
+  public orderChanged: boolean = false;
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
@@ -29,6 +32,7 @@ export class OverviewComponent implements OnInit {
   ];
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
+  private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +43,7 @@ export class OverviewComponent implements OnInit {
     private langService: LangService,
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService,
+    public confirmYesNoService: ConfirmYesNoService
 
 
   ) {
@@ -55,28 +60,39 @@ export class OverviewComponent implements OnInit {
 
   public ngOnInit() {
     //  this.getUsers();
+    this.getAllOrders();
 
+  }
+
+  public getAllOrders(){
     this.orderService.getAll()
       .subscribe(
         result => {
           this.orders = result;
         }
       );
-
   }
 
+  public formChange(orderId){
 
-  public updateOrder(orderData) {
+   this.orderChanged = true;
+  }
+
+  public updateOrder(orderData, orderItems) {
+    console.log(orderItems.value );
+
+
     const updatedOrder = {
-      _id: orderData.value._id,
-      userID: orderData.value.userID,
-      state: orderData.value.state,
-      deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
+     //   shoppingBasket: '',
+        _id: orderData.value._id,
+        userID: orderData.value.userID,
+        state: orderData.value.state,
+        deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
         streetHousenumber: orderData.value.streetHousenumber,
         postCode: orderData.value.postCode, city: orderData.value.city},
-      contactData: {email: orderData.value.email, phone: orderData.value.phone},
-      deliveryType: {delivery: orderData.value.delivery},
-      paymentType: {payment: orderData.value.payment}
+        contactData: {email: orderData.value.email, phone: orderData.value.phone},
+        deliveryType: {delivery: orderData.value.delivery},
+        paymentType: {payment: orderData.value.payment}
     };
     this.orderService.updateOrder(updatedOrder)
       .subscribe(order => {
@@ -97,13 +113,25 @@ export class OverviewComponent implements OnInit {
       );
   }
 
-  public deleteOrder(orderData) {
+  public confirmDeleteOrder(orderData){
+    this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE).subscribe(translated => {
+        this.confirmYesNoService.confirm(' ' + translated).subscribe(
+          result => {
+            if (result === 'yes') {
+            this.deleteOrder(orderData);
+            }
+          }
+        );
+      }
+    );
+  }
 
+  public deleteOrder(orderData) {
     this.orderService.deleteOrder(orderData.value)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-
+            this.snackBarService.showInfo(' ' + ' ' + translated);
+            this.getAllOrders();
             }
           );
         },
