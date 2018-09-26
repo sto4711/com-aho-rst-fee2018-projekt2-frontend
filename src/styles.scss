@@ -1139,7 +1139,7 @@ button.btn-confirm {
 }
 
 button.btn-warning {
-  background-color: #e11313;
+  background-color: $color-error;
 
 }
 
@@ -1209,8 +1209,8 @@ select {
 
 .danger {
   color: #fff;
-  border: 1px solid #e11313;
-  background-color: crimson;
+  border: 1px solid $color-error;
+  background-color: $color-error;
 }
 
 .mat-simple-snackbar {
@@ -1309,7 +1309,7 @@ select {
 }
 .fa-times {
   float:right;
-  color: #e11313;
+  color: $color-error;
   font-size: 1.8rem;
   cursor: pointer;
 }
@@ -1325,6 +1325,9 @@ select {
   float: right;
 }
 
+.warning{
+  color: $color-error;
+}
 .clearfix:after {
   visibility: hidden;
   display: block;

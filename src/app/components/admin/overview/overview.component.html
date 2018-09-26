@@ -17,7 +17,7 @@
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p } ">
             <td colspan="3">
-              <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <strong>{{'CUSTOMER' | translate}}:&nbsp;</strong>
@@ -25,9 +25,14 @@
                     {{order?.deliveryAddress.surname}}
                   </mat-panel-title>
                   <mat-panel-description>
-                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}</mat-panel-description>
+                    <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy'  }}
+                  </mat-panel-description>
                   <mat-panel-description>
-                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}</mat-panel-description>
+                    <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}
+                  </mat-panel-description>
+                  <mat-panel-description  *ngIf="orderChanged">
+                   <p class="warning">Bestellung wurde verändert!</p>
+                  </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="admin-order">
@@ -40,6 +45,7 @@
                         <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
+                                 (change)="formChange()"
                                  name="givenname"
                                  [(ngModel)]="order?.deliveryAddress.givenname"
                                  #givenname
@@ -150,11 +156,11 @@
 
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
-                        <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
-                        <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice}}</p>
+                        <p class="admin-article-data"><span class="admin-article-attr">{{'PRICE' | translate}}:</span>CHF {{articles.articlePrice | amountConverter}}</p>
+                        <p class="admin-article-data"><span class="admin-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{articles.articlePrice | amountConverter}}</p>
                       </div><!-- end .admin-order-item -->
                     </div><!-- end .admin-order-item-listing -->
-                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum}}</p>
+                    <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum | amountConverter}}</p>
                   </div><!-- end .admin-customer-articles -->
 
                 </div><!-- end .admin-orders -->

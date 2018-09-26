@@ -24,6 +24,7 @@ export class OverviewComponent implements OnInit {
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
+  public orderChanged: boolean = false;
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
@@ -70,6 +71,10 @@ export class OverviewComponent implements OnInit {
           this.orders = result;
         }
       );
+  }
+
+  public formChange(){
+    this.orderChanged = true;
   }
 
   public updateOrder(orderData) {
