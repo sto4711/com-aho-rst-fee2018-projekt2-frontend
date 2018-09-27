@@ -1,5 +1,5 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, CanActivate, Router} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
@@ -10,8 +10,6 @@ import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
-import {tap} from "rxjs/operators";
-import {Observable, of} from "rxjs/index";
 
 
 @Component({
@@ -19,7 +17,7 @@ import {Observable, of} from "rxjs/index";
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit, CanActivate {
+export class OverviewComponent implements OnInit {
    public orders: any;
   public p: number = 1;
   public panelOpenState: boolean = false;
@@ -59,24 +57,9 @@ export class OverviewComponent implements OnInit, CanActivate {
     this.translateOrderState();
   }
 
-    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const hasNoToken: boolean = (this.clientContextService.getToken().value === '' ? true : false);
-
-    return of<boolean>((hasNoToken))
-      .pipe(
-        tap((ok: boolean) => {
-
-          if (hasNoToken) {
-            this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);
-            this.router.navigate(['my-account']).then();
-          }
-        })
-      );
-  }
-
 
   public ngOnInit() {
-    //  this.getUsers();
+  this.getUsers();
     this.getAllOrders();
 
   }
@@ -91,18 +74,29 @@ export class OverviewComponent implements OnInit, CanActivate {
       );
   }
 
-  public formChange(orderId){
+  getUsers(): void {
 
+    this.userService.get(this.clientContextService.getToken())
+      .subscribe(users => {
+          this.users = users;
+          console.log('Users '+this.users);
+        },
+        error => {
+          this.router.navigate(['my-account']).then();
+        }
+      );
+  }
+
+
+  public formChange(orderId){
    this.orderChanged = true;
   }
 
-  public updateOrder(orderData, orderItems) {
-    console.log(orderItems.value );
+  public updateOrder(orderData) {
 
 
     const updatedOrder = {
-     //   shoppingBasket: '',
-        _id: orderData.value._id,
+         _id: orderData.value._id,
         userID: orderData.value.userID,
         state: orderData.value.state,
         deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
@@ -195,17 +189,5 @@ export class OverviewComponent implements OnInit, CanActivate {
     }
   }
 
-  getUsers(): void {
-
-    this.userService.get(this.clientContextService.getToken())
-      .subscribe(users => {
-          this.users = users;
-          console.log('Users '+this.users);
-        },
-        error => {
-          this.router.navigate(['my-account']).then();
-        }
-      );
-  }
 
 }

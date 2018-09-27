@@ -53,9 +53,7 @@ const routes: Routes = [
     }
   },
   {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/overview', component: OverviewComponent,
-    canActivate: [UserService]
-  },
+  {path: 'admin/overview', component: OverviewComponent, canActivate: [UserService]},
   {path: 'admin/user', component: UserComponent},
 
   {path: '**', component: NotFoundComponent,}

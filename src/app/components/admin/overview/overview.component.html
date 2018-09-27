@@ -141,18 +141,12 @@
                         </mat-form-field>
                       </p>
 
-
-
                   </div><!-- end .admin-customer-data -->
                   <div class="admin-customer-articles">
-                    <form  #formItems="ngForm">
 
                     <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
                     <div class="admin-order-item-listing">
                       <div class="admin-order-item" *ngFor="let articles of order?.shoppingBasket.items">
-                        <input type="hidden"  name="articleID_{{articles.articleID}}" [(ngModel)]="articles.articleID" #articleIDd>
-                        <input type="hidden" name="articleName_{{articles.articleID}}" [(ngModel)]="articles.articleName" #articleName>
-                         <input type="hidden" name="articlePrice_{{articles.articleID}}" [(ngModel)]="articles.articlePrice" #articlePrice>
 
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                         <p class="admin-article-data"><span class="admin-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
@@ -170,13 +164,12 @@
                       </div><!-- end .admin-order-item -->
                     </div><!-- end .admin-order-item-listing -->
                     <p class="admin-article-data"><span class="admin-article-attr">{{'TOTAL' | translate}}</span>CHF {{order?.shoppingBasket.totalSum | amountConverter}}</p>
-                   </form>
-                  </div><!-- end .admin-customer-articles -->
+                   </div><!-- end .admin-customer-articles -->
                    </form>
                 </div><!-- end .admin-orders -->
                 <p>
-                  <button id="order-button" (click)="updateOrder(form,formItems)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                  <button id="order-button" (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                  <button (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
+                  <button (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
                 </p>
 
               </mat-expansion-panel>
