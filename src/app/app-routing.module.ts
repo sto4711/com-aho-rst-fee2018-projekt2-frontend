@@ -13,6 +13,8 @@ import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {OrderService} from "./services/order/order.service";
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
+import {UserComponent} from "./components/admin/user/user.component";
+import {UserService} from "./services/admin/user/user.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -51,7 +53,11 @@ const routes: Routes = [
     }
   },
   {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/overview', component: OverviewComponent},
+  {path: 'admin/overview', component: OverviewComponent,
+    canActivate: [UserService]
+  },
+  {path: 'admin/user', component: UserComponent},
+
   {path: '**', component: NotFoundComponent,}
 ];
 

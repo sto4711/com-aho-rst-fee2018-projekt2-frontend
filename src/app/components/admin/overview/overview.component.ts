@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, Directive} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit, Injectable} from '@angular/core';
+import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
@@ -9,23 +9,24 @@ import {UserService} from '../../../services/admin/user/user.service';
 import {User} from '../../../services/admin/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
-import {Validators} from '@angular/forms';
-import {ShoppingBasketComponent} from '../../shopping-basket/shopping-basket.component';
 import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
+import {tap} from "rxjs/operators";
+import {Observable, of} from "rxjs/index";
+
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, CanActivate {
    public orders: any;
   public p: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
   public orderChanged: boolean = false;
-  public orderState = [
+   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
@@ -58,11 +59,28 @@ export class OverviewComponent implements OnInit {
     this.translateOrderState();
   }
 
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    const hasNoToken: boolean = (this.clientContextService.getToken().value === '' ? true : false);
+
+    return of<boolean>((hasNoToken))
+      .pipe(
+        tap((ok: boolean) => {
+
+          if (hasNoToken) {
+            this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);
+            this.router.navigate(['my-account']).then();
+          }
+        })
+      );
+  }
+
+
   public ngOnInit() {
     //  this.getUsers();
     this.getAllOrders();
 
   }
+
 
   public getAllOrders(){
     this.orderService.getAll()
@@ -178,12 +196,14 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
+
     this.userService.get(this.clientContextService.getToken())
       .subscribe(users => {
           this.users = users;
+          console.log('Users '+this.users);
         },
         error => {
-          this.router.navigate(['login']).then();
+          this.router.navigate(['my-account']).then();
         }
       );
   }
