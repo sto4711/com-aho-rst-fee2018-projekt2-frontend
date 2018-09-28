@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.getUsers(this.clientContextService.getToken())
+    this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
 

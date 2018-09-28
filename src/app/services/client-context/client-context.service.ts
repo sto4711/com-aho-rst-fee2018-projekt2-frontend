@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Token} from '../user/token';
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -7,8 +6,6 @@ import {environment} from "../../../environments/environment";
 })
 
 export class ClientContextService {
-  private token: Token = {value : ''};
-
   public static BACKEND_URL_PUBLIC :string  = 'http://' + environment.backendHost + ':' + environment.backendPort + '/';
   public static BACKEND_URL_ARTICLES :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/articles/';
   public static BACKEND_URL_ARTICLES_LATEST :string  = ClientContextService.BACKEND_URL_PUBLIC + 'webshop/articles/latest';
@@ -24,16 +21,5 @@ export class ClientContextService {
 
   constructor() {
   }
-
-  public setToken(token: Token){
-      this.token = token;
-  }
-
-  public getToken()  {
-       return this.token;
-  }
-
-
-
 
 }

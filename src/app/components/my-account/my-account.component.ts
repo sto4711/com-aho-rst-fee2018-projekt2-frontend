@@ -9,7 +9,7 @@ import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.
 import {UserService} from "../../services/user/user.service";
 import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
-import {Token} from "../../services/user/token";
+import {OrderService} from "../../services/order/order.service";
 
 @Component({
   selector: 'app-my-account',
@@ -28,7 +28,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   constructor(
     private _formBuilder: FormBuilder
     , private userService: UserService
-    , private clientContextService: ClientContextService
+    , private orderService: OrderService
     , private router: Router
     , private snackBarService: SnackBarService
     , private confirmYesNoService: ConfirmYesNoService
@@ -71,9 +71,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (this.account.valid) {
       this.userService.signin(this.account.getRawValue())
         .subscribe(user => {
-            let token = new Token();
-            token.value = user.token;
-            this.clientContextService.setToken(token);
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
             this.router.navigate(['checkout']).then();
           },
@@ -89,8 +86,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public onCreate() {
     if (this.accountNew.valid) {
       this.userService.create(this.accountNew.getRawValue())
-        .subscribe(token => {
-            this.clientContextService.setToken(token);
+        .subscribe(user => {
+            this.orderService.clear();
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
             this.router.navigate(['checkout']).then();
           },
@@ -102,7 +99,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   public onLogout() {
     this.userService.signout()
-      .subscribe(token => {
+      .subscribe(result => {
           //
         },
       );
