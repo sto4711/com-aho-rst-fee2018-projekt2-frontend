@@ -1,5 +1,9 @@
 <div class="loginInfoContainer">
-  <p class="loginInfoContainer__name">{{(userService.getUser() | async)?.name  }} {{(userService.getUser() | async)?.firstname  }}</p>
+  <p>
+    <span class="loginInfoContainer__name">
+      {{(userService.getUser() | async)?.name  }} {{(userService.getUser() | async)?.firstname  }}
+    </span>
+    <i *ngIf="(userService.getUser() | async)?.token" (click)="onSignout()"
+       class="fas fa-sign-out-alt loginInfoContainer__logout"></i>
+  </p>
 </div>
-
-

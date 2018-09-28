@@ -74,7 +74,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
             let token = new Token();
             token.value = user.token;
             this.clientContextService.setToken(token);
-            console.log('my-acount ' + user.token);
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
             this.router.navigate(['checkout']).then();
           },
@@ -102,7 +101,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public onLogout() {
-    this.userService.signout(this.clientContextService.getToken())
+    this.userService.signout()
       .subscribe(token => {
           //
         },
