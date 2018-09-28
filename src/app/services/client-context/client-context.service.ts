@@ -26,11 +26,11 @@ export class ClientContextService {
   }
 
   public setToken(token: Token){
-    this.token = token;
+      this.token = token;
   }
 
-  public getToken() :Token {
-    return this.token;
+  public getToken()  {
+       return this.token;
   }
 
 

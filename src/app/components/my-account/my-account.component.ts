@@ -59,14 +59,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public canDeactivate(): Observable<boolean> {
    if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
      return of(true);
-     /* to do later
-     /* return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+      /* return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
        .pipe(
          map((value) => (value === 'yes' ? true : false))
-       );
-   }
-   else {
-     return of(true);*/
+       );*/
+   }  else {
+     return of(true);
     }
   }
 
@@ -75,6 +73,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
       this.loginService.signin(this.account.getRawValue())
         .subscribe(token => {
             this.clientContextService.setToken(token);
+            console.log('my-acount ' + token.value);
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
             this.router.navigate(['checkout']).then();
           },

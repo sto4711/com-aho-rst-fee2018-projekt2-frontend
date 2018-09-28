@@ -75,8 +75,10 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
+    const test = this.clientContextService.getToken().value;
+    console.log(test);
 
-    this.userService.get(this.clientContextService.getToken())
+   /* this.userService.get(this.clientContextService.getToken())
       .subscribe(users => {
           this.users = users;
           console.log('Users '+this.users);
@@ -85,6 +87,7 @@ export class OverviewComponent implements OnInit {
           this.router.navigate(['my-account']).then();
         }
       );
+      */
   }
 
 

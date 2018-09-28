@@ -171,10 +171,12 @@ export class OrderService implements CanActivate {
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+         headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
       }
     ).pipe(
-      tap((order) => this.order = order)
+       tap((order) => {
+          this.order = order;
+       } )
     );
   }
 
