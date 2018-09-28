@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-login-info',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }

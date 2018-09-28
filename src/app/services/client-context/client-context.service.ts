@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Token} from '../login/token';
+import {Token} from '../user/token';
 import {environment} from "../../../environments/environment";
 
 @Injectable({

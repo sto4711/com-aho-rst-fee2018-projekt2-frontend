@@ -1,5 +1,5 @@
 <div class="loginInfoContainer">
-  <p>login-info works!</p>
+  <p class="loginInfoContainer__name">{{(userService.getUser() | async)?.name  }} {{(userService.getUser() | async)?.firstname  }}</p>
 </div>
 
 

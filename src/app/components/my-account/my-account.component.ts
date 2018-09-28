@@ -1,16 +1,15 @@
 import {Router} from '@angular/router';
 import {map} from "rxjs/operators";
 import {Component} from '@angular/core';
-import {LoginService} from 'src/app/services/login/login.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, of} from "rxjs";
 import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
-import {UserService} from "../../services/admin/user/user.service";
+import {UserService} from "../../services/user/user.service";
 import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
-import {Token} from "../../services/login/token";
+import {Token} from "../../services/user/token";
 
 @Component({
   selector: 'app-my-account',
@@ -28,7 +27,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   constructor(
     private _formBuilder: FormBuilder
-    , private loginService: LoginService
     , private userService: UserService
     , private clientContextService: ClientContextService
     , private router: Router
@@ -71,7 +69,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   public onLogin() {
     if (this.account.valid) {
-      this.loginService.signin(this.account.getRawValue())
+      this.userService.signin(this.account.getRawValue())
         .subscribe(user => {
             let token = new Token();
             token.value = user.token;
@@ -104,7 +102,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public onLogout() {
-    this.loginService.signout(this.clientContextService.getToken())
+    this.userService.signout(this.clientContextService.getToken())
       .subscribe(token => {
           //
         },

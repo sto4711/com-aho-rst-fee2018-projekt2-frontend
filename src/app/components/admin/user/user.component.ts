@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {User} from 'src/app/services/admin/user/user';
-import {UserService} from 'src/app/services/admin/user/user.service';
-import {LoginService} from 'src/app/services/login/login.service';
+import {User} from 'src/app/services/user/user';
+import {UserService} from 'src/app/services/user/user.service';
 import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 
 
@@ -17,8 +16,7 @@ export class UserComponent implements OnInit {
   users: User[];
 
   constructor(
-    private loginService: LoginService
-    , private clientContextService: ClientContextService
+    private clientContextService: ClientContextService
     , private userService: UserService
     , private router: Router
   ) {
@@ -29,7 +27,7 @@ export class UserComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.get(this.clientContextService.getToken())
+    this.userService.getUsers(this.clientContextService.getToken())
       .subscribe(users => {
           this.users = users;
 

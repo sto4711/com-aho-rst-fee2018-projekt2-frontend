@@ -11,7 +11,6 @@ import {UserComponent} from './components/admin/user/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
-import {LoginService} from './services/login/login.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 import {SearchComponent} from './components/search/search.component';
@@ -41,6 +40,7 @@ import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-co
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 import {ErrorResponseInterceptor} from "./interceptors/error-response-interceptor";
 import { LoginInfoComponent } from './components/login-info/login-info.component';
+import {UserService} from "./services/user/user.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,7 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [LoginService, LangService, CanComponentDeactivateGuard,SnackBarService,
+  providers: [UserService, LangService, CanComponentDeactivateGuard,SnackBarService,
     RequestCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
