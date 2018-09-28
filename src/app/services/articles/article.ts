@@ -6,6 +6,8 @@ export class Article {
   public descriptionLangCode: string;
   public price: number;
   public imageURL: string;
+  public imageURL2: string;
+  public imageURL3: string;
   public imageSmallURL : string;
   public availability: boolean;
   public rating: boolean[];
