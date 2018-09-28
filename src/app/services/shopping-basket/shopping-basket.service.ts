@@ -36,8 +36,9 @@ export class ShoppingBasketService {
     } else {
       this.get(shoppingBasketId)
         .subscribe(shoppingBasket => {
-            this.shoppingBasket = shoppingBasket;
-            console.log('initShoppingBasket(), shoppingBasket loaded');
+           this.shoppingBasket = shoppingBasket;
+           localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+          console.log('initShoppingBasket(), shoppingBasket loaded');
           }
         );
     }
