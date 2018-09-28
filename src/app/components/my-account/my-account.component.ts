@@ -10,6 +10,7 @@ import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.
 import {UserService} from "../../services/admin/user/user.service";
 import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
+import {Token} from "../../services/login/token";
 
 @Component({
   selector: 'app-my-account',
@@ -71,9 +72,11 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public onLogin() {
     if (this.account.valid) {
       this.loginService.signin(this.account.getRawValue())
-        .subscribe(token => {
+        .subscribe(user => {
+            let token = new Token();
+            token.value = user.token;
             this.clientContextService.setToken(token);
-            console.log('my-acount ' + token.value);
+            console.log('my-acount ' + user.token);
             this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
             this.router.navigate(['checkout']).then();
           },

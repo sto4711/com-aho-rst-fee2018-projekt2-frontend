@@ -17,8 +17,8 @@ export class LoginService {
   }
 
   /** gets token back */
-  public signin(login: Login): Observable<Token> {
-    return this.http.post<Token>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
+  public signin(login: Login): Observable<User> {
+    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
