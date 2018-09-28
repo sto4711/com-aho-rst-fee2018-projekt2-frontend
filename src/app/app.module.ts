@@ -40,6 +40,7 @@ import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 import {ErrorResponseInterceptor} from "./interceptors/error-response-interceptor";
+import { LoginInfoComponent } from './components/login-info/login-info.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LangSwitchComponent,
     ShoppingBasketListingComponent,
     OverviewComponent,
+    LoginInfoComponent,
   ],
   imports: [
     BrowserModule,
