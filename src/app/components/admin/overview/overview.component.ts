@@ -142,7 +142,8 @@ export class OverviewComponent implements OnInit {
   }
 
   public deleteOrder(orderData) {
-    this.orderService.deleteOrder(orderData.value)
+    debugger;
+    this.orderService.deleteOrder(orderData.value._id)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
             this.snackBarService.showInfo(' ' + ' ' + translated);
