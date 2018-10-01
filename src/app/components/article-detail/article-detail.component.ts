@@ -20,7 +20,7 @@ export class ArticleDetailComponent implements OnInit {
   public selectedValue = 1;
   private articleAmount: number = 1;
   public loading: boolean = true;
-
+  public imageUrlArray: string[];
   public amount = [
     {value: 1, viewValue: '1'},
     {value: 2, viewValue: '2'},
@@ -50,6 +50,11 @@ export class ArticleDetailComponent implements OnInit {
             result => {
               this.article = result;
               this.loading = false;
+              this.imageUrlArray = [
+                this.imageURL + this.article.imageURL,
+                this.imageURL + this.article.imageURL2,
+                this.imageURL + this.article.imageURL3
+              ];
             }
           );
       });

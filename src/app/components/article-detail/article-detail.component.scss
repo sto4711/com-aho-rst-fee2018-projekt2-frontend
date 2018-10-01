@@ -11,7 +11,7 @@
   justify-content: space-between;
 }
 
-#article-detail-wrap picture {
+.article-image-wrap{
   flex:1;
 }
 
@@ -45,16 +45,20 @@
   color: $green;
 }
 
-figcaption {
+.slideshow {
+  width: 100%;
+  height: 500px;
+}
+.slideshow-icons {
+   width: 100%;
   font-size: 1.6rem;
   text-align: center;
   padding: 10px 0 0 0;
 }
 
-figcaption .fab {
+.slideshow-icons  .fab {
   padding: 0 10px;
 }
-
 @media screen and (max-width: 852px) {
   #article-detail-wrap {
     flex-direction: column;

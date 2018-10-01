@@ -20,7 +20,6 @@ import {ArticleComponent} from './components/admin/article/article.component';
 import {AmountConverterPipe} from './pipes/currency.pipe';
 import {ArticleTemplateComponent} from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
-import {MatCardModule} from '@angular/material/card';
 import {HeaderComponent} from './components/header/header.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -41,6 +40,7 @@ import { LoginInfoComponent } from './components/login-info/login-info.component
 import {UserService} from "./services/user/user.service";
 import {ArticlesResponseCacheInterceptor} from "./interceptors/articles-response-cache-interceptor";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,7 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     MatComponentsModule,
-    MatCardModule,
+    SlideshowModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
