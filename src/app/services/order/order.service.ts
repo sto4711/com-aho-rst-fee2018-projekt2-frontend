@@ -58,7 +58,6 @@ export class OrderService implements CanActivate {
 
   public getOrder(): Observable<Order> {
     const orderId: string = localStorage.getItem('orderId');
-    debugger;
 
     if (this.order) {
       this.order.doNotStep = false;
@@ -163,7 +162,6 @@ export class OrderService implements CanActivate {
   }
 
   public deleteOrder(orderID: Order["_id"]): Observable<Order> {
-    debugger;
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'delete-order', {'_id': orderID}, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -171,10 +169,8 @@ export class OrderService implements CanActivate {
   }
 
   public resetOrder() {
-    console.log('vor this.getOrder()');
     this.getOrder()
       .subscribe(order => {
-          console.log('vor this.deleteOrder()');
           const orderId = order._id;
           this.clear();
           this.deleteOrder(orderId)
