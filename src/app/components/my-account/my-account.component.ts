@@ -75,7 +75,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
             this.router.navigate(['checkout']).then();
           },
           error => {
-            if (error.status === 401) {
+            if (error.status === 404) {
               this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
             }
           }

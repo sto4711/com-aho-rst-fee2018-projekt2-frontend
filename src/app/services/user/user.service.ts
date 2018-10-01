@@ -8,6 +8,7 @@ import {ClientContextService} from 'src/app/services/client-context/client-conte
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Login} from "./login";
+import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 
 
 @Injectable({
@@ -24,18 +25,27 @@ export class UserService implements CanActivate {
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService
   ) {
+    this.initUser();
   }
 
 
   public getToken(): string {
-    return (this.user? this.user.token : '');
+    return (this.user ? this.user.token : '');
   }
 
-  public getUser(): Observable<User> {
-    const userId: string = localStorage.getItem('userId');
+  public getUser(): User {
+      return this.user;
+  }
 
-    if (this.user) {
-      return of<User>(this.user);
+  private initUser() {
+    const userId: string = localStorage.getItem('userId');
+    if (userId) {
+      this.get(userId)
+        .subscribe(user => {
+            this.user = user;
+            console.log('User.getUser(), user loaded');
+          }
+        );
     }
   }
 
@@ -54,6 +64,16 @@ export class UserService implements CanActivate {
       );
   }
 
+  public get(userID: User["_id"]): Observable<User> {
+    return this.http.get<User>(ClientContextService.BACKEND_URL_USER + '?id=' + userID, {
+        headers: {'Content-Type': 'application/json'}
+      }
+    ).pipe(
+      tap(() => console.log('get ok'))
+    );
+  }
+
+
   public signin(login: Login): Observable<User> {
     return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
@@ -61,6 +81,7 @@ export class UserService implements CanActivate {
     ).pipe(
       tap((user: User) => {
         this.user = user;
+        localStorage.setItem('userId', user._id);
         console.log('signin ok');
       })
     );
@@ -72,6 +93,7 @@ export class UserService implements CanActivate {
     },).pipe(
       tap((result: string) => {
         this.user = null;
+        localStorage.removeItem('userId');
         console.log('signout ok');
         this.snackBarService.showInfo(UserService.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
       })
@@ -91,7 +113,7 @@ export class UserService implements CanActivate {
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(ClientContextService.BACKEND_URL_USERS, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
       }
     ).pipe(
       tap((users: User[]) => console.log('UserService.get() ok'))

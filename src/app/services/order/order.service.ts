@@ -40,6 +40,7 @@ export class OrderService implements CanActivate {
     if (this.shoppingBasketService.shoppingBasket) {
       basketIsEmpty = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
     }
+
     return of<boolean>((basketIsEmpty || hasNoToken ? false : true))
       .pipe(
         tap((ok: boolean) => {

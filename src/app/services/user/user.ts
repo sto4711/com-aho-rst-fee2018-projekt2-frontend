@@ -5,4 +5,5 @@ export class User {
   pwd: string;
   type: string;
   token: string;
+  _id:string;
 }
