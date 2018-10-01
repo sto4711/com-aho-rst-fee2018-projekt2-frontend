@@ -20,10 +20,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public account: FormGroup;
   public accountNew: FormGroup;
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
   private static CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED = 'AN-ERROR-HAS-OCCURRED';
+
 
   constructor(
     private _formBuilder: FormBuilder
@@ -56,14 +58,14 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
-   if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
-     return of(true);
+    if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
+      return of(true);
       /* return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
        .pipe(
          map((value) => (value === 'yes' ? true : false))
        );*/
-   }  else {
-     return of(true);
+    } else {
+      return of(true);
     }
   }
 
@@ -71,7 +73,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (this.account.valid) {
       this.userService.signin(this.account.getRawValue())
         .subscribe(user => {
-            this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
+            if (this.userService.differentUserHasLoggedIn) {
+              this.orderService.resetOrder();
+              this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED);
+            } else {
+              this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
+            }
             this.router.navigate(['checkout']).then();
           },
           error => {

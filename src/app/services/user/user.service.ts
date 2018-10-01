@@ -9,6 +9,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Login} from "./login";
 import {ShoppingBasket} from "../shopping-basket/shopping-basket";
+import {OrderService} from "../order/order.service";
 
 
 @Injectable({
@@ -16,6 +17,7 @@ import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 })
 export class UserService implements CanActivate {
   private user: User;
+  public differentUserHasLoggedIn: boolean = false;
   private static CODE_TRANSLATION_NO_TOKEN: string = 'SIGN-IN-FIRST-PLEASE';
   private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
 
@@ -75,11 +77,17 @@ export class UserService implements CanActivate {
 
 
   public signin(login: Login): Observable<User> {
+    this.differentUserHasLoggedIn = false;
     return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
       tap((user: User) => {
+        if(this.user) {
+          if(this.user._id !== user._id){
+            this.differentUserHasLoggedIn = true;
+          }
+        }
         this.user = user;
         localStorage.setItem('userId', user._id);
         console.log('signin ok');
