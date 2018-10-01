@@ -28,10 +28,6 @@
   padding-bottom: 0px;
 }
 
-.article-detail-rating i{
-  color: gold;
-}
-
 .article-detail-nr span {
   color: $orange;
 }
@@ -56,6 +52,12 @@
   padding: 10px 0 0 0;
 }
 
+@media screen and (max-width: 475px) {
+  .slideshow {
+    width: 100%;
+    height: 250px;
+  }
+}
 .slideshow-icons  .fab {
   padding: 0 10px;
 }
