@@ -848,8 +848,8 @@ select {
 }
 
 .mat-simple-snackbar {
-  @include font-size($sizeValue:2.4, $important:!important);
-  @include font-size($sizeValue:2.8, $important:!important);
+  @include font-size($sizeValue:2.4);
+  @include line-height($heightValue:3.5 );
   color: #ffffff;
   width: 100%;
   min-height: 50px;
