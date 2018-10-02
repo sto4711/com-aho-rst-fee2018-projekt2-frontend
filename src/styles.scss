@@ -216,7 +216,7 @@ a button.mat-menu-btn {
 
 .matStepperPrevious,.matStepperNext, .matStepperReset {
   display: inline-block;
-  font-size: 1.8rem;
+  @include font-size($sizeValue:1.8);
   font-weight: 400;
   width: auto;
   padding: 5px 0;
@@ -262,10 +262,10 @@ a button.mat-menu-btn {
 }
 
 .mat-step-icon-size {
+  @include font-size($sizeValue:1.8);
   height: 44px;
   width: 44px;
-  font-size: 1.8rem;
-}
+ }
 
 .mat-step-header .mat-step-icon {
   background-color: $green;
@@ -311,9 +311,9 @@ a button.mat-menu-btn {
 
 h2#headline {
   position: absolute;
+  font-size: 5vw;
   top:30%;
   left: 5vw;
-  font-size: 5vw;
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 500;
@@ -476,7 +476,7 @@ h2#headline span {
 .big-letter {
   grid-area: big-letter;
   grid-row: span 3;
-  font-size: 20rem;
+  @include font-size($sizeValue:20);
   font-weight: 700;
   justify-self: start;
 }
@@ -499,14 +499,14 @@ h2#headline span {
 }
 
 .first-word, .third-word  {
-  font-size:3rem;
+  @include font-size($sizeValue:3);
   font-weight: 400;
   text-indent: -25px;
 }
 
 .second-word {
   grid-area: second-word;
-  font-size: 10em;
+  @include font-size($sizeValue:10);
   font-weight: 700;
 
 }
@@ -536,15 +536,17 @@ h2#headline span {
   }
 
   .big-letter {
-    font-size: 13rem;
+    @include font-size($sizeValue:13);
+
   }
 
   .first-word, .third-word  {
-    font-size: 1.5rem;
+    @include font-size($sizeValue:1.5);
     text-indent: -10px;
   }
   .second-word {
-    font-size:5rem;
+    @include font-size($sizeValue:5);
+
   }
 
 }
@@ -575,7 +577,7 @@ nav.main-nav li{
 }
 
 nav.main-nav li a{
-  font-size: 2rem;
+  @include font-size($sizeValue:2);
   color: $font-color;
 }
 
@@ -644,8 +646,7 @@ nav.xs-nav {
 }
 
 .breadcrumb a {
-  font-size: 1.6rem;
-
+  @include font-size($sizeValue:1.6);
 }
 
 .breadcrumb li {
@@ -653,7 +654,8 @@ nav.xs-nav {
 }
 
 .breadcrumb li, .breadcrumb li a {
-  font-size:1.6rem;
+  @include font-size($sizeValue:1.6);
+
 }
 .breadcrumb a::after {
   content: '>';
@@ -708,7 +710,7 @@ nav.xs-nav {
 }
 
 .product-listing-descr {
-  font-size: 1.6rem;
+  @include font-size($sizeValue:1.6);
   color: #818A91;
 }
 
@@ -771,26 +773,26 @@ nav.xs-nav {
 
 
 button#minus, button#plus {
-
   display: inline-block;
+  @include font-size($sizeValue:1.6);
   padding: 8px 15px;
   color: #779BA0;
   background-color: #fff;
   border: 1px solid #ccc;
-  font-size: 1.6rem;
   font-weight: 200;
 }
 
 button#count {
   display: inline-block;
+  @include font-size($sizeValue:13);
+  font-weight: $font-weight-bold;
   padding: 0 35px;
   border-top: 1px #B3B4B4 solid;
   border-bottom: 1px #B3B4B4 solid;
   background-color: #fff;
-  font-weight: 600;
-  font-size: 13px;
+
   color: #000;
-  font-weight: 600;
+
   height: 20px;
   cursor: default;
 }
@@ -806,10 +808,12 @@ table#shopping-basket-table tr:nth-of-type(odd) {
 }
 
 table#shopping-basket-table th {
-  background: #fff;
+  @include base-font-style();
+  font-weight: $font-weight-medium;
   color: $font-color;
-  font-size: 1.8rem;
-  font-weight: 400;
+  background: #fff;
+
+
 }
 table#shopping-basket-table td, table#shopping-basket-table th {
   padding: 0.8em;
@@ -818,7 +822,7 @@ table#shopping-basket-table td, table#shopping-basket-table th {
 }
 
 table#shopping-basket-table td {
-  font-size:1.6rem;
+  @include font-size($sizeValue:1.6);
 }
 
 table#shopping-basket-table tfoot tr:nth-of-type(odd) {
@@ -979,9 +983,9 @@ form.order-form {
   width: 100%;
 }
 #admin-order-table th{
+  @include base-font-style();
   background: #fff;
   color: $font-color;
-  font-size: 1.8rem;
   font-weight: 400;
   padding: 10px 24px ;
 }
@@ -1089,11 +1093,11 @@ footer a {
 
 
 p#disclaimer{
-  font-size: 1.2rem;
   display: block;
-  width: 100%;
+  @include font-size($sizeValue:1.2);
   padding: 25px 0;
   text-align: center;
+  width: 100%;
 
 }
 
@@ -1111,15 +1115,17 @@ button, [type="button"], [type="reset"], [type="submit"] {
 
 a.btn, button.btn {
   display: block;
-  font-size: 1.8rem;
-  font-weight: 400;
+  @include base-font-style();
+  font-weight: $font-weight-light;
+  text-align: center;
+  color: #fff;
   width: 100%;
   padding: 15px 0;
-  color: #fff;
+  margin: 15px 0;
   background-color: $green;
   cursor:pointer;
-  text-align: center;
-  margin: 15px 0;
+
+
 }
 
 a.btn:hover, .form-btn:hover {
@@ -1163,16 +1169,16 @@ form {
 
 label {
   display: block;
+  @include font-size($sizeValue:1.4);
   width: 100%;
-  font-size: 1.4rem;
 }
 
 input {
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  width: 100%;
+  @include font-size($sizeValue:1.6);
+  @include line-height($heightValue:2.4);
   margin: 5px 0 15px 0;
   padding: 5px;
+  width: 100%;
   border: 1px solid #ccc;
 }
 
@@ -1224,9 +1230,10 @@ select {
 }
 
 .mat-simple-snackbar {
-  font-size: 2.4rem !important;
-  line-height: 2.8rem !important;
+  @include font-size($sizeValue:2.4, $important:!important);
+  @include font-size($sizeValue:2.8, $important:!important);
   color: #ffffff;
+  width: 100%;
   min-height: 50px;
 }
 
@@ -1323,9 +1330,9 @@ select {
   margin: 0 0.5em 0 0.5em;
 }
 .fa-times {
-  float:right;
+  @include base-font-style();
   color: $color-error;
-  font-size: 1.8rem;
+  float:right;
   cursor: pointer;
 }
 .no-bg {
