@@ -136,6 +136,7 @@ export class OrderService implements CanActivate {
   public clear() {
     this.order = null;
     localStorage.removeItem('orderId');
+    console.log('OrderService.clear(), ok');
   }
 
   public approve(): Observable<Order> {
@@ -175,7 +176,7 @@ export class OrderService implements CanActivate {
           this.clear();
           this.deleteOrder(orderId)
             .subscribe(result => {
-                //
+              console.log('OrderService.resetOrder(), ok');
               }
             );
         }
