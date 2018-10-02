@@ -1,8 +1,19 @@
 <div *ngIf="loading" class="loader"></div>
   <div class="product-content" (click)="goToDetail(article.articleQueryParameter)">
-
-    <img [hidden]="loading" (load)="onLoad()" class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
-
+  <picture>
+    <source media="(min-width: 300px)" srcset="{{imageURL + article.imageURL}}">
+    <figure>
+     <img [hidden]="loading" (load)="onLoad()" class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
+    <figcaption>
+      <div class="article-detail-rating">
+      <span *ngFor="let rating of article?.rating; index as i ">
+        <i class="fas fa-star" *ngIf="rating" ></i>
+        <i class="far fa-star" *ngIf="!rating"></i>
+      </span>
+      </div>
+    </figcaption>
+    </figure>
+  </picture>
     <div class="product-data">
       <p><span class="product-listing-title">{{article.name}}</span><br>
         <span class="product-listing-descr">{{article.brand}}</span><br>

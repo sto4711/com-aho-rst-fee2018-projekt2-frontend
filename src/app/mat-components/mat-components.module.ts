@@ -4,7 +4,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material';
+import {MatCardModule, MatSnackBarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
@@ -33,7 +33,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatExpansionModule,
     MatTabsModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule
   ]
 })
 export class MatComponentsModule { }
