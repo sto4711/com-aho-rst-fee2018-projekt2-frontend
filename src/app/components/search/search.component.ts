@@ -36,7 +36,7 @@ export class SearchComponent {
   }
 
   private searchArticle(term: string): Observable<Article[]> {
-    if (term && term.length > 3) {
+    if (term && term.length > 2) {
       return this.articleService.searchArticles(term.toLowerCase());
     }
     else {
