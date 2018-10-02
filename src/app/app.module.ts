@@ -11,7 +11,6 @@ import {UserComponent} from './components/admin/user/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
-import {LoginService} from './services/login/login.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 import {SearchComponent} from './components/search/search.component';
@@ -21,7 +20,6 @@ import {ArticleComponent} from './components/admin/article/article.component';
 import {AmountConverterPipe} from './pipes/currency.pipe';
 import {ArticleTemplateComponent} from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
-import {MatCardModule} from '@angular/material/card';
 import {HeaderComponent} from './components/header/header.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -34,13 +32,15 @@ import {LangSwitchComponent} from './components/lang-switch/lang-switch.componen
 import {ShoppingBasketListingComponent} from './components/shopping-basket-listing/shopping-basket-listing.component';
 import {LangService} from './services/lang-service/lang.service';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {RequestCacheService} from "./services/request-cache/request-cache.service";
-import {CacheInterceptor} from "./interceptors/cache-interceptor";
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 import {ErrorResponseInterceptor} from "./interceptors/error-response-interceptor";
 import { LoginInfoComponent } from './components/login-info/login-info.component';
+import {UserService} from "./services/user/user.service";
+import {ArticlesResponseCacheInterceptor} from "./interceptors/articles-response-cache-interceptor";
+import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,7 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     MatComponentsModule,
-    MatCardModule,
+    SlideshowModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -95,9 +95,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [LoginService, LangService, CanComponentDeactivateGuard,SnackBarService,
-    RequestCacheService,
-    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
+  providers: [UserService, LangService, CanComponentDeactivateGuard,SnackBarService,
+    ArticlesResponseCacheService,
+    {provide: HTTP_INTERCEPTORS, useClass: ArticlesResponseCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

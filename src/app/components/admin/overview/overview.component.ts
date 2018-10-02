@@ -5,8 +5,8 @@ import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
 import {ClientContextService} from '../../../services/client-context/client-context.service';
-import {UserService} from '../../../services/admin/user/user.service';
-import {User} from '../../../services/admin/user/user';
+import {UserService} from '../../../services/user/user.service';
+import {User} from '../../../services/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
@@ -75,10 +75,10 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
-    const test = this.clientContextService.getToken().value;
+    const test = this.userService.getToken();
     console.log(test);
 
-   /* this.userService.get(this.clientContextService.getToken())
+   /* this.userService.get()
       .subscribe(users => {
           this.users = users;
           console.log('Users '+this.users);
@@ -142,7 +142,8 @@ export class OverviewComponent implements OnInit {
   }
 
   public deleteOrder(orderData) {
-    this.orderService.deleteOrder(orderData.value)
+    debugger;
+    this.orderService.deleteOrder(orderData.value._id)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
             this.snackBarService.showInfo(' ' + ' ' + translated);

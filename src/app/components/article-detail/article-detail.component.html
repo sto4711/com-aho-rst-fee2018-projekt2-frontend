@@ -3,23 +3,23 @@
 
   <h2>{{article?.brand}}</h2>
   <div id="article-detail-wrap">
-    <picture *ngIf="!loading">
-       <source  media="(min-width: 475px)" srcset="{{imageURL + article?.imageURL}}">
-      <source media="(min-width: 320px)" srcset="{{imageURL + article?.imageURL}}">
-      <figure>
-        <img src="{{imageURL + article?.imageURL}}" width="100%" height="auto">
-        <figcaption> <p>{{'SHARE-ARTICLE' | translate}}
+    <div class="article-image-wrap">
+   <div class="slideshow">
+      <slideshow  [imageUrls]="imageUrlArray" showDots="true"></slideshow>
+   </div>
+    <div class="slideshow-icons">
+      <p>{{'SHARE-ARTICLE' | translate}}
         <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
-          <span class="article-like">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+        <span class="article-like">
           {{'LIKE' | translate}}<i (click)="changeArticleRating(true)" class="fas fa-thumbs-up"></i>
           {{'DISLIKE' | translate}}<i (click)="changeArticleRating(false)" class="fas fa-thumbs-down" ></i>
         </span>
-        </p>
-        </figcaption>
-      </figure>
-    </picture>
+      </p>
+    </div>
+    </div><!-- end .article-image-wrap -->
+
      <div id="article-detail-content">
       <h3>{{article?.name }}</h3>
       <p>{{article?.descriptionLangCode | translate}}</p>

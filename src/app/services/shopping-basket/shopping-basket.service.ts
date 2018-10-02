@@ -19,13 +19,23 @@ export class ShoppingBasketService {
     this.initBasket();
   }
 
-  public getShoppingBasket(): ShoppingBasket  {
+  public getShoppingBasket(): ShoppingBasket {
     return this.shoppingBasket;
   }
 
-  public initBasket() {
+  private initBasket() {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
-    if (shoppingBasketId == null) {
+
+    if (shoppingBasketId) {
+      this.get(shoppingBasketId)
+        .subscribe(shoppingBasket => {
+            this.shoppingBasket = shoppingBasket;
+            localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+            console.log('initShoppingBasket(), shoppingBasket loaded');
+          }
+        );
+    }
+    else {
       this.create()
         .subscribe(shoppingBasket => {
             this.shoppingBasket = shoppingBasket;
@@ -33,18 +43,10 @@ export class ShoppingBasketService {
             console.log('initShoppingBasket(), no shoppingBasket -> created');
           }
         );
-    } else {
-      this.get(shoppingBasketId)
-        .subscribe(shoppingBasket => {
-           this.shoppingBasket = shoppingBasket;
-           localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-          console.log('initShoppingBasket(), shoppingBasket loaded');
-          }
-        );
     }
   }
 
-  public clear()  {
+  public clear() {
     localStorage.removeItem('shoppingBasketId');
     this.initBasket();
   }

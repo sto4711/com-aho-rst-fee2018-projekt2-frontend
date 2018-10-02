@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../../../services/login/login.service";
 import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from "rxjs/operators";
 import {ClientContextService} from "../../../services/client-context/client-context.service";
 import {Router} from "@angular/router";
@@ -20,8 +19,7 @@ export class ArticleComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private loginService: LoginService
-    , private articleService: ArticleService
+    private articleService: ArticleService
     , private router: Router
   ) {
   }

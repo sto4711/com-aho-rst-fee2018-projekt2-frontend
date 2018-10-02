@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpRequest, HttpResponse} from "@angular/common/http";
 
 @Injectable()
-export class RequestCacheService  {
+export class ArticlesResponseCacheService  {
   private static maxAge: number = 30000;
 
   constructor() {
@@ -13,7 +13,7 @@ export class RequestCacheService  {
   public get(req: HttpRequest<any>): HttpResponse<any> | undefined {
     const cached = this.cache.get(req.urlWithParams);
     if(cached){
-      const isExpired = cached.lastRead < (Date.now() - RequestCacheService.maxAge);
+      const isExpired = cached.lastRead < (Date.now() - ArticlesResponseCacheService.maxAge);
       const expired = isExpired ? 'expired ' : '';
       return cached.response;
     }else {
@@ -22,7 +22,7 @@ export class RequestCacheService  {
   }
 
   public put(req: HttpRequest<any>, response: HttpResponse<any>): void {
-    const expired = Date.now() - RequestCacheService.maxAge;
+    const expired = Date.now() - ArticlesResponseCacheService.maxAge;
     const url = req.url;
     const entry = { url, response, lastRead: Date.now() };
     this.cache.set(url, entry);

@@ -11,6 +11,8 @@ import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
 import {PaymentType} from "./payment-type";
 import {SnackBarService} from "../commons/snack-bar/snack-bar.service";
+import {UserService} from "../user/user.service";
+import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class OrderService implements CanActivate {
 
   constructor(
     private http: HttpClient
-    , private clientContextService: ClientContextService
+    , private userService: UserService
     , private shoppingBasketService: ShoppingBasketService
     , private router: Router
     , private snackBarService: SnackBarService
@@ -34,7 +36,7 @@ export class OrderService implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const hasNoToken: boolean = (this.clientContextService.getToken().value === '' ? true : false);
+    const hasNoToken: boolean = (this.userService.getToken() === '' ? true : false);
     let basketIsEmpty: boolean = true;
     if (this.shoppingBasketService.shoppingBasket) {
       basketIsEmpty = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
@@ -62,7 +64,7 @@ export class OrderService implements CanActivate {
       return of<Order>(this.order);
     }
     else if (!orderId) {
-      console.log('OrderService.initLazy(), no order -> will be created');
+      console.log('OrderService.getOrder(), no order -> will be created');
       return this.create()
         .pipe(
           tap((order) => {
@@ -75,7 +77,7 @@ export class OrderService implements CanActivate {
         );
     }
     else {
-      console.log('OrderService.initLazy() order already exists, get order');
+      console.log('OrderService.getOrder() order already exists, get order');
       return this.get(orderId)
         .pipe(
           tap((order) => {
@@ -89,7 +91,7 @@ export class OrderService implements CanActivate {
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
     return this.http.post<Order>(ClientContextService.BACKEND_URL_ORDER + 'create', {"shoppingBasketId": shoppingBasketId}, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
       tap(() => console.log('OrderService.create() ok'))
@@ -98,7 +100,7 @@ export class OrderService implements CanActivate {
 
   public get(id: string): Observable<Order> {
     return this.http.get<Order>(ClientContextService.BACKEND_URL_ORDER_DETAILS + '?id=' + id, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
       tap(() => console.log('OrderService.get() ok'))
@@ -131,7 +133,7 @@ export class OrderService implements CanActivate {
   }
 
 
-  private clear() {
+  public clear() {
     this.order = null;
     localStorage.removeItem('orderId');
   }
@@ -141,7 +143,7 @@ export class OrderService implements CanActivate {
         "orderId": this.order._id,
         "state": OrderService.STATE_APPROVED
       }, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
       tap(result => {
@@ -152,31 +154,42 @@ export class OrderService implements CanActivate {
 
   }
 
-  public updateOrder(orderData: any ): Observable<Order> {
-      return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'update', orderData, {
+  public updateOrder(orderData: any): Observable<Order> {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'update', orderData, {
         headers: {'Content-Type': 'application/json'}
       }
     );
   }
 
-  public deleteOrder(orderData: any ): Observable<Order> {
-     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'delete-order', {
-      '_id': orderData._id
-      }, {
+  public deleteOrder(orderID: Order["_id"]): Observable<Order> {
+    return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + 'delete-order', {'_id': orderID}, {
         headers: {'Content-Type': 'application/json'}
       }
     );
   }
 
+  public resetOrder() {
+    this.getOrder()
+      .subscribe(order => {
+          const orderId = order._id;
+          this.clear();
+          this.deleteOrder(orderId)
+            .subscribe(result => {
+                //
+              }
+            );
+        }
+      );
+  }
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {
     return this.http.patch<Order>(ClientContextService.BACKEND_URL_ORDER + urlPath, bodyJson, {
-         headers: {'Content-Type': 'application/json', 'Authorization': this.clientContextService.getToken().value}
+        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-       tap((order) => {
-          this.order = order;
-       } )
+      tap((order) => {
+        this.order = order;
+      })
     );
   }
 

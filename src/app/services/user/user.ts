@@ -4,4 +4,6 @@ export class User {
   email: string;
   pwd: string;
   type: string;
+  token: string;
+  _id:string;
 }
