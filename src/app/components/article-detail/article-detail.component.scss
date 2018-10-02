@@ -6,8 +6,7 @@
  */
 
 #article-detail-wrap {
-  display: flex;
-  flex-direction:row;
+  @include flex();
   justify-content: space-between;
 }
 
@@ -24,15 +23,14 @@
 }
 
 .article-detail-rating {
-  padding-top: 15px;
-  padding-bottom: 0px;
+  padding: 15px 0 0 0;
 }
 
 .article-detail-nr span {
   color: $orange;
 }
 .article-detail-price {
-  font-size: 2.6rem;
+  @include font-size(2.6);
   padding:15px 0;
 
 }
@@ -46,10 +44,11 @@
   height: 500px;
 }
 .slideshow-icons {
-   width: 100%;
-  font-size: 1.6rem;
+  @include font-size(1.6);
   text-align: center;
   padding: 10px 0 0 0;
+  width: 100%;
+
 }
 
 @media screen and (max-width: 475px) {

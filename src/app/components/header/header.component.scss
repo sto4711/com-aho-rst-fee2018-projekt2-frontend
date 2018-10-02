@@ -1,3 +1,65 @@
 @import '../../../sass/mixins.scss';
 @import '../../../sass/variables.scss';
 
+
+/*
+    header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+h2#headline {
+  position: absolute;
+  font-size: 5vw;
+  top:30%;
+  left: 5vw;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 500;
+
+}
+
+.part1, .part2 {
+  position: relative;
+  left: -100vw;
+
+}
+
+.part1 {
+  @include slideIn(slidePart1, 0.5, forwards, 1)
+}
+
+.part2 {
+  @include slideIn(slidePart2, 0.5, forwards, 3)
+
+}
+
+@-webkit-keyframes slidePart1 {
+  100% { left: 40px; }
+
+}
+
+@keyframes slidePart1 {
+  100% { left: 40px; }
+}
+
+@-webkit-keyframes slidePart2 {
+  100% { left: 120px; }
+
+}
+
+@keyframes slidePart2 {
+  100% { left: 120px; }
+}
+
+@media screen and (max-width: 782px) {
+
+  h2#headline {
+    font-size:10vw;
+    left: 0;
+  }
+}
+
+
+
+h2#headline span {
+  display: block;
+}

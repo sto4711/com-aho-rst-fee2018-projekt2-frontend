@@ -1,6 +1,8 @@
 @import '../../../sass/mixins.scss';
 @import '../../../sass/variables.scss';
 
+
+
 /*
     top bar  /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -74,28 +76,109 @@
 
 }
 
-.bg-main-nav {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  background-color: #fff;
-  opacity: 0.7;
-  -webkit-box-shadow: 0px 10px 30px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 10px 30px -10px rgba(0,0,0,0.75);
-  box-shadow: 0px 10px 30px -10px rgba(0,0,0,0.75);
-  transition:  height 600ms ease-out;
+
+
+
+
+/*
+    logo  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+.logo-wrap {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 3fr;
+  grid-template-rows: 30px 80px 30px;
+  grid-template-areas:
+    'big-letter line first-word'
+    'big-letter line second-word'
+    'big-letter line third-word';
+  grid-gap: 0;
+  font-family: 'Archivo', sans-serif;
+  width: 400px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
-#top-banner {
-  position: relative;
+.big-letter, .first-word, .second-word, .third-word, .line {
+  align-self: center;
+  text-transform: uppercase;
+
 }
 
-#banner {
-  width: 100%;
+.big-letter {
+  grid-area: big-letter;
+  grid-row: span 3;
+  @include font-size($sizeValue:20);
+  font-weight: $font-weight-extra-bold;
+  justify-self: start;
 }
 
-#banner picture img {
-  min-height: 300px;
-  -o-object-fit: cover;
-  object-fit: cover;
+.line {
+  grid-area: line;
+  grid-row: span 3;
+}
+
+.hyphen{
+  height: 15px;
+  width: 25px;
+  background: $font-color;
+  margin: 0 0 5px 0;
+}
+
+.first-word {
+  grid-area: first-word;
+  align-self: self-end;
+}
+
+.first-word, .third-word  {
+  @include font-size($sizeValue:3);
+  font-weight: $font-weight-medium;
+  text-indent: -25px;
+}
+
+.second-word {
+  grid-area: second-word;
+  @include font-size($sizeValue:10);
+  font-weight: $font-weight-extra-bold;
+
+}
+
+.third-word {
+  grid-area: third-word;
+  align-self: self-start;
+}
+
+@media screen and (max-width: 812px) {
+  .logo-wrap {
+    margin: 0 0 25px 0;
+  }
+}
+
+@media screen and (max-width: 415px) {
+
+  .logo-wrap {
+    grid-template-columns: 1fr auto 3fr;
+    grid-template-rows: 10px 60px 10px;
+    width:300px;
+  }
+
+  .hyphen {
+    height: 5px;
+    width: 15px;
+  }
+
+  .big-letter {
+    @include font-size($sizeValue:13);
+
+  }
+
+  .first-word, .third-word  {
+    @include font-size($sizeValue:1.5);
+    text-indent: -10px;
+  }
+  .second-word {
+    @include font-size($sizeValue:5);
+
+  }
+
 }
