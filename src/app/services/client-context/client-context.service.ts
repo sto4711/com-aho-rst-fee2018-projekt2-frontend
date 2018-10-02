@@ -29,7 +29,8 @@ export class ClientContextService {
       this.token = token;
   }
 
-  public getToken()  {
+  public getToken(): Token {
+        console.log(this.token);
        return this.token;
   }
 

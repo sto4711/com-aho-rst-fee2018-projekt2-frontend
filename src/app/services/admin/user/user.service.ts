@@ -31,6 +31,7 @@ export class UserService implements CanActivate {
       .pipe(
         tap((ok: boolean) => {
           if (hasNoToken) {
+            console.log(hasNoToken);
              // this.router.navigate(['admin/overview']).then();
           } else {
             this.snackBarService.showInfo(UserService.CODE_TRANSLATION_NO_TOKEN);
