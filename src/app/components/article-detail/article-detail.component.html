@@ -5,7 +5,7 @@
   <div id="article-detail-wrap">
     <div class="article-image-wrap">
    <div class="slideshow">
-      <slideshow  [imageUrls]="imageUrlArray" showDots="true"></slideshow>
+      <slideshow [backgroundSize]="'contain'" [captionBackground]="'rgba(0,0,0,0.5)'" [imageUrls]="imageUrlArray" showDots="true"></slideshow>
    </div>
     <div class="slideshow-icons">
       <p>{{'SHARE-ARTICLE' | translate}}
