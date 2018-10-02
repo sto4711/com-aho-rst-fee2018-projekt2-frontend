@@ -26,17 +26,6 @@
   animation-delay: $delay+s;
 }
 
-@mixin margin($values) {
-  @each $var in $values {
-    margin: #{$var};
-  }
-}
-
-@mixin padding($values) {
-  @each $var in $values {
-    padding: #{$var};
-  }
-}
 
 /*
     mixins presets  /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +34,5 @@
 @mixin flex {
   display: flex;
   flex-flow:row wrap;
-  justify-content: center;
 }
 
