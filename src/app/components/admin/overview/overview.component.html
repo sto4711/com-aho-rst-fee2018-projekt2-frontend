@@ -164,9 +164,7 @@
                   <button (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
                   <button (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
                 </p>
-
               </mat-expansion-panel>
-
             </td>
 
           </tr>
@@ -186,7 +184,9 @@
 
     </mat-tab><!-- end tab Bestellungen -->
     <mat-tab label="{{'USERS' | translate}}"></mat-tab>
-
+      <div *ngFor="let user of users">
+        <p>{{user.pwd}}</p>
+      </div>
 
   </mat-tab-group>
 </div>

@@ -18,7 +18,7 @@ import {CanComponentDeactivateGuard} from "../../services/commons/can-component-
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent implements CanComponentDeactivate {
+export class CheckoutComponent {
   public isLinear = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
@@ -58,17 +58,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
       });
   }
 
-  public canDeactivate(): Observable<boolean> {
-    if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {
-      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
-        .pipe(
-          map((value) => (value === 'yes' ? true : false))
-        );
-    }
-    else {
-      return of(true);
-    }
-  }
 
   private initValidation() {
     this.deliveryAddress = this._formBuilder.group({

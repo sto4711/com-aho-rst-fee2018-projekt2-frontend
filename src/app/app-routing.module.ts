@@ -8,13 +8,14 @@ import {ArticleDetailComponent} from './components/article-detail/article-detail
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {BreadcrumbPath} from "./components/breadcrumb/breadcrumb-path";
+import {BreadcrumbPath} from './components/breadcrumb/breadcrumb-path';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {OrderService} from "./services/order/order.service";
-import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
-import {UserComponent} from "./components/admin/user/user.component";
-import {UserService} from "./services/user/user.service";
+import {OrderService} from './services/order/order.service';
+import {UserComponent} from './components/admin/user/user.component';
+import {AuthGuardService} from './services/authGuard/auth-guard.service';
+import {UserService} from './services/user/user.service';
+import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -33,7 +34,6 @@ const routes: Routes = [
   },
   {
     path: 'my-account', component: MyAccountComponent,
-    canDeactivate: [CanComponentDeactivateGuard],
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'MY-ACCOUNT')]
     }
@@ -47,16 +47,15 @@ const routes: Routes = [
   {
     path: 'checkout', component: CheckoutComponent,
     canActivate: [OrderService],
-    canDeactivate: [CanComponentDeactivateGuard],
     data: {
       breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
     }
   },
   {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/overview', component: OverviewComponent, canActivate: [UserService]},
+  {path: 'admin/overview', component: OverviewComponent, canActivate: [AuthGuardService]},
   {path: 'admin/user', component: UserComponent},
 
-  {path: '**', component: NotFoundComponent,}
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
