@@ -16,12 +16,12 @@
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form id="add-to-chart">
         <button type="button" role="button" id="minus" name="articleMinus"
-                (click)="changeItemAmount_ShoppingBasket2($event, article.articleID, article.articleName, article.articleAmount-1)">
+                (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount-1)">
           <img src="./assets/images/button-minus.gif" alt="button-minus" width="11" height="11"></button>
         <input disabled class="cart-article-amount" type="text" id="count" name="articleCount"
                [(ngModel)]="article.articleAmount" #articleAmount="ngModel"/>
         <button id="plus" role="button" type="button" name="articlePlus"
-                (click)="changeItemAmount_ShoppingBasket2($event, article.articleID, article.articleName, article.articleAmount+1)">
+                (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount+1)">
           <img src="./assets/images/button-plus.gif" alt="button-plus" width="11" height="11"></button>
       </form>
 
@@ -32,7 +32,7 @@
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF <span class="amount-spacer">{{article.articlePriceSum | amountConverter}}</span>
       <ng-container *ngIf="itemChangePossible== true ">
       <i class="fa fa-times" aria-hidden="true"
-         (click)="confirmDelete2($event, article.articleID, article.articleName)"></i>
+         (click)="confirmDelete($event, article.articleID, article.articleName)"></i>
       </ng-container>
     </td>
   </tr>
