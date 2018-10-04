@@ -17,7 +17,7 @@ export class TopBarComponent implements OnInit {
   ngOnInit() {
   }
   goToHome(){
-    this.router.navigate(['']);
+    this.router.navigate(['/home']);
 
   }
 }

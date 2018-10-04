@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BreadcrumbTranslationService} from "../../services/breadcrumb-translation/breadcrumb-translation.service";
+import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -21,7 +21,7 @@ export class BreadcrumbComponent implements OnInit {
         this.breadcrumbTranslationService.firstParam = this.route.snapshot.queryParams.article;
         this.route.data.subscribe(data => {
           this.breadcrumbTranslationService.breadcrumbPath = data.breadcrumbPath;
-          this.breadcrumbTranslationService.translateBreadcrumb();
+          this.breadcrumbTranslationService.get();
         });
       });
   }

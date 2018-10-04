@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {BreadcrumbPath} from "../../components/breadcrumb/breadcrumb-path";
+import {TranslateService} from '@ngx-translate/core';
+import {BreadcrumbPath} from '../../components/breadcrumb/breadcrumb-path';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class BreadcrumbTranslationService {
     private translate: TranslateService
   ) {}
 
-  public translateBreadcrumb()  {
-    for (let i =0; i< this.breadcrumbPath.length; i++ ) {
+  public get() {
+   for (let i = 0; i < this.breadcrumbPath.length; i++ ) {
       this.translate.get(this.breadcrumbPath[i].breadcrumb).subscribe(translated => {
-          this.breadcrumbPath[i].breadcrumbTranslated = translated;
+         this.breadcrumbPath[i].breadcrumbTranslated = translated;
         }
       );
     }

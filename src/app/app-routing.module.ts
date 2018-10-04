@@ -16,14 +16,22 @@ import {UserComponent} from './components/admin/user/user.component';
 import {AuthGuardService} from './services/authGuard/auth-guard.service';
 import {UserService} from './services/user/user.service';
 import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
-import {InitAppResolverService} from "./resolver/init-app-resolver-service";
+import {InitAppResolverService} from './resolver/init-app-resolver-service';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [InitAppResolverService],
     children: [
-      {path: '', component: HomeComponent},
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+       },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
       {
         path: 'article-listing', component: ArticleListingComponent,
         data: {breadcrumbPath: [new BreadcrumbPath('', 'OUR-ARTICLES')]}
