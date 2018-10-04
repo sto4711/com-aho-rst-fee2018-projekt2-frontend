@@ -1,9 +1,11 @@
 <div class="loginInfoContainer">
-  <p>
+  <p >
     <span class="loginInfoContainer__name">
       {{userService.getUser() ?.name  }} {{userService.getUser()?.firstname  }}
     </span>
     <i *ngIf="userService.getUser()?.token" (click)="onSignout()"
        class="fas fa-sign-out-alt loginInfoContainer__logout"></i>
   </p>
+  <p *ngIf="userService.getUser()?.type ==='admin'"><a href="#" class="continue-shopping" routerLink="/admin/overview">Zum Adminbereich</a></p>
+
 </div>

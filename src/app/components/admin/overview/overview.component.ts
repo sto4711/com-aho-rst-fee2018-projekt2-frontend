@@ -75,19 +75,17 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
-    const test = this.userService.getToken();
-    console.log(test);
+   const token = this.userService.getToken();
+   console.log('token: ' + token);
 
-   /* this.userService.get()
+    this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
-          console.log('Users '+this.users);
+          console.log(this.users[0].name);
         },
-        error => {
-          this.router.navigate(['my-account']).then();
-        }
+        error => { }
       );
-      */
+
   }
 
 

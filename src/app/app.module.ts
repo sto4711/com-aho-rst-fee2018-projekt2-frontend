@@ -35,13 +35,13 @@ import {OverviewComponent} from './components/admin/overview/overview.component'
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
+import {AuthGuardService} from "./services/authGuard/auth-guard.service";
 import {ErrorResponseInterceptor} from "./interceptors/error-response-interceptor";
 import { LoginInfoComponent } from './components/login-info/login-info.component';
 import {UserService} from "./services/user/user.service";
 import {ArticlesResponseCacheInterceptor} from "./interceptors/articles-response-cache-interceptor";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
 import {SlideshowModule} from 'ng-simple-slideshow';
-import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -96,8 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [InitAppResolverService, UserService, LangService, CanComponentDeactivateGuard,SnackBarService,
-    ArticlesResponseCacheService,
+  providers: [UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
+    ArticlesResponseCacheService, AuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesResponseCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
   ],

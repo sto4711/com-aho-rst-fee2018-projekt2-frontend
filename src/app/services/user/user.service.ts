@@ -61,10 +61,8 @@ export class UserService implements CanActivate {
       .pipe(
         tap((ok: boolean) => {
           if (hasNoToken) {
-            // this.router.navigate(['admin/overview']).then();
-          } else {
             this.snackBarService.showInfo(UserService.CODE_TRANSLATION_NO_TOKEN);
-            this.router.navigate(['my-acount']).then();
+            this.router.navigate(['my-account']).then();
           }
         })
       );
@@ -94,6 +92,8 @@ export class UserService implements CanActivate {
         }
         this.user = user;
         localStorage.setItem('userId', user._id);
+        localStorage.setItem('token', user.token);
+
         console.log('signin ok');
       })
     );
