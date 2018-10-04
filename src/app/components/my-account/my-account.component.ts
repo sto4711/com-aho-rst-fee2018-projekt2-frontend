@@ -16,7 +16,7 @@ import {OrderService} from "../../services/order/order.service";
   templateUrl: './my-account.component.html',
   styleUrls: ['./my-account.component.scss']
 })
-export class MyAccountComponent  {
+export class MyAccountComponent implements CanComponentDeactivate {
   public account: FormGroup;
   public accountNew: FormGroup;
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
@@ -55,6 +55,17 @@ export class MyAccountComponent  {
       ],
       pwd: ['', Validators.minLength(3)], //
     });
+  }
+
+  public canDeactivate(): Observable<boolean> {
+    if ((!this.account.valid && this.account.dirty) || (!this.accountNew.valid && this.accountNew.dirty)) {
+      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+        .pipe(
+          map((value) => (value === 'yes' ? true : false))
+        );
+    } else {
+      return of(true);
+    }
   }
 
   public onLogin() {
