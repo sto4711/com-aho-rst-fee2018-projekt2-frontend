@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ClientContextService} from "../client-context/client-context.service";
 import {Observable, of} from "rxjs";
-import {tap} from "rxjs/operators";
+import {tap, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,33 +17,50 @@ export class ShoppingBasketService {
   constructor(
     private http: HttpClient
   ) {
-    this.initBasket();
+   // this.initBasket();
   }
 
   public getShoppingBasket(): ShoppingBasket {
     return this.shoppingBasket;
   }
 
-  private initBasket() {
+  public initBasket(): Observable<boolean> {
     const shoppingBasketId = localStorage.getItem('shoppingBasketId');
 
     if (shoppingBasketId) {
-      this.get(shoppingBasketId)
-        .subscribe(shoppingBasket => {
+      return this.get(shoppingBasketId)
+        .pipe(
+          tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
             console.log('initShoppingBasket(), shoppingBasket loaded');
-          }
+          })
+         ,map((value) => true)
         );
+
+        // .subscribe(shoppingBasket => {
+        //     this.shoppingBasket = shoppingBasket;
+        //     localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+        //     console.log('initShoppingBasket(), shoppingBasket loaded');
+        //   }
+        // );
     }
     else {
-      this.create()
-        .subscribe(shoppingBasket => {
+      return this.create()
+        .pipe(
+          tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
             console.log('initShoppingBasket(), no shoppingBasket -> created');
-          }
+          })
+          ,map((value) => true)
         );
+        // .subscribe(shoppingBasket => {
+        //     this.shoppingBasket = shoppingBasket;
+        //     localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+        //     console.log('initShoppingBasket(), no shoppingBasket -> created');
+        //   }
+        // );
     }
   }
 

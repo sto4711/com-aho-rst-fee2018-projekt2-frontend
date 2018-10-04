@@ -15,47 +15,55 @@ import {OrderService} from "./services/order/order.service";
 import {CanComponentDeactivateGuard} from "./services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 import {UserComponent} from "./components/admin/user/user.component";
 import {UserService} from "./services/user/user.service";
+import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {
-    path: 'article-listing', component: ArticleListingComponent,
-    data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'OUR-ARTICLES')]
-    }
+/*  {path: '',
+     redirectTo: '/webshop/home',
+    pathMatch: 'full',
+  },*/
+  {path: '',
+    canActivate: [InitAppResolverService],
+    children: [
+      {path: '', component: HomeComponent},
+      {
+        path: 'article-listing', component: ArticleListingComponent,
+        data: {
+          breadcrumbPath: [new BreadcrumbPath('', 'OUR-ARTICLES')]
+        }
+      },
+      {
+        path: 'article-detail', component: ArticleDetailComponent,
+        data: {
+          breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]
+        }
+      },
+      {
+        path: 'my-account', component: MyAccountComponent,
+        canDeactivate: [CanComponentDeactivateGuard],
+        data: {
+          breadcrumbPath: [new BreadcrumbPath('', 'MY-ACCOUNT')]
+        }
+      },
+      {
+        path: 'shopping-basket', component: ShoppingBasketComponent,
+        data: {
+          breadcrumbPath: [new BreadcrumbPath('', 'MY-SHOPPING-BASKET')]
+        }
+      },
+      {
+        path: 'checkout', component: CheckoutComponent,
+        canActivate: [OrderService],
+        canDeactivate: [CanComponentDeactivateGuard],
+        data: {
+          breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
+        }
+      },
+      {path: 'order-detail', component: OrderDetailComponent},
+      {path: 'admin/overview', component: OverviewComponent, canActivate: [UserService]},
+      {path: 'admin/user', component: UserComponent},
+    ]
   },
-  {
-    path: 'article-detail', component: ArticleDetailComponent,
-    data: {
-      breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]
-    }
-  },
-  {
-    path: 'my-account', component: MyAccountComponent,
-    canDeactivate: [CanComponentDeactivateGuard],
-    data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'MY-ACCOUNT')]
-    }
-  },
-  {
-    path: 'shopping-basket', component: ShoppingBasketComponent,
-    data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'MY-SHOPPING-BASKET')]
-    }
-  },
-  {
-    path: 'checkout', component: CheckoutComponent,
-    canActivate: [OrderService],
-    canDeactivate: [CanComponentDeactivateGuard],
-    data: {
-      breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]
-    }
-  },
-  {path: 'order-detail', component: OrderDetailComponent},
-  {path: 'admin/overview', component: OverviewComponent, canActivate: [UserService]},
-  {path: 'admin/user', component: UserComponent},
-
   {path: '**', component: NotFoundComponent,}
 ];
 

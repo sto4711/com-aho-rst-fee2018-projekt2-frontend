@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
 import {User} from 'src/app/services/user/user';
@@ -27,7 +27,7 @@ export class UserService implements CanActivate {
     private clientContextService: ClientContextService,
     private snackBarService: SnackBarService
   ) {
-    this.initUser();
+//    this.initUser();
   }
 
 
@@ -36,18 +36,22 @@ export class UserService implements CanActivate {
   }
 
   public getUser(): User {
-      return this.user;
+    return this.user;
   }
 
-  private initUser() {
+  public initUser(): Observable<boolean> {
     const userId: string = localStorage.getItem('userId');
     if (userId) {
-      this.get(userId)
-        .subscribe(user => {
+      return this.get(userId)
+        .pipe(
+          tap((user: User) => {
             this.user = user;
             console.log('User.getUser(), user loaded');
-          }
+          })
+          , map((value) => true)
         );
+    }else {
+      return of<boolean>(true);
     }
   }
 
@@ -83,8 +87,8 @@ export class UserService implements CanActivate {
       }
     ).pipe(
       tap((user: User) => {
-        if(this.user) {
-          if(this.user._id !== user._id){
+        if (this.user) {
+          if (this.user._id !== user._id) {
             this.differentUserHasLoggedIn = true;
           }
         }

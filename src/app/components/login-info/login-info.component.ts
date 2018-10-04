@@ -16,7 +16,7 @@ export class LoginInfoComponent  {
   public onSignout()  {
     this.userService.signout()
       .subscribe(user => {
-          this.router.navigate(['home']).then();
+          this.router.navigate(['']).then();
         },
         error => {
         //

@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
 
-  <li><a  routerLink="/home">{{'HOME' | translate}}</a></li>
+  <li><a  routerLink="/">{{'HOME' | translate}}</a></li>
 
   <ng-container *ngIf="breadcrumbTranslationService.breadcrumbPath[0].mainUrl !== '' ">
     <li><a  routerLink="/{{breadcrumbTranslationService.breadcrumbPath[0].mainUrl}}">{{breadcrumbTranslationService.breadcrumbPath[0].breadcrumbTranslated}}</a></li>

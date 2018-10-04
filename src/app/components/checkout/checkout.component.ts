@@ -1,16 +1,17 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
-import {Router} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
 import {Observable, of} from "rxjs";
-import {map} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
 import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-checkout',
@@ -57,6 +58,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
         });
       });
   }
+
 
   public canDeactivate(): Observable<boolean> {
     if (this.deliveryAddress.dirty || this.contactData.dirty || this.deliveryType.dirty || this.paymentType.dirty) {

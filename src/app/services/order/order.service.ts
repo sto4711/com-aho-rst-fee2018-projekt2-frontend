@@ -17,7 +17,7 @@ import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService implements CanActivate {
+export class OrderService implements CanActivate{
   private order: Order = null;
   public static STATE_APPROVED: string = 'APPROVED';
   public static STATE_COMPLETED: string = 'COMPLETED';
@@ -37,16 +37,13 @@ export class OrderService implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const hasNoToken: boolean = (this.userService.getToken() === '' ? true : false);
-    let basketIsEmpty: boolean = true;
-    if (this.shoppingBasketService.shoppingBasket) {
-      basketIsEmpty = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
-    }
+    const basketIsEmpty: boolean = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
 
     return of<boolean>((basketIsEmpty || hasNoToken ? false : true))
       .pipe(
         tap((ok: boolean) => {
           if (basketIsEmpty) {
-            this.router.navigate(['home']).then();
+            this.router.navigate(['']).then();
           }
           else if (hasNoToken) {
             this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);

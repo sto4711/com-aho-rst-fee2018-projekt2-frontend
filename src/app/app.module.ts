@@ -41,6 +41,7 @@ import {UserService} from "./services/user/user.service";
 import {ArticlesResponseCacheInterceptor} from "./interceptors/articles-response-cache-interceptor";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
 import {SlideshowModule} from 'ng-simple-slideshow';
+import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,7 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [UserService, LangService, CanComponentDeactivateGuard,SnackBarService,
+  providers: [InitAppResolverService, UserService, LangService, CanComponentDeactivateGuard,SnackBarService,
     ArticlesResponseCacheService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesResponseCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},

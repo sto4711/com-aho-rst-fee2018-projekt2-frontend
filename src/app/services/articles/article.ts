@@ -8,7 +8,6 @@ export class Article {
   public imageURL: string;
   public imageURL2: string;
   public imageURL3: string;
-  public imageSmallURL : string;
   public availability: boolean;
   public rating: boolean[];
   public articleQueryParameter: string;
