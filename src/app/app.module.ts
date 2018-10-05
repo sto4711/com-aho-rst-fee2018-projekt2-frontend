@@ -7,7 +7,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {UserComponent} from './components/admin/user/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
 import {MyAccountComponent} from './components/my-account/my-account.component';
@@ -16,7 +15,6 @@ import {ArticleDetailComponent} from './components/article-detail/article-detail
 import {SearchComponent} from './components/search/search.component';
 import {TrimPipe} from './pipes/trim.pipe';
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
-import {ArticleComponent} from './components/admin/article/article.component';
 import {AmountConverterPipe} from './pipes/currency.pipe';
 import {ArticleTemplateComponent} from './components/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
@@ -52,13 +50,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     HomeComponent,
     ArticleListingComponent,
     MyAccountComponent,
     ArticleDetailComponent,
     ShoppingBasketComponent,
-    ArticleComponent,
     ArticleTemplateComponent,
     HeaderComponent,
     TopBarComponent,
