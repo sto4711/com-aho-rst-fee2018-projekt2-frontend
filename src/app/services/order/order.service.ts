@@ -166,18 +166,11 @@ export class OrderService implements CanActivate{
     );
   }
 
-  public resetOrder() {
-    this.getOrder()
-      .subscribe(order => {
-          const orderId = order._id;
-          this.clear();
-          this.deleteOrder(orderId)
-            .subscribe(result => {
-              console.log('OrderService.resetOrder(), ok');
-              }
-            );
-        }
-      );
+  public async resetOrder() {
+    await this.getOrder().toPromise();
+    await this.deleteOrder(this.order._id);
+    this.clear();
+    console.log('OrderService.resetOrder(), ok');
   }
 
   private change(urlPath: string, bodyJson: any): Observable<Order> {
