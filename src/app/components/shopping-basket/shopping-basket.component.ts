@@ -1,7 +1,6 @@
 import {Injectable, Component} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {OrderService} from '../../services/order/order.service';
-import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Router} from '@angular/router';
 import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket-item';
 import {TranslateService} from '@ngx-translate/core';
@@ -26,7 +25,6 @@ export class ShoppingBasketComponent {
     public shoppingBasketService: ShoppingBasketService
     , public confirmYesNoService: ConfirmYesNoService
     , private snackBarService: SnackBarService
-    , private clientContextService: ClientContextService
     , private router: Router
     , private orderService: OrderService
     , private translate: TranslateService

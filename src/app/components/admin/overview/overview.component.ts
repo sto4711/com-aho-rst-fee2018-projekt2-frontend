@@ -4,7 +4,6 @@ import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../../services/lang-service/lang.service';
-import {ClientContextService} from '../../../services/client-context/client-context.service';
 import {UserService} from '../../../services/user/user.service';
 import {User} from '../../../services/user/user';
 import {Sort} from '@angular/material';
@@ -40,11 +39,8 @@ export class OverviewComponent implements OnInit {
     private userService: UserService,
     private translate: TranslateService,
     private langService: LangService,
-    private clientContextService: ClientContextService,
     private snackBarService: SnackBarService,
     public confirmYesNoService: ConfirmYesNoService
-
-
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from "rxjs/operators";
-import {ClientContextService} from "../../../services/client-context/client-context.service";
 import {Router} from "@angular/router";
 import {Observable, of, Subject} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -15,7 +14,6 @@ import {Article} from "../../../services/articles/article";
 export class ArticleComponent implements OnInit {
   title: string = 'Demo searching by enter letters';
   articles$: Observable<Article[]>;
-  imageURL: string =  ClientContextService.BACKEND_URL_PUBLIC;
   private searchTerms = new Subject<string>();
 
   constructor(

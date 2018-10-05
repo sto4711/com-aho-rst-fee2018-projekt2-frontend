@@ -2,8 +2,7 @@
 
 export const environment = {
   production: false,
-  backendHost : 'localhost',
-  backendPort : 3000,
+  backendUrl: 'http://localhost:3000/',
 };
 
 

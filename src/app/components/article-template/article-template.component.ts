@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Article} from 'src/app/services/articles/article';
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {Router} from '@angular/router';
+import {backendUrls} from "../../constants/backend-urls";
 
 @Component({
   selector: 'app-article-template',
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class ArticleTemplateComponent implements OnInit {
 
   @Input() article: Article;
-  imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
+  imageURL: string = backendUrls.public;
   loading: boolean = true;
   constructor(
     private router: Router

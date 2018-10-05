@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {Observable, of} from 'rxjs';
-import {tap} from 'rxjs/operators';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
+import {OrderService} from "../order/order.service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthGuardService  implements CanActivate {
-  private static CODE_TRANSLATION_NO_TOKEN: string = 'SIGN-IN-FIRST-PLEASE';
+
    constructor(
     private userService: UserService
     , private snackBarService: SnackBarService
@@ -26,6 +25,7 @@ export class AuthGuardService  implements CanActivate {
         return true;
       }
     }  else {
+      this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);
       this.router.navigate(['my-account']).then();
     }
   }

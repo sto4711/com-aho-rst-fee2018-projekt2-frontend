@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 
 import {User} from 'src/app/services/user/user';
 import {UserService} from 'src/app/services/user/user.service';
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 
 
 @Component({
@@ -16,8 +15,7 @@ export class UserComponent implements OnInit {
   users: User[];
 
   constructor(
-    private clientContextService: ClientContextService
-    , private userService: UserService
+private userService: UserService
     , private router: Router
   ) {
   }

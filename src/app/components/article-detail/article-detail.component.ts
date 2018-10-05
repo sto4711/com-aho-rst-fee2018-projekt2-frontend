@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {ClientContextService} from '../../services/client-context/client-context.service';
 import {Article} from "../../services/articles/article";
 import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
 import {ArticleRating} from "../../services/articles/article-rating";
 import {TranslateService} from "@ngx-translate/core";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
+import {backendUrls} from "../../constants/backend-urls";
 
 @Component({
   selector: 'app-article-detail',
@@ -16,7 +16,7 @@ import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.servic
 
 export class ArticleDetailComponent implements OnInit {
   public article: Article;
-  public imageURL: string = ClientContextService.BACKEND_URL_PUBLIC;
+  public imageURL: string = backendUrls.public;
   public selectedValue = 1;
   private articleAmount: number = 1;
   public loading: boolean = true;

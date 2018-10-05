@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {EMPTY, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {share, tap} from 'rxjs/operators';
-
 import {Article} from 'src/app/services/articles/article';
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
-import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 import {ArticleRating} from "./article-rating";
+import {backendUrls} from "../../constants/backend-urls";
 
 
 @Injectable({
@@ -25,7 +23,7 @@ export class ArticleService {
       return of<Article[]>([]);
     }
 
-    return this.http.get<Article[]>(ClientContextService.BACKEND_URL_ARTICLES + '?filter=' + term, {
+    return this.http.get<Article[]>(backendUrls.articles + '?filter=' + term, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -35,7 +33,7 @@ export class ArticleService {
 
   getArticlesLatest(limit: number): Observable<Article[]> {
     return this.http
-      .get<Article[]>(ClientContextService.BACKEND_URL_ARTICLES_LATEST + '?limit=' + limit, {
+      .get<Article[]>(  backendUrls.articlesLatest + '?limit=' + limit, {
           headers: {'Content-Type': 'application/json'}
         }
       ).pipe(
@@ -44,7 +42,7 @@ export class ArticleService {
   }
 
   getArticleDetails(articleQueryParameter: Article["articleQueryParameter"]): Observable<Article> {
-    return this.http.get<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + '?article=' + articleQueryParameter, {
+    return this.http.get<Article>(  backendUrls.articlesDetails + '?article=' + articleQueryParameter, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -53,7 +51,7 @@ export class ArticleService {
   }
 
   changeRating(articleRating: ArticleRating): Observable<Article> {
-    return this.http.patch<Article>(ClientContextService.BACKEND_URL_ARTICLE_DETAILS + 'change-rating', articleRating, {
+    return this.http.patch<Article>(backendUrls.articlesDetails + 'change-rating', articleRating, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

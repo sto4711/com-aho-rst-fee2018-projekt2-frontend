@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {ClientContextService} from "../client-context/client-context.service";
 import {Observable, of} from "rxjs";
 import {tap, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
+import {backendUrls} from "../../constants/backend-urls";
 
 
 @Injectable({
@@ -16,9 +16,7 @@ export class ShoppingBasketService {
 
   constructor(
     private http: HttpClient
-  ) {
-   // this.initBasket();
-  }
+  ) {}
 
   public getShoppingBasket(): ShoppingBasket {
     return this.shoppingBasket;
@@ -37,13 +35,6 @@ export class ShoppingBasketService {
           })
          ,map((value) => true)
         );
-
-        // .subscribe(shoppingBasket => {
-        //     this.shoppingBasket = shoppingBasket;
-        //     localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-        //     console.log('initShoppingBasket(), shoppingBasket loaded');
-        //   }
-        // );
     }
     else {
       return this.create()
@@ -55,12 +46,6 @@ export class ShoppingBasketService {
           })
           ,map((value) => true)
         );
-        // .subscribe(shoppingBasket => {
-        //     this.shoppingBasket = shoppingBasket;
-        //     localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-        //     console.log('initShoppingBasket(), no shoppingBasket -> created');
-        //   }
-        // );
     }
   }
 
@@ -70,7 +55,7 @@ export class ShoppingBasketService {
   }
 
   public create(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'create', {
+    return this.http.post<ShoppingBasket>(  backendUrls.shoppingBasket + 'create', {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -79,7 +64,7 @@ export class ShoppingBasketService {
   }
 
   public get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
-    return this.http.get<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + '?id=' + shoppingBasketID, {
+    return this.http.get<ShoppingBasket>(backendUrls.shoppingBasket + '?id=' + shoppingBasketID, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -90,7 +75,7 @@ export class ShoppingBasketService {
 
   addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'add-item', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -100,7 +85,7 @@ export class ShoppingBasketService {
 
   changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.patch<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'change-item-amount', shoppingBasketItem, {
+    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -110,7 +95,7 @@ export class ShoppingBasketService {
 
   removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(ClientContextService.BACKEND_URL_SHOPPING_BASKET + 'remove-item', shoppingBasketItem, {
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

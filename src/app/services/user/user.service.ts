@@ -4,12 +4,12 @@ import {map, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
 import {User} from 'src/app/services/user/user';
-import {ClientContextService} from 'src/app/services/client-context/client-context.service';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Login} from "./login";
 import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 import {OrderService} from "../order/order.service";
+import {backendUrls} from "../../constants/backend-urls";
 
 
 @Injectable({
@@ -24,7 +24,6 @@ export class UserService implements CanActivate {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private clientContextService: ClientContextService,
     private snackBarService: SnackBarService
   ) {
 //    this.initUser();
@@ -69,7 +68,7 @@ export class UserService implements CanActivate {
   }
 
   public get(userID: User["_id"]): Observable<User> {
-    return this.http.get<User>(ClientContextService.BACKEND_URL_USER + '?id=' + userID, {
+    return this.http.get<User>(backendUrls.user + '?id=' + userID, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -80,7 +79,7 @@ export class UserService implements CanActivate {
 
   public signin(login: Login): Observable<User> {
     this.differentUserHasLoggedIn = false;
-    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'signin', login, {
+    return this.http.post<User>(backendUrls.user + 'signin', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -100,7 +99,7 @@ export class UserService implements CanActivate {
   }
 
   public signout(): Observable<string> {
-    return this.http.post<string>(ClientContextService.BACKEND_URL_USER + 'signout', {}, {
+    return this.http.post<string>(backendUrls.user + 'signout', {}, {
       headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
     },).pipe(
       tap((result: string) => {
@@ -113,7 +112,7 @@ export class UserService implements CanActivate {
   }
 
   public create(user: User): Observable<User> {
-    return this.http.post<User>(ClientContextService.BACKEND_URL_USER + 'create', user, {
+    return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
     },).pipe(
       tap((user: User) => {
@@ -124,7 +123,7 @@ export class UserService implements CanActivate {
   }
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(ClientContextService.BACKEND_URL_USERS, {
+    return this.http.get<User[]>(backendUrls.users, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
       }
     ).pipe(
