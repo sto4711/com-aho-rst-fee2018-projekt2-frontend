@@ -1,160 +1,173 @@
+@import '~@angular/material/theming';
+
+@mixin candy-carousel-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .candy-carousel {
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, A400);
+  }
+}
 
 /*
     angular material elements ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-app-root {
-  display: block;
-  width: 100%;
-}
+  app-root {
+    display: block;
+    width: 100%;
+  }
 
-ul.ngx-pagination {
-  display: block;
-  text-align: center;
-}
+  ul.ngx-pagination {
+    display: block;
+    text-align: center;
+  }
 
-.ngx-pagination .current {
-  background: $green;
+  .ngx-pagination .current {
+    background: $green;
 
-}
+  }
 
-.mat-form-field {
-  font-weight: $font-weight-light;
-  min-width: 250px;
-}
-
-input.mat-input-element {
-  @include font-size($sizeValue:1.8, $important: !important);
-  margin-top: 0.0625em;
-}
-.mat-form-field-infix {
-  border: 0 solid transparent;
-}
-.mat-form-field-label {
-  @include font-size($sizeValue:1.4, $important: !important);
-  top: 1.28125em;
-}
+  .mat-form-field {
+    font-weight: $font-weight-light;
+    min-width: 250px;
+  }
 
 
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-  background-color: $green !important;
-}
+  .mat-form-field-infix {
+    border: 0 solid transparent;
+  }
 
-.overview-input .mat-form-field-infix {
-  padding: 0;
-}
+  .mat-form-field-infix {
+    @include font-size($sizeValue:1.4);
 
-.mat-option-text a {
-  display: block;
-  width: 100%;
-}
+  }
 
-.mat-menu-content:not(:empty){
-  padding: 15px;
-}
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: $green;
+  }
 
-.mat-menu-content ul li  {
-  @include base-font-style();
-  padding: 10px 0;
-  border-bottom: 1px solid #cccccc;
-}
+  input.mat-input-element {
+    @include font-size($sizeValue:1.8);
+    margin-top: 0.0625em;
+  }
 
-.mat-menu-content p {
-  @include base-font-style();
+  .overview-input .mat-form-field-infix {
+    padding: 0;
+  }
 
-}
+  .mat-option-text a {
+    display: block;
+    width: 100%;
+  }
 
-a button.mat-menu-btn {
-  @include base-font-style();
-}
+  .mat-menu-content:not(:empty){
+    padding: 15px;
+  }
 
-.overview-price {
-  margin: 0 0 0 20px;
-}
+  .mat-menu-content ul li  {
+    @include base-font-style();
+    padding: 10px 0;
+    border-bottom: 1px solid #cccccc;
+  }
 
-.mat-vertical-content-container {
-  margin-left: 45px !important;
-}
-.mat-step-label {
-  font-size: 2.4rem;
-}
+  .mat-menu-content p {
+    @include base-font-style();
 
-.mat-stepper-vertical {
-  margin: 0 0 0 -25px;
-}
+  }
 
-.matStepperPrevious,.matStepperNext, .matStepperReset {
-  display: inline-block;
-  @include font-size($sizeValue:1.8);
-  font-weight: 400;
-  width: auto;
-  padding: 5px 0;
-  color: #000000;
-  background-color: transparent;
-  cursor: pointer;
-  text-align: left;
-  margin: 5px 0;
-}
-.matStepperNext::after {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  line-height: inherit;
-  vertical-align: baseline;
-  content: "\f061";
-  margin: 0 0 0 5px;
-}
-.matStepperPrevious::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  line-height: inherit;
-  vertical-align: baseline;
-  content: "\f060";
-  margin: 0 5px 0 0;
-}
+  a button.mat-menu-btn {
+    @include base-font-style();
+  }
 
-.matStepperReset::after {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  line-height: inherit;
-  vertical-align: baseline;
-  content: "\f0e2";
-  margin: 0 0 0 5px;
-}
+  .overview-price {
+    margin: 0 0 0 20px;
+  }
 
-.mat-radio-button {
-  margin: 0 0 5px 0;
-}
+  .mat-vertical-content-container {
+    position: relative;
+    margin-left: 45px !important;
+    border: 0;
+  }
 
-.mat-step-icon {
-  height: 44px;
-  width: 44px;
-}
+  .mat-step-label {
+    font-size: 2.4rem;
+  }
 
-.mat-step-icon-size {
-  @include font-size($sizeValue:1.8);
-  height: 44px;
-  width: 44px;
-}
+  .mat-stepper-vertical {
+    margin: 0 0 0 -25px;
+  }
 
-.mat-step-header .mat-step-icon {
-  background-color: $green;
-  color: $font-color;
-  @extend .mat-step-icon-size;
-}
+  .matStepperPrevious,.matStepperNext, .matStepperReset {
+    display: inline-block;
+    @include font-size($sizeValue:1.8);
+    font-weight: 400;
+    width: auto;
+    padding: 5px 0;
+    color: #000000;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+    margin: 5px 0;
+  }
+  .matStepperNext::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    line-height: inherit;
+    vertical-align: baseline;
+    content: "\f061";
+    margin: 0 0 0 5px;
+  }
+  .matStepperPrevious::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    line-height: inherit;
+    vertical-align: baseline;
+    content: "\f060";
+    margin: 0 5px 0 0;
+  }
 
-.mat-step-header .mat-step-icon-not-touched {
-  background-color: $orange;
-  color: $font-color;
-  @extend .mat-step-icon-size;
-}
+  .matStepperReset::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    line-height: inherit;
+    vertical-align: baseline;
+    content: "\f0e2";
+    margin: 0 0 0 5px;
+  }
 
-.mat-vertical-content-container {
-  margin-left: 45px;
-  border: 0;
-  position: relative;
-}
+  .mat-radio-button {
+    margin: 0 0 5px 0;
+  }
 
-.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
-  width: 21%;
-  color: rgba(0,0,0,.54);
-}
+  .mat-step-icon {
+    height: 44px;
+    width: 44px;
+  }
+
+  .mat-step-icon-size {
+    @include font-size($sizeValue:1.8);
+    height: 44px;
+    width: 44px;
+  }
+
+  .mat-step-header .mat-step-icon {
+    background-color: $green;
+    color: $font-color;
+    @extend .mat-step-icon-size;
+  }
+
+  .mat-step-header .mat-step-icon-not-touched {
+    background-color: $orange;
+    color: $font-color;
+    @extend .mat-step-icon-size;
+  }
+
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+    width: 21%;
+    color: rgba(0,0,0,.54);
+  }
+
