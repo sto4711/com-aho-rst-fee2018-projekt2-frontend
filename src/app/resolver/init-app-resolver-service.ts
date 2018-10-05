@@ -21,7 +21,7 @@ export class InitAppResolverService implements CanActivate {
     try {
       await this.shoppingBasketService.initBasket().toPromise();
       await this.userService.initUser().toPromise();
-      console.log('InitAppResolverService.resolve(), cache loaded')
+      console.log('InitAppResolverService.resolve(), cache loaded');
 
       return new Promise<boolean>((resolve, reject) => {
         resolve(true);
