@@ -8,7 +8,7 @@ import {OrderService} from "../order/order.service";
   providedIn: 'root'
 })
 
-export class AuthGuardService  implements CanActivate {
+export class AuthAdminGuardService  implements CanActivate {
 
    constructor(
     private userService: UserService
