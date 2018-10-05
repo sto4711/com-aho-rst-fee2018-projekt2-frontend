@@ -25,10 +25,7 @@ export class UserService implements CanActivate {
     private http: HttpClient,
     private router: Router,
     private snackBarService: SnackBarService
-  ) {
-//    this.initUser();
-  }
-
+  ) {}
 
   public getToken(): string {
     return (this.user ? this.user.token : '');
@@ -92,7 +89,6 @@ export class UserService implements CanActivate {
         this.user = user;
         localStorage.setItem('userId', user._id);
         localStorage.setItem('token', user.token);
-
         console.log('signin ok');
       })
     );
