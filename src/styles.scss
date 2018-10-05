@@ -1,9 +1,7 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import './sass/mixins';
 @import './sass/variables';
+@import './sass/custom-material-theme';
 @import './sass/angular-material';
-
-
   // ng config schematics.@schematics/angular:component.styleext scss
 
   /*

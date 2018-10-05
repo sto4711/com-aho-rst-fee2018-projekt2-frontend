@@ -14,7 +14,7 @@ ul.ngx-pagination {
 }
 
 .ngx-pagination .current {
-  background: $green !important;
+  background: $green;
 
 }
 
@@ -24,14 +24,14 @@ ul.ngx-pagination {
 }
 
 input.mat-input-element {
-  @include font-size($sizeValue:1.8, $important:!important);
+  @include font-size($sizeValue:1.8, $important: !important);
   margin-top: 0.0625em;
 }
 .mat-form-field-infix {
   border: 0 solid transparent;
 }
 .mat-form-field-label {
-  @include font-size($sizeValue:1.4, $important:!important);
+  @include font-size($sizeValue:1.4, $important: !important);
   top: 1.28125em;
 }
 
