@@ -143,13 +143,7 @@ export class OrderService implements CanActivate{
       }, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
-    ).pipe(
-      tap(result => {
-        this.clear();
-        this.shoppingBasketService.clear();
-      })
     );
-
   }
 
   public updateOrder(orderData: any): Observable<Order> {
@@ -168,8 +162,10 @@ export class OrderService implements CanActivate{
 
   public async resetOrder() {
     await this.getOrder().toPromise();
-    await this.deleteOrder(this.order._id);
+    await this.deleteOrder(this.order._id).toPromise();
     this.clear();
+    this.shoppingBasketService.clear();
+    await this.shoppingBasketService.initBasket().toPromise();
     console.log('OrderService.resetOrder(), ok');
   }
 

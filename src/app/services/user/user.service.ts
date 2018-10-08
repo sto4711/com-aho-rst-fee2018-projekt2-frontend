@@ -19,7 +19,6 @@ export class UserService implements CanActivate {
   private user: User;
   public differentUserHasLoggedIn: boolean = false;
   private static CODE_TRANSLATION_NO_TOKEN: string = 'SIGN-IN-FIRST-PLEASE';
-  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
 
   constructor(
     private http: HttpClient,
@@ -102,7 +101,6 @@ export class UserService implements CanActivate {
         this.user = null;
         localStorage.removeItem('userId');
         console.log('signout ok');
-        this.snackBarService.showInfo(UserService.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
       })
     );
   }

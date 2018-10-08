@@ -24,7 +24,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
   private static CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED = 'AN-ERROR-HAS-OCCURRED';
-
+  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
 
   constructor(
     private _formBuilder: FormBuilder
@@ -67,47 +67,43 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-  public onLogin() {
+  public async onLogin() {
     if (this.account.valid) {
-      this.userService.signin(this.account.getRawValue())
-        .subscribe(user => {
-            if (this.userService.differentUserHasLoggedIn) {
-              this.orderService.resetOrder();
-              this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED);
-            } else {
-              this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
-            }
-            this.router.navigate(['checkout']).then();
-          },
-          error => {
-            if (error.status === 404) {
-              this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
-            }
-          }
-        );
+      try {
+        await this.userService.signin(this.account.getRawValue()).toPromise();
+        if (this.userService.differentUserHasLoggedIn) {
+          await this.orderService.resetOrder();
+          this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED);
+        } else {
+          this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
+          this.router.navigate(['checkout']).then();
+        }
+      }catch (error) {
+        if (error.status === 404) {
+          this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
+        }
+      }
     }
   }
 
-  public onCreate() {
+  public async onCreate() {
     if (this.accountNew.valid) {
-      this.userService.create(this.accountNew.getRawValue())
-        .subscribe(user => {
-            this.orderService.clear();
-            this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
-            this.router.navigate(['checkout']).then();
-          },
-          error => {
-            this.snackBarService.showError((error.status === 400 ? MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN : MyAccountComponent.CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED));
-          });
+      try {
+        await this.userService.create(this.accountNew.getRawValue()).toPromise();
+        this.orderService.clear();
+        this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
+        this.router.navigate(['checkout']).then();
+      }catch (error) {
+        if (error.status === 400) {
+          this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
+        }
+      }
     }
   }
 
-  public onLogout() {
-    this.userService.signout()
-      .subscribe(result => {
-          //
-        },
-      );
+  public async onLogout() {
+    await this.userService.signout().toPromise();
+    this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
   }
 
 

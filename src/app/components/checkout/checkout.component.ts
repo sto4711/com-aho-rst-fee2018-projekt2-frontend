@@ -148,13 +148,13 @@ export class CheckoutComponent implements CanComponentDeactivate {
     }
   }
 
-  public approveOrder() {
-    this.orderService.approve()
-      .subscribe(order => {
-          this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_ORDER_CREATED);
-          this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
-        }
-      );
+  public async approveOrder() {
+    const order = await this.orderService.approve().toPromise();
+    this.orderService.clear();
+    this.shoppingBasketService.clear();
+    await this.shoppingBasketService.initBasket().toPromise();
+    this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_ORDER_CREATED);
+    this.router.navigate(['/order-detail'], {queryParams: {id: order._id}}).then();
   }
 
 
