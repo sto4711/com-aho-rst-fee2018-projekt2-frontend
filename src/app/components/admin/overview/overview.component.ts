@@ -158,23 +158,24 @@ export class OverviewComponent implements OnInit {
 
 
   public sortData(sort: Sort) {
-    const data = this.orders ;
+    const orderData = this.orders ;
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
+      this.sortedData = orderData;
       return;
     }
 
-    this.sortedData = data.sort((a, b) => {
+    this.sortedData = orderData.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
+        case 'name-order': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
         case 'date': return this.compare(a.orderDate, b.orderDate, isAsc);
         case 'state': return this.compare(a.state, b.state, isAsc);
         default: return 0;
       }
     });
   }
-  private compare(a, b, isAsc) {
+
+  public compare(a, b, isAsc) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 

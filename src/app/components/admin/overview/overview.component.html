@@ -9,13 +9,13 @@
         <table class="admin-table" matSort (matSortChange)="sortData($event)">
           <thead>
           <tr>
-            <th mat-sort-header="name">{{'CUSTOMER' | translate}}</th>
+            <th mat-sort-header="name-order">{{'CUSTOMER' | translate}}</th>
             <th mat-sort-header="date">{{'DATE' | translate}}</th>
             <th mat-sort-header="state">{{'ORDER-STATE' | translate}}</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p } ">
+          <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' } ">
             <td colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                 <mat-expansion-panel-header>
@@ -172,6 +172,7 @@
           <tfoot>
           <tr><td colspan="3">
             <pagination-controls
+              id="customer-orders"
               (pageChange)="p = $event"
               previousLabel="{{'BACK' | translate}}"
               nextLabel="{{'NEXT' | translate}}"></pagination-controls>
@@ -188,12 +189,12 @@
         <table class="admin-table" matSort (matSortChange)="sortData($event)">
           <thead>
           <tr>
-            <th mat-sort-header="name">Name</th>
+            <th mat-sort-header="user-name">Name</th>
 
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t } ">
+          <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' } ">
             <td >
               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                 <mat-expansion-panel-header>
@@ -209,8 +210,8 @@
 
                     <div class="admin-customer-data">
                       <h4>{{'PARTICULARS' | translate}}</h4>
-                      <input type="hidden" name="_id" [(ngModel)]="user.id" #_id>
-                       <p>
+                      <input type="hidden" name="user_id" [(ngModel)]="user._id" #user_id>
+                      <p>
                         <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -236,8 +237,9 @@
           </tr>
           </tbody>
           <tfoot>
-          <tr><td >
+          <tr><td>
             <pagination-controls
+              id="users-data"
               (pageChange)="t = $event"
               previousLabel="{{'BACK' | translate}}"
               nextLabel="{{'NEXT' | translate}}"></pagination-controls>
@@ -245,8 +247,6 @@
           </tfoot>
         </table>
       </mat-accordion>
-
-
     </mat-tab>
 
   </mat-tab-group>
