@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from 'src/app/services/user/user';
 import {Login} from "./login";
 import {backendUrls} from "../../constants/backend-urls";
+import {Order} from '../order/order';
 
 
 @Injectable({
@@ -88,10 +89,30 @@ export class UserService {
   public create(user: User): Observable<User> {
     return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
-    },).pipe(
+    }, ).pipe(
       tap((user: User) => {
         this.user = user;
         console.log('UserService.create() ok');
+      })
+    );
+  }
+
+  public updateUser(user: any): Observable<User> {
+     return this.http.post<User>(backendUrls.user + 'updateUser', user, {
+      headers: {'Content-Type': 'application/json'}
+    }, ).pipe(
+      tap((user: User) => {
+        console.log('UserService.updateUser() ok');
+      })
+    );
+  }
+  public deleteUser(userID: User['_id']): Observable<User> {
+    console.log(userID);
+     return this.http.post<User>(backendUrls.user + 'deleteUser', {'_id': userID}, {
+      headers: {'Content-Type': 'application/json'}
+    }, ).pipe(
+      tap((user: User) => {
+        console.log('UserService.deleteUser() ok');
       })
     );
   }

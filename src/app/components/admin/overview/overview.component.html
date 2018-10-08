@@ -35,7 +35,7 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                  <div class="admin-order">
-                   <form #form="ngForm" class="order-form">
+                   <form #orderForm="ngForm" class="admin-form ">
 
                    <div class="admin-customer-data">
                     <h4>{{'PARTICULARS' | translate}}</h4>
@@ -161,8 +161,8 @@
                    </form>
                 </div><!-- end .admin-orders -->
                 <p>
-                  <button (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                  <button (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                  <button (click)="updateOrder(orderForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
+                  <button (click)="confirmDelete(orderForm, 'orderDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
                 </p>
               </mat-expansion-panel>
             </td>
@@ -189,7 +189,7 @@
         <table class="admin-table" matSort (matSortChange)="sortData($event)">
           <thead>
           <tr>
-            <th mat-sort-header="user-name">Name</th>
+            <th mat-sort-header="user-name">{{'NAME' | translate}}</th>
 
           </tr>
           </thead>
@@ -206,19 +206,55 @@
 
                 </mat-expansion-panel-header>
                 <div class="admin-order">
-                  <form #userForm="ngForm" class="order-form">
+                  <form #userForm="ngForm" class="admin-form ">
 
                     <div class="admin-customer-data">
                       <h4>{{'PARTICULARS' | translate}}</h4>
                       <input type="hidden" name="user_id" [(ngModel)]="user._id" #user_id>
                       <p>
-                        <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
+                        <span class="review-data">{{'NAME' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
                                  (change)="formChange(user.name);"
-                                 name="givenname"
+                                 name="name"
                                  [(ngModel)]="user.name"
-                                 #givenname
+                                 #name
+                                 required>
+                        </mat-form-field>
+                        <span class="review-data">{{'SURNAME' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 (change)="formChange(user.firstname);"
+                                 name="firstname"
+                                 [(ngModel)]="user.firstname"
+                                 #firstname
+                                 required>
+                        </mat-form-field>
+                        <span class="review-data">{{'E-MAIL' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 (change)="formChange(user.email);"
+                                 name="email"
+                                 [(ngModel)]="user.email"
+                                 #email
+                                 required>
+                        </mat-form-field>
+                        <span class="review-data">{{'PASSWORD' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 (change)="formChange(user.pwd);"
+                                 name="pwd"
+                                 [(ngModel)]="user.pwd"
+                                 #pwd
+                                 required>
+                        </mat-form-field>
+                        <span class="review-data">{{'Role' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 (change)="formChange(user.type);"
+                                 name="type"
+                                 [(ngModel)]="user.type"
+                                 #type
                                  required>
                         </mat-form-field>
                       </p>
@@ -228,8 +264,8 @@
                   </form>
                 </div><!-- end .admin-orders -->
                 <p>
-                  <button (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                  <button (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                  <button (click)="updateUser(userForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'USER-SAVE' | translate}}</button>
+                  <button (click)="confirmDelete(userForm, 'userDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'USER-DELETE' | translate}}</button>
                 </p>
               </mat-expansion-panel>
             </td>

@@ -22,7 +22,8 @@ export class OverviewComponent implements OnInit {
   public t: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
-  public sortedData: Order;
+  public sortedOrderData: Order;
+  public sortedUserData: User[];
   public orderChanged: boolean = false;
    public orderState = [
     {value: 'APPROVED', viewValue: '???'},
@@ -32,6 +33,10 @@ export class OverviewComponent implements OnInit {
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
   private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
+
+  private static CODE_TRANSLATION_USER_UPDATED = 'USER-DATA-UPDATED';
+  private static CODE_TRANSLATION_USER_DELETED = 'USER-IS-DELETED';
+  private static CODE_TRANSLATION_DELETE_USER_FOR_SURE = 'TO-DELETE-THIS-USER-FOR-SURE';
 
   constructor(
     private route: ActivatedRoute,
@@ -62,7 +67,7 @@ export class OverviewComponent implements OnInit {
   }
 
 
-  public getAllOrders(){
+  public getAllOrders() {
     this.orderService.getAll()
       .subscribe(
         result => {
@@ -78,8 +83,7 @@ export class OverviewComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
-          console.log(this.users);
-        },
+         },
         error => { }
       );
 
@@ -91,8 +95,6 @@ export class OverviewComponent implements OnInit {
   }
 
   public updateOrder(orderData) {
-
-
     const updatedOrder = {
          _id: orderData.value._id,
         userID: orderData.value.userID,
@@ -123,12 +125,15 @@ export class OverviewComponent implements OnInit {
       );
   }
 
-  public confirmDeleteOrder(orderData){
-    this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE).subscribe(translated => {
+  public confirmDelete(orderData, formType) {
+    let confirmMessage = '';
+     (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE :  confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
+    this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
-            this.deleteOrder(orderData);
+              (formType === 'orderDelete' ?  this.deleteOrder(orderData) :  this.deleteUser(orderData));
+
             }
           }
         );
@@ -156,20 +161,77 @@ export class OverviewComponent implements OnInit {
       );
   }
 
+  public updateUser(userData) {
+   const updatedUser = {
+     _id: userData.value.user_id,
+     firstname: userData.value.firstname,
+     name: userData.value.name,
+     email: userData.value.email,
+     pwd: userData.value.pwd,
+     type: userData.value.type
+   };
+    this.userService.updateUser(updatedUser)
+      .subscribe(user => {
+          this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_UPDATED).subscribe(translated => {
+              this.snackBarService.showInfo(' ' + ' ' + translated);
+
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+              }
+            );
+          }
+        }
+      );
+  }
+
+  public deleteUser(userData) {
+     this.userService.deleteUser(userData.value.user_id)
+      .subscribe(user => {
+          this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_DELETED).subscribe(translated => {
+              this.snackBarService.showInfo(' ' + ' ' + translated);
+              this.getUsers();
+            }
+          );
+        },
+        error => {
+          if (error.status === 401) {
+            this.translate.get('').subscribe(translated => {
+                this.snackBarService.showInfo('' + ' ' + translated);
+              }
+            );
+          }
+        }
+      );
+
+  }
 
   public sortData(sort: Sort) {
     const orderData = this.orders ;
+    const userData = this.users;
     if (!sort.active || sort.direction === '') {
-      this.sortedData = orderData;
+      this.sortedOrderData = orderData;
+      this.sortedUserData = userData;
       return;
     }
 
-    this.sortedData = orderData.sort((a, b) => {
+    this.sortedOrderData = orderData.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'name-order': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
         case 'date': return this.compare(a.orderDate, b.orderDate, isAsc);
         case 'state': return this.compare(a.state, b.state, isAsc);
+        default: return 0;
+      }
+    });
+    this.sortedUserData = userData.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'user-name': return this.compare(a.name, b.name, isAsc);
         default: return 0;
       }
     });
