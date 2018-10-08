@@ -41,6 +41,7 @@ import {ArticlesResponseCacheService} from "./services/articles-response-cache/a
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 import {AuthAdminGuardService} from "./services/auth-admin-guard/auth-admin-guard.service";
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ShoppingBasketListingComponent,
     OverviewComponent,
     LoginInfoComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

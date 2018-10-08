@@ -15,6 +15,8 @@ import {OrderService} from './services/order/order.service';
 import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {InitAppResolverService} from './resolver/init-app-resolver-service';
 import {AuthAdminGuardService} from "./services/auth-admin-guard/auth-admin-guard.service";
+import {MyOrdersComponent} from "./components/my-orders/my-orders.component";
+import {UserService} from "./services/user/user.service";
 
 const routes: Routes = [
   {
@@ -53,8 +55,15 @@ const routes: Routes = [
         canDeactivate: [CanComponentDeactivateGuard],
         data: {breadcrumbPath: [new BreadcrumbPath('', 'CHECKOUT')]}
       },
+      {
+        path: 'my-orders', component: MyOrdersComponent,
+        canActivate: [UserService],
+        data: {breadcrumbPath: [new BreadcrumbPath('', 'MY-ORDERS')]}
+      },
       {path: 'order-detail', component: OrderDetailComponent},
-      {path: 'admin/overview', component: OverviewComponent, canActivate: [AuthAdminGuardService]}
+      {
+        path: 'admin/overview', component: OverviewComponent,
+        canActivate: [AuthAdminGuardService]}
     ]
   },
   {path: '**', component: NotFoundComponent}
