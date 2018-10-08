@@ -74,6 +74,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
         if (this.userService.differentUserHasLoggedIn) {
           await this.orderService.resetOrder();
           this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED);
+          this.router.navigate(['home']).then();
         } else {
           this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
           this.router.navigate(['checkout']).then();
