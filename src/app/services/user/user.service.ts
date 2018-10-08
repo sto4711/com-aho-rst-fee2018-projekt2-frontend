@@ -55,7 +55,7 @@ export class UserService {
 
   public signIn(login: Login): Observable<User> {
     this.differentUserHasLoggedIn = false;
-    return this.http.post<User>(backendUrls.user + 'sign-in', login, {
+    return this.http.post<User>(backendUrls.user + 'signIn', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
