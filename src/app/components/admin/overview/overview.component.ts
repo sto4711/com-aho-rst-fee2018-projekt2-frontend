@@ -19,6 +19,7 @@ import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-
 export class OverviewComponent implements OnInit {
    public orders: any;
   public p: number = 1;
+  public t: number = 1;
   public panelOpenState: boolean = false;
   public users: User[];
   public sortedData: Order;
@@ -77,7 +78,7 @@ export class OverviewComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
-          console.log(this.users[0].name);
+          console.log(this.users);
         },
         error => { }
       );

@@ -6,12 +6,12 @@
     <mat-tab label="{{'ORDERS' | translate}}">
 
       <mat-accordion>
-        <table id="admin-order-table" matSort (matSortChange)="sortData($event)">
+        <table class="admin-table" matSort (matSortChange)="sortData($event)">
           <thead>
           <tr>
-            <th mat-sort-header="name">Name</th>
-            <th mat-sort-header="date">Datum</th>
-            <th mat-sort-header="state">Bestellstatus</th>
+            <th mat-sort-header="name">{{'CUSTOMER' | translate}}</th>
+            <th mat-sort-header="date">{{'DATE' | translate}}</th>
+            <th mat-sort-header="state">{{'ORDER-STATE' | translate}}</th>
           </tr>
           </thead>
           <tbody>
@@ -183,10 +183,71 @@
 
 
     </mat-tab><!-- end tab Bestellungen -->
-    <mat-tab label="{{'USERS' | translate}}"></mat-tab>
-      <div *ngFor="let user of users">
-        <p>{{user.pwd}}</p>
-      </div>
+    <mat-tab label="{{'USERS' | translate}}">
+      <mat-accordion>
+        <table class="admin-table" matSort (matSortChange)="sortData($event)">
+          <thead>
+          <tr>
+            <th mat-sort-header="name">Name</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t } ">
+            <td >
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <strong>{{'USER' | translate}}:&nbsp;</strong>
+                    {{user?.name}}
+                    {{user?.firstname}}
+                  </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <div class="admin-order">
+                  <form #userForm="ngForm" class="order-form">
+
+                    <div class="admin-customer-data">
+                      <h4>{{'PARTICULARS' | translate}}</h4>
+                      <input type="hidden" name="_id" [(ngModel)]="user.id" #_id>
+                       <p>
+                        <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
+                        <mat-form-field  class="overview-input">
+                          <input matInput placeholder=""
+                                 (change)="formChange(user.name);"
+                                 name="givenname"
+                                 [(ngModel)]="user.name"
+                                 #givenname
+                                 required>
+                        </mat-form-field>
+                      </p>
+
+                    </div><!-- end .admin-customer-data -->
+
+                  </form>
+                </div><!-- end .admin-orders -->
+                <p>
+                  <button (click)="updateOrder(form)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
+                  <button (click)="confirmDeleteOrder(form)"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                </p>
+              </mat-expansion-panel>
+            </td>
+
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr><td >
+            <pagination-controls
+              (pageChange)="t = $event"
+              previousLabel="{{'BACK' | translate}}"
+              nextLabel="{{'NEXT' | translate}}"></pagination-controls>
+          </td></tr>
+          </tfoot>
+        </table>
+      </mat-accordion>
+
+
+    </mat-tab>
 
   </mat-tab-group>
 </div>

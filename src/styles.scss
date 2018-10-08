@@ -597,21 +597,23 @@ form.order-form {
   }
 
 }
-#admin-order-table {
+.admin-table {
   width: 100%;
 }
-#admin-order-table th{
+
+.admin-table th{
   @include base-font-style();
   background: #fff;
   color: $font-color;
   font-weight: $font-weight-medium;
   padding: 10px 24px ;
 }
-#admin-order-table thead th, #admin-order-table thead td {
+.admin-table thead th, .admin-table thead td {
   width: auto;
 
 }
-#admin-order-table tbody th, #admin-order-table tbody td {
+
+.admin-table tbody th, .admin-table tbody td {
   width: auto;
   padding:0;
 
