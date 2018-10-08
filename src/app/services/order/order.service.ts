@@ -2,55 +2,27 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Order} from "./order";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 import {Address} from "./address";
 import {ContactData} from "./contact-data";
 import {DeliveryType} from "./delivery-type";
 import {PaymentType} from "./payment-type";
-import {SnackBarService} from "../commons/snack-bar/snack-bar.service";
 import {UserService} from "../user/user.service";
-import {ShoppingBasket} from "../shopping-basket/shopping-basket";
 import {backendUrls} from "../../constants/backend-urls";
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService implements CanActivate{
+export class OrderService {
   private order: Order = null;
   public static STATE_APPROVED: string = 'APPROVED';
-  public static STATE_COMPLETED: string = 'COMPLETED';
-  public static STATE_CANCELED: string = 'CANCELED';
-  public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
-  public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
-
 
   constructor(
     private http: HttpClient
     , private userService: UserService
     , private shoppingBasketService: ShoppingBasketService
-    , private router: Router
-    , private snackBarService: SnackBarService
   ) {
-  }
-
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const hasNoToken: boolean = (this.userService.getToken() === '' ? true : false);
-    const basketIsEmpty: boolean = (this.shoppingBasketService.shoppingBasket.items.length === 0 ? true : false);
-
-    return of<boolean>((basketIsEmpty || hasNoToken ? false : true))
-      .pipe(
-        tap((ok: boolean) => {
-          if (basketIsEmpty) {
-            this.router.navigate(['']).then();
-          }
-          else if (hasNoToken) {
-            this.snackBarService.showInfo(OrderService.CODE_TRANSLATION_SIGN_IN_FIRST);
-            this.router.navigate(['my-account']).then();
-          }
-        })
-      );
   }
 
   public getOrder(): Observable<Order> {

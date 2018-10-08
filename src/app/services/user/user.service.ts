@@ -4,26 +4,19 @@ import {map, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
 import {User} from 'src/app/services/user/user';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Login} from "./login";
-import {ShoppingBasket} from "../shopping-basket/shopping-basket";
-import {OrderService} from "../order/order.service";
 import {backendUrls} from "../../constants/backend-urls";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements CanActivate {
+export class UserService {
   private user: User;
   public differentUserHasLoggedIn: boolean = false;
-  private static CODE_TRANSLATION_NO_TOKEN: string = 'SIGN-IN-FIRST-PLEASE';
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private snackBarService: SnackBarService
   ) {}
 
   public getToken(): string {
@@ -50,19 +43,6 @@ export class UserService implements CanActivate {
     }
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const hasNoToken: boolean = (this.getToken() === '' ? true : false);
-    return of<boolean>((hasNoToken))
-      .pipe(
-        tap((ok: boolean) => {
-          if (hasNoToken) {
-            this.snackBarService.showInfo(UserService.CODE_TRANSLATION_NO_TOKEN);
-            this.router.navigate(['my-account']).then();
-          }
-        })
-      );
-  }
-
   public get(userID: User["_id"]): Observable<User> {
     return this.http.get<User>(backendUrls.user + '?id=' + userID, {
         headers: {'Content-Type': 'application/json'}
@@ -73,9 +53,9 @@ export class UserService implements CanActivate {
   }
 
 
-  public signin(login: Login): Observable<User> {
+  public signIn(login: Login): Observable<User> {
     this.differentUserHasLoggedIn = false;
-    return this.http.post<User>(backendUrls.user + 'signin', login, {
+    return this.http.post<User>(backendUrls.user + 'sign-in', login, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
@@ -93,9 +73,9 @@ export class UserService implements CanActivate {
     );
   }
 
-  public signout(): Observable<string> {
-    return this.http.post<string>(backendUrls.user + 'signout', {}, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
+  public signOut(): Observable<string> {
+    return this.http.post<string>(backendUrls.user + 'sign-out', {'userId': this.user._id}, {
+      headers: {'Content-Type': 'application/json'}
     },).pipe(
       tap((result: string) => {
         this.user = null;

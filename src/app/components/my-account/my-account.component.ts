@@ -23,8 +23,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
-  private static CODE_TRANSLATION_AN_ERROR_HAS_OCCURRED = 'AN-ERROR-HAS-OCCURRED';
-  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
 
   constructor(
     private _formBuilder: FormBuilder
@@ -70,7 +68,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public async onLogin() {
     if (this.account.valid) {
       try {
-        await this.userService.signin(this.account.getRawValue()).toPromise();
+        await this.userService.signIn(this.account.getRawValue()).toPromise();
         if (this.userService.differentUserHasLoggedIn) {
           await this.orderService.resetOrder();
           this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED);
@@ -100,11 +98,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
         }
       }
     }
-  }
-
-  public async onLogout() {
-    await this.userService.signout().toPromise();
-    this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
   }
 
 
