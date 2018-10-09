@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
 import {ShoppingBasketItem} from "./shopping-basket-item";
 import {backendUrls} from "../../constants/backend-urls";
+import {Logger} from "../logger/logger";
 
 
 @Injectable({
@@ -31,7 +32,7 @@ export class ShoppingBasketService {
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            console.log('initShoppingBasket(), shoppingBasket loaded');
+            Logger.consoleLog('','initBasket', 'shoppingBasket loaded');
           })
          ,map((value) => true)
         );

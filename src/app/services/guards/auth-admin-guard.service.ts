@@ -24,6 +24,7 @@ export class AuthAdminGuardService implements CanActivate {
     let canActivate: boolean = false;
     let wrongRole: boolean = false;
     const user = this.userService.getUser();
+    debugger;
     if(user)  {
       canActivate = (user.type === 'admin'? true : false);
       wrongRole = (user.type !== 'admin'? true : false);
@@ -34,10 +35,9 @@ export class AuthAdminGuardService implements CanActivate {
         tap((ok: boolean) => {
           if(wrongRole)  {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_YOU_NEED_ADMINISTRATOR_RIGHTS);
-          }else {
+          }else if(!ok) {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);
           }
-
           if (!ok) {
             console.log('AuthAdminGuardService.canActivate() can not');
             this.router.navigate(['my-account']).then();
