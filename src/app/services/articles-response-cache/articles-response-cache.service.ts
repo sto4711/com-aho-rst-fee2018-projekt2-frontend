@@ -13,8 +13,6 @@ export class ArticlesResponseCacheService  {
   public get(req: HttpRequest<any>): HttpResponse<any> | undefined {
     const cached = this.cache.get(req.urlWithParams);
     if(cached){
-      const isExpired = cached.lastRead < (Date.now() - ArticlesResponseCacheService.maxAge);
-      const expired = isExpired ? 'expired ' : '';
       return cached.response;
     }else {
       return undefined;

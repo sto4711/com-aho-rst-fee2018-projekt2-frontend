@@ -36,13 +36,13 @@ import {CanComponentDeactivateGuard} from "./services/commons/can-component-deac
 import {ErrorResponseInterceptor} from "./interceptors/error-response-interceptor";
 import { LoginInfoComponent } from './components/login-info/login-info.component';
 import {UserService} from "./services/user/user.service";
-import {ArticlesResponseCacheInterceptor} from "./interceptors/articles-response-cache-interceptor";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 import {AuthAdminGuardService} from "./services/guards/auth-admin-guard.service";
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.service";
+import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -98,7 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DialogConfirmYesNoComponent],
   providers: [InitAppResolverService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
     ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService,
-    {provide: HTTP_INTERCEPTORS, useClass: ArticlesResponseCacheInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
