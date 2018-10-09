@@ -221,6 +221,8 @@
                                  #name
                                  required>
                         </mat-form-field>
+                      </p>
+                      <p>
                         <span class="review-data">{{'SURNAME' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -230,6 +232,8 @@
                                  #firstname
                                  required>
                         </mat-form-field>
+                      </p>
+                      <p>
                         <span class="review-data">{{'E-MAIL' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -239,6 +243,8 @@
                                  #email
                                  required>
                         </mat-form-field>
+                      </p>
+                      <p>
                         <span class="review-data">{{'PASSWORD' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -248,6 +254,8 @@
                                  #pwd
                                  required>
                         </mat-form-field>
+                      </p>
+                      <p>
                         <span class="review-data">{{'Role' | translate}}: </span>
                         <mat-form-field  class="overview-input">
                           <input matInput placeholder=""
@@ -258,7 +266,16 @@
                                  required>
                         </mat-form-field>
                       </p>
+                      <p>
+                        <mat-form-field>
+                          <mat-select name="type" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="user.type"  >
+                            <mat-option *ngFor="let type of roles" [value]="user.type">
+                              {{type.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
 
+                      </p>
                     </div><!-- end .admin-customer-data -->
 
                   </form>

@@ -25,11 +25,18 @@ export class OverviewComponent implements OnInit {
   public sortedOrderData: Order;
   public sortedUserData: User[];
   public orderChanged: boolean = false;
-   public orderState = [
+
+  public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
     {value: 'CANCELED', viewValue: '???'}
   ];
+
+   public roles = [
+    {value: 'admin', viewValue: 'admin'},
+    {value: 'customer', viewValue: 'customer'}
+  ];
+
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
   private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';

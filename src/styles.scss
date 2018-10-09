@@ -679,12 +679,11 @@ form.admin-form {
 
 .overview-input {
   height: 30px;
-  min-width: 200px;
   margin: 0;
   padding: 0;
 }
 
-.overview-input .mat-form-field-wrapper {
+.overview-input .mat-form-field-wrapper, .overview-select {
   max-width: 200px;
 }
 
