@@ -268,8 +268,8 @@
                       </p>
                       <p>
                         <mat-form-field>
-                          <mat-select name="type" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="user.type"  >
-                            <mat-option *ngFor="let type of roles" [value]="user.type">
+                          <mat-select name="type" placeholder="{{'CHANGE-USER-TYPE' | translate}}" [(ngModel)]="user.type"  >
+                            <mat-option *ngFor="let type of roles" [value]="type.value">
                               {{type.viewValue}}
                             </mat-option>
                           </mat-select>
