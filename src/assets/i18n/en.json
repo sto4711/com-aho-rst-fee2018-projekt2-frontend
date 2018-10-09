@@ -114,7 +114,7 @@
   "ORDER-DELETE": "delete order",
   "USER-SAVE": "save user",
   "USER-DELETE": "delete user",
-  "CHANGE-USER-TYPE": "user type change",
+  "CHANGE-USER-TYPE": "change user type",
   "TO-DELETE-THIS-ORDER-FOR-SURE": "are you sure to delete this order?",
   "USER-DATA-UPDATED": "user data updated",
   "TO-DELETE-THIS-USER-FOR-SURE": "really delete this user?",
