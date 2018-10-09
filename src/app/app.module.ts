@@ -38,11 +38,11 @@ import { LoginInfoComponent } from './components/login-info/login-info.component
 import {UserService} from "./services/user/user.service";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
 import {SlideshowModule} from 'ng-simple-slideshow';
-import {InitAppResolverService} from "./resolver/init-app-resolver-service";
 import {AuthAdminGuardService} from "./services/guards/auth-admin-guard.service";
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.service";
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
+import {InitAppService} from "./services/init-app/init-app.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -96,7 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [InitAppResolverService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
+  providers: [InitAppService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
     ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
