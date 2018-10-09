@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
-import {OrderService} from "../order/order.service";
 import {tap} from "rxjs/operators";
 import {Observable, of} from 'rxjs';
 import {AuthGuardService} from "./auth-guard.service";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
+import {Logger} from "../logger/logger";
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class CheckoutReadyGuardService implements CanActivate {
           }
           else if (hasNoToken) {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);
-            console.log('CheckoutReadyGuardService.canActivate() can not');
+            Logger.consoleLog(this.constructor.name, 'canActivate', 'can not');
             this.router.navigate(['my-account']).then();
           }
         })
