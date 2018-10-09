@@ -23,6 +23,10 @@
     font-weight: $font-weight-light;
   }
 
+  .login-form-wrap .mat-form-field-infix {
+    min-width: 250px;
+  }
+
 
   .mat-form-field-infix {
     border: 0 solid transparent;
