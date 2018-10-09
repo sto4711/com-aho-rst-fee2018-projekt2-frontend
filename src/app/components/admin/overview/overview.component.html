@@ -256,17 +256,9 @@
                         </mat-form-field>
                       </p>
                       <p>
+                        <br>
                         <span class="review-data">{{'Role' | translate}}: </span>
-                        <mat-form-field  class="overview-input">
-                          <input matInput placeholder=""
-                                 (change)="formChange(user.type);"
-                                 name="type"
-                                 [(ngModel)]="user.type"
-                                 #type
-                                 required>
-                        </mat-form-field>
-                      </p>
-                      <p>
+
                         <mat-form-field>
                           <mat-select name="type" placeholder="{{'CHANGE-USER-TYPE' | translate}}" [(ngModel)]="user.type"  >
                             <mat-option *ngFor="let type of roles" [value]="type.value">

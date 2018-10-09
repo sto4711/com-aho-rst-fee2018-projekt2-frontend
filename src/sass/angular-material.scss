@@ -1,17 +1,5 @@
 @import '~@angular/material/theming';
 
-@mixin candy-carousel-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-
-  // Use mat-color to extract individual colors from a palette as necessary.
-  .candy-carousel {
-    background-color: mat-color($primary);
-    border-color: mat-color($accent, A400);
-  }
-}
-
 /*
     angular material elements ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -27,13 +15,12 @@
   }
 
   .ngx-pagination .current {
-    background: $green;
+    background: $green !important;
 
   }
 
   .mat-form-field {
     font-weight: $font-weight-light;
-    min-width: 250px;
   }
 
 
@@ -50,13 +37,13 @@
     background-color: $green;
   }
 
-  input.mat-input-element {
+  input.mat-input-element, .mat-select-value-text {
     @include font-size($sizeValue:1.8);
     margin-top: 0.0625em;
   }
 
   .overview-input .mat-form-field-infix {
-    padding: 0;
+    padding: 10px 0 0 0;
   }
 
   .mat-option-text a {
@@ -85,6 +72,10 @@
 
   .overview-price {
     margin: 0 0 0 20px;
+  }
+
+  .mat-vertical-stepper-content {
+    overflow: visible !important;
   }
 
   .mat-vertical-content-container {
