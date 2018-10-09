@@ -17,7 +17,8 @@ export class ShoppingBasketService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+  }
 
   public getShoppingBasket(): ShoppingBasket {
     return this.shoppingBasket;
@@ -32,9 +33,9 @@ export class ShoppingBasketService {
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            Logger.consoleLog('','initBasket', 'shoppingBasket loaded');
+            Logger.consoleLog(this.constructor.name, 'initBasket', 'shoppingBasket loaded');
           })
-         ,map((value) => true)
+          , map((value) => true)
         );
     }
     else {
@@ -43,9 +44,9 @@ export class ShoppingBasketService {
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            console.log('initShoppingBasket(), no shoppingBasket -> created');
+            Logger.consoleLog(this.constructor.name, 'initBasket', 'no shoppingBasket -> created');
           })
-          ,map((value) => true)
+          , map((value) => true)
         );
     }
   }
@@ -53,14 +54,15 @@ export class ShoppingBasketService {
   public clear() {
     localStorage.removeItem('shoppingBasketId');
     this.initBasket();
+    Logger.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
   public create(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(  backendUrls.shoppingBasket + 'create', {
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'create', {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('create ok'))
+      tap(() => Logger.consoleLog(this.constructor.name, 'create', 'ok'))
     );
   }
 
@@ -69,38 +71,46 @@ export class ShoppingBasketService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => console.log('get ok'))
+      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
-
-  addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+  public addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
+      tap((shoppingBasket: ShoppingBasket) => {
+        this.shoppingBasket = shoppingBasket;
+        Logger.consoleLog(this.constructor.name, 'addItem', 'ok')
+      })
     );
   }
 
-  changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+  public changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
+      tap((shoppingBasket: ShoppingBasket) => {
+        this.shoppingBasket = shoppingBasket;
+        Logger.consoleLog(this.constructor.name, 'changeItemAmount', 'ok')
+      })
     );
   }
 
-  removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
+  public removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => this.shoppingBasket = shoppingBasket)
+      tap((shoppingBasket: ShoppingBasket) => {
+        this.shoppingBasket = shoppingBasket;
+        Logger.consoleLog(this.constructor.name, 'removeItem', 'ok')
+      })
     );
   }
 
