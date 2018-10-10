@@ -9,11 +9,14 @@ export class NavigationCancelService {
   private canceledRoute: string;
 
   constructor(private router: Router) {
+  }
+
+  public init()  {
     this.router.events
       .subscribe(event => {
         if (event instanceof NavigationCancel) {
           this.canceledRoute = event.url;
-          Logger.consoleLog(this.constructor.name, 'listenToRouter', 'NavigationCancel event; route stored ' + this.canceledRoute);
+          Logger.consoleLog(this.constructor.name, 'constructor', 'NavigationCancel event; route stored ' + this.canceledRoute);
         }
       });
   }

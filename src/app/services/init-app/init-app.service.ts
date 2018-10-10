@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
 import {UserService} from "../user/user.service";
 import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 import {OrderService} from "../order/order.service";
 import {Logger} from "../logger/logger";
+import {NavigationCancelService} from "../navigation-cancel/navigation-cancel.service";
 
 @Injectable()
 export class InitAppService implements CanActivate {
@@ -12,6 +13,7 @@ export class InitAppService implements CanActivate {
     private orderService: OrderService
     , private shoppingBasketService: ShoppingBasketService
     , private userService: UserService
+    , private navigationCancelService: NavigationCancelService
   ) {
   }
 
@@ -20,11 +22,12 @@ export class InitAppService implements CanActivate {
     try {
       await this.shoppingBasketService.initBasket().toPromise();
       await this.userService.initUser().toPromise();
+      this.navigationCancelService.init();
       Logger.consoleLog(this.constructor.name, 'canActivate', 'shopping basket & user loaded');
     } catch {
       ok = false;
     }
-    return new Promise<boolean>((resolve, reject) => {
+    return new Promise<boolean>((resolve) => {
       resolve(ok);
     });
   }
