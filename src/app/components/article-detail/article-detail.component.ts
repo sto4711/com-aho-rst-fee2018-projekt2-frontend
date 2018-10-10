@@ -61,11 +61,11 @@ export class ArticleDetailComponent implements OnInit {
   }
 
 
-  public selectedArticleAmount(amount) {
+  public onSelectedArticleAmount(amount) {
     this.articleAmount = amount;
   }
 
-  public addShoppingBasketItem() {
+  public onAddShoppingBasketItem() {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
@@ -76,7 +76,7 @@ export class ArticleDetailComponent implements OnInit {
       );
   }
 
-  public changeArticleRating(rateUp) {
+  public onChangeArticleRating(rateUp) {
     this.articleService.changeRating(new ArticleRating(this.article._id, rateUp))
       .subscribe(article => {
           this.article = article;

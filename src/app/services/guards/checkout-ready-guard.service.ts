@@ -16,8 +16,7 @@ export class CheckoutReadyGuardService implements CanActivate {
 
   constructor(
     private shoppingBasketService: ShoppingBasketService
-,    private userService: UserService
-
+    , private userService: UserService
     , private snackBarService: SnackBarService
     , private router: Router
   ) {
@@ -31,7 +30,7 @@ export class CheckoutReadyGuardService implements CanActivate {
       .pipe(
         tap((ok: boolean) => {
           if (basketIsEmpty) {
-            this.router.navigate(['']).then();
+            this.router.navigate(['home']).then();
           }
           else if (hasNoToken) {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);

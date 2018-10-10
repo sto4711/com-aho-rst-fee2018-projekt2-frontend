@@ -9,6 +9,7 @@ import {UserService} from "../../services/user/user.service";
 import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
 import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
 import {OrderService} from "../../services/order/order.service";
+import {NavigationCancelService} from "../../services/navigation-cancel/navigation-cancel.service";
 
 @Component({
   selector: 'app-my-account',
@@ -31,6 +32,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
     , private router: Router
     , private snackBarService: SnackBarService
     , private confirmYesNoService: ConfirmYesNoService
+    , private navigationCancelService: NavigationCancelService
+
   ) {
     this.initValidation();
   }
@@ -75,7 +78,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
           this.router.navigate(['home']).then();
         } else {
           this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
-          this.router.navigate(['checkout']).then();
+          this.router.navigate([this.navigationCancelService.getCanceledRoute()]).then();
         }
       }catch (error) {
         if (error.status === 404) {
@@ -91,7 +94,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
         await this.userService.create(this.accountNew.getRawValue()).toPromise();
         this.orderService.clear();
         this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
-        this.router.navigate(['checkout']).then();
+        this.router.navigate(['home']).then();
       }catch (error) {
         if (error.status === 400) {
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
