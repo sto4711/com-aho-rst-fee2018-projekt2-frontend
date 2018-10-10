@@ -5,16 +5,16 @@
     article detail page ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-#article-detail-wrap {
+.article-detail-wrap {
   @include flex();
   justify-content: space-between;
 }
 
-.article-image-wrap{
+.article-image-wrap {
   flex:1;
 }
 
-#article-detail-content {
+.article-detail-content {
   flex: 1;
   padding: 0 0 0 25px;
 }
@@ -26,8 +26,10 @@
   padding: 15px 0 0 0;
 }
 
-.article-detail-nr span {
-  color: $orange;
+.article-detail-nr {
+  span {
+    color: $orange;
+  }
 }
 .article-detail-price {
   @include font-size(2.6);
@@ -43,6 +45,7 @@
   width: 100%;
   height: 500px;
 }
+
 .slideshow-icons {
   @include font-size(1.6);
   text-align: center;
@@ -57,14 +60,17 @@
     height: 250px;
   }
 }
-.slideshow-icons  .fab {
-  padding: 0 10px;
+.slideshow-icons {
+  .fab {
+    padding: 0 10px;
+  }
 }
+
 @media screen and (max-width: 852px) {
-  #article-detail-wrap {
+  .article-detail-wrap {
     flex-direction: column;
   }
-  #article-detail-content {
+  .article-detail-content {
     padding: 25px 0 0 0;
   }
 
@@ -81,4 +87,3 @@
     }
   }
 }
-

@@ -2,7 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
 
   <h2>{{article?.brand}}</h2>
-  <div id="article-detail-wrap">
+  <div class="article-detail-wrap">
     <div class="article-image-wrap">
    <div class="slideshow">
       <slideshow [backgroundSize]="'contain'" showArrows="false"  showDots="true" dotColor="#95c2b0" [imageUrls]="imageUrlArray" ></slideshow>
@@ -20,7 +20,7 @@
     </div>
     </div><!-- end .article-image-wrap -->
 
-     <div id="article-detail-content">
+     <div class="article-detail-content">
       <h3>{{article?.name }}</h3>
       <p>{{article?.descriptionLangCode | translate}}</p>
       <div class="article-detail-rating">
@@ -55,6 +55,6 @@
 
       <p><a href="#" class="continue-shopping" routerLink="/article-listing">{{'CONTINUE-SHOPPING' | translate}}</a></p>
     </div><!-- end #article-detail-content -->
-  </div><!--- end #article-detail-wrap -->
+  </div><!--- end .article-detail-wrap -->
 
 </div><!-- end .row -->

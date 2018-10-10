@@ -19,7 +19,7 @@
   animation: Gradient 15s ease infinite;
 }
 
-#top-bar {
+.top-bar {
   @include flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -42,20 +42,20 @@
   }
 }
 
-#top-bar li {
-  display: inline-block;
+.top-bar  {
+  a {
+    color: $font-color;
+  }
 
+  li {
+    display: inline-block;
+    &:first-child {
+      margin: 0 35px 15px 0;
+    }
+  }
 }
-#top-bar li:first-child {
-  margin: 0 35px 15px 0;
-}
 
-#top-bar a {
-  color: $font-color;
-}
-
-
-#top-bar-contact {
+.top-bar-contact {
   align-self: flex-end;
 }
 
@@ -64,21 +64,19 @@
 }
 
 @media screen and (max-width: 562px) {
-  #top-bar-contact {
+  .top-bar-contact {
     margin: 0 0 21px 0;
   }
 }
 
 @media screen and (max-width: 412px) {
-  #top-bar-contact li:first-child  {
-    margin:0 10px 15px 0;
+  .top-bar-contact {
+    li:first-child  {
+      margin:0 10px 15px 0;
+    }
   }
 
 }
-
-
-
-
 
 /*
     logo  /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,7 +91,7 @@
     'big-letter line second-word'
     'big-letter line third-word';
   grid-gap: 0;
-  font-family: 'Archivo', sans-serif;
+  font-family:$second-font-family;
   width: 400px;
   margin: 0 auto;
   cursor: pointer;

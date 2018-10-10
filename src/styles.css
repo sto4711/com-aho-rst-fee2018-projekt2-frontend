@@ -418,7 +418,7 @@ h2#headline span {
   transition:  height 600ms ease-out;
 }
 
-#top-banner {
+.top-banner {
   position: relative;
 }
 
@@ -688,8 +688,6 @@ h2.claim {
     width: 100%;
   }
 }
-
-
 
 /*
     article detail page ////////////////////////////////////////////////////////////////////////////////////////////////

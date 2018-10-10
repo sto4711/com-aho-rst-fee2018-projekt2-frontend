@@ -4,7 +4,7 @@
 
 
  $custom-theme-primary: mat-palette($md-grey);
- $custom-theme-accent: mat-palette($md-green, A200, A100, A400);
+ $custom-theme-accent: mat-palette($md-green);
  $custom-theme-warn: mat-palette($md-red);
 
 $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);

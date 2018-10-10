@@ -6,14 +6,14 @@
     header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-h2#headline {
-  position: absolute;
-  font-size: 5vw;
-  top:30%;
-  left: 5vw;
-  color: #ffffff;
-  text-transform: uppercase;
-  font-weight: 500;
+h2.headline {
+    position: absolute;
+    font-size: 5vw;
+    top:30%;
+    left: 5vw;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 500;
 
 }
 
@@ -52,12 +52,16 @@ h2#headline {
 
 @media screen and (max-width: 782px) {
 
-  h2#headline {
-    font-size:10vw;
-    left: 0;
+  h2.headline {
+      font-size:10vw;
+      left: 0;
+
   }
 }
 
-h2#headline span {
-  display: block;
+h2.headline {
+    span {
+      display: block;
+    }
 }
+
