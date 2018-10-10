@@ -1,5 +1,5 @@
 <div *ngIf="loading" class="loader"></div>
-  <div class="product-content" (click)="goToDetail(article.articleQueryParameter)">
+  <div class="product-content" (click)="onGoToDetail(article.articleQueryParameter)">
   <picture>
     <source media="(min-width: 300px)" srcset="{{imageURL + article.imageURL}}">
     <figure>
