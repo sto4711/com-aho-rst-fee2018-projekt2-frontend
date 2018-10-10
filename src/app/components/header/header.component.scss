@@ -6,8 +6,7 @@
     header ////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-h2 {
-  .headline {
+h2.headline {
     position: absolute;
     font-size: 5vw;
     top:30%;
@@ -16,7 +15,6 @@ h2 {
     text-transform: uppercase;
     font-weight: 500;
 
-  }
 }
 
 .part1, .part2 {
@@ -54,16 +52,16 @@ h2 {
 
 @media screen and (max-width: 782px) {
 
-  h2 {
-    .headline {
+  h2.headline {
       font-size:10vw;
       left: 0;
-    }
+
   }
 }
 
 h2.headline {
-  span {
-    display: block;
-  }
+    span {
+      display: block;
+    }
 }
+

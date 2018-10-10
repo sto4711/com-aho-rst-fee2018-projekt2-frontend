@@ -2,10 +2,10 @@
 
 
   <app-top-bar></app-top-bar>
-  <div id="top-banner">
+  <div class="top-banner">
     <div class="bg-main-nav"></div><!-- end #main-nav-wrap -->
     <nav class="main-nav">
-      <div id="hamburger" (click)="hamburger()">
+      <div class="hamburger" (click)="hamburger()">
         <div class="hamburge-line1"></div>
         <div class="hamburge-line2"></div>
         <div class="hamburge-line3"></div>
@@ -16,7 +16,7 @@
         <li><a routerLinkActive="active" role="link" routerLink="/my-orders" (click)="hamburger()">{{'MY-ORDERS' | translate}}</a></li>
       </ul>
     </nav>
-    <div id="banner">
+    <div class="banner">
       <h2 class="headline">
         <span class="part1">The road</span>
         <span class="part2">is yours</span>
@@ -27,5 +27,5 @@
         <img src="./assets/images/header.jpg" width="100%" height="auto">
       </picture>
     </div><!-- end #banner -->
-  </div><!-- end #top-banner -->
+  </div><!-- end .top-banner -->
 </header>
