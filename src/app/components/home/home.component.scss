@@ -6,16 +6,17 @@
     home content ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
-h2.claim {
-  display: block;
-  @include font-size(3.2);
-  font-weight: $font-weight-light;
-  text-align: center;
-  margin: 0 auto;
-  padding: 1px 0; /* IE overflow fix */
-  max-width: 800px;
-  width: 100%;
-
+h2{
+  .claim {
+    @include font-size(3.2);
+    display: block;
+    font-weight: $font-weight-light;
+    text-align: center;
+    padding: 1px 0; /* IE overflow fix */
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+  }
 }
 
 .frontpage-content-row {
@@ -27,7 +28,6 @@ h2.claim {
 }
 
 .frontpage-content {
-
   img {
     padding:  0 15px 0 15px;
     width: 40%;
@@ -37,19 +37,20 @@ h2.claim {
   }
 }
 
-.frontpage-content  h3 {
-  @include font-size(3.2);
-  font-weight: $font-weight-light;
+.frontpage-content {
+  h3 {
+    @include font-size(3.2);
+    font-weight: $font-weight-light;
+  }
 }
 
 
 @media screen and (max-width: 492px) {
 
   .frontpage-content {
-
     img {
-      width: 100%;
       float: none;
+      width: 100%;
       margin: 0 0 25px 0;
     }
   }

@@ -160,6 +160,11 @@
     color: $font-color;
     @extend .mat-step-icon-size;
   }
+  .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
+
+  }
+
 .mat-expansion-panel-header {
   background-color: $green;
 }
