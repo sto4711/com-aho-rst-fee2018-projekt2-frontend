@@ -43,6 +43,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.service";
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 import {InitAppService} from "./services/init-app/init-app.service";
+import {NavigationCancelService} from "./services/navigation-cancel/navigation-cancel.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -97,7 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     DialogConfirmYesNoComponent],
   providers: [InitAppService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
-    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService,
+    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
   ],

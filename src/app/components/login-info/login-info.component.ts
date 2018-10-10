@@ -20,6 +20,7 @@ export class LoginInfoComponent  {
   public async onLogout() {
     await this.userService.signOut().toPromise();
     this.snackBarService.showInfo(LoginInfoComponent.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
+    this.router.navigate(['home']).then();
   }
 
 }
