@@ -7,6 +7,5 @@
        class="fas fa-sign-out-alt loginInfoContainer__logout"></i>
   </p>
   <p *ngIf="userService.getUser()?.type ==='admin'">
-    <a href="#" class="white" routerLink="/admin/overview">Zum Adminbereich</a></p>
-
+    <a href="#" class="white" routerLink="/admin/overview">{{'GO-TO-ADMIN' | translate}}</a></p>
 </div>
