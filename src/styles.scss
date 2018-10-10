@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Archivo:400,700');
+
 @import './sass/mixins';
 @import './sass/variables';
 @import './sass/custom-material-theme';
@@ -403,6 +406,7 @@ button.minus, button.plus {
 .cart-article-count {
   text-align: center;
   padding: 0;
+  margin: 0;
   width: 60px;
   cursor: default;
 }
@@ -525,16 +529,17 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
  */checkout-review
 
-   #order-review span, .review-data {
+   .order-review span, .review-data {
      font-weight: $font-weight-bold;
      display: inline-block;
      width: 150px;
    }
-.checkout-nav {
-  @include flex;
-  justify-content: space-between;
-  max-width: 250px;
-}
+    .checkout-nav {
+      @include flex;
+      justify-content: space-between;
+      max-width: 250px;
+    }
+
 @media screen and (max-width: 420px){
   #checkout-review{
     margin: 0 0 0 -56px;

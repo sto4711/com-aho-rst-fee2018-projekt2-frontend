@@ -5,25 +5,25 @@
     <mat-step [stepControl]="deliveryAddress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname" required>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname" required>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'STREET-AND-HOUSE-NUMBER' | translate}}" formControlName="streetHousenumber"
                  required>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4"
                  formControlName="postCode" required>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'CITY' | translate}}" formControlName="city" required>
         </mat-form-field>
         <br>
@@ -32,15 +32,14 @@
         </div>
       </form>
     </mat-step>
-
     <mat-step [stepControl]="contactData">
       <ng-template matStepLabel>{{'CONTACT-DETAILS' | translate}}</ng-template>
       <form [formGroup]="contactData">
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'E-MAIL' | translate}}" formControlName="email" type="email" required>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="checkout-field">
           <input matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="phone" required>
         </mat-form-field>
         <br>
@@ -88,7 +87,7 @@
     </mat-step>
     <mat-step id="checkout-review">
       <ng-template matStepLabel>{{'OVERVIEW' | translate}}</ng-template>
-      <div id="order-review">
+      <div class="order-review">
         <br>
         <h4>{{'MY-ORDER-DATA' | translate}}</h4>
         <p><span>{{'GIVEN-NAME' | translate}}: </span>{{deliveryAddress.getRawValue().givenname}}</p>
@@ -121,6 +120,7 @@
         </form>
       </div>
     </mat-step>
+
 
   </mat-vertical-stepper>
 </div><!-- end .row -->
