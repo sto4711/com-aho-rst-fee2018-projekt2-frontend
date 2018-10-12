@@ -13,7 +13,7 @@ import {User} from '../../services/user/user';
 })
 export class MyOrdersComponent implements OnInit {
   public p: number = 1;
-  public orders: any;
+  public orders$: any;
   public users: User[];
   public panelOpenState: boolean = false;
 
@@ -35,7 +35,7 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         result => {
           console.log(result);
-          this.orders = result;
+          this.orders$ = result;
         }
       );
   }

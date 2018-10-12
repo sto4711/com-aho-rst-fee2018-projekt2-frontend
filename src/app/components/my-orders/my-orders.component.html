@@ -1,31 +1,35 @@
 <div class="row">
   <h2>{{'MY-ORDERS' | translate}}</h2>
 
+  <ng-container *ngIf="orders$.length == 0">
+    <p>{{'NO-ORDERS-FOUND' | translate}}</p>
+  </ng-container>
 
-<div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }">
-    <!-- <p *ngFor="let item of order.shoppingBasket.items">
-        {{item.articleID}}
-      <br><hr><br>
-    </p>-->
+  <ng-container *ngIf="orders$.length > 0">
+<div *ngFor="let order of orders$ | paginate: { itemsPerPage: 6, currentPage: p }">
 
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-         Bestellung vom:
-        </mat-panel-title>
-        <mat-panel-description>
-          {{order.orderDate | date:'dd.MM.yyyy'}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p *ngFor="let item of order.shoppingBasket.items">
-        {{item.articleID}}
-        <br><hr><br>
-      </p>
 
-    </mat-expansion-panel>
+   <ng-container *ngIf="orders$ != 0 ">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Bestellung vom:
+          </mat-panel-title>
+          <mat-panel-description>
+            {{order.orderDate | date:'dd.MM.yyyy'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p *ngFor="let item of order.shoppingBasket.items">
+          {{item.articleID}}
+          <br><hr><br>
+        </p>
 
-  </mat-accordion>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </ng-container>
+
 
  </div>
   <br>
@@ -33,4 +37,5 @@
     (pageChange)="p = $event"
     previousLabel="{{'BACK' | translate}}"
     nextLabel="{{'NEXT' | translate}}"></pagination-controls>
+  </ng-container>
 </div><!-- end .row -->
