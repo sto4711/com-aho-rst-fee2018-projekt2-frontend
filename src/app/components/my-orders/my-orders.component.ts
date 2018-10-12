@@ -4,6 +4,7 @@ import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
+import {User} from '../../services/user/user';
 
 @Component({
   selector: 'app-my-orders',
@@ -11,6 +12,11 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
   styleUrls: ['./my-orders.component.scss']
 })
 export class MyOrdersComponent implements OnInit {
+  public p: number = 1;
+  public orders: any;
+  public users: User[];
+  public panelOpenState: boolean = false;
+
 
   constructor(
     private userService: UserService,
@@ -29,6 +35,7 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         result => {
           console.log(result);
+          this.orders = result;
         }
       );
   }

@@ -6,7 +6,7 @@
     <mat-tab label="{{'ORDERS' | translate}}">
 
       <mat-accordion>
-        <table class="admin-table" matSort (matSortChange)="sortData($event)">
+        <table class="accordion-table" matSort (matSortChange)="sortData($event)">
           <thead></thead>
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' } ">
@@ -180,7 +180,7 @@
     </mat-tab><!-- end tab Bestellungen -->
     <mat-tab label="{{'USERS' | translate}}">
       <mat-accordion>
-        <table class="admin-table" matSort (matSortChange)="sortData($event)">
+        <table class="accordion-table" matSort (matSortChange)="sortData($event)">
           <thead></thead>
           <tbody>
           <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' } ">
@@ -196,7 +196,6 @@
                 </mat-expansion-panel-header>
                 <div class="admin-order">
                   <form #userForm="ngForm" class="admin-form ">
-
                     <div class="admin-customer-data">
                       <h4>{{'PARTICULARS' | translate}}</h4>
                       <input type="hidden" name="user_id" [(ngModel)]="user._id" #user_id>

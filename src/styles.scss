@@ -592,23 +592,23 @@ form.admin-form {
   }
 
 }
-.admin-table {
+.accordion-table {
   width: 100%;
 }
 
-.admin-table th{
+.accordion-table th{
   @include base-font-style();
   background: #fff;
   color: $font-color;
   font-weight: $font-weight-medium;
   padding: 10px 24px ;
 }
-.admin-table thead th, .admin-table thead td {
+.accordion-table thead th, .accordion-table thead td {
   width: auto;
 
 }
 
-.admin-table tbody th, .admin-table tbody td {
+.accordion-table tbody th, .accordion-table tbody td {
   width: auto;
   padding:0;
 

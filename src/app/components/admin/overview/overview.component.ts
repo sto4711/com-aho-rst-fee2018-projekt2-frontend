@@ -9,7 +9,6 @@ import {User} from '../../../services/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
-import {Logger} from '../../../services/logger/logger';
 
 @Component({
   selector: 'app-overview',
