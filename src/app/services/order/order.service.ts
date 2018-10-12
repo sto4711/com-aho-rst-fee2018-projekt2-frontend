@@ -77,6 +77,16 @@ export class OrderService {
     );
   }
 
+  public getOrdersByUser(): Observable<Order> {
+    const userId: string = localStorage.getItem('userId');
+    return this.http.get<Order>(backendUrls.userOrders + '?userId=' + userId, {
+        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
+      }
+    ).pipe(
+      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
+    );
+  }
+
   public getAll(): Observable<Order> {
     return this.http.get<Order>(backendUrls.orderAll, {
         headers: {'Content-Type': 'application/json'}

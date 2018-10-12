@@ -12,5 +12,6 @@ export const backendUrls = {
   order: environment.backendUrl + 'webshop/order/',
   orderDetails: environment.backendUrl + 'webshop/order-details/',
   orderAll: environment.backendUrl + 'webshop/order-all/',
+  userOrders: environment.backendUrl + 'webshop/user-orders/',
 };
 

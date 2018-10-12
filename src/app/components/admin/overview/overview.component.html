@@ -10,7 +10,7 @@
           <thead></thead>
           <tbody>
           <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' } ">
-            <td colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
+            <td class="custom-expansion-panel" colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                 <mat-expansion-panel-header>
                   <mat-panel-description>

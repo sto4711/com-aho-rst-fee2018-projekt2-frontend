@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user/user.service';
+import {OrderService} from '../../services/order/order.service';
+import {TranslateService} from '@ngx-translate/core';
+import {LangService} from '../../services/lang-service/lang.service';
+import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private orderService: OrderService,
+    private translate: TranslateService,
+    private langService: LangService,
+    private snackBarService: SnackBarService,
+  ) { }
 
   ngOnInit() {
+    this.getMyOrders();
   }
 
+  public getMyOrders() {
+    this.orderService.getOrdersByUser()
+      .subscribe(
+        result => {
+          console.log(result);
+        }
+      );
+  }
 }
