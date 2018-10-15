@@ -20,10 +20,22 @@
             {{order.orderDate | date:'dd.MM.yyyy'}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p *ngFor="let item of order.shoppingBasket.items">
-          {{item.articleID}}
-          <br><hr><br>
-        </p>
+
+        <div class="order-customer-articles">
+
+          <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
+          <div class="order-item-listing">
+            <div class="order-item" *ngFor="let item of order.shoppingBasket.items">
+
+              <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{item.articleID}}</p>
+              <p><span class="order-article-attr">{{'AMOUNT' | translate}}:</span>{{item.articleAmount}}
+              </p>
+              <p><span class="order-article-attr">{{'PRICE' | translate}}:</span>CHF {{item.articlePrice | amountConverter}}</p>
+              <p><span class="order-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{item.articlePriceSum | amountConverter}}</p>
+            </div><!-- end .admin-order-item -->
+          </div><!-- end .order-item-listing -->
+          <p><span class="order-article-attr">{{'TOTAL' | translate}}</span>CHF {{order.shoppingBasket.totalSum | amountConverter}} </p>
+        </div><!-- end .order-customer-articles -->
 
       </mat-expansion-panel>
 
