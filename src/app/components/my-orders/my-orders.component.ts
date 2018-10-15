@@ -13,7 +13,7 @@ import {User} from '../../services/user/user';
 })
 export class MyOrdersComponent implements OnInit {
   public p: number = 1;
-  public orders$: any;
+  public orders$: object = [];
   public users: User[];
   public panelOpenState: boolean = false;
 
