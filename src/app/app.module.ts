@@ -44,7 +44,6 @@ import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 import {InitAppService} from "./services/init-app/init-app.service";
 import {NavigationCancelService} from "./services/navigation-cancel/navigation-cancel.service";
-import {Checkout2Component} from './components/checkout2/checkout2.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -77,7 +76,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     OverviewComponent,
     LoginInfoComponent,
     MyOrdersComponent,
-    Checkout2Component
     ],
   imports: [
     BrowserModule,
