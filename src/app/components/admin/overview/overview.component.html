@@ -4,11 +4,11 @@
   <mat-tab-group>
 
     <mat-tab label="{{'ORDERS' | translate}}">
-      <ng-container *ngIf="orders.length == 0">
+      <ng-container *ngIf="orders?.length == 0">
         <p>{{'NO-ORDERS-FOUND' | translate}}</p>
       </ng-container>
 
-      <ng-container *ngIf="orders.length > 0">
+      <ng-container *ngIf="orders?.length > 0">
         <mat-accordion>
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead></thead>
@@ -182,10 +182,10 @@
     </mat-tab><!-- end tab Bestellungen -->
 
     <mat-tab label="{{'USERS' | translate}}">
-      <ng-container *ngIf="users.length == 0">
+      <ng-container *ngIf="users?.length == 0">
         <p>{{'NO-USERS-FOUND' | translate}}</p>
       </ng-container>
-      <ng-container *ngIf="users.length > 0">
+      <ng-container *ngIf="users?.length > 0">
         <mat-accordion>
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead></thead>
