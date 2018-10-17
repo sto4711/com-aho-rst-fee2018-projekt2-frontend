@@ -1,53 +1,53 @@
 <div class="row">
   <h2>{{'MY-ORDERS' | translate}}</h2>
 
-  <ng-container *ngIf="orders$.length == 0">
+  <ng-container *ngIf="(orders$ | async)?.length === 0">
     <p>{{'NO-ORDERS-FOUND' | translate}}</p>
   </ng-container>
+  <ng-container *ngIf="(orders$ | async)?.length > 0">
+    <div *ngFor="let order of orders$ | async | paginate: { itemsPerPage: 6, currentPage: p }">
+      <ng-container>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Bestellung vom:
+              </mat-panel-title>
+              <mat-panel-description>
+                {{order.orderDate | date:'dd.MM.yyyy'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-  <ng-container *ngIf="orders$.length > 0">
-<div *ngFor="let order of orders$ | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div class="order-customer-articles">
+
+              <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
+              <div class="order-item-listing">
+                <div class="order-item" *ngFor="let item of order.shoppingBasket.items">
+
+                  <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{item.articleID}}</p>
+                  <p><span class="order-article-attr">{{'AMOUNT' | translate}}:</span>{{item.articleAmount}}
+                  </p>
+                  <p><span class="order-article-attr">{{'PRICE' | translate}}:</span>CHF {{item.articlePrice |
+                    amountConverter}}</p>
+                  <p><span class="order-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{item.articlePriceSum |
+                    amountConverter}}</p>
+                </div><!-- end .admin-order-item -->
+              </div><!-- end .order-item-listing -->
+              <p><span class="order-article-attr">{{'TOTAL' | translate}}</span>CHF {{order.shoppingBasket.totalSum |
+                amountConverter}} </p>
+            </div><!-- end .order-customer-articles -->
+
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </ng-container>
 
 
-   <ng-container *ngIf="orders$ != 0 ">
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Bestellung vom:
-          </mat-panel-title>
-          <mat-panel-description>
-            {{order.orderDate | date:'dd.MM.yyyy'}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <div class="order-customer-articles">
-
-          <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
-          <div class="order-item-listing">
-            <div class="order-item" *ngFor="let item of order.shoppingBasket.items">
-
-              <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{item.articleID}}</p>
-              <p><span class="order-article-attr">{{'AMOUNT' | translate}}:</span>{{item.articleAmount}}
-              </p>
-              <p><span class="order-article-attr">{{'PRICE' | translate}}:</span>CHF {{item.articlePrice | amountConverter}}</p>
-              <p><span class="order-article-attr">{{'SUM-ARTICLE' | translate}}:</span>CHF {{item.articlePriceSum | amountConverter}}</p>
-            </div><!-- end .admin-order-item -->
-          </div><!-- end .order-item-listing -->
-          <p><span class="order-article-attr">{{'TOTAL' | translate}}</span>CHF {{order.shoppingBasket.totalSum | amountConverter}} </p>
-        </div><!-- end .order-customer-articles -->
-
-      </mat-expansion-panel>
-
-    </mat-accordion>
-  </ng-container>
-
-
- </div>
-  <br>
-  <pagination-controls
-    (pageChange)="p = $event"
-    previousLabel="{{'BACK' | translate}}"
-    nextLabel="{{'NEXT' | translate}}"></pagination-controls>
+    </div>
+    <br>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="{{'BACK' | translate}}"
+      nextLabel="{{'NEXT' | translate}}"></pagination-controls>
   </ng-container>
 </div><!-- end .row -->

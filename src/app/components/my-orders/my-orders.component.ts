@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user/user.service';
 import {OrderService} from '../../services/order/order.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -14,29 +14,16 @@ import {User} from '../../services/user/user';
 export class MyOrdersComponent implements OnInit {
   public p: number = 1;
   public orders$: object = [];
-  public users: User[];
   public panelOpenState: boolean = false;
 
 
   constructor(
     private userService: UserService,
     private orderService: OrderService,
-    private translate: TranslateService,
-    private langService: LangService,
-    private snackBarService: SnackBarService,
-  ) { }
-
-  ngOnInit() {
-    this.getMyOrders();
+  ) {
   }
 
-  public getMyOrders() {
-    this.orderService.getOrdersByUser()
-      .subscribe(
-        result => {
-          console.log(result);
-          this.orders$ = result;
-        }
-      );
+  ngOnInit() {
+    this.orders$ = this.orderService.getOrdersByUser(this.userService.getUser()._id);
   }
 }

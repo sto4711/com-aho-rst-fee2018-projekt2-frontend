@@ -11,6 +11,7 @@ import {PaymentType} from "./payment-type";
 import {UserService} from "../user/user.service";
 import {backendUrls} from "../../constants/backend-urls";
 import {Logger} from "../logger/logger";
+import {User} from "../user/user";
 
 @Injectable({
   providedIn: 'root'
@@ -77,9 +78,8 @@ export class OrderService {
     );
   }
 
-  public getOrdersByUser(): Observable<Order> {
-    const userId: string = localStorage.getItem('userId');
-    return this.http.get<Order>(backendUrls.userOrders + '?userId=' + userId, {
+  public getOrdersByUser(userId: User['_id']): Observable<Order[]> {
+    return this.http.get<Order[]>(backendUrls.userOrders + '?userId=' + userId, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
