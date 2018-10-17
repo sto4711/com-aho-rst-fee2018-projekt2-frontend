@@ -1,11 +1,11 @@
 <div class="row">
   <h2>{{'MY-ORDERS' | translate}}</h2>
 
-  <ng-container *ngIf="(orders$ | async)?.length === 0">
+  <ng-container *ngIf="orders?.length === 0">
     <p>{{'NO-ORDERS-FOUND' | translate}}</p>
   </ng-container>
-  <ng-container *ngIf="(orders$ | async)?.length > 0">
-    <div *ngFor="let order of orders$ | async | paginate: { itemsPerPage: 6, currentPage: p }">
+  <ng-container *ngIf="orders?.length > 0">
+    <div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }">
       <ng-container>
         <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user/user.service';
 import {OrderService} from '../../services/order/order.service';
-import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../services/lang-service/lang.service';
-import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
-import {User} from '../../services/user/user';
+import {Order} from "../../services/order/order";
 
 @Component({
   selector: 'app-my-orders',
@@ -13,7 +10,7 @@ import {User} from '../../services/user/user';
 })
 export class MyOrdersComponent implements OnInit {
   public p: number = 1;
-  public orders$: object = [];
+  public orders: Order[];
   public panelOpenState: boolean = false;
 
 
@@ -24,6 +21,11 @@ export class MyOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orders$ = this.orderService.getOrdersByUser(this.userService.getUser()._id);
+    this.orderService.getOrdersByUser(this.userService.getUser()._id)
+      .subscribe(
+        result => {
+          this.orders = result;
+        }
+      );
   }
 }
