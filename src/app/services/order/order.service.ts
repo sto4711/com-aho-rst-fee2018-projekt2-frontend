@@ -87,8 +87,8 @@ export class OrderService {
     );
   }
 
-  public getAll(): Observable<Order> {
-    return this.http.get<Order>(backendUrls.orderAll, {
+  public getAll(): Observable<Order[]> {
+    return this.http.get<Order[]>(backendUrls.orderAll, {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(

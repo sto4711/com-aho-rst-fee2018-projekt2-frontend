@@ -17,13 +17,13 @@ import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-
 
 })
 export class OverviewComponent implements OnInit {
-  public orders: any;
+  public orders: Order[];
+  public sortedOrderData: Order[];
+  public users: User[];
+  public sortedUserData: User[];
   public p: number = 1;
   public t: number = 1;
   public panelOpenState: boolean = false;
-  public users: User[];
-  public sortedOrderData: Order;
-  public sortedUserData: User[];
   public orderChanged: boolean = false;
 
   public orderState = [
