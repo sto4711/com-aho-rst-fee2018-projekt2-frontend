@@ -32,7 +32,7 @@ export class OverviewComponent implements OnInit {
     {value: 'CANCELED', viewValue: '???'}
   ];
 
-   public roles = [
+  public roles = [
     {value: 'admin', viewValue: 'admin'},
     {value: 'customer', viewValue: 'customer'}
   ];
@@ -68,7 +68,7 @@ export class OverviewComponent implements OnInit {
 
 
   public ngOnInit() {
-  this.getUsers();
+    this.getUsers();
     this.getAllOrders();
 
   }
@@ -84,32 +84,35 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
-   const token = this.userService.getToken();
+    const token = this.userService.getToken();
     this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
-         },
-        error => { }
+        },
+        error => {
+        }
       );
 
   }
 
 
   public formChange(orderId) {
-   this.orderChanged = true;
+    this.orderChanged = true;
   }
 
   public updateOrder(orderData) {
     const updatedOrder = {
-         _id: orderData.value._id,
-        userID: orderData.value.userID,
-        state: orderData.value.state,
-        deliveryAddress: {givenname: orderData.value.givenname, surname: orderData.value.surname,
+      _id: orderData.value._id,
+      userID: orderData.value.userID,
+      state: orderData.value.state,
+      deliveryAddress: {
+        givenname: orderData.value.givenname, surname: orderData.value.surname,
         streetHousenumber: orderData.value.streetHousenumber,
-        postCode: orderData.value.postCode, city: orderData.value.city},
-        contactData: {email: orderData.value.email, phone: orderData.value.phone},
-        deliveryType: {delivery: orderData.value.delivery},
-        paymentType: {payment: orderData.value.payment}
+        postCode: orderData.value.postCode, city: orderData.value.city
+      },
+      contactData: {email: orderData.value.email, phone: orderData.value.phone},
+      deliveryType: {delivery: orderData.value.delivery},
+      paymentType: {payment: orderData.value.payment}
     };
     this.orderService.updateOrder(updatedOrder)
       .subscribe(order => {
@@ -118,26 +121,18 @@ export class OverviewComponent implements OnInit {
 
             }
           );
-        },
-        error => {
-          if (error.status === 401) {
-            this.translate.get('').subscribe(translated => {
-                this.snackBarService.showInfo('' + ' ' + translated);
-              }
-            );
-          }
         }
       );
   }
 
   public confirmDelete(orderData, formType) {
     let confirmMessage = '';
-     (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE :  confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
+    (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
-              (formType === 'orderDelete' ?  this.deleteOrder(orderData) :  this.deleteUser(orderData));
+              (formType === 'orderDelete' ? this.deleteOrder(orderData) : this.deleteUser(orderData));
 
             }
           }
@@ -150,31 +145,23 @@ export class OverviewComponent implements OnInit {
     this.orderService.deleteOrder(orderData.value._id)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
-            this.snackBarService.showInfo(' ' + ' ' + translated);
-            this.getAllOrders();
+              this.snackBarService.showInfo(' ' + ' ' + translated);
+              this.getAllOrders();
             }
           );
-        },
-        error => {
-          if (error.status === 401) {
-            this.translate.get('').subscribe(translated => {
-                this.snackBarService.showInfo('' + ' ' + translated);
-              }
-            );
-          }
         }
       );
   }
 
   public updateUser(userData) {
-   const updatedUser = {
-     _id: userData.value.user_id,
-     firstname: userData.value.firstname,
-     name: userData.value.name,
-     email: userData.value.email,
-     pwd: userData.value.pwd,
-     type: userData.value.type
-   };
+    const updatedUser = {
+      _id: userData.value.user_id,
+      firstname: userData.value.firstname,
+      name: userData.value.name,
+      email: userData.value.email,
+      pwd: userData.value.pwd,
+      type: userData.value.type
+    };
     this.userService.updateUser(updatedUser)
       .subscribe(user => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_UPDATED).subscribe(translated => {
@@ -195,7 +182,7 @@ export class OverviewComponent implements OnInit {
   }
 
   public deleteUser(userData) {
-     this.userService.deleteUser(userData.value.user_id)
+    this.userService.deleteUser(userData.value.user_id)
       .subscribe(user => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_DELETED).subscribe(translated => {
               this.snackBarService.showInfo(' ' + ' ' + translated);
@@ -216,7 +203,7 @@ export class OverviewComponent implements OnInit {
   }
 
   public sortData(sort: Sort) {
-    const orderData = this.orders ;
+    const orderData = this.orders;
     const userData = this.users;
     if (!sort.active || sort.direction === '') {
       this.sortedOrderData = orderData;
@@ -227,17 +214,23 @@ export class OverviewComponent implements OnInit {
     this.sortedOrderData = orderData.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name-order': return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
-        case 'date': return this.compare(a.orderDate, b.orderDate, isAsc);
-        case 'state': return this.compare(a.state, b.state, isAsc);
-        default: return 0;
+        case 'name-order':
+          return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
+        case 'date':
+          return this.compare(a.orderDate, b.orderDate, isAsc);
+        case 'state':
+          return this.compare(a.state, b.state, isAsc);
+        default:
+          return 0;
       }
     });
     this.sortedUserData = userData.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'user-name': return this.compare(a.name, b.name, isAsc);
-        default: return 0;
+        case 'user-name':
+          return this.compare(a.name, b.name, isAsc);
+        default:
+          return 0;
       }
     });
   }
