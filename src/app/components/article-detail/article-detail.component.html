@@ -5,7 +5,29 @@
   <div class="article-detail-wrap">
     <div class="article-image-wrap">
    <div class="slideshow">
-      <slideshow [backgroundSize]="'contain'" showArrows="false"  showDots="true" dotColor="#95c2b0" [imageUrls]="imageUrlArray" ></slideshow>
+      <!-- <slideshow [backgroundSize]="'contain'" showArrows="false"  showDots="true" dotColor="#95c2b0"
+       [imageUrls]="imageUrlArray" ></slideshow> -->
+
+     <div class="slideshow">
+      <div class="article-detail-img slide"  >
+        <img src="{{articleURLs?.img01}}" width="100%" height="auto">
+       </div><!-- end .article-img -->
+    <div class="article-detail-img slide"  >
+      <img src="{{articleURLs?.img02}}" width="100%" height="auto">
+    </div><!-- end .article-img -->
+    <div class="article-detail-img slide"  >
+      <img src="{{articleURLs?.img03}}" width="100%" height="auto">
+    </div><!-- end .article-img -->
+    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+    <a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+    <div style="text-align:center">
+      <span class="dot" (click)="currentSlide(1)"></span>
+      <span class="dot" (click)="currentSlide(2)"></span>
+      <span class="dot" (click)="currentSlide(3)"></span>
+    </div>
+
+  </div><!-- end .slideshow -->
    </div>
     <div class="slideshow-icons">
       <p>{{'SHARE-ARTICLE' | translate}}

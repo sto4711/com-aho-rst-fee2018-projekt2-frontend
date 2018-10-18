@@ -15,9 +15,8 @@
   </ng-container>
 
   <ng-container *ngIf="!userService.getUser()">
-    <p class="loginInfoContainer__logout" (click)="onGoToLogIn()">Mein Konto
-      <i title="log in"
-         class="fas fa-user-circle "></i>
+    <p class="loginInfoContainer__logout" (click)="onGoToLogIn()">
+      <i title="log in" class="fas fa-user-circle "></i>{{'MY-ACCOUNT' | translate}}
     </p>
   </ng-container>
 

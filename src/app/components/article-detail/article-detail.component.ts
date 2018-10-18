@@ -8,6 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {backendUrls} from "../../constants/backend-urls";
 import {UserService} from '../../services/user/user.service';
+import {ArticleURLs} from "./articleURL";
 
 @Component({
   selector: 'app-article-detail',
@@ -21,7 +22,8 @@ export class ArticleDetailComponent implements OnInit {
   public selectedValue = 1;
   private articleAmount: number = 1;
   public loading: boolean = true;
-  public imageUrlArray: string[];
+  public articleURLs: ArticleURLs;
+  public slideIndex = 1;
   public amount = [
     {value: 1, viewValue: '1'},
     {value: 2, viewValue: '2'},
@@ -37,7 +39,8 @@ export class ArticleDetailComponent implements OnInit {
     private translate: TranslateService,
     private snackBarService: SnackBarService,
     public userService: UserService
-  ) {
+
+) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -51,12 +54,15 @@ export class ArticleDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.article = result;
-              this.loading = false;
-              this.imageUrlArray = [
-                this.imageURL + this.article.imageURL,
-                this.imageURL + this.article.imageURL2,
-                this.imageURL + this.article.imageURL3
-              ];
+               this.loading = false;
+              this.articleURLs = {
+                img01: this.imageURL + this.article.imageURL,
+                img02: this.imageURL + this.article.imageURL2,
+                img03: this.imageURL + this.article.imageURL3
+
+              };
+              this.showSlides(this.slideIndex);
+
             }
           );
       });
@@ -85,6 +91,28 @@ export class ArticleDetailComponent implements OnInit {
         }
       );
   }
+  public showSlides(n) {
+    this.slideIndex = n;
+    let i;
+    const slides = document.getElementsByClassName('article-detail-img');
+    const dots = document.getElementsByClassName('dot');
+    if (n > slides.length) {this.slideIndex = 1; }
+    if (n < 1) {this.slideIndex = slides.length; }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].setAttribute('style', 'display:none');
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(' active', '');
+    }
+    slides[this.slideIndex - 1].setAttribute('style', 'display:block');
+    dots[this.slideIndex - 1].className += ' active';
+  }
+  public plusSlides(n) {
+    this.showSlides(this.slideIndex += n);
+  }
 
+  public currentSlide(n) {
+    this.showSlides(this.slideIndex = n);
+  }
 }
 
