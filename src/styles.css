@@ -775,7 +775,7 @@ figcaption .fa-thumbs-up {
   text-align: center;
 }
 
-#cart-result {
+.cart-result {
   margin: 0 14.444444% 0 0;
 }
 
@@ -859,7 +859,7 @@ tfoot tr:nth-of-type(odd) {
     justify-content: flex-start;
   }
 
-  #cart-result {
+  .cart-result {
     margin: 0;
   }
   .cart-next-wrap {

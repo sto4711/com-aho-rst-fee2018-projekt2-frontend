@@ -12,10 +12,12 @@
         <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+        <ng-container *ngIf="userService.getUser()">
         <span class="article-like">
           {{'LIKE' | translate}}<i (click)="onChangeArticleRating(true)" class="fas fa-thumbs-up"></i>
           {{'DISLIKE' | translate}}<i (click)="onChangeArticleRating(false)" class="fas fa-thumbs-down" ></i>
         </span>
+        </ng-container>
       </p>
     </div>
     </div><!-- end .article-image-wrap -->

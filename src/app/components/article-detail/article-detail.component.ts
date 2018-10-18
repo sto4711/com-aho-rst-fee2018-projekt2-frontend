@@ -7,6 +7,7 @@ import {ArticleRating} from "../../services/articles/article-rating";
 import {TranslateService} from "@ngx-translate/core";
 import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
 import {backendUrls} from "../../constants/backend-urls";
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -34,7 +35,8 @@ export class ArticleDetailComponent implements OnInit {
     private articleService: ArticleService,
     private shoppingBasketService: ShoppingBasketService,
     private translate: TranslateService,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    public userService: UserService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
