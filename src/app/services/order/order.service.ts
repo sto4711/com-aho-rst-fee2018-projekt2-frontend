@@ -89,7 +89,7 @@ export class OrderService {
 
   public getAll(): Observable<Order[]> {
     return this.http.get<Order[]>(backendUrls.orderAll, {
-        headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
       tap(() => Logger.consoleLog(this.constructor.name, 'getAll', 'ok'))
