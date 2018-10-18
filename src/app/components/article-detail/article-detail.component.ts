@@ -95,7 +95,7 @@ export class ArticleDetailComponent implements OnInit {
     this.slideIndex = n;
     let i;
     const slides = document.getElementsByClassName('article-detail-img');
-    const dots = document.getElementsByClassName('dot');
+    const dots = document.getElementsByClassName('bullet');
     if (n > slides.length) {this.slideIndex = 1; }
     if (n < 1) {this.slideIndex = slides.length; }
     for (i = 0; i < slides.length; i++) {
