@@ -22,6 +22,10 @@ export class NavigationCancelService {
   }
 
   public getCanceledRoute() {
+    if(!this.canceledRoute)  {
+      Logger.consoleLog(this.constructor.name, 'getCanceledRoute', 'canceledRoute not defined; set to /home');
+      return '/home';
+    }
     return this.canceledRoute;
   }
 
