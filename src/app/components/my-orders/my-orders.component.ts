@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user/user.service';
 import {OrderService} from '../../services/order/order.service';
-import {Order} from "../../services/order/order";
+import {Order} from '../../services/order/order';
 
 @Component({
   selector: 'app-my-orders',
@@ -25,7 +25,12 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         result => {
           this.orders = result;
+
         }
       );
+  }
+  public trackMyOrders(index, order){
+    return order ? order._id : undefined;
+
   }
 }

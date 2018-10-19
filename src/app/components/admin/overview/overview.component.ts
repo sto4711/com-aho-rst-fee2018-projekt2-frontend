@@ -247,11 +247,11 @@ export class OverviewComponent implements OnInit {
       );
     }
   }
-  trackOrders(index, order) {
+  public trackOrders(index, order) {
      return order ? order._id : undefined;
 
   }
-  trackusers(index, user) {
+  public trackusers(index, user) {
     return user ? user._id : undefined;
 
   }
