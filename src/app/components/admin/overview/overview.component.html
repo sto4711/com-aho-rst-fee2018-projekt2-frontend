@@ -13,7 +13,7 @@
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead></thead>
             <tbody>
-            <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' } ">
+            <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' }; trackBy: trackOrders ">
               <td class="custom-expansion-panel" colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                   <mat-expansion-panel-header>
@@ -144,7 +144,7 @@
 
                         <h4>{{'ORDERED-ITEMS' | translate}}l</h4>
                         <div class="order-item-listing">
-                          <div class="order-item" *ngFor="let articles of order?.shoppingBasket.items">
+                          <div class="order-item" *ngFor="let articles of order?.shoppingBasket.items" >
 
                             <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{articles.articleID}}</p>
                             <p><span class="order-article-attr">{{'ARTICLE' | translate}}:</span>{{articles.articleName}}</p>
@@ -190,7 +190,7 @@
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead></thead>
             <tbody>
-            <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' } ">
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' }; trackBy: trackusers ">
               <td >
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
                   <mat-expansion-panel-header>

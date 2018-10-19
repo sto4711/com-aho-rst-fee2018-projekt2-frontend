@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../../services/articles/article.service';
-import {Article} from "../../services/articles/article";
-import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
-import {ArticleRating} from "../../services/articles/article-rating";
-import {TranslateService} from "@ngx-translate/core";
-import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
-import {backendUrls} from "../../constants/backend-urls";
+import {Article} from '../../services/articles/article';
+import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
+import {ArticleRating} from '../../services/articles/article-rating';
+import {TranslateService} from '@ngx-translate/core';
+import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
+import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
-import {ArticleURLs} from "./articleURL";
+import {ArticleURLs} from './articleURL';
 
 @Component({
   selector: 'app-article-detail',
@@ -40,7 +40,7 @@ export class ArticleDetailComponent implements OnInit {
     private snackBarService: SnackBarService,
     public userService: UserService
 
-) {
+  ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -54,7 +54,7 @@ export class ArticleDetailComponent implements OnInit {
           .subscribe(
             result => {
               this.article = result;
-               this.loading = false;
+              this.loading = false;
               this.articleURLs = {
                 img01: this.imageURL + this.article.imageURL,
                 img02: this.imageURL + this.article.imageURL2,
@@ -77,7 +77,7 @@ export class ArticleDetailComponent implements OnInit {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
-            this.snackBarService.showInfo(this.article.name + ' ' + translated)
+              this.snackBarService.showInfo(this.article.name + ' ' + translated)
             }
           );
         }
@@ -95,24 +95,23 @@ export class ArticleDetailComponent implements OnInit {
     this.slideIndex = n;
     let i;
     const slides = document.getElementsByClassName('article-detail-img');
-    const dots = document.getElementsByClassName('bullet');
-    if (n > slides.length) {this.slideIndex = 1; }
-    if (n < 1) {this.slideIndex = slides.length; }
+    const bullets = document.getElementsByClassName('bullet');
+    n > slides.length ? this.slideIndex = 1 : n < 1 ?  this.slideIndex = slides.length : this.slideIndex = 1 ;
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(' active', '');
+      for (i = 0; i < bullets.length; i++) {
+        bullets[i].className = bullets[i].className.replace(' active', '');
+      }
+      slides[this.slideIndex - 1].setAttribute('style', 'display:block');
+      bullets[this.slideIndex - 1].className += ' active';
     }
-    slides[this.slideIndex - 1].setAttribute('style', 'display:block');
-    dots[this.slideIndex - 1].className += ' active';
-  }
   public plusSlides(n) {
-    this.showSlides(this.slideIndex += n);
-  }
+      this.showSlides(this.slideIndex += n);
+    }
 
-  public currentSlide(n) {
-    this.showSlides(this.slideIndex = n);
+  public currentSlide(n){
+      this.showSlides(this.slideIndex = n);
+    }
   }
-}
 
