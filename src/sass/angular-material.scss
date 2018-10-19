@@ -173,7 +173,12 @@ a button.mat-menu-btn {
   box-shadow:0 3px 1px -2px rgb(255, 255, 255), 0 2px 2px 0 rgb(255, 255, 255), 0 1px 5px 0 rgb(255, 255, 255) !important;
 
 }
+.mat-content {
+  flex-flow: row wrap;
+}
+mat-expansion-panel-header {
 
+}
 .mat-expansion-panel-header {
   background-color: $green;
 }
@@ -185,4 +190,16 @@ a button.mat-menu-btn {
 
 .mat-expansion-panel-body {
   padding: 25px 24px 0 16px !important;
+}
+
+@media screen and (max-width: 412px){
+
+.mat-expansion-panel-header-description {
+   margin: 5px 0 0 0;
+  width: 100%;
+  }
+  .mat-expansion-panel-header {
+    min-height: 50px;
+    height: auto !important;
+  }
 }

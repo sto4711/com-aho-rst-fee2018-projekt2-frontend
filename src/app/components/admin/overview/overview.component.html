@@ -139,7 +139,10 @@
                         <br><br>
                         <p>
                           <mat-form-field>
-                            <mat-select name="state" placeholder="{{'CHANGE-ORDER-STATE' | translate}}" [(ngModel)]="order.state"  >
+                            <mat-select name="state"
+                                        placeholder="{{'CHANGE-ORDER-STATE' | translate}}"
+                                        [(ngModel)]="order.state"
+                                        (selectionChange)="formChange(order._id);">
                               <mat-option *ngFor="let state of orderState" [value]="state.value">
                                 {{state.viewValue}}
                               </mat-option>
@@ -176,7 +179,7 @@
             </tr>
             </tbody>
             <tfoot>
-            <tr><td colspan="3">
+            <tr><td colspan="3">   <br>
               <pagination-controls
                 id="customer-orders"
                 (pageChange)="p = $event"
@@ -262,10 +265,13 @@
                         </p>
                         <p>
                           <br>
-                          <span class="review-data">{{'Role' | translate}}: </span>
+                          <span class="review-data role">{{'Role' | translate}}: </span>
 
                           <mat-form-field>
-                            <mat-select name="type" placeholder="{{'CHANGE-USER-TYPE' | translate}}" [(ngModel)]="user.type"  >
+                            <mat-select name="type"
+                                        placeholder="{{'CHANGE-USER-TYPE' | translate}}"
+                                        [(ngModel)]="user.type"
+                                        (selectionChange)="formChange(user._id);">
                               <mat-option *ngFor="let type of roles" [value]="type.value">
                                 {{type.viewValue}}
                               </mat-option>
@@ -288,6 +294,7 @@
             </tbody>
             <tfoot>
             <tr><td>
+              <br>
               <pagination-controls
                 id="users-data"
                 (pageChange)="t = $event"
