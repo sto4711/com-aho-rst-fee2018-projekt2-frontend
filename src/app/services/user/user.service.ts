@@ -102,7 +102,7 @@ export class UserService {
   public updateUser(user: any): Observable<User> {
     return this.http.post<User>(backendUrls.user + 'updateUser', user, {
       headers: {'Content-Type': 'application/json'}
-    },).pipe(
+    }, ).pipe(
       tap((user: User) => {
         Logger.consoleLog(this.constructor.name, 'updateUser', 'ok');
       })

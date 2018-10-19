@@ -114,6 +114,8 @@
   "ORDER-STATUS-UPDATED": "order state updated",
   "ORDER-UPDATE-SAVE": "order is saved",
   "ORDER-IS-DELETED": "order is deleted",
+  "WARNING-ORDER-CHANGED": "Order has been changed!",
+  "WARNING-USER-CHANGED": "User has been changed!",
   "ORDER-SAVE": "save order",
   "ORDER-DELETE": "delete order",
   "USER-SAVE": "save user",

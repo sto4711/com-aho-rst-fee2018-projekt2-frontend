@@ -177,8 +177,12 @@ a button.mat-menu-btn {
 .mat-expansion-panel-header {
   background-color: $green;
 }
+
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
   /* width: 21%; */
   color: rgba(0,0,0,.54);
 }
 
+.mat-expansion-panel-body {
+  padding: 25px 24px 0 16px !important;
+}

@@ -25,6 +25,7 @@ export class OverviewComponent implements OnInit {
   public t: number = 1;
   public panelOpenState: boolean = false;
   public orderChanged: boolean = false;
+  public trackId: boolean = false;
 
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
@@ -88,6 +89,7 @@ export class OverviewComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
+
         },
         error => {
         }
@@ -95,12 +97,19 @@ export class OverviewComponent implements OnInit {
 
   }
 
+  public getOrderElement(orderId) {
+    const tabTrackId = document.getElementsByClassName(orderId);
+    return tabTrackId;
+
+}
 
   public formChange(orderId) {
-    this.orderChanged = true;
-  }
+      this.getOrderElement(orderId)[0].classList.toggle('show');
+    }
 
   public updateOrder(orderData) {
+    this.getOrderElement(orderData.value._id)[0].classList.toggle('show');
+
     const updatedOrder = {
       _id: orderData.value._id,
       userID: orderData.value.userID,
@@ -154,6 +163,8 @@ export class OverviewComponent implements OnInit {
   }
 
   public updateUser(userData) {
+    this.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
+
     const updatedUser = {
       _id: userData.value.user_id,
       firstname: userData.value.firstname,

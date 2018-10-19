@@ -29,7 +29,7 @@
                       <strong >{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}
                     </mat-panel-description>
                     <mat-panel-description >
-                      <p class="warning" #myVar [hidden]="myVar">Bestellung wurde verändert!</p>
+                      <span class="warning hidden {{order._id}}">{{'WARNING-ORDER-CHANGED' | translate}}</span>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <div class="admin-order">
@@ -54,6 +54,7 @@
                         <p><span class="review-data">{{'SURNAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="surname"
                                    [(ngModel)]="order?.deliveryAddress.surname"
                                    #surname
@@ -63,6 +64,7 @@
                         <p><span class="review-data">{{'STREET' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="streetHousenumber"
                                    [(ngModel)]=" order?.deliveryAddress.streetHousenumber"
                                    #streetHousenumber
@@ -72,6 +74,7 @@
                         <p><span class="review-data">{{'POST-CODE' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="postCode"
                                    [(ngModel)]="order?.deliveryAddress.postCode"
                                    #postCode
@@ -81,6 +84,7 @@
                         <p><span class="review-data">{{'CITY' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="city"
                                    [(ngModel)]="order?.deliveryAddress.city"
                                    #city
@@ -91,6 +95,7 @@
                         <p><span class="review-data">{{'E-MAIL' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="email"
                                    [(ngModel)]="order?.contactData.email"
                                    #email
@@ -100,6 +105,7 @@
                         <p><span class="review-data">{{'PHONE' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="phone"
                                    [(ngModel)]="order?.contactData.phone"
                                    #phone
@@ -110,6 +116,7 @@
                         <p><span class="review-data">{{'DELIVERY' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="delivery"
                                    [(ngModel)]="order?.deliveryType.delivery"
                                    #delivery
@@ -121,6 +128,7 @@
                         <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
+                                   (change)="formChange(order._id);"
                                    name="payment"
                                    [(ngModel)]="order?.paymentType.payment"
                                    #payment
@@ -199,7 +207,9 @@
                       {{user?.name}}
                       {{user?.firstname}}
                     </mat-panel-title>
-
+                    <mat-panel-description >
+                      <span class="warning hidden {{user._id}}">{{'WARNING-USER-CHANGED' | translate}}</span>
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <div class="admin-order">
                     <form #userForm="ngForm" class="admin-form ">
@@ -210,7 +220,7 @@
                           <span class="review-data">{{'NAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
-                                   (change)="formChange(user.name);"
+                                   (change)="formChange(user._id);"
                                    name="name"
                                    [(ngModel)]="user.name"
                                    #name
@@ -221,7 +231,7 @@
                           <span class="review-data">{{'SURNAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
-                                   (change)="formChange(user.firstname);"
+                                   (change)="formChange(user._id);"
                                    name="firstname"
                                    [(ngModel)]="user.firstname"
                                    #firstname
@@ -232,7 +242,7 @@
                           <span class="review-data">{{'E-MAIL' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
-                                   (change)="formChange(user.email);"
+                                   (change)="formChange(user._id);"
                                    name="email"
                                    [(ngModel)]="user.email"
                                    #email
@@ -243,7 +253,7 @@
                           <span class="review-data">{{'PASSWORD' | translate}}: </span>
                           <mat-form-field  class="overview-input">
                             <input matInput placeholder=""
-                                   (change)="formChange(user.pwd);"
+                                   (change)="formChange(user._id);"
                                    name="pwd"
                                    [(ngModel)]="user.pwd"
                                    #pwd

@@ -4,8 +4,6 @@ import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Router} from "@angular/router";
 import {SnackBarService} from "../services/commons/snack-bar/snack-bar.service";
-import {Logger} from "../services/logger/logger";
-
 
 @Injectable()
 export class ErrorResponseInterceptor implements HttpInterceptor {
