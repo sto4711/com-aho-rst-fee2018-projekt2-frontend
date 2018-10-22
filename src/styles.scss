@@ -387,6 +387,7 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
      font-weight: $font-weight-bold;
      display: inline-block;
      width: 150px;
+     margin: 10px 0 0 0;
    }
     .checkout-nav {
       @include flex;
@@ -404,8 +405,9 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
     admin area ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 form.admin-form {
-  width: 100%;
-  display: inherit;
+    display: inherit;
+    flex-flow: row wrap;
+    width: 100%;
 }
 .admin-order {
   @include flex;
@@ -440,10 +442,15 @@ form.admin-form {
   font-weight: $font-weight-bold;
 }
 
-@media screen and (max-width: 1024px) {
+.role {
+  margin: 0 0 13px 0;
+}
+
+@media screen and (max-width: 675px) {
   .order-customer-articles,   .order-customer-data  {
     width: 100%;
   }
+
 
 }
 .accordion-table {
@@ -629,10 +636,6 @@ button.btn-warning {
 /*
     forms ////////////////////////////////////////////////////////////////////////////////////////////////
  */
-
-form {
-
-}
 
 label {
   display: block;
