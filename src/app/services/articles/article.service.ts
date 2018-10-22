@@ -43,7 +43,7 @@ export class ArticleService {
       );
   }
 
-  public getArticleDetails(articleQueryParameter: Article["articleQueryParameter"]): Observable<Article> {
+  public getArticleDetails(articleQueryParameter: Article['articleQueryParameter']): Observable<Article> {
     return this.http.get<Article>(backendUrls.articlesDetails + '?article=' + articleQueryParameter, {
         headers: {'Content-Type': 'application/json'}
       }

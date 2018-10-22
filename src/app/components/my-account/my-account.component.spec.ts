@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {FormBuilder} from '@angular/forms';
 
 import { MyAccountComponent } from './my-account.component';
 
@@ -22,4 +23,22 @@ describe('MyAccountComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create a login form with 2 input fields', () => {
+    expect(component.account.contains('email')).toBeTruthy();
+    expect(component.account.contains('pwd')).toBeTruthy();
+
+  });
+
+  it('should make login form input fields required', () => {
+
+    const controlName = component.account.get('name');
+    const controlPwd = component.account.get('pwd');
+
+    controlName.setValue('');
+    controlPwd.setValue('');
+    expect(controlName.valid).toBeFalsy();
+    expect(controlPwd.valid).toBeFalsy();
+  });
+
 });

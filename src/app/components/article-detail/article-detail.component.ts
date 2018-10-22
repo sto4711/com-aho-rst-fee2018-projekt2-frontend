@@ -53,6 +53,7 @@ export class ArticleDetailComponent implements OnInit {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
+              console.log(result);
               this.article = result;
               this.loading = false;
               this.articleURLs = {
@@ -96,7 +97,7 @@ export class ArticleDetailComponent implements OnInit {
     let i;
     const slides = document.getElementsByClassName('article-detail-img');
     const bullets = document.getElementsByClassName('bullet');
-    n > slides.length ? this.slideIndex = 1 : n < 1 ?  this.slideIndex = slides.length : this.slideIndex = 1 ;
+    n > slides.length ? this.slideIndex = 1 : n < 1 ?  this.slideIndex = slides.length : '' ;
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
