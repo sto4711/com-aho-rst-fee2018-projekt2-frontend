@@ -53,8 +53,7 @@ export class ArticleDetailComponent implements OnInit {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
-              console.log(result);
-              this.article = result;
+               this.article = result;
               this.loading = false;
               this.articleURLs = {
                 img01: this.imageURL + this.article.imageURL,

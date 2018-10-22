@@ -37,7 +37,6 @@ import {ErrorResponseInterceptor} from "./interceptors/error-response-intercepto
 import { LoginInfoComponent } from './components/login-info/login-info.component';
 import {UserService} from "./services/user/user.service";
 import {ArticlesResponseCacheService} from "./services/articles-response-cache/articles-response-cache.service";
-import {SlideshowModule} from 'ng-simple-slideshow';
 import {AuthAdminGuardService} from "./services/guards/auth-admin-guard.service";
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.service";
@@ -86,7 +85,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     MatComponentsModule,
-    SlideshowModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
