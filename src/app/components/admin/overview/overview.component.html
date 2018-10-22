@@ -258,7 +258,7 @@
                             <input matInput placeholder=""
                                    (change)="formChange(user._id);"
                                    name="pwd"
-                                   [(ngModel)]="user.pwd"
+                                   (ngModel)="user.pwd"
                                    #pwd
                                    required>
                           </mat-form-field>

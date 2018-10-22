@@ -64,7 +64,9 @@ const routes: Routes = [
       {path: 'order-detail', component: OrderDetailComponent},
       {
         path: 'admin/overview', component: OverviewComponent,
-        canActivate: [AuthAdminGuardService]}
+        canActivate: [AuthAdminGuardService],
+        canDeactivate: [CanComponentDeactivateGuard],
+      }
     ]
   },
   {path: '**', component: NotFoundComponent}

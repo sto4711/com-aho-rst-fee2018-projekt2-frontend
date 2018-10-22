@@ -9,6 +9,10 @@ import {User} from '../../../services/user/user';
 import {Sort} from '@angular/material';
 import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-no.service';
+import {Observable, of} from 'rxjs';
+import {CanComponentDeactivateGuard} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
+import {map} from 'rxjs/operators';
+import {CanComponentDeactivate} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate';
 
 @Component({
   selector: 'app-overview',
@@ -16,7 +20,7 @@ import {ConfirmYesNoService} from '../../../services/commons/dialog/confirm-yes-
   styleUrls: ['./overview.component.scss']
 
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public orders: Order[];
   public sortedOrderData: Order[];
   public users: User[];
@@ -24,9 +28,7 @@ export class OverviewComponent implements OnInit {
   public p: number = 1;
   public t: number = 1;
   public panelOpenState: boolean = false;
-  public orderChanged: boolean = false;
-  public trackId: boolean = false;
-
+  public changed: boolean = true;
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
@@ -84,6 +86,17 @@ export class OverviewComponent implements OnInit {
       );
   }
 
+  public canDeactivate(): Observable<boolean> {
+
+    if (this.changed === true) {
+      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+        .pipe(
+          map((value) => (value === 'yes' ? true : false))
+        );
+    } else {
+      return of(true);
+    }
+  }
   getUsers(): void {
     const token = this.userService.getToken();
     this.userService.getUsers()
@@ -105,11 +118,12 @@ export class OverviewComponent implements OnInit {
 
   public formChange(orderId) {
       this.getOrderElement(orderId)[0].classList.toggle('show');
+      this.changed = true;
     }
 
   public updateOrder(orderData) {
+    this.changed = false;
     this.getOrderElement(orderData.value._id)[0].classList.toggle('show');
-
     const updatedOrder = {
       _id: orderData.value._id,
       userID: orderData.value.userID,
@@ -163,8 +177,9 @@ export class OverviewComponent implements OnInit {
   }
 
   public updateUser(userData) {
+    this.changed = false;
+    console.log(userData);
     this.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
-
     const updatedUser = {
       _id: userData.value.user_id,
       firstname: userData.value.firstname,
