@@ -98,7 +98,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     }
   }
   getUsers(): void {
-    const token = this.userService.getToken();
     this.userService.getUsers()
       .subscribe(users => {
           this.users = users;
@@ -117,7 +116,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
 }
 
   public formChange(orderId) {
-      this.getOrderElement(orderId)[0].classList.toggle('show');
+      this.getOrderElement(orderId)[0].classList.add('show');
       this.changed = true;
     }
 
