@@ -28,7 +28,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public p: number = 1;
   public t: number = 1;
   public panelOpenState: boolean = false;
-  public changed: boolean = true;
+  public changed: boolean = false;
   public orderState = [
     {value: 'APPROVED', viewValue: '???'},
     {value: 'COMPLETED', viewValue: '???'},
