@@ -74,6 +74,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public async onLogin() {
     if (this.account.valid) {
       try {
+        this.account.markAsPristine();
         await this.userService.signIn(this.account.getRawValue()).toPromise();
         if (this.userService.differentUserHasLoggedIn) {
           await this.orderService.resetOrder();
@@ -94,6 +95,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public async onCreate() {
     if (this.accountNew.valid) {
       try {
+        this.accountNew.markAsPristine();
         await this.userService.create(this.accountNew.getRawValue()).toPromise();
         this.orderService.clear();
         this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
