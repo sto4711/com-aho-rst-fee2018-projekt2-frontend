@@ -9,6 +9,9 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
+import {LangService} from "../../services/lang-service/lang.service";
+import {map, tap} from "rxjs/operators";
+import {Logger} from "../../services/logger/logger";
 
 @Component({
   selector: 'app-article-detail',
@@ -30,6 +33,7 @@ export class ArticleDetailComponent implements OnInit {
     {value: 3, viewValue: '3'}
   ];
   private static CODE_TRANSLATION_ADDED = 'ADDED-TO-SHOPPING-BASKET';
+  public language: string = 'de';
 
   constructor(
     private route: ActivatedRoute,
@@ -38,13 +42,17 @@ export class ArticleDetailComponent implements OnInit {
     private shoppingBasketService: ShoppingBasketService,
     private translate: TranslateService,
     private snackBarService: SnackBarService,
-    public userService: UserService
-
+    public userService: UserService,
+    private langService: LangService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+
+    this.langService.getLanguage().subscribe(language => {
+      this.language = language.lang;
+    });
   }
 
   public ngOnInit() {
@@ -53,7 +61,7 @@ export class ArticleDetailComponent implements OnInit {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
-               this.article = result;
+              this.article = result;
               this.loading = false;
               this.articleURLs = {
                 img01: this.imageURL + this.article.imageURL,
@@ -91,27 +99,29 @@ export class ArticleDetailComponent implements OnInit {
         }
       );
   }
+
   public showSlides(n) {
     this.slideIndex = n;
     let i;
     const slides = document.getElementsByClassName('article-detail-img');
     const bullets = document.getElementsByClassName('bullet');
-    n > slides.length ? this.slideIndex = 1 : n < 1 ?  this.slideIndex = slides.length : '' ;
+    n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
-      for (i = 0; i < bullets.length; i++) {
-        bullets[i].className = bullets[i].className.replace(' active', '');
-      }
-      slides[this.slideIndex - 1].setAttribute('style', 'display:block');
-      bullets[this.slideIndex - 1].className += ' active';
+    for (i = 0; i < bullets.length; i++) {
+      bullets[i].className = bullets[i].className.replace(' active', '');
     }
-  public plusSlides(n) {
-      this.showSlides(this.slideIndex += n);
-    }
-
-  public currentSlide(n){
-      this.showSlides(this.slideIndex = n);
-    }
+    slides[this.slideIndex - 1].setAttribute('style', 'display:block');
+    bullets[this.slideIndex - 1].className += ' active';
   }
+
+  public plusSlides(n) {
+    this.showSlides(this.slideIndex += n);
+  }
+
+  public currentSlide(n) {
+    this.showSlides(this.slideIndex = n);
+  }
+}
 

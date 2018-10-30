@@ -3,6 +3,8 @@ export class Article {
   public name: string;
   public itemNumber : string;
   public description: string;
+  public descriptionDE: string;
+  public descriptionEN: string;
   public descriptionLangCode: string;
   public price: number;
   public imageURL: string;

@@ -43,7 +43,20 @@
 
      <div class="article-detail-content">
       <h3>{{article?.name }}</h3>
-      <p>{{article?.descriptionLangCode | translate}}</p>
+
+
+       <ng-container *ngIf="language==='de'">
+         <p>{{article?.descriptionDE}}</p>
+       </ng-container>
+       <ng-container *ngIf="language==='en'">
+         <p>{{article?.descriptionEN}}</p>
+       </ng-container>
+
+
+
+
+
+
       <div class="article-detail-rating">
       <span *ngFor="let rating of article?.rating; index as i ">
         <i class="fas fa-star" *ngIf="rating" ></i>
