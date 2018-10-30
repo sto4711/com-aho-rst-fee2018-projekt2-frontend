@@ -134,9 +134,7 @@ describe('ArticleDetailComponent', () => {
     article = {
       'brand': 'Superbike',
       'name': 'E-Bike Modell 1',
-      'description': 'description can be found in i18n folder',
       'itemNumber': '10000001',
-      'descriptionLangCode': 'ARTICLE-DESCRIPTION-10000001',
       'descriptionDE': 'DE DE DE sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque DE DE DE',
       'descriptionEN': 'EN EN EN sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque EN EN EN',
       'price': 1000.35,
