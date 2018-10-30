@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArticleDetailComponent } from './article-detail.component';
+import {ArticleDetailComponent} from './article-detail.component';
 import {ArticleService} from '../../services/articles/article.service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/Observable/from';
@@ -56,10 +56,10 @@ describe('ArticleDetailComponent', () => {
   let articleService: ArticleService;
   let article: Article;
 
-   beforeEach(async(() => {
+  beforeEach(async(() => {
     articleService = new ArticleService(null);
     TestBed.configureTestingModule({
-       declarations: [
+      declarations: [
         AppComponent,
         HomeComponent,
         ArticleListingComponent,
@@ -108,19 +108,20 @@ describe('ArticleDetailComponent', () => {
         {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
         {provide: APP_BASE_HREF, useValue: '/article-detail'}
       ],
-  }).compileComponents().then(() => {
+    }).compileComponents().then(() => {
       fixture = TestBed.createComponent(ArticleDetailComponent);
       component = fixture.componentInstance;
-     });
+    });
   }));
 
-  it('should create',  async(() => {
+  it('should create', async(() => {
     expect(component).toBeTruthy();
   }));
 
   it('should change article rating ', () => {
-     // arrange
-    component.onChangeArticleRating = function () { };
+    // arrange
+    component.onChangeArticleRating = function () {
+    };
 
     // act
     component.onChangeArticleRating(1);
@@ -130,22 +131,24 @@ describe('ArticleDetailComponent', () => {
   });
 
   it('should call article details', () => {
-      article = {
+    article = {
       'brand': 'Superbike',
       'name': 'E-Bike Modell 1',
       'description': 'description can be found in i18n folder',
       'itemNumber': '10000001',
-        'descriptionLangCode': 'ARTICLE-DESCRIPTION-10000001',
+      'descriptionLangCode': 'ARTICLE-DESCRIPTION-10000001',
+      'descriptionDE': 'DE DE DE sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque DE DE DE',
+      'descriptionEN': 'EN EN EN sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque EN EN EN',
       'price': 1000.35,
       'imageURL2': 'image/bikeOrigin2_clone_pixelated_1.jpg',
       'imageURL': 'image/bikeOrigin_clone_pixelated_1.jpg',
       'imageURL3': 'image/bikeOrigin3_clone_pixelated_1.jpg',
       'availability': false,
-      'rating': [true,true,true,true,true],
+      'rating': [true, true, true, true, true],
       'articleQueryParameter': 'Superbike-E-Bike-Modell-1',
       '_id': 'xEUehKXKxYo0001',
 
-      } ;
+    };
     component.ngOnInit();
     spyOn(articleService, 'getArticleDetails').and.callFake(() => {
       return Observable.from([{article}]);
