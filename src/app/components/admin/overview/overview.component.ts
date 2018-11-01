@@ -40,6 +40,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     {value: 'customer', viewValue: 'customer'}
   ];
 
+  public paymethode = [
+    {value: 'Paypal', viewValue: 'Paypal'},
+    {value: 'Mastercard', viewValue: 'Mastercard'},
+    {value: 'Visa', viewValue: 'Visa'}
+  ];
+
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
   private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
@@ -76,16 +82,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
 
   }
 
-
-  public getAllOrders() {
-    this.orderService.getAll()
-      .subscribe(
-        result => {
-          this.orders = result;
-        }
-      );
-  }
-
   public canDeactivate(): Observable<boolean> {
 
     if (this.changed === true) {
@@ -97,31 +93,40 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       return of(true);
     }
   }
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => {
-          this.users = users;
 
-        },
-        error => {
+  public confirmDelete(orderData, formType) {
+    let confirmMessage = '';
+    (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
+    this.translate.get(confirmMessage).subscribe(translated => {
+        this.confirmYesNoService.confirm(' ' + translated).subscribe(
+          result => {
+            if (result === 'yes') {
+              (formType === 'orderDelete' ? this.deleteOrder(orderData) : this.deleteUser(orderData));
+
+            }
+          }
+        );
+      }
+    );
+  }
+
+  public getAllOrders() {
+    this.orderService.getAll()
+      .subscribe(
+        result => {
+          this.orders = result;
         }
       );
-
   }
 
   public getOrderElement(orderId) {
     const tabTrackId = document.getElementsByClassName(orderId);
     return tabTrackId;
 
-}
-
-  public formChange(orderId) {
-      this.getOrderElement(orderId)[0].classList.add('show');
-      this.changed = true;
-    }
+  }
 
   public updateOrder(orderData) {
-    this.changed = false;
+     this.changed = false;
     this.getOrderElement(orderData.value._id)[0].classList.toggle('show');
     const updatedOrder = {
       _id: orderData.value._id,
@@ -147,21 +152,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public confirmDelete(orderData, formType) {
-    let confirmMessage = '';
-    (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
-    this.translate.get(confirmMessage).subscribe(translated => {
-        this.confirmYesNoService.confirm(' ' + translated).subscribe(
-          result => {
-            if (result === 'yes') {
-              (formType === 'orderDelete' ? this.deleteOrder(orderData) : this.deleteUser(orderData));
+  public formChange(orderId) {
+      this.getOrderElement(orderId)[0].classList.add('show');
+      this.changed = true;
+    }
 
-            }
-          }
-        );
-      }
-    );
-  }
 
   public deleteOrder(orderData) {
     this.orderService.deleteOrder(orderData.value._id)
@@ -173,6 +168,18 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
           );
         }
       );
+  }
+
+  getUsers(): void {
+    this.userService.getUsers()
+      .subscribe(users => {
+          this.users = users;
+
+        },
+        error => {
+        }
+      );
+
   }
 
   public updateUser(userData) {
@@ -280,4 +287,5 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     return user ? user._id : undefined;
 
   }
+
 }

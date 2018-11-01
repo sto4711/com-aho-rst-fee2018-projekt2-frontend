@@ -17,6 +17,7 @@ export class ArticleListingComponent  {
     private articleService: ArticleService
   ) {
     this.articles$ = this.articleService.searchArticles('');
+
    }
 }
 

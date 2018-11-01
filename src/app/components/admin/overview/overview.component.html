@@ -126,15 +126,17 @@
                         </p>
 
                         <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
-                          <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
-                                   (change)="formChange(order._id);"
-                                   name="payment"
-                                   [(ngModel)]="order?.paymentType.payment"
-                                   #payment
-                                   required>
-                          </mat-form-field>
 
+                          <mat-form-field>
+                            <mat-select name="payment"
+                                        placeholder=" "
+                                        [(ngModel)]="order.paymentType.payment"
+                                        (selectionChange)="formChange(order._id);">
+                              <mat-option *ngFor="let pay of paymethode" [value]="pay.value">
+                                {{pay.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         </p>
                         <br><br>
                         <p>
@@ -306,6 +308,8 @@
         </mat-accordion>
       </ng-container>
     </mat-tab>
-
+    <mat-tab label="{{'ARTICLES' | translate}}">
+      <app-articles></app-articles>
+    </mat-tab>
   </mat-tab-group>
 </div>
