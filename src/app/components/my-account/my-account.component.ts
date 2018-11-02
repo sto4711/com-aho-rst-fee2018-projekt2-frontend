@@ -64,7 +64,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (accountNok || accountNewNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
-          map((value) => (value === 'yes' ? true : false))
+          map((value) => (value === 'yes'))
         );
     } else {
       return of(true);
