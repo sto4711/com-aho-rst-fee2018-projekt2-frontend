@@ -99,7 +99,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
         Validators.maxLength(100),
         Validators.minLength(5)]
       ],
-      phone: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$'),
         Validators.maxLength(30),
         Validators.minLength(10)]
       ]

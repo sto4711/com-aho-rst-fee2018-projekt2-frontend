@@ -43,8 +43,7 @@ import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 import {InitAppService} from "./services/init-app/init-app.service";
 import {NavigationCancelService} from "./services/navigation-cancel/navigation-cancel.service";
-import { ArticlesComponent } from './components/admin/articles/articles.component';
-
+ 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -76,8 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     OverviewComponent,
     LoginInfoComponent,
     MyOrdersComponent,
-    ArticlesComponent,
-    ],
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -100,7 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [InitAppService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
     ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
