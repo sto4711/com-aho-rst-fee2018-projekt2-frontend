@@ -58,12 +58,17 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
+<<<<<<< HEAD
     const accountNok: boolean = (this.account.touched && this.account.dirty ? true: false);
+=======
+    const accountNok: boolean = (this.account.touched && this.account.dirty);
+    const accountNewNok: boolean = (this.accountNew.touched && this.accountNew.dirty);
+>>>>>>> master
 
     if (accountNok ) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
-          map((value) => (value === 'yes' ? true : false))
+          map((value) => (value === 'yes'))
         );
     } else {
       return of(true);

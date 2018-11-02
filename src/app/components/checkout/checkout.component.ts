@@ -66,9 +66,9 @@ export class CheckoutComponent implements CanComponentDeactivate {
 
   public canDeactivate(): Observable<boolean> {
 
-    const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty ? true: false);
-    const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty ? true: false);
-    const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty ? true: false);
+    const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty);
+    const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty);
+    const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty);
     const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty ? true: false);
 
     if (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok) {
