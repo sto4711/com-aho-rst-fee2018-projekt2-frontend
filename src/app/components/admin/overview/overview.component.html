@@ -12,7 +12,7 @@
         <mat-accordion>
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead>
-            <th mat-sort-header="name">{{'CUSTOMER' | translate}}</th>
+            <th mat-sort-header="name-order">{{'CUSTOMER' | translate}}</th>
             <th mat-sort-header="date">{{'DATE' | translate}}</th>
             <th mat-sort-header="state">{{'ORDER-STATE' | translate}}</th>
             </thead>
@@ -207,8 +207,8 @@
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
             <thead>
             <tr>
-              <th mat-sort-header="name">Name</th>
-            
+              <th mat-sort-header="user-name">{{'CUSTOMER' | translate}}</th>
+
             </tr>
             </thead>
             <tbody>
