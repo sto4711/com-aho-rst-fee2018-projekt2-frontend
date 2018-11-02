@@ -27,6 +27,6 @@ export class ArticleTemplateComponent implements OnInit {
   }
 
   public onGoToDetail(articleQueryParameter) {
-    this.router.navigate(['article-detail'], {queryParams: {article: articleQueryParameter}});
+    this.router.navigate(['article-detail'], {queryParams: {article: articleQueryParameter}}).then();
   }
 }
