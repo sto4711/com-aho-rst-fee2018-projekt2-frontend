@@ -475,6 +475,12 @@ form.admin-form {
 
 }
 
+@media screen and (max-width: 455px){
+  .accordion-table th {
+    display: none;
+  }
+}
+
 /*
     top-bar search form ////////////////////////////////////////////////////////////////////////////////////////////////
  */

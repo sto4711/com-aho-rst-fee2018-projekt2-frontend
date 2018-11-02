@@ -11,7 +11,11 @@
       <ng-container *ngIf="orders?.length > 0">
         <mat-accordion>
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
-            <thead></thead>
+            <thead>
+            <th mat-sort-header="name">{{'CUSTOMER' | translate}}</th>
+            <th mat-sort-header="date">{{'DATE' | translate}}</th>
+            <th mat-sort-header="state">{{'ORDER-STATE' | translate}}</th>
+            </thead>
             <tbody>
             <tr *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' }; trackBy: trackOrders ">
               <td class="custom-expansion-panel" colspan="3" *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
@@ -173,7 +177,7 @@
                   </div><!-- end .admin-orders -->
                   <p>
                     <button (click)="updateOrder(orderForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                    <button (click)="confirmDelete(orderForm, 'orderDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                    <button (click)="confirmDelete(order._id, 'orderDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
                   </p>
                 </mat-expansion-panel>
               </td>
@@ -201,7 +205,12 @@
       <ng-container *ngIf="users?.length > 0">
         <mat-accordion>
           <table class="accordion-table" matSort (matSortChange)="sortData($event)">
-            <thead></thead>
+            <thead>
+            <tr>
+              <th mat-sort-header="name">Name</th>
+            
+            </tr>
+            </thead>
             <tbody>
             <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' }; trackBy: trackusers ">
               <td >
@@ -287,7 +296,7 @@
                   </div><!-- end .admin-orders -->
                   <p>
                     <button (click)="updateUser(userForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'USER-SAVE' | translate}}</button>
-                    <button (click)="confirmDelete(userForm, 'userDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'USER-DELETE' | translate}}</button>
+                    <button (click)="confirmDelete(user._id, 'userDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'USER-DELETE' | translate}}</button>
                   </p>
                 </mat-expansion-panel>
               </td>
@@ -308,8 +317,6 @@
         </mat-accordion>
       </ng-container>
     </mat-tab>
-    <mat-tab label="{{'ARTICLES' | translate}}">
-      <app-articles></app-articles>
-    </mat-tab>
+
   </mat-tab-group>
 </div>

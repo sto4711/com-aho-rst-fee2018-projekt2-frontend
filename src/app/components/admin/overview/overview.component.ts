@@ -94,14 +94,14 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
-  public confirmDelete(orderData, formType) {
+  public confirmDelete(dataId, formType) {
     let confirmMessage = '';
     (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
-              (formType === 'orderDelete' ? this.deleteOrder(orderData) : this.deleteUser(orderData));
+              (formType === 'orderDelete' ? this.deleteOrder(dataId) : this.deleteUser(dataId));
 
             }
           }
@@ -153,14 +153,14 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public formChange(orderId) {
-      this.getOrderElement(orderId)[0].classList.add('show');
+  public formChange(dataId) {
+      this.getOrderElement(dataId)[0].classList.add('show');
       this.changed = true;
     }
 
 
-  public deleteOrder(orderData) {
-    this.orderService.deleteOrder(orderData.value._id)
+  public deleteOrder(orderId) {
+    this.orderService.deleteOrder(orderId)
       .subscribe(order => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
               this.snackBarService.showInfo(' ' + ' ' + translated);
@@ -214,8 +214,8 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public deleteUser(userData) {
-    this.userService.deleteUser(userData.value.user_id)
+  public deleteUser(userId) {
+    this.userService.deleteUser(userId)
       .subscribe(user => {
           this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_DELETED).subscribe(translated => {
               this.snackBarService.showInfo(' ' + ' ' + translated);
