@@ -24,7 +24,7 @@ export class AuthGuardService implements CanActivate {
 
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const canActivate: boolean = (this.userService.getToken() !== '' ? true : false);
+    const canActivate: boolean = this.userService.getToken() !== '';
 
     return of<boolean>((canActivate))
       .pipe(

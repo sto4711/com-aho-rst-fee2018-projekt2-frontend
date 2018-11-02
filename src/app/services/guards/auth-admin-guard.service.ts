@@ -26,8 +26,8 @@ export class AuthAdminGuardService implements CanActivate {
     let wrongRole: boolean = false;
     const user = this.userService.getUser();
     if (user) {
-      canActivate = (user.type === 'admin' ? true : false);
-      wrongRole = (user.type !== 'admin' ? true : false);
+      canActivate = user.type === 'admin';
+      wrongRole = user.type !== 'admin';
     }
 
     return of<boolean>((canActivate))
