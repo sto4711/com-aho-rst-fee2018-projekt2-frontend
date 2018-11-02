@@ -120,20 +120,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public getOrderElement(orderId) {
-<<<<<<< HEAD
-    const tabTrackId = document.getElementsByClassName(orderId);
+     const tabTrackId = document.getElementsByClassName(orderId);
     return tabTrackId;
 
-  }
-=======
-    return document.getElementsByClassName(orderId);
-}
+ }
 
-  public formChange(orderId) {
-      this.getOrderElement(orderId)[0].classList.add('show');
-      this.changed = true;
-    }
->>>>>>> master
 
   public updateOrder(orderData) {
      this.changed = false;

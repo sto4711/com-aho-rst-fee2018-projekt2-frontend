@@ -17,7 +17,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
-
 @NgModule({
   exports: [
     MatInputModule,
@@ -38,6 +37,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSortModule,
     MatCardModule,
     MatTooltipModule
-    ]
+  ]
 })
 export class MatComponentsModule { }

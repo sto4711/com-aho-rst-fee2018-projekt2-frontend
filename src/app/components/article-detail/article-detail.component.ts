@@ -9,8 +9,9 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
-import {LangService} from '../../services/lang-service/lang.service';
-
+import {LangService} from "../../services/lang-service/lang.service";
+import {map, tap} from "rxjs/operators";
+import {Logger} from "../../services/logger/logger";
 
 @Component({
   selector: 'app-article-detail',
