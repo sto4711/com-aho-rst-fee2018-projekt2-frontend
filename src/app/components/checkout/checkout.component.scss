@@ -6,6 +6,12 @@
     checkout ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 
+.cart-next-wrap {
+  width: 250px;
+  float: right;
+
+}
+
 .order-review span, .review-data {
   font-weight: $font-weight-bold;
   display: inline-block;
@@ -15,8 +21,7 @@
 .checkout-nav {
   @include flex;
   justify-content: space-between;
-  max-width: 250px;
-}
+ }
 
 @media screen and (max-width: 420px){
   #checkout-review{

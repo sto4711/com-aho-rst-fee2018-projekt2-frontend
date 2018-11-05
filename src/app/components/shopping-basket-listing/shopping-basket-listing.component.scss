@@ -44,17 +44,17 @@ button.minus, button.plus {
   cursor: default;
 }
 
-table#shopping-basket-table {
+table.shopping-basket-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 
-table#shopping-basket-table tr:nth-of-type(odd) {
+table.shopping-basket-table tr:nth-of-type(odd) {
   background: #eeeeee;
 }
 
-table#shopping-basket-table th {
+table.shopping-basket-table th {
   @include base-font-style();
   font-weight: $font-weight-medium;
   color: $font-color;
@@ -62,17 +62,18 @@ table#shopping-basket-table th {
 
 
 }
-table#shopping-basket-table td, table#shopping-basket-table th {
+table.shopping-basket-table td,
+table.shopping-basket-table th {
   padding: 0.8em;
   text-align: left;
   width: 21%;
 }
 
-table#shopping-basket-table td {
+table.shopping-basket-table td {
   @include font-size($sizeValue:1.6);
 }
 
-table#shopping-basket-table tfoot tr:nth-of-type(odd) {
+table.shopping-basket-table tfoot tr:nth-of-type(odd) {
   background: #fff;
 }
 
@@ -101,29 +102,34 @@ table#shopping-basket-table tfoot tr:nth-of-type(odd) {
 
   }
 
-  table#shopping-basket-tabletable, table#shopping-basket-tablethead, table#shopping-basket-tabletfoot,
-  table#shopping-basket-table tbody, table#shopping-basket-table th, table#shopping-basket-table td, table#shopping-basket-table tr {
+  table.shopping-basket-table,
+  table.shopping-basket-table tbody,
+  table.shopping-basket-table tfoot,
+  table.shopping-basket-table th,
+  table.shopping-basket-table td,
+  table.shopping-basket-table tr {
     display: block;
   }
 
-  table#shopping-basket-table thead tr {
+  table.shopping-basket-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  table#shopping-basket-table td, table#shopping-basket-table th {
+  table.shopping-basket-table td,
+  table.shopping-basket-table th {
     width: auto;
   }
 
-  table#shopping-basket-table td {
+  table.shopping-basket-table td {
 
     border: none;
     position: relative;
     padding-left: 50%;
   }
 
-  table#shopping-basket-table  td:before {
+  table.shopping-basket-table  td:before {
     position: absolute;
     top: 6px;
     left: 6px;
