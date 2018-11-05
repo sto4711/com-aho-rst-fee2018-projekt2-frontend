@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {LangService} from '../../services/lang-service/lang.service';
+ import {Order} from '../../services/order/order';
 
 @Component({
   selector: 'app-shopping-basket-listing',
@@ -9,6 +10,8 @@ import {LangService} from '../../services/lang-service/lang.service';
 })
 export class ShoppingBasketListingComponent implements OnInit {
   @Input()  itemChangePossible: boolean;
+  @Input()  isCheckout: boolean;
+  @Input()  order: Order;
   @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
   private langSwitch: boolean;

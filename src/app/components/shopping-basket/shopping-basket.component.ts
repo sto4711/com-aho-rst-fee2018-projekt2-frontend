@@ -20,14 +20,14 @@ export class ShoppingBasketComponent {
   private static CODE_TRANSLATION_MAX_QUANTITY = 'MAXIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_AMOUNT_CHANGED = 'ARTICLE-AMOUNT-CHANGED';
   public itemChangePossible = true;
+   constructor(
+    private snackBarService: SnackBarService,
+    private router: Router,
+    private orderService: OrderService,
+    private translate: TranslateService,
+    public shoppingBasketService: ShoppingBasketService,
+    public confirmYesNoService: ConfirmYesNoService
 
-  constructor(
-    public shoppingBasketService: ShoppingBasketService
-    , public confirmYesNoService: ConfirmYesNoService
-    , private snackBarService: SnackBarService
-    , private router: Router
-    , private orderService: OrderService
-    , private translate: TranslateService
   ) {
   }
 

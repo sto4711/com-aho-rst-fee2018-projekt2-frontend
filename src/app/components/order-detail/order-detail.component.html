@@ -20,52 +20,7 @@
     <br><br><br>
   </div>
   <h4>{{'ORDERED-ITEMS' | translate}}</h4>
-  <table id="shopping-basket-table">
-    <thead>
-    <tr>
-      <th>{{'ITEM-NUMBER' | translate}}</th>
-      <th>{{'ARTICLE' | translate}}</th>
-      <th>{{'PRICE' | translate}}</th>
-      <th>{{'AMOUNT' | translate}}</th>
-      <th>{{'SUM-ARTICLE' | translate}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let shoppingBasketItem of order?.shoppingBasket.items">
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        {{shoppingBasketItem.itemNumber}}
-      </td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        {{shoppingBasketItem.articleName}}
-      </td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        CHF <span class="amount-spacer">{{shoppingBasketItem.articlePrice | amountConverter}}</span></td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        {{shoppingBasketItem.articleAmount}}
-      </td>
-      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-        CHF <span class="amount-spacer">{{shoppingBasketItem.articlePriceSum | amountConverter}}</span>
-      </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td colspan="2" class="basket-total-amount">
-        <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
-          <span> CHF <span class="amount-spacer">15.00</span> </span>
-        </p>
-        <p>
-          <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
-          <span>
-          <strong> CHF <span
-            class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
-      </span>
-        </p>
-      </td>
-    </tr>
-    </tfoot>
-  </table>
+
+  <app-shopping-basket-listing [isCheckout]="false" [order]="order"></app-shopping-basket-listing>
+
 </div>
