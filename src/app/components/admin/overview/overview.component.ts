@@ -93,14 +93,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public confirmDelete(dataId, formType) {
-    let confirmMessage = '';
-    (formType === 'orderDelete' ? confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : confirmMessage = OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
+    const confirmMessage = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE: OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
               (formType === 'orderDelete' ? this.deleteOrder(dataId) : this.deleteUser(dataId));
-
             }
           }
         );
@@ -109,17 +107,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public getAllOrders() {
-    this.orderService.getAll()
-      .subscribe(
-        result => {
-          this.orders = result;
-        }
-      );
+    this.orderService.getAll().subscribe(result => this.orders = result);
   }
 
-  public static getOrderElement(orderId) {
+  private static getOrderElement(orderId) {
     return document.getElementsByClassName(orderId);
-
   }
 
 
@@ -138,7 +130,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
     this.changed = true;
   }
-
 
   public deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId)
@@ -220,16 +211,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
         }
       );
     }
-  }
-
-  public trackOrders(index, order) {
-    return order ? order._id : undefined;
-
-  }
-
-  public trackusers(index, user) {
-    return user ? user._id : undefined;
-
   }
 
 }
