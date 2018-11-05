@@ -10,6 +10,7 @@ import {CanComponentDeactivate} from '../../services/commons/can-component-deact
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {OrderService} from '../../services/order/order.service';
 import {NavigationCancelService} from '../../services/navigation-cancel/navigation-cancel.service';
+import {User} from "../../services/user/user";
 
 @Component({
   selector: 'app-my-account',
@@ -17,7 +18,6 @@ import {NavigationCancelService} from '../../services/navigation-cancel/navigati
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements CanComponentDeactivate {
-
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
@@ -25,6 +25,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
   public account: FormGroup;
   public accountNew: FormGroup;
+
   constructor(
     private _formBuilder: FormBuilder
     , private userService: UserService
@@ -33,7 +34,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
     , private snackBarService: SnackBarService
     , private confirmYesNoService: ConfirmYesNoService
     , private navigationCancelService: NavigationCancelService
-
   ) {
     this.initValidation();
   }
@@ -83,7 +83,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
           this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_LOGIN_SUCCESSFUL);
           this.router.navigate([this.navigationCancelService.getCanceledRoute()]).then();
         }
-      }catch (error) {
+      } catch (error) {
         if (error.status === 404) {
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
         }
@@ -95,11 +95,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (this.accountNew.valid) {
       try {
         this.accountNew.markAsPristine();
-        await this.userService.create(this.accountNew.getRawValue()).toPromise();
+        const user: User = new User(null, this.accountNew.getRawValue().firstname, this.accountNew.getRawValue().name, this.accountNew.getRawValue().email, this.accountNew.getRawValue().pwd, '');
+        await this.userService.create(user).toPromise();
         this.orderService.clear();
         this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
         this.router.navigate(['home']).then();
-      }catch (error) {
+      } catch (error) {
         if (error.status === 400) {
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
         }
