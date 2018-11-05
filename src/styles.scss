@@ -149,6 +149,18 @@
   }
 }
 
+.article-listing {
+  @include flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 -10px;
+}
+
+.article-container {
+  padding: 0 5px;
+  margin: 0 0 10px 0;
+  width: 25%;
+}
 
 
 /*

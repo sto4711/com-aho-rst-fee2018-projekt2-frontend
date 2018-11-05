@@ -2,15 +2,16 @@
   <app-breadcrumb></app-breadcrumb>
   <h2 *ngIf="(articles$ | async)?.length>0">{{'OUR-ARTICLES' | translate}}</h2>
   <h3 *ngIf="(articles$ | async)?.length==0">{{'NO-ARTICLES-FOUND' | translate}}</h3>
-  <div class="product-listing" *ngIf="articles$ | async">
-    <app-article-template class="product-container"
-                          *ngFor="let item of articles$| async | paginate: { itemsPerPage: 12, currentPage: p }"
+
+  <div class="article-listing"  *ngIf="articles$ | async">
+    <app-article-template class="article-container" *ngFor="let item of articles$| async | paginate: { itemsPerPage: 12, currentPage: p }"
                           [article]="item">
     </app-article-template><!-- end .product-container -->
-  </div><!-- end .product-listing -->
+    
   <pagination-controls
     (pageChange)="p = $event"
     previousLabel="{{'BACK' | translate}}"
-    nextLabel="{{'NEXT' | translate}}"
-  ></pagination-controls>
+    nextLabel="{{'NEXT' | translate}}">
+  </pagination-controls>
+  </div><!-- end .product-listing -->
 </div><!-- end .row -->
