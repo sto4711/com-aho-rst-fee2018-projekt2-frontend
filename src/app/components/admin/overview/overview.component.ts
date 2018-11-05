@@ -93,7 +93,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public confirmDelete(dataId, formType) {
-    const confirmMessage = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE: OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
+    const confirmMessage = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE : OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
           result => {
@@ -147,14 +147,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public updateUser(userData) {
     this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
-    const updatedUser = {
-      _id: userData.value.user_id,
-      firstname: userData.value.firstname,
-      name: userData.value.name,
-      email: userData.value.email,
-      pwd: userData.value.pwd,
-      type: userData.value.type
-    };
+    const updatedUser: User = new User(userData.value.user_id, userData.value.firstname, userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
     this.userService.updateUser(updatedUser).subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
   }
 
