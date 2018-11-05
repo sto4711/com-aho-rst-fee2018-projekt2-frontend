@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {LangDef} from './lang-def';
 import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';

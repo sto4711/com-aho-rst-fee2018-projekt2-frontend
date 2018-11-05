@@ -26,8 +26,7 @@ export class ShoppingBasketListingComponent implements OnInit {
 
   ngOnInit( ) { }
 
-  changeItemAmount_ShoppingBasket(event, articleId , articleName ,  articleAmount )
-  {
+  changeItemAmount_ShoppingBasket(event, articleId , articleName ,  articleAmount ) {
     this.itemChange.emit({articleId: articleId, articleName: articleName , articleAmount: articleAmount});
   }
 

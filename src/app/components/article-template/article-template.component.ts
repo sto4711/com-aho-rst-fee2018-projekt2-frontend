@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Article} from 'src/app/services/articles/article';
 import {Router} from '@angular/router';
-import {backendUrls} from "../../constants/backend-urls";
+import {backendUrls} from '../../constants/backend-urls';
 
 @Component({
   selector: 'app-article-template',

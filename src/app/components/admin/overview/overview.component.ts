@@ -13,10 +13,10 @@ import {Observable, of} from 'rxjs';
 import {CanComponentDeactivateGuard} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {map} from 'rxjs/operators';
 import {CanComponentDeactivate} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate';
-import {Address} from "../../../services/order/address";
-import {ContactData} from "../../../services/order/contact-data";
-import {DeliveryType} from "../../../services/order/delivery-type";
-import {PaymentType} from "../../../services/order/payment-type";
+import {Address} from '../../../services/order/address';
+import {ContactData} from '../../../services/order/contact-data';
+import {DeliveryType} from '../../../services/order/delivery-type';
+import {PaymentType} from '../../../services/order/payment-type';
 
 @Component({
   selector: 'app-overview',
