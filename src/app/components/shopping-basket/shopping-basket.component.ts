@@ -51,7 +51,7 @@ export class ShoppingBasketComponent {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(shoppingBasket => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED));
     }
-    else if (articleAmount < 1) {
+      if (articleAmount < 1) {
       this.snackBarService.showWarning(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY);
     } else {
       this.snackBarService.showWarning(ShoppingBasketComponent.CODE_TRANSLATION_MAX_QUANTITY);

@@ -78,9 +78,8 @@ export class CheckoutComponent implements CanComponentDeactivate {
           map((value) => (value === 'yes'))
         );
     }
-    else {
+
       return of(true);
-    }
   }
 
   private initValidation() {
@@ -135,21 +134,21 @@ export class CheckoutComponent implements CanComponentDeactivate {
     }
   }
 
-  public onSelectionChange(event) {
+  public onSelectionChange() {
     if (!this.isAutoStepping) {
       if (this.deliveryAddress.dirty) {
         this.deliveryAddress.markAsPristine();
         this.orderService.updateDeliveryAddress(this.deliveryAddress.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
-      else if (this.contactData.dirty) {
+      if (this.contactData.dirty) {
         this.contactData.markAsPristine();
         this.orderService.updateContactData(this.contactData.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
-      else if (this.deliveryType.dirty) {
+        if (this.deliveryType.dirty) {
         this.deliveryType.markAsPristine();
         this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
-      else if (this.paymentType.dirty) {
+       if (this.paymentType.dirty) {
         this.paymentType.markAsPristine();
         this.orderService.updatePaymentType(this.paymentType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }

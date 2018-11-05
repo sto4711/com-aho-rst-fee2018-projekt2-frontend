@@ -1,9 +1,10 @@
-<div *ngIf="loading" class="loader"></div>
-  <div class="product-content" (click)="onGoToDetail(article.articleQueryParameter)">
+
+ <div *ngIf="loading" class="loader"></div>
+  <div class="article-content" (click)="onGoToDetail(article.articleQueryParameter)">
   <picture>
     <source media="(min-width: 300px)" srcset="{{imageURL + article.imageURL}}">
     <figure>
-     <img [hidden]="loading" (load)="onLoad()" class="product-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
+     <img [hidden]="loading" (load)="onLoad()" class="article-img" src="{{imageURL + article.imageURL}}" width="100%" height="auto"/>
     <figcaption>
       <div class="article-detail-rating">
       <span *ngFor="let rating of article?.rating; index as i ">
@@ -14,14 +15,14 @@
     </figcaption>
     </figure>
   </picture>
-    <div class="product-data">
-      <p><span class="product-listing-title">{{article.name}}</span><br>
-        <span class="product-listing-descr">{{article.brand}}</span><br>
-        <span class="product-listing-price">CHF {{article.price}}</span>
+    <div class="article-data">
+      <p><span class="article-listing-title">{{article.name}}</span><br>
+        <span class="article-listing-descr">{{article.brand}}</span><br>
+        <span class="article-listing-price">CHF {{article.price}}</span>
       </p>
       <a class="btn prod-listing" type="button" role="button"  aria-label="Zum Artikel"
          [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleQueryParameter | trim}" >{{'VIEW-ARTICLE' | translate}}</a>
-    </div><!-- end .product-data -->
-  </div><!-- end .product-content -->
+    </div><!-- end .article-data -->
+  </div><!-- end .article-content -->
 
 

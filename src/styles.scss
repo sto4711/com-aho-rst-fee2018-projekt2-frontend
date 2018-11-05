@@ -3,9 +3,9 @@
 
 @import './sass/mixins';
 @import './sass/variables';
+@import './sass/animations';
 @import './sass/custom-material-theme';
 @import './sass/angular-material';
-  // ng config schematics.@schematics/angular:component.styleext scss
 
   /*
       resets  /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,6 +149,18 @@
   }
 }
 
+.article-listing {
+  @include flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 -10px;
+}
+
+.article-container {
+  padding: 0 5px;
+  margin: 0 0 10px 0;
+  width: 25%;
+}
 
 
 /*
@@ -356,46 +368,3 @@ select {
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
-
-
-/*
-    animations ////////////////////////////////////////////////////////////////////////////////////////////////
- */
-
-/*header top bar */
-
-@-webkit-keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
-
-@-moz-keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
