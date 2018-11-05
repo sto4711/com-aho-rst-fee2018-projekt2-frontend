@@ -19,7 +19,7 @@ import {NavigationCancelService} from '../../services/navigation-cancel/navigati
 export class MyAccountComponent implements CanComponentDeactivate {
 
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
-  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
@@ -58,7 +58,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
-    const accountNok: boolean = (this.account.touched && this.account.dirty ? true: false);
+    const accountNok: boolean = (this.account.touched && this.account.dirty === true);
 
     if (accountNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)

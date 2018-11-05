@@ -14,12 +14,12 @@ import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.
 })
 
 export class ShoppingBasketComponent {
-  public itemChangePossible = true;
   private static CODE_TRANSLATION_REMOVED = 'ARTICLE-REMOVED-FROM-SHOPPING-BASKET';
   private static CODE_TRANSLATION_REMOVE_FOR_SURE = 'TO-REMOVE-FROM-SHOPPING-BASKET-FOR-SURE';
   private static CODE_TRANSLATION_MIN_QUANTITY = 'MINIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_MAX_QUANTITY = 'MAXIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_AMOUNT_CHANGED = 'ARTICLE-AMOUNT-CHANGED';
+  public itemChangePossible = true;
 
   constructor(
     public shoppingBasketService: ShoppingBasketService

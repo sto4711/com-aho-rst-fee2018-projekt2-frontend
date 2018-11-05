@@ -12,7 +12,7 @@ export class ArticleTemplateComponent implements OnInit {
 
   @Input() article: Article;
   public imageURL: string = backendUrls.public;
-  public loading: boolean = true;
+  public loading  = true;
 
   constructor(
     private router: Router

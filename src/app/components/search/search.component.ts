@@ -39,9 +39,7 @@ export class SearchComponent {
     if (term && term.length > 2) {
       return this.articleService.searchArticles(term.toLowerCase());
     }
-    else {
       return of<Article[]>([]); // empty Observable<Article[]>
-    }
   }
 
   public onSelected(article: Article) {

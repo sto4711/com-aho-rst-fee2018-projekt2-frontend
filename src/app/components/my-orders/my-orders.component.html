@@ -5,7 +5,7 @@
     <p>{{'NO-ORDERS-FOUND' | translate}}</p>
   </ng-container>
   <ng-container *ngIf="orders?.length > 0">
-    <div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }">
+    <div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }; trackBy: order?._id" >
       <ng-container>
         <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

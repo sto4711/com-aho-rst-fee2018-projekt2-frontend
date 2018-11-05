@@ -21,7 +21,7 @@ import {AuthGuardService} from '../../services/guards/auth-guard.service';
 })
 
 export class CheckoutComponent implements CanComponentDeactivate {
-  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
+  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
 
   public isLinear = true;
   public deliveryAddress: FormGroup;

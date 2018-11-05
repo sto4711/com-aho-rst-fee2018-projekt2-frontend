@@ -9,9 +9,9 @@ import {Order} from '../../services/order/order';
   styleUrls: ['./my-orders.component.scss']
 })
 export class MyOrdersComponent implements OnInit {
-  public p: number = 1;
+  public p = 1;
   public orders: Order[];
-  public panelOpenState: boolean = false;
+  public panelOpenState = false;
 
 
   constructor(
@@ -29,8 +29,5 @@ export class MyOrdersComponent implements OnInit {
         }
       );
   }
-  public trackMyOrders(index, order){
-    return order ? order._id : undefined;
 
-  }
 }

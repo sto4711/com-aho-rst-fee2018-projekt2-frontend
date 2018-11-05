@@ -35,7 +35,7 @@ export class OrderDetailComponent implements OnInit {
   public ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
-        this.orderService.get(this.route.snapshot.queryParams["id"])
+        this.orderService.get(this.route.snapshot.queryParams['id'])
           .subscribe(
             result => {
               this.order = result;
