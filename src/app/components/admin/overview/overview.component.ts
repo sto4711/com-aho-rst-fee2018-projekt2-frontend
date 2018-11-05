@@ -28,7 +28,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
   private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
   private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
-
   private static CODE_TRANSLATION_USER_UPDATED = 'USER-DATA-UPDATED';
   private static CODE_TRANSLATION_USER_DELETED = 'USER-IS-DELETED';
   private static CODE_TRANSLATION_DELETE_USER_FOR_SURE = 'TO-DELETE-THIS-USER-FOR-SURE';
@@ -56,8 +55,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     {value: 'Mastercard', viewValue: 'Mastercard'},
     {value: 'Visa', viewValue: 'Visa'}
   ];
-
-
 
   constructor(
     private route: ActivatedRoute,
@@ -116,8 +113,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     this.orderService.getAll().subscribe(result => this.orders = result);
   }
 
-
-
   public updateOrder(orderData) {
     this.changed = false;
     OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
@@ -145,7 +140,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  getUsers(): void {
+  public getUsers(): void {
     this.userService.getUsers().subscribe(users => this.users = users);
   }
 
