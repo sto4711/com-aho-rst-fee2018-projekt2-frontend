@@ -9,9 +9,7 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
-import {LangService} from "../../services/lang-service/lang.service";
-import {map, tap} from "rxjs/operators";
-import {Logger} from "../../services/logger/logger";
+import {LangService} from '../../services/lang-service/lang.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -20,11 +18,13 @@ import {Logger} from "../../services/logger/logger";
 })
 
 export class ArticleDetailComponent implements OnInit {
+  private static CODE_TRANSLATION_ADDED = 'ADDED-TO-SHOPPING-BASKET';
+
   public article: Article;
   public imageURL: string = backendUrls.public;
   public selectedValue = 1;
-  private articleAmount: number = 1;
-  public loading: boolean = true;
+  private articleAmount = 1;
+  public loading = true;
   public articleURLs: ArticleURLs;
   public slideIndex = 1;
   public amount = [
@@ -32,8 +32,7 @@ export class ArticleDetailComponent implements OnInit {
     {value: 2, viewValue: '2'},
     {value: 3, viewValue: '3'}
   ];
-  private static CODE_TRANSLATION_ADDED = 'ADDED-TO-SHOPPING-BASKET';
-  public language: string = 'de';
+  public language = 'de';
 
   constructor(
     private route: ActivatedRoute,
@@ -57,7 +56,7 @@ export class ArticleDetailComponent implements OnInit {
 
   public ngOnInit() {
     this.route.paramMap
-      .subscribe(params => {
+      .subscribe( () => {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
@@ -85,7 +84,7 @@ export class ArticleDetailComponent implements OnInit {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(shoppingBasket => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
-              this.snackBarService.showInfo(this.article.name + ' ' + translated)
+              this.snackBarService.showInfo(this.article.name + ' ' + translated);
             }
           );
         }

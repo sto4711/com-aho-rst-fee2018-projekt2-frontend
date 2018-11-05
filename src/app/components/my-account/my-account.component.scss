@@ -1,2 +1,23 @@
 @import '../../../sass/mixins.scss';
 @import '../../../sass/variables.scss';
+
+
+/*
+    my account  ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+.login-form-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 900px;
+}
+
+.login-form {
+  border-right: 1px solid #ccc;
+  margin: 0 15px 0 0;
+  padding: 0 15px 0 0;
+}
+
+.login-form, .new-account-form {
+  width: 50%;
+}

@@ -11,7 +11,7 @@ import {ArticleService} from '../../services/articles/article.service';
 })
 export class ArticleListingComponent  {
   public articles$: Observable<Article[]>;
-  public p: number = 1;
+  public p = 1;
 
   constructor(
     private articleService: ArticleService

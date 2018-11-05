@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Article} from 'src/app/services/articles/article';
 import {Router} from '@angular/router';
-import {backendUrls} from "../../constants/backend-urls";
+import {backendUrls} from '../../constants/backend-urls';
 
 @Component({
   selector: 'app-article-template',
@@ -12,7 +12,7 @@ export class ArticleTemplateComponent implements OnInit {
 
   @Input() article: Article;
   public imageURL: string = backendUrls.public;
-  public loading: boolean = true;
+  public loading  = true;
 
   constructor(
     private router: Router

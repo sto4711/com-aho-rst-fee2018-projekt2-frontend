@@ -5,14 +5,14 @@ import {Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {MatStepper} from '@angular/material';
-import {Observable, of} from "rxjs";
-import {map} from "rxjs/operators";
-import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
-import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
-import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
-import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
-import {UserService} from "../../services/user/user.service";
-import {AuthGuardService} from "../../services/guards/auth-guard.service";
+import {Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
+import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.service';
+import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
+import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
+import {UserService} from '../../services/user/user.service';
+import {AuthGuardService} from '../../services/guards/auth-guard.service';
 
 @Component({
   selector: 'app-checkout',
@@ -21,14 +21,15 @@ import {AuthGuardService} from "../../services/guards/auth-guard.service";
 })
 
 export class CheckoutComponent implements CanComponentDeactivate {
+  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
+
   public isLinear = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
-  public itemChangePossible: boolean = false;
-  public isAutoStepping: boolean = false;
-  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
+  public itemChangePossible = false;
+  public isAutoStepping = false;
 
 
   @ViewChild('stepper') stepper: MatStepper;
@@ -50,7 +51,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public ngAfterViewInit() {
     this.orderService.getOrder()
       .subscribe(order => {
-        Promise.resolve(null).then(() => {//delay with a Promise
+        Promise.resolve(null).then(() => {
           this.setFormGroupValues(order);
           if (!order.doNotStep) {
             this.isAutoStepping = true;
@@ -74,7 +75,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     if (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
-          map((value) => (value === 'yes' ? true : false))
+          map((value) => (value === 'yes'))
         );
     }
     else {

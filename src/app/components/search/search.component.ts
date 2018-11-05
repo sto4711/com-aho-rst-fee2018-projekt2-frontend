@@ -3,9 +3,9 @@ import {FormControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
-import {Article} from "../../services/articles/article";
-import {HttpErrorResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {Article} from '../../services/articles/article';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class SearchComponent {
         distinctUntilChanged(), // ignore new term if same as previous term
         switchMap((term: string) => this.searchArticle(term)),
         catchError((error: HttpErrorResponse) => {
-          return of<Article[]>([]);//continue with no message
+          return of<Article[]>([]); // continue with no message
         })
       );
   }
@@ -39,9 +39,7 @@ export class SearchComponent {
     if (term && term.length > 2) {
       return this.articleService.searchArticles(term.toLowerCase());
     }
-    else {
-      return of<Article[]>([]); //empty Observable<Article[]>
-    }
+      return of<Article[]>([]); // empty Observable<Article[]>
   }
 
   public onSelected(article: Article) {

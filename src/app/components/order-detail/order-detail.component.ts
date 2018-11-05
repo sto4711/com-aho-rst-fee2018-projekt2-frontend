@@ -4,8 +4,6 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
-import {Observable} from "rxjs";
-import {Article} from "../../services/articles/article";
 
 @Component({
   selector: 'app-order-detail',
@@ -37,7 +35,7 @@ export class OrderDetailComponent implements OnInit {
   public ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
-        this.orderService.get(this.route.snapshot.queryParams["id"])
+        this.orderService.get(this.route.snapshot.queryParams['id'])
           .subscribe(
             result => {
               this.order = result;

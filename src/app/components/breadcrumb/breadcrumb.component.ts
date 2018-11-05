@@ -17,7 +17,7 @@ export class BreadcrumbComponent implements OnInit {
 
   public ngOnInit() {
     this.route.paramMap
-      .subscribe((result) => {
+      .subscribe(() => {
         this.breadcrumbTranslationService.firstParam = this.route.snapshot.queryParams.article;
         this.route.data.subscribe(data => {
           this.breadcrumbTranslationService.breadcrumbPath = data.breadcrumbPath;

@@ -1,16 +1,15 @@
 import {Router} from '@angular/router';
-import {map} from "rxjs/operators";
+import {map} from 'rxjs/operators';
 import {Component} from '@angular/core';
-import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Observable, of} from "rxjs";
-import {ConfirmYesNoService} from "../../services/commons/dialog/confirm-yes-no.service";
-import {UserService} from "../../services/user/user.service";
-import {CanComponentDeactivate} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate";
-import {CanComponentDeactivateGuard} from "../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard";
-import {OrderService} from "../../services/order/order.service";
-import {NavigationCancelService} from "../../services/navigation-cancel/navigation-cancel.service";
-import {User} from "../../services/user/user";
+import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable, of} from 'rxjs';
+import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.service';
+import {UserService} from '../../services/user/user.service';
+import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
+import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
+import {OrderService} from '../../services/order/order.service';
+import {NavigationCancelService} from '../../services/navigation-cancel/navigation-cancel.service';
 
 @Component({
   selector: 'app-my-account',
@@ -18,14 +17,14 @@ import {User} from "../../services/user/user";
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements CanComponentDeactivate {
-  public account: FormGroup;
-  public accountNew: FormGroup;
+
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
-  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
   private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
-
+  public account: FormGroup;
+  public accountNew: FormGroup;
   constructor(
     private _formBuilder: FormBuilder
     , private userService: UserService
@@ -59,7 +58,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
-    const accountNok: boolean = (this.account.touched && this.account.dirty ? true: false);
+    const accountNok: boolean = (this.account.touched && this.account.dirty === true);
 
     if (accountNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
@@ -96,8 +95,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     if (this.accountNew.valid) {
       try {
         this.accountNew.markAsPristine();
-        const user: User = new User(null, this.accountNew.getRawValue().firstname, this.accountNew.getRawValue().name, this.accountNew.getRawValue().email, this.accountNew.getRawValue().pwd, '');
-        await this.userService.create(user).toPromise();
+        await this.userService.create(this.accountNew.getRawValue()).toPromise();
         this.orderService.clear();
         this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
         this.router.navigate(['home']).then();

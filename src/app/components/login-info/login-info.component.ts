@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {UserService} from "../../services/user/user.service";
-import {Router} from "@angular/router";
-import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.service";
+import {UserService} from '../../services/user/user.service';
+import {Router} from '@angular/router';
+import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-login-info',
@@ -9,7 +9,7 @@ import {SnackBarService} from "../../services/commons/snack-bar/snack-bar.servic
   styleUrls: ['./login-info.component.scss']
 })
 export class LoginInfoComponent {
-  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
+  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL = 'LOGOUT-SUCCESSFUL';
 
   constructor(
     public userService: UserService
