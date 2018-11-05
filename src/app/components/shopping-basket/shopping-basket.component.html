@@ -5,7 +5,7 @@
   <div *ngIf="shoppingBasketService.shoppingBasket?.items.length !==0">
     <div class="cart-items-listing">
 
-      <app-shopping-basket-listing
+      <app-shopping-basket-listing [isCheckout]="true"
         (itemChange)="changeItemAmount_ShoppingBasket($event.articleId, $event.articleName, $event.articleAmount )"
         (deleteItem)="confirmDelete($event.articleId, $event.articleName )" [itemChangePossible]= 'itemChangePossible'>
 
