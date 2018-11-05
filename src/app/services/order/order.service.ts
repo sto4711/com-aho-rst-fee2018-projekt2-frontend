@@ -97,21 +97,24 @@ export class OrderService {
   }
 
   public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
-    return this.change('change-delivery-address', {"orderId": this.order._id, "deliveryAddress": deliveryAddress});
+    this.order.deliveryAddress = deliveryAddress;
+    return this.change('change-delivery-address', this.order);
   }
 
   public updateContactData(contactData: ContactData): Observable<Order> {
-    return this.change('change-contact-data', {"orderId": this.order._id, "contactData": contactData});
+    this.order.contactData = contactData;
+    return this.change('change-contact-data', this.order);
   }
 
   public updateDeliveryType(deliveryType: DeliveryType): Observable<Order> {
-    return this.change('change-delivery-type', {"orderId": this.order._id, "deliveryType": deliveryType});
+    this.order.deliveryType = deliveryType;
+    return this.change('change-delivery-type', this.order);
   }
 
   public updatePaymentType(paymentType: PaymentType): Observable<Order> {
-    return this.change('change-payment-type', {"orderId": this.order._id, "paymentType": paymentType});
+    this.order.paymentType = paymentType;
+    return this.change('change-payment-type', this.order);
   }
-
 
   public clear() {
     this.order = null;
@@ -131,7 +134,7 @@ export class OrderService {
     );
   }
 
-  public updateOrder(orderData: any): Observable<Order> {
+  public updateOrder(orderData: Order): Observable<Order> {
     return this.http.patch<Order>(backendUrls.order + 'update', orderData, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -158,8 +161,8 @@ export class OrderService {
     Logger.consoleLog(this.constructor.name, 'resetOrder', 'ok')
   }
 
-  private change(urlPath: string, bodyJson: any): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + urlPath, bodyJson, {
+  private change(urlPath: string, order: Order): Observable<Order> {
+    return this.http.patch<Order>(backendUrls.order + urlPath, order, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
