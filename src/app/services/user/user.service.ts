@@ -99,7 +99,7 @@ export class UserService {
     );
   }
 
-  public updateUser(user: any): Observable<User> {
+  public updateUser(user: User): Observable<User> {
     return this.http.post<User>(backendUrls.user + 'updateUser', user, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
