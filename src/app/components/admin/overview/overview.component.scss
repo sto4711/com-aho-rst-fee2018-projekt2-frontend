@@ -1,1 +1,95 @@
+@import '../../../../sass/mixins.scss';
+@import '../../../../sass/variables.scss';
 
+
+/*
+    admin area ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+
+form.admin-form {
+  display: inherit;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.admin-order {
+  @include flex;
+  justify-content: space-between;
+}
+
+
+.overview-input {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.overview-input .mat-form-field-wrapper, .overview-select {
+  max-width: 200px;
+}
+
+
+.order-customer-articles {
+  width: 65%;
+}
+
+.admin-customer-data {
+
+  width: 35%;
+}
+
+.order-item-listing {
+  @include flex;
+  justify-content: space-between;
+
+}
+
+.order-item {
+  margin: 0 0 25px 0;
+}
+
+.order-article-attr {
+  display: inline-block;
+  min-width: 150px;
+  font-weight: $font-weight-bold;
+}
+
+.role {
+  margin: 0 0 13px 0;
+}
+
+@media screen and (max-width: 675px) {
+  .order-customer-articles,   .order-customer-data  {
+    width: 100%;
+  }
+
+
+}
+.accordion-table {
+  width: 100%;
+}
+
+.accordion-table th{
+  @include base-font-style();
+  background: #fff;
+  color: $font-color;
+  font-weight: $font-weight-medium;
+  padding: 10px 24px ;
+}
+.accordion-table thead th, .accordion-table thead td {
+  width: auto;
+
+}
+
+.accordion-table tbody th, .accordion-table tbody td {
+  width: auto;
+  padding:0;
+
+}
+
+@media screen and (max-width: 455px){
+  .accordion-table th {
+    display: none;
+  }
+}
