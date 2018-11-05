@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, CanActivate, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
@@ -13,6 +13,10 @@ import {Observable, of} from 'rxjs';
 import {CanComponentDeactivateGuard} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {map} from 'rxjs/operators';
 import {CanComponentDeactivate} from '../../../services/commons/can-component-deactivate-guard/can-component-deactivate';
+import {Address} from "../../../services/order/address";
+import {ContactData} from "../../../services/order/contact-data";
+import {DeliveryType} from "../../../services/order/delivery-type";
+import {PaymentType} from "../../../services/order/payment-type";
 
 @Component({
   selector: 'app-overview',
@@ -68,22 +72,16 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       return false;
     };
 
-    this.langService.getLanguage().subscribe(language => {
-      this.translateOrderState();
-    });
-
+    this.langService.getLanguage().subscribe(() => this.translateOrderState());
     this.translateOrderState();
   }
-
 
   public ngOnInit() {
     this.getUsers();
     this.getAllOrders();
-
   }
 
   public canDeactivate(): Observable<boolean> {
-
     if (this.changed === true) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
@@ -119,74 +117,45 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public getOrderElement(orderId) {
-     const tabTrackId = document.getElementsByClassName(orderId);
-    return tabTrackId;
+  public static getOrderElement(orderId) {
+    return document.getElementsByClassName(orderId);
 
- }
+  }
 
 
   public updateOrder(orderData) {
-     this.changed = false;
-    this.getOrderElement(orderData.value._id)[0].classList.toggle('show');
-    const updatedOrder = {
-      _id: orderData.value._id,
-      userID: orderData.value.userID,
-      state: orderData.value.state,
-      deliveryAddress: {
-        givenname: orderData.value.givenname, surname: orderData.value.surname,
-        streetHousenumber: orderData.value.streetHousenumber,
-        postCode: orderData.value.postCode, city: orderData.value.city
-      },
-      contactData: {email: orderData.value.email, phone: orderData.value.phone},
-      deliveryType: {delivery: orderData.value.delivery},
-      paymentType: {payment: orderData.value.payment}
-    };
-    this.orderService.updateOrder(updatedOrder)
-      .subscribe(order => {
-          this.translate.get(OverviewComponent.CODE_TRANSLATION_UPDATED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-
-            }
-          );
-        }
-      );
+    this.changed = false;
+    OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
+    const deliveryAddress: Address = new Address(orderData.value.givenname, orderData.value.surname, orderData.value.streetHousenumber, orderData.value.postCode, orderData.value.city);
+    const contactData: ContactData = new ContactData(orderData.value.email, orderData.value.phone);
+    const deliveryType: DeliveryType = new DeliveryType(orderData.value.delivery);
+    const paymentType: PaymentType = new PaymentType(orderData.value.payment);
+    this.orderService.updateOrder(new Order(orderData.value._id, orderData.value.userID, orderData.value.state, deliveryAddress, contactData, deliveryType, paymentType))
+      .subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_UPDATED));
   }
 
   public formChange(dataId) {
-      this.getOrderElement(dataId)[0].classList.add('show');
-      this.changed = true;
-    }
+    OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
+    this.changed = true;
+  }
 
 
   public deleteOrder(orderId) {
     this.orderService.deleteOrder(orderId)
-      .subscribe(order => {
-          this.translate.get(OverviewComponent.CODE_TRANSLATION_DELETED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-              this.getAllOrders();
-            }
-          );
+      .subscribe(() => {
+          this.getAllOrders();
+          this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_DELETED);
         }
       );
   }
 
   getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => {
-          this.users = users;
-
-        },
-        error => {
-        }
-      );
-
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
   public updateUser(userData) {
     this.changed = false;
-    console.log(userData);
-    this.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
+    OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
     const updatedUser = {
       _id: userData.value.user_id,
       firstname: userData.value.firstname,
@@ -195,44 +164,16 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       pwd: userData.value.pwd,
       type: userData.value.type
     };
-    this.userService.updateUser(updatedUser)
-      .subscribe(user => {
-          this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_UPDATED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-
-            }
-          );
-        },
-        error => {
-          if (error.status === 401) {
-            this.translate.get('').subscribe(translated => {
-                this.snackBarService.showInfo('' + ' ' + translated);
-              }
-            );
-          }
-        }
-      );
+    this.userService.updateUser(updatedUser).subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
   }
 
   public deleteUser(userId) {
     this.userService.deleteUser(userId)
-      .subscribe(user => {
-          this.translate.get(OverviewComponent.CODE_TRANSLATION_USER_DELETED).subscribe(translated => {
-              this.snackBarService.showInfo(' ' + ' ' + translated);
-              this.getUsers();
-            }
-          );
-        },
-        error => {
-          if (error.status === 401) {
-            this.translate.get('').subscribe(translated => {
-                this.snackBarService.showInfo('' + ' ' + translated);
-              }
-            );
-          }
+      .subscribe(() => {
+          this.getUsers();
+          this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_DELETED);
         }
       );
-
   }
 
   public sortData(sort: Sort) {
@@ -248,11 +189,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'name-order':
-          return this.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
+          return OverviewComponent.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
         case 'date':
-          return this.compare(a.orderDate, b.orderDate, isAsc);
+          return OverviewComponent.compare(a.orderDate, b.orderDate, isAsc);
         case 'state':
-          return this.compare(a.state, b.state, isAsc);
+          return OverviewComponent.compare(a.state, b.state, isAsc);
         default:
           return 0;
       }
@@ -261,14 +202,14 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'user-name':
-          return this.compare(a.name, b.name, isAsc);
+          return OverviewComponent.compare(a.name, b.name, isAsc);
         default:
           return 0;
       }
     });
   }
 
-  public compare(a, b, isAsc) {
+  public static compare(a, b, isAsc) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
@@ -280,10 +221,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
     }
   }
+
   public trackOrders(index, order) {
-     return order ? order._id : undefined;
+    return order ? order._id : undefined;
 
   }
+
   public trackusers(index, user) {
     return user ? user._id : undefined;
 
