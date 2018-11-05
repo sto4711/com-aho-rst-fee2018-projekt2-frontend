@@ -1,8 +1,3 @@
-import {Address} from "../order/address";
-import {ContactData} from "../order/contact-data";
-import {DeliveryType} from "../order/delivery-type";
-import {PaymentType} from "../order/payment-type";
-
 export class User {
   public name: string;
   public firstname: string;
