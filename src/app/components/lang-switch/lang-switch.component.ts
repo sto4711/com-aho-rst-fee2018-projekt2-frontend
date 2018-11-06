@@ -28,7 +28,7 @@ export class LangSwitchComponent {
     if (langCode !== this.selectedLanguage) {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;
-      this.breadcrumbTranslationService.get();
+      this.breadcrumbTranslationService.translate();
       this.langService.sendLanguage(this.selectedLanguage);
       this.langSwitch = !this.langSwitch;
 
