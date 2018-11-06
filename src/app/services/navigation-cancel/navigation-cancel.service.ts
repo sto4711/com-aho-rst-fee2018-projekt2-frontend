@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {NavigationCancel, Router} from "@angular/router";
-import {Logger} from "../logger/logger";
+import {NavigationCancel, Router} from '@angular/router';
+import {Logger} from '../logger/logger';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class NavigationCancelService {
   }
 
   public getCanceledRoute() {
-    if(!this.canceledRoute)  {
+    if (!this.canceledRoute)  {
       Logger.consoleLog(this.constructor.name, 'getCanceledRoute', 'canceledRoute not defined; set to /home');
       return '/home';
     }

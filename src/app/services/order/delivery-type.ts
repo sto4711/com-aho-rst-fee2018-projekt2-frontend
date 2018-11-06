@@ -1,7 +1,7 @@
 export class DeliveryType {
-  public delivery :string =  '';
+  public delivery = '';
 
-  constructor(delivery :string) {
+  constructor(delivery: string) {
     this.delivery = delivery;
   }
 }

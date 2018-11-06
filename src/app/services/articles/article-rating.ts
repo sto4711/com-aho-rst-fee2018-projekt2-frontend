@@ -1,5 +1,5 @@
 export class ArticleRating {
-  public articleID: string = '';
+  public articleID = '';
   public rateUp: boolean;
 
   constructor(articleID: string, rateUp: boolean) {

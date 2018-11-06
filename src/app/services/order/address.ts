@@ -1,9 +1,9 @@
 export class Address {
-  public givenname: string = '';
-  public surname: string = '';
-  public streetHousenumber: string = '';
-  public postCode: string = '';
-  public city: string = '';
+  public givenname = '';
+  public surname = '';
+  public streetHousenumber = '';
+  public postCode = '';
+  public city = '';
 
   constructor(givenname: string, surname: string, streetHousenumber: string, postCode: string, city: string) {
     this.givenname = givenname;

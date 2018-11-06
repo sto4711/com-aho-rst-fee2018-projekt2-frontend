@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
-import {Observable, of} from "rxjs";
-import {tap} from "rxjs/operators";
-import {AuthGuardService} from "./auth-guard.service";
-import {Logger} from "../logger/logger";
+import {Observable, of} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {AuthGuardService} from './auth-guard.service';
+import {Logger} from '../logger/logger';
 
 @Injectable({
   providedIn: 'root'

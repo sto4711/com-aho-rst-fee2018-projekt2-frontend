@@ -1,24 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
-import {tap} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
-import {Order} from "./order";
-import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
-import {Address} from "./address";
-import {ContactData} from "./contact-data";
-import {DeliveryType} from "./delivery-type";
-import {PaymentType} from "./payment-type";
-import {UserService} from "../user/user.service";
-import {backendUrls} from "../../constants/backend-urls";
-import {Logger} from "../logger/logger";
-import {User} from "../user/user";
+import {Observable, of} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Order} from './order';
+import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
+import {Address} from './address';
+import {ContactData} from './contact-data';
+import {DeliveryType} from './delivery-type';
+import {PaymentType} from './payment-type';
+import {UserService} from '../user/user.service';
+import {backendUrls} from '../../constants/backend-urls';
+import {Logger} from '../logger/logger';
+import {User} from '../user/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  public static STATE_APPROVED = 'APPROVED';
   private order: Order = null;
-  public static STATE_APPROVED: string = 'APPROVED';
 
   constructor(
     private http: HttpClient
@@ -61,7 +61,7 @@ export class OrderService {
 
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
-    return this.http.post<Order>(backendUrls.order + 'create', {"shoppingBasketId": shoppingBasketId}, {
+    return this.http.post<Order>(backendUrls.order + 'create', {'shoppingBasketId': shoppingBasketId}, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
@@ -124,8 +124,8 @@ export class OrderService {
 
   public approve(): Observable<Order> {
     return this.http.patch<Order>(backendUrls.order + 'state', {
-        "orderId": this.order._id,
-        "state": OrderService.STATE_APPROVED
+        'orderId': this.order._id,
+        'state': OrderService.STATE_APPROVED
       }, {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
@@ -143,7 +143,7 @@ export class OrderService {
     );
   }
 
-  public deleteOrder(orderID: Order["_id"]): Observable<Order> {
+  public deleteOrder(orderID: Order['_id']): Observable<Order> {
     return this.http.patch<Order>(backendUrls.order + 'delete-order', {'_id': orderID}, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -158,7 +158,7 @@ export class OrderService {
     this.clear();
     this.shoppingBasketService.clear();
     await this.shoppingBasketService.initBasket().toPromise();
-    Logger.consoleLog(this.constructor.name, 'resetOrder', 'ok')
+    Logger.consoleLog(this.constructor.name, 'resetOrder', 'ok');
   }
 
   private change(urlPath: string, order: Order): Observable<Order> {
@@ -168,7 +168,7 @@ export class OrderService {
     ).pipe(
       tap((order) => {
         this.order = order;
-        Logger.consoleLog(this.constructor.name, 'change', 'ok')
+        Logger.consoleLog(this.constructor.name, 'change', 'ok');
       })
     );
   }
