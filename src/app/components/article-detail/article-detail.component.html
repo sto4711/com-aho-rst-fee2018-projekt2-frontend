@@ -61,7 +61,7 @@
       <p *ngIf='article?.availability' class="article-detail-availability available">{{'ON-STOCK' | translate}}</p>
       <p *ngIf='!article?.availability' class="article-detail-availability available">
         {{'WILL-BE-DELIVERED-WITHIN-THREE-WEEKS' | translate}}</p>
-      <p class="article-detail-price">CHF {{article?.price}}</p>
+      <p class="article-detail-price">CHF {{article?.price | amountConverter}}</p>
 
       <p>
         <mat-form-field>

@@ -18,7 +18,7 @@
     <div class="article-data">
       <p><span class="article-listing-title">{{article.name}}</span><br>
         <span class="article-listing-descr">{{article.brand}}</span><br>
-        <span class="article-listing-price">CHF {{article.price}}</span>
+        <span class="article-listing-price">CHF {{article.price | amountConverter}}</span>
       </p>
       <a class="btn prod-listing" type="button" role="button"  aria-label="Zum Artikel"
          [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleQueryParameter | trim}" >{{'VIEW-ARTICLE' | translate}}</a>
