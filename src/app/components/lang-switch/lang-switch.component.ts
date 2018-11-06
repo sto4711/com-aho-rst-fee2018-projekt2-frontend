@@ -32,8 +32,7 @@ export class LangSwitchComponent {
 
       for (let i = 0; i < this.languages.length;i++) {
         if(this.languages[i].code === langCode)  {
-          console.log('hab ihn ' + this.languages[i].name);
-          this.langService.sendLanguage(this.languages[i]);
+           this.langService.sendLanguage(this.languages[i]);
           break;
         }
 
