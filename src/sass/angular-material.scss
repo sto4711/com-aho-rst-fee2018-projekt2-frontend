@@ -204,3 +204,7 @@ mat-expansion-panel-header {
     height: auto !important;
   }
 }
+
+.mat-form-field-prefix .mat-icon, .mat-form-field-suffix .mat-icon {
+  font-size: 2.2rem;
+}

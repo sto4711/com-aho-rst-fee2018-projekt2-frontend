@@ -46,85 +46,99 @@
                         <p>
                           <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="name"  matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="givenname"
                                    [(ngModel)]="order?.deliveryAddress.givenname"
                                    #givenname
                                    required>
+                            <mat-icon matSuffix>face</mat-icon>
+
                           </mat-form-field>
                         </p>
 
                         <p><span class="review-data">{{'SURNAME' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="surname" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="surname"
                                    [(ngModel)]="order?.deliveryAddress.surname"
                                    #surname
                                    required>
+                            <mat-icon matSuffix>face</mat-icon>
+
                           </mat-form-field>
                         </p>
                         <p><span class="review-data">{{'STREET' | translate}}: </span>
-                          <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                          <mat-form-field class="overview-input">
+                            <input aria-label="street" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="streetHousenumber"
                                    [(ngModel)]=" order?.deliveryAddress.streetHousenumber"
                                    #streetHousenumber
                                    required>
+                            <mat-icon matSuffix>home</mat-icon>
+
                           </mat-form-field>
                         </p>
                         <p><span class="review-data">{{'POST-CODE' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="post code" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="postCode"
                                    [(ngModel)]="order?.deliveryAddress.postCode"
                                    #postCode
                                    required>
+                            <mat-icon matSuffix>home</mat-icon>
+
                           </mat-form-field>
                         </p>
                         <p><span class="review-data">{{'CITY' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="city" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="city"
                                    [(ngModel)]="order?.deliveryAddress.city"
                                    #city
                                    required>
+                            <mat-icon matSuffix>location_city</mat-icon>
+
                           </mat-form-field>
                         </p>
 
                         <p><span class="review-data">{{'E-MAIL' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="e-mail" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="email"
                                    [(ngModel)]="order?.contactData.email"
                                    #email
                                    required>
+                            <mat-icon matSuffix>email </mat-icon>
                           </mat-form-field>
                         </p>
                         <p><span class="review-data">{{'PHONE' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="phone" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="phone"
                                    [(ngModel)]="order?.contactData.phone"
                                    #phone
                                    required>
+                            <mat-icon matSuffix>phone </mat-icon>
                           </mat-form-field>
                         </p>
 
                         <p><span class="review-data">{{'DELIVERY' | translate}}: </span>
                           <mat-form-field  class="overview-input">
-                            <input matInput placeholder=""
+                            <input aria-label="delivery type" matInput placeholder=""
                                    (change)="formChange(order._id);"
                                    name="delivery"
                                    [(ngModel)]="order?.deliveryType.delivery"
                                    #delivery
                                    required>
+                            <mat-icon matSuffix>local_airport</mat-icon>
+
                           </mat-form-field>
 
                         </p>
@@ -132,7 +146,7 @@
                         <p><span class="review-data">{{'PAYING-WITH' | translate}}: </span>
 
                           <mat-form-field>
-                            <mat-select name="payment"
+                            <mat-select aria-label="payment" name="payment"
                                         placeholder=" "
                                         [(ngModel)]="order.paymentType.payment"
                                         (selectionChange)="formChange(order._id);">
@@ -140,12 +154,14 @@
                                 {{pay.viewValue}}
                               </mat-option>
                             </mat-select>
+                            <mat-icon matSuffix>payment</mat-icon>
+
                           </mat-form-field>
                         </p>
                         <br><br>
                         <p>
                           <mat-form-field>
-                            <mat-select name="state"
+                            <mat-select aria-label="order state" name="state"
                                         placeholder="{{'CHANGE-ORDER-STATE' | translate}}"
                                         [(ngModel)]="order.state"
                                         (selectionChange)="formChange(order._id);">
