@@ -1,4 +1,4 @@
-export class LangDef {
+export class LanguageDefinition {
   public code : string;
   public name : string;
 

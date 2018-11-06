@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {LangDef} from "./lang-def";
+import {LanguageDefinition} from "./language-definition";
 
 @Injectable({ providedIn: 'root' })
 export class LangService {
-  private subject = new Subject<LangDef>();
+  private subject = new Subject<LanguageDefinition>();
 
-  public sendLanguage(langDef: LangDef) {
+  public sendLanguage(langDef: LanguageDefinition) {
     this.subject.next(langDef);
   }
 
@@ -14,7 +14,7 @@ export class LangService {
     this.subject.next();
   }
 
-  public getLanguage(): Observable<LangDef> {
+  public getLanguage(): Observable<LanguageDefinition> {
     return this.subject.asObservable();
   }
 }

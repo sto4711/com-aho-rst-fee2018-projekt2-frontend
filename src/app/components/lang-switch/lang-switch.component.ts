@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
-import {LangDef} from '../../services/lang-service/lang-def';
+import {LanguageDefinition} from "../../services/lang-service/language-definition";
 
 @Component({
   selector: 'app-lang-switch',
@@ -10,7 +10,7 @@ import {LangDef} from '../../services/lang-service/lang-def';
 })
 export class LangSwitchComponent {
   public selectedLanguage = 'de';
-  public languages = [new LangDef('de', 'Deutsch'), new LangDef('en', 'English')];
+  public languages = [new LanguageDefinition('de', 'Deutsch'), new LanguageDefinition('en', 'English')];
   public langSwitch: boolean;
 
   constructor(
