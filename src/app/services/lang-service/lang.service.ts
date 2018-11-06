@@ -5,15 +5,15 @@ import { Observable, Subject } from 'rxjs';
 export class LangService {
   private subject = new Subject<any>();
 
-  sendLanguage(lang: string) {
+  public sendLanguage(lang: string) {
     this.subject.next({ lang: lang });
   }
 
-  clearLanguage() {
+  public clearLanguage() {
     this.subject.next();
   }
 
-  getLanguage(): Observable<any> {
+  public getLanguage(): Observable<any> {
     return this.subject.asObservable();
   }
 }
