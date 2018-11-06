@@ -3,15 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {share, tap} from 'rxjs/operators';
 import {Article} from 'src/app/services/articles/article';
-import {ArticleRating} from "./article-rating";
-import {backendUrls} from "../../constants/backend-urls";
-import {Logger} from "../logger/logger";
+import {ArticleRating} from './article-rating';
+import {backendUrls} from '../../constants/backend-urls';
+import {Logger} from '../logger/logger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
-  articles$: Observable<Article[]>;
 
   constructor(
     private http: HttpClient
@@ -57,7 +56,7 @@ export class ArticleService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap((article: Article) => Logger.consoleLog(this.constructor.name, 'changeRating', 'ok'))
+      tap(() => Logger.consoleLog(this.constructor.name, 'changeRating', 'ok'))
     );
   }
 

@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
-import {tap} from "rxjs/operators";
+import {tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {AuthGuardService} from "./auth-guard.service";
-import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
-import {Logger} from "../logger/logger";
+import {AuthGuardService} from './auth-guard.service';
+import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
+import {Logger} from '../logger/logger';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class CheckoutReadyGuardService implements CanActivate {
 
     return of<boolean>((!(basketIsEmpty || hasNoToken)))
       .pipe(
-        tap((ok: boolean) => {
+        tap(() => {
           if (basketIsEmpty) {
             this.router.navigate(['home']).then();
           }

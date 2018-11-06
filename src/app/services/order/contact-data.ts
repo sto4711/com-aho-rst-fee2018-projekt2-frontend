@@ -1,8 +1,8 @@
 export class ContactData {
-  public email :string = '';
-  public phone :string = '';
+  public email  = '';
+  public phone  = '';
 
-  constructor(email :string, phone :string) {
+  constructor(email: string, phone: string) {
     this.email = email;
     this.phone = phone;
   }

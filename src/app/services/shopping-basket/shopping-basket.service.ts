@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {tap, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {ShoppingBasket} from "./shopping-basket";
@@ -35,7 +35,7 @@ export class ShoppingBasketService {
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
             Logger.consoleLog(this.constructor.name, 'initBasket', 'shoppingBasket loaded');
           })
-          , map((value) => true)
+          , map(() => true)
         );
     }
     else {
@@ -46,7 +46,7 @@ export class ShoppingBasketService {
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
             Logger.consoleLog(this.constructor.name, 'initBasket', 'no shoppingBasket -> created');
           })
-          , map((value) => true)
+          , map(() => true)
         );
     }
   }
