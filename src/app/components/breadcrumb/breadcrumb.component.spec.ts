@@ -1,5 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, TestBed } from '@angular/core/testing';
 import { BreadcrumbComponent } from './breadcrumb.component';
 import {InitAppService} from '../../services/init-app/init-app.service';
 import {UserService} from '../../services/user/user.service';
@@ -45,8 +44,6 @@ import {ShoppingBasketListingComponent} from '../shopping-basket-listing/shoppin
 import {OverviewComponent} from '../admin/overview/overview.component';
 import {LoginInfoComponent} from '../login-info/login-info.component';
 import {MyOrdersComponent} from '../my-orders/my-orders.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';
 describe('BreadcrumbComponent', () => {
 
   beforeEach(async(() => {

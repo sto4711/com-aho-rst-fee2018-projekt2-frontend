@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {LangDef} from './lang-def';
-import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';
 import {LangService} from '../../services/lang-service/lang.service';
 
 @Component({
@@ -16,26 +15,22 @@ export class LangSwitchComponent {
 
   constructor(
     private translate: TranslateService
-    , private breadcrumbTranslationService: BreadcrumbTranslationService
     , private langService: LangService
    ) {
     translate.setDefaultLang(this.selectedLanguage);
     this.langSwitch = true;
-
   }
 
   public onLangChanged(langCode) {
     if (langCode !== this.selectedLanguage) {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;
-      this.breadcrumbTranslationService.translate();
 
       for (let i = 0; i < this.languages.length;i++) {
         if(this.languages[i].code === langCode)  {
-           this.langService.sendLanguage(this.languages[i]);
+          this.langService.sendLanguage(this.languages[i]);
           break;
         }
-
       }
       this.langSwitch = !this.langSwitch;
     }
