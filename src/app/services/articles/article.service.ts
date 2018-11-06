@@ -11,7 +11,6 @@ import {Logger} from "../logger/logger";
   providedIn: 'root'
 })
 export class ArticleService {
-  articles$: Observable<Article[]>;
 
   constructor(
     private http: HttpClient
