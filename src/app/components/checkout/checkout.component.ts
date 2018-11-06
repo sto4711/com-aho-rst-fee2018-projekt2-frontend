@@ -31,7 +31,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public itemChangePossible = false;
   public isAutoStepping = false;
 
-
   @ViewChild('stepper') stepper: MatStepper;
 
   constructor(
@@ -70,7 +69,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
     const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty);
     const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty);
     const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty);
-    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty ? true: false);
+    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty ? true : false);
 
     if (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
@@ -99,7 +98,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
         Validators.maxLength(100),
         Validators.minLength(5)]
       ],
-      phone: ['', [Validators.required, Validators.pattern('^\\+(?:[0-9] ?){6,14}[0-9]$'),
+      phone: ['', [Validators.required, Validators.pattern('^(?=.*?[1-9])[+0-9()-/^\" "]+$'),
         Validators.maxLength(30),
         Validators.minLength(10)]
       ]

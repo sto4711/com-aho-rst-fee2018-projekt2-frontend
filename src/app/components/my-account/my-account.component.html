@@ -5,10 +5,12 @@
     <form [formGroup]="account" class="form login-form" (ngSubmit)="onLogin()">
       <h4>{{'I-ALREADY-HAVE-AN-ACCOUNT' | translate}}</h4>
       <mat-form-field>
-        <input matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="off">
+        <input aria-label="email" matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="on">
+        <mat-icon matSuffix>email </mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="{{'PASSWORD' | translate}}" formControlName="pwd" required autocomplete="off">
+        <input aria-label="password" matInput type="password" placeholder="{{'PASSWORD' | translate}}" formControlName="pwd" required autocomplete="on" [type]="hide ? 'password' : 'text'" >
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <br>
       <button class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
@@ -16,16 +18,20 @@
     <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
       <mat-form-field>
-        <input matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="name" required>
+        <input aria-label="name" matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="name" required>
+        <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="{{'SURNAME' | translate}}" formControlName="firstname" required>
+        <input aria-label="firstname" matInput placeholder="{{'SURNAME' | translate}}" formControlName="firstname" required>
+        <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="off">
+        <input aria-label="email" matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="off">
+        <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i> </mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="{{'PASSWORD' | translate}}" formControlName="pwd" required autocomplete="off">
+        <input aria-label="password" matInput type="password" placeholder="{{'PASSWORD' | translate}}" formControlName="pwd" required autocomplete="off" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <br>
       <button class="btn form-btn" type="submit"><span class="btn-form-text"> {{'CREATE-ACCOUNT' | translate}}</span></button>
