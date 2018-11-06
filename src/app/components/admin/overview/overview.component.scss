@@ -30,42 +30,19 @@ form.admin-form {
 }
 
 
-.order-customer-articles {
-  width: 65%;
-}
+
 
 .admin-customer-data {
 
   width: 35%;
 }
 
-.order-item-listing {
-  @include flex;
-  justify-content: space-between;
-
-}
-
-.order-item {
-  margin: 0 0 25px 0;
-}
-
-.order-article-attr {
-  display: inline-block;
-  min-width: 150px;
-  font-weight: $font-weight-bold;
-}
 
 .role {
   margin: 0 0 13px 0;
 }
 
-@media screen and (max-width: 675px) {
-  .order-customer-articles,   .order-customer-data  {
-    width: 100%;
-  }
 
-
-}
 .accordion-table {
   width: 100%;
 }

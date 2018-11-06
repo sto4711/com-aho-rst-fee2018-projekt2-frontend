@@ -51,13 +51,14 @@
         <mat-form-field class="checkout-field">
           <input  aria-label="phone" matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="phone" required>
           <mat-icon matSuffix>phone </mat-icon>
-
         </mat-form-field>
         <br>
+        <div class="nav-wrap">
         <div class="checkout-nav">
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
+        </div><!-- end .nav-wrap -->
       </form>
     </mat-step>
 
@@ -72,10 +73,12 @@
           <br>
         </mat-radio-group>
         <br>
+        <div class="nav-wrap">
         <div class="checkout-nav">
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
+        </div><!-- end .nav-wrap -->
       </form>
     </mat-step>
     <mat-step [stepControl]="paymentType">
@@ -90,10 +93,12 @@
 
         </mat-radio-group>
         <br>
+        <div class="nav-wrap">
         <div class="checkout-nav">
           <button mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
           <button mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
+      </div><!-- end .nav-wrap -->
       </form>
     </mat-step>
     <mat-step id="checkout-review">
