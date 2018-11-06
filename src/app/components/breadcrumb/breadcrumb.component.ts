@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';
-import {LangService} from "../../services/lang-service/lang.service";
+import {BreadcrumbPath} from "./breadcrumb-path";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -9,6 +9,12 @@ import {LangService} from "../../services/lang-service/lang.service";
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit {
+
+  public firstParam: string;
+  public breadcrumbPath: BreadcrumbPath[] = [];
+
+
+
   constructor(
     private route: ActivatedRoute,
     public breadcrumbTranslationService: BreadcrumbTranslationService,

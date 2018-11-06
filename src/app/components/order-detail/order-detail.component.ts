@@ -27,7 +27,7 @@ export class OrderDetailComponent implements OnInit {
       return false;
     };
     this.langSwitch = true;
-    this.langService.getLanguage().subscribe(language => {
+    this.langService.getLanguage().subscribe(() => {
       this.langSwitch = !this.langSwitch;
     });
   }

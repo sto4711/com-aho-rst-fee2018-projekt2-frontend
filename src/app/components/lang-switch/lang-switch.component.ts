@@ -29,9 +29,16 @@ export class LangSwitchComponent {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;
       this.breadcrumbTranslationService.translate();
-      this.langService.sendLanguage(this.selectedLanguage);
-      this.langSwitch = !this.langSwitch;
 
+      for (let i = 0; i < this.languages.length;i++) {
+        if(this.languages[i].code === langCode)  {
+          console.log('hab ihn ' + this.languages[i].name);
+          this.langService.sendLanguage(this.languages[i]);
+          break;
+        }
+
+      }
+      this.langSwitch = !this.langSwitch;
     }
   }
 

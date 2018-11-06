@@ -1,7 +1,7 @@
 <div class="row">
   <app-breadcrumb></app-breadcrumb>
   <h2>{{'MY-ORDER' | translate}}</h2>
-  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange($event)" >
+  <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onSelectionChange()" >
     <mat-step [stepControl]="deliveryAddress">
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
