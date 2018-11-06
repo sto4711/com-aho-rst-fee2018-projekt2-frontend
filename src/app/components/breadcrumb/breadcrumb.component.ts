@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BreadcrumbTranslationService} from '../../services/breadcrumb-translation/breadcrumb-translation.service';
 import {BreadcrumbPath} from "./breadcrumb-path";
+import {TranslateService} from "@ngx-translate/core";
+import {LangService} from "../../services/lang-service/lang.service";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -17,19 +18,31 @@ export class BreadcrumbComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public breadcrumbTranslationService: BreadcrumbTranslationService,
+    private translateService: TranslateService,
+    private langService: LangService
   ) {
+    this.langService.getLanguage().subscribe(() => this.translateBreadcrumb());
   }
 
   public ngOnInit() {
     this.route.paramMap
       .subscribe(() => {
-        this.breadcrumbTranslationService.firstParam = this.route.snapshot.queryParams.article;
+        this.firstParam = this.route.snapshot.queryParams.article;
         this.route.data.subscribe(data => {
-          this.breadcrumbTranslationService.breadcrumbPath = data.breadcrumbPath;
-          this.breadcrumbTranslationService.translate();
+          this.breadcrumbPath = data.breadcrumbPath;
+          this.translateBreadcrumb();
         });
       });
   }
+
+  private translateBreadcrumb() {
+     for (let i = 0; i < this.breadcrumbPath.length; i++ ) {
+        this.translateService.get(this.breadcrumbPath[i].breadcrumb).subscribe(translated => {
+           this.breadcrumbPath[i].breadcrumbTranslated = translated;
+          }
+        );
+      }
+  }
+
 
 }
