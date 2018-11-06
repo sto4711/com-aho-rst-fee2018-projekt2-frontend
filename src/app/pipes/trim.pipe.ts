@@ -4,11 +4,11 @@ import {Pipe, PipeTransform} from '@angular/core';
   name: 'trim'
 
 })
-export class TrimPipe implements PipeTransform{
+export class TrimPipe implements PipeTransform {
   transform(value: string, args?: any) {
-    if(!value)
+    if (!value) {
       return null;
-
-    return value.replace(/ /g,"-");
+    }
+    return value.replace(/ /g, '-');
   }
 }

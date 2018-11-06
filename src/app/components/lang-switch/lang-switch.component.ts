@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {LangService} from '../../services/lang-service/lang.service';
-import {LangDef} from "../../services/lang-service/lang-def";
+import {LangDef} from '../../services/lang-service/lang-def';
 
 @Component({
   selector: 'app-lang-switch',
@@ -26,8 +26,8 @@ export class LangSwitchComponent {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;
 
-      for (let i = 0; i < this.languages.length;i++) {
-        if(this.languages[i].code === langCode)  {
+      for (let i = 0; i < this.languages.length; i++) {
+        if (this.languages[i].code === langCode)  {
           this.langService.sendLanguage(this.languages[i]);
           break;
         }

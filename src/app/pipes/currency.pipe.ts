@@ -6,9 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AmountConverterPipe implements PipeTransform {
 
   public transform(value: any | string, locale?: string): string {
-    if(value)  {
-      return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&'");
-    }else {
+    if (value)  {
+      return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&');
+    } else {
       return value;
     }
   }

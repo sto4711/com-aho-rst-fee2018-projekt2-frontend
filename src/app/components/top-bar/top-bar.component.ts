@@ -14,7 +14,7 @@ export class TopBarComponent  {
   ) {
   }
 
-  public goToHome(){
+  public goToHome() {
     this.router.navigate(['/home']).then();
   }
 }

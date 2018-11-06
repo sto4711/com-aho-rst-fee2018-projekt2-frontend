@@ -49,7 +49,7 @@ export class ShoppingBasketComponent {
                                          , articleAmount: ShoppingBasketItem['articleAmount']) {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
-        .subscribe(shoppingBasket => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED));
+        .subscribe(() => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED));
     }
       if (articleAmount < 1) {
       this.snackBarService.showWarning(ShoppingBasketComponent.CODE_TRANSLATION_MIN_QUANTITY);
@@ -60,7 +60,7 @@ export class ShoppingBasketComponent {
 
   public removeShoppingBasketItem(articleId: ShoppingBasketItem['articleID'], articleName: ShoppingBasketItem['articleName']) {
     this.shoppingBasketService.removeItem(articleId)
-      .subscribe(shoppingBasket => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED));
+      .subscribe(() => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED));
   }
 
 }

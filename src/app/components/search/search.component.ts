@@ -4,8 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
 import {Article} from '../../services/articles/article';
-import {HttpErrorResponse} from '@angular/common/http';
-import {Router} from '@angular/router';
+ import {Router} from '@angular/router';
 
 
 @Component({
@@ -29,7 +28,7 @@ export class SearchComponent {
         debounceTime(300), // wait 300ms after each keystroke before considering the term
         distinctUntilChanged(), // ignore new term if same as previous term
         switchMap((term: string) => this.searchArticle(term)),
-        catchError((error: HttpErrorResponse) => {
+        catchError(() => {
           return of<Article[]>([]); // continue with no message
         })
       );
