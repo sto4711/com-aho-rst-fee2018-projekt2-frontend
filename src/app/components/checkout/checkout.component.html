@@ -61,7 +61,6 @@
         </div><!-- end .nav-wrap -->
       </form>
     </mat-step>
-
     <mat-step [stepControl]="deliveryType">
       <ng-template matStepLabel>{{'DELIVERY' | translate}}</ng-template>
       <form [formGroup]="deliveryType">
@@ -84,7 +83,7 @@
     <mat-step [stepControl]="paymentType">
       <ng-template matStepLabel>{{'PAYING-WITH' | translate}}</ng-template>
       <form [formGroup]="paymentType">
-        <mat-radio-group formControlName="payment" aria-label="payment">
+        <mat-radio-group aria-label="payment" formControlName="payment">
           <mat-radio-button value="Paypal">Paypal</mat-radio-button>
           <br>
           <mat-radio-button value="Mastercard">Mastercard</mat-radio-button>
