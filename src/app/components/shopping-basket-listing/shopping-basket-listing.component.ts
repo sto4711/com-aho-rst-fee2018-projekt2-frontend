@@ -24,7 +24,7 @@ export class ShoppingBasketListingComponent implements OnInit {
   ) {
 
      this.langSwitch = true;
-    this.langService.getLanguage().subscribe(language => {
+    this.langService.getLanguage().subscribe(() => {
       this.langSwitch = !this.langSwitch;
     });
 

@@ -49,8 +49,8 @@ export class ArticleDetailComponent implements OnInit {
       return false;
     };
 
-    this.langService.getLanguage().subscribe(language => {
-      this.language = language.lang;
+    this.langService.getLanguage().subscribe(langDef  => {
+      this.language = langDef.code;
     });
   }
 
@@ -82,7 +82,7 @@ export class ArticleDetailComponent implements OnInit {
 
   public onAddShoppingBasketItem() {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
-      .subscribe(shoppingBasket => {
+      .subscribe(() => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
               this.snackBarService.showInfo(this.article.name + ' ' + translated);
             }
