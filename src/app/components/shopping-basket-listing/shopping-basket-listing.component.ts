@@ -9,8 +9,11 @@ import {LangService} from '../../services/lang-service/lang.service';
   styleUrls: ['./shopping-basket-listing.component.scss']
 })
 export class ShoppingBasketListingComponent implements OnInit {
-  @Input()  itemChangePossible: boolean;
-  @Input()  isCheckout: boolean;
+  @Input() itemChangePossible: boolean;
+  @Input() isCheckout: boolean;
+  @Input() isOrderDetail: boolean;
+  @Input() isBasket: boolean;
+
   @Input()  order: Order;
   @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();

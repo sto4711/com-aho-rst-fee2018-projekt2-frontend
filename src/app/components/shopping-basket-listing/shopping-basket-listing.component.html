@@ -1,4 +1,4 @@
-<ng-container *ngIf="isCheckout">
+<ng-container *ngIf="isBasket">
 <table class="shopping-basket-table">
   <thead>
   <tr>
@@ -67,8 +67,8 @@
 </table>
 </ng-container>
 
-<ng-container *ngIf="!isCheckout">
-<table class="shopping-basket-table">
+<ng-container *ngIf="isCheckout">
+ <table class="shopping-basket-table">
    <thead>
    <tr>
      <th>{{'ITEM-NUMBER' | translate}}</th>
@@ -79,7 +79,7 @@
    </tr>
    </thead>
    <tbody>
-   <tr *ngFor="let shoppingBasketItem of order?.shoppingBasket.items">
+   <tr *ngFor="let shoppingBasketItem of shoppingBasketService.getShoppingBasket().items">
      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
        {{shoppingBasketItem.itemNumber}}
      </td>
@@ -109,11 +109,63 @@
          <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
          <span>
           <strong> CHF <span
-            class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
+            class="amount-spacer">{{shoppingBasketService.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
       </span>
        </p>
      </td>
    </tr>
    </tfoot>
  </table>
+</ng-container>
+
+
+<ng-container *ngIf="isOrderDetail">
+  <table class="shopping-basket-table">
+    <thead>
+    <tr>
+      <th>{{'ITEM-NUMBER' | translate}}</th>
+      <th>{{'ARTICLE' | translate}}</th>
+      <th>{{'PRICE' | translate}}</th>
+      <th>{{'AMOUNT' | translate}}</th>
+      <th>{{'SUM-ARTICLE' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let orderItem of order?.shoppingBasket.items">
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        {{orderItem.itemNumber}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        {{orderItem.articleName}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        CHF <span class="amount-spacer">{{orderItem.articlePrice | amountConverter}}</span></td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        {{orderItem.articleAmount}}
+      </td>
+      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+        CHF <span class="amount-spacer">{{orderItem.articlePriceSum | amountConverter}}</span>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td colspan="2" class="basket-total-amount">
+        <p><span class="result-text">{{'DELIVERY-COSTS' | translate}}</span>
+          <span> CHF <span class="amount-spacer">15.00</span> </span>
+        </p>
+        <p>
+          <span class="result-text"><strong>{{'TOTAL' | translate}}</strong></span>
+          <span>
+          <strong> CHF <span
+            class="amount-spacer">{{order?.shoppingBasket.totalSum + 15 | amountConverter}}</span> </strong>
+      </span>
+        </p>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
 </ng-container>
