@@ -25,6 +25,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
   public account: FormGroup;
   public accountNew: FormGroup;
+  public hide = true;
 
   constructor(
     private _formBuilder: FormBuilder
