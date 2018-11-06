@@ -8,7 +8,7 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to com-aho-rst-fee2018-projekt2-frontend!');
+    AppPage.navigateTo();
+    expect(AppPage.getParagraphText()).toEqual('Welcome to com-aho-rst-fee2018-projekt2-frontend!');
   });
 });

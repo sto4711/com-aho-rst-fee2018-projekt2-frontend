@@ -6,7 +6,7 @@
       <span
         class="loginInfoContainer__name">{{userService.getUser() ?.name  }} {{userService.getUser()?.firstname}}
       </span>
-      <i *ngIf="userService.getUser()?.token" (click)="onLogOut()"
+      <i *ngIf="userService.getUser()?.token" (click)="onLogOut().then()"
          class="fas fa-sign-out-alt loginInfoContainer__logout"
          matTooltip="{{'LOG-OUT' | translate}}"></i>
     </p>
@@ -16,7 +16,7 @@
   </ng-container>
 
   <ng-container *ngIf="!userService.getUser()">
-    <p class="loginInfoContainer__logout" (click)="onGoToLogIn()" matTooltip="{{'LOGIN' | translate}}">
+    <p class="loginInfoContainer__logout" (click)="onGoToLogIn().then()" matTooltip="{{'LOGIN' | translate}}">
       <i class="fas fa-user-circle "></i>{{'MY-ACCOUNT' | translate}}
     </p>
   </ng-container>

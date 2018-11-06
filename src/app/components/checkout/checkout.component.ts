@@ -11,7 +11,6 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.service';
 import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
-import {UserService} from '../../services/user/user.service';
 import {AuthGuardService} from '../../services/guards/auth-guard.service';
 
 @Component({
@@ -40,9 +39,6 @@ export class CheckoutComponent implements CanComponentDeactivate {
     , private router: Router
     , private confirmYesNoService: ConfirmYesNoService
     , private snackBarService: SnackBarService
-    , private userService: UserService
-
-
   ) {
     this.initValidation();
   }
@@ -50,6 +46,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
   public ngAfterViewInit() {
     this.orderService.getOrder()
       .subscribe(order => {
+        /* micro thread / delay with promise */
         Promise.resolve(null).then(() => {
           this.setFormGroupValues(order);
           if (!order.doNotStep) {
@@ -65,11 +62,10 @@ export class CheckoutComponent implements CanComponentDeactivate {
 
 
   public canDeactivate(): Observable<boolean> {
-
     const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty);
     const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty);
     const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty);
-    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty ? true : false);
+    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty);
 
     if (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
@@ -78,7 +74,7 @@ export class CheckoutComponent implements CanComponentDeactivate {
         );
     }
 
-      return of(true);
+    return of(true);
   }
 
   private initValidation() {
@@ -143,11 +139,11 @@ export class CheckoutComponent implements CanComponentDeactivate {
         this.contactData.markAsPristine();
         this.orderService.updateContactData(this.contactData.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
-        if (this.deliveryType.dirty) {
+      if (this.deliveryType.dirty) {
         this.deliveryType.markAsPristine();
         this.orderService.updateDeliveryType(this.deliveryType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }
-       if (this.paymentType.dirty) {
+      if (this.paymentType.dirty) {
         this.paymentType.markAsPristine();
         this.orderService.updatePaymentType(this.paymentType.getRawValue()).subscribe(order => this.setFormGroupValues(order));
       }

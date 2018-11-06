@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Router} from '@angular/router';
 
@@ -7,17 +7,14 @@ import {Router} from '@angular/router';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent  {
   constructor(
     public shoppingBasketService: ShoppingBasketService,
     private router: Router
   ) {
   }
 
-  ngOnInit() {
-  }
-  goToHome(){
-    this.router.navigate(['/home']);
-
+  public goToHome(){
+    this.router.navigate(['/home']).then();
   }
 }

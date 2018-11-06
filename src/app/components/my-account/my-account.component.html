@@ -2,7 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
   <h2>{{'MY-ACCOUNT' | translate}}</h2>
   <div class="login-form-wrap">
-    <form [formGroup]="account" class="form login-form" (ngSubmit)="onLogin()">
+    <form [formGroup]="account" class="form login-form" (ngSubmit)="onLogin().then()">
       <h4>{{'I-ALREADY-HAVE-AN-ACCOUNT' | translate}}</h4>
       <mat-form-field>
         <input aria-label="email" matInput type="email" placeholder="{{'E-MAIL' | translate}}" formControlName="email" required autocomplete="on">
@@ -15,7 +15,7 @@
       <br>
       <button class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
     </form>
-    <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate()">
+    <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate().then()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
       <mat-form-field>
         <input aria-label="name" matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="name" required>
