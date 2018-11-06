@@ -11,7 +11,6 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BreadcrumbPath} from './components/breadcrumb/breadcrumb-path';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {OrderService} from './services/order/order.service';
 import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {AuthAdminGuardService} from "./services/guards/auth-admin-guard.service";
 import {MyOrdersComponent} from "./components/my-orders/my-orders.component";
