@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material';
 export class DialogConfirmYesNoComponent {
   public title: string;
 
-  constructor(public dialogRef: MatDialogRef<DialogConfirmYesNoComponent>) { }
+  constructor() { }
 
 
 }

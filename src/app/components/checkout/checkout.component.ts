@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Router} from '@angular/router';
@@ -19,7 +19,7 @@ import {AuthGuardService} from '../../services/guards/auth-guard.service';
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent implements CanComponentDeactivate {
+export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit  {
   private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
 
   public isLinear = true;

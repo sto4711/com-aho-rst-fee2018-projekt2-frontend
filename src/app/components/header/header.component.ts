@@ -9,6 +9,7 @@ import { Component} from '@angular/core';
 export class HeaderComponent  {
   constructor() { }
 
+  // noinspection JSMethodCanBeStatic
   public hamburger() {
     if (window.innerWidth <= 562 ) {
     document.getElementsByClassName('bg-main-nav')[0].classList.toggle('expand');
