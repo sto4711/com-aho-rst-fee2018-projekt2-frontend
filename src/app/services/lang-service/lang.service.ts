@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {LangDef} from '../../components/lang-switch/lang-def';
+import {LangDef} from "./lang-def";
 
 @Injectable({ providedIn: 'root' })
 export class LangService {
