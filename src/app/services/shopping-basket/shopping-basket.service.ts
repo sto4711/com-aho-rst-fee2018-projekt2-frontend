@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
-import {tap, map} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
-import {ShoppingBasket} from "./shopping-basket";
-import {ShoppingBasketItem} from "./shopping-basket-item";
-import {backendUrls} from "../../constants/backend-urls";
-import {Logger} from "../logger/logger";
+import {Observable} from 'rxjs';
+import {tap, map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {ShoppingBasket} from './shopping-basket';
+import {ShoppingBasketItem} from './shopping-basket-item';
+import {backendUrls} from '../../constants/backend-urls';
+import {Logger} from '../logger/logger';
 
 
 @Injectable({
@@ -37,8 +37,7 @@ export class ShoppingBasketService {
           })
           , map(() => true)
         );
-    }
-    else {
+    } else {
       return this.create()
         .pipe(
           tap((shoppingBasket: ShoppingBasket) => {
@@ -66,7 +65,7 @@ export class ShoppingBasketService {
     );
   }
 
-  public get(shoppingBasketID: ShoppingBasket["_id"]): Observable<ShoppingBasket> {
+  public get(shoppingBasketID: ShoppingBasket['_id']): Observable<ShoppingBasket> {
     return this.http.get<ShoppingBasket>(backendUrls.shoppingBasket + '?id=' + shoppingBasketID, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -75,7 +74,8 @@ export class ShoppingBasketService {
     );
   }
 
-  public addItem(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+  public addItem(articleId: ShoppingBasketItem['articleID'],
+                 articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
@@ -83,12 +83,13 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'addItem', 'ok')
+        Logger.consoleLog(this.constructor.name, 'addItem', 'ok');
       })
     );
   }
 
-  public changeItemAmount(articleId: ShoppingBasketItem["articleID"], articleAmount: ShoppingBasketItem["articleAmount"]): Observable<ShoppingBasket> {
+  public changeItemAmount(articleId: ShoppingBasketItem['articleID'],
+                          articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
@@ -96,12 +97,12 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'changeItemAmount', 'ok')
+        Logger.consoleLog(this.constructor.name, 'changeItemAmount', 'ok');
       })
     );
   }
 
-  public removeItem(articleId: ShoppingBasketItem["articleID"]): Observable<ShoppingBasket> {
+  public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
     const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
@@ -109,7 +110,7 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'removeItem', 'ok')
+        Logger.consoleLog(this.constructor.name, 'removeItem', 'ok');
       })
     );
   }

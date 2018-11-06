@@ -4,9 +4,9 @@ import {map, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
 import {User} from 'src/app/services/user/user';
-import {Login} from "./login";
-import {backendUrls} from "../../constants/backend-urls";
-import {Logger} from "../logger/logger";
+import {Login} from './login';
+import {backendUrls} from '../../constants/backend-urls';
+import {Logger} from '../logger/logger';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ import {Logger} from "../logger/logger";
 })
 export class UserService {
   private user: User;
-  public differentUserHasLoggedIn: boolean = false;
+  public differentUserHasLoggedIn = false;
 
   constructor(
     private http: HttpClient,
@@ -45,7 +45,7 @@ export class UserService {
     }
   }
 
-  public get(userID: User["_id"]): Observable<User> {
+  public get(userID: User['_id']): Observable<User> {
     return this.http.get<User>(backendUrls.user + '?id=' + userID, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -79,7 +79,7 @@ export class UserService {
   public signOut(): Observable<string> {
     return this.http.post<string>(backendUrls.user + 'sign-out', {'userId': this.user._id}, {
       headers: {'Content-Type': 'application/json'}
-    },).pipe(
+    }, ).pipe(
       tap((result: string) => {
         this.user = null;
         localStorage.removeItem('userId');
@@ -91,7 +91,7 @@ export class UserService {
   public create(user: User): Observable<User> {
     return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
-    },).pipe(
+    }, ).pipe(
       tap((user: User) => {
         this.user = user;
         Logger.consoleLog(this.constructor.name, 'create', 'ok');
@@ -112,7 +112,7 @@ export class UserService {
   public deleteUser(userID: User['_id']): Observable<User> {
     return this.http.post<User>(backendUrls.user + 'deleteUser', {'_id': userID}, {
       headers: {'Content-Type': 'application/json'}
-    },).pipe(
+    }, ).pipe(
       tap((user: User) => Logger.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
     );
   }

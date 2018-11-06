@@ -5,10 +5,10 @@ export class User {
   public pwd: string;
   public type: string;
   public token: string;
-  public _id:string;
+  public _id: string;
 
 
-  constructor(_id: string,firstname: string, name: string, email: string, pwd: string, type:string ) {
+  constructor(_id: string, firstname: string, name: string, email: string, pwd: string, type: string ) {
     this._id = _id;
     this.firstname = firstname;
     this.name = name;
