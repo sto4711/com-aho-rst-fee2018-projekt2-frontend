@@ -9,7 +9,7 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
-import {LanguageService} from "../../services/lang-service/language.service";
+import {LanguageService} from "../../services/language/language.service";
 
 @Component({
   selector: 'app-article-detail',

@@ -37,7 +37,7 @@ import {MatComponentsModule} from '../../mat-components/mat-components.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {InitAppService} from '../../services/init-app/init-app.service';
 import {UserService} from '../../services/user/user.service';
-import {LanguageService} from '../../services/lang-service/lang.service';
+import {LanguageService} from "../../services/language/language.service";
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {ArticlesResponseCacheService} from '../../services/articles-response-cache/articles-response-cache.service';

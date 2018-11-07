@@ -16,7 +16,7 @@ import {Address} from '../../../services/order/address';
 import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
-import {LanguageService} from "../../../services/lang-service/language.service";
+import {LanguageService} from "../../../services/language/language.service";
 
 @Component({
   selector: 'app-overview',

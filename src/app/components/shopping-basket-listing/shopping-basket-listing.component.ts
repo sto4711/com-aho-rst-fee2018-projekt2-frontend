@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Order} from '../../services/order/order';
-import {LanguageService} from "../../services/lang-service/language.service";
+import {LanguageService} from "../../services/language/language.service";
 
 @Component({
   selector: 'app-shopping-basket-listing',
