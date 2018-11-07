@@ -70,7 +70,6 @@ export class UserService {
         }
         this.user = user;
         localStorage.setItem('userId', user._id);
-        localStorage.setItem('token', user.token);
         Logger.consoleLog(this.constructor.name, 'signIn', 'ok');
       })
     );
