@@ -16,12 +16,12 @@
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form class="add-to-chart">
-        <button type="button" role="button" class="minus" name="articleMinus" aria-label="minus"
+        <button aria-label="minus" type="button" role="button" class="minus" name="articleMinus" aria-label="minus"
                 (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount-1)">
           <img src="./assets/images/button-minus.gif" alt="button-minus" width="11" height="11"></button>
         <input disabled class="cart-article-count" type="text" name="articleCount"
                [(ngModel)]="article.articleAmount" #articleAmount="ngModel"/>
-        <button class="plus" role="button" type="button" name="articlePlus" aria-label="plus"
+        <button aria-label="plus" class="plus" role="button" type="button" name="articlePlus" aria-label="plus"
                 (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount+1)">
           <img src="./assets/images/button-plus.gif" alt="button-plus" width="11" height="11"></button>
       </form>
