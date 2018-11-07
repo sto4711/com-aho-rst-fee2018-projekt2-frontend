@@ -28,7 +28,6 @@ import {DeTrimPipe} from './pipes/de-trim.pipe';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {LangSwitchComponent} from './components/lang-switch/lang-switch.component';
 import {ShoppingBasketListingComponent} from './components/shopping-basket-listing/shopping-basket-listing.component';
-import {LangService} from './services/lang-service/lang.service';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {SnackBarService} from "./services/commons/snack-bar/snack-bar.service";
 import {DialogConfirmYesNoComponent} from "./components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component";
@@ -43,6 +42,7 @@ import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 import {InitAppService} from "./services/init-app/init-app.service";
 import {NavigationCancelService} from "./services/navigation-cancel/navigation-cancel.service";
+import {LanguageService} from "./services/lang-service/language.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,7 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     DialogConfirmYesNoComponent],
-  providers: [InitAppService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
+  providers: [InitAppService, UserService, LanguageService, CanComponentDeactivateGuard, SnackBarService,
     ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},

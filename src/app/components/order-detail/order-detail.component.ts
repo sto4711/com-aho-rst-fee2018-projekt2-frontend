@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LanguageService} from "../../services/lang-service/language.service";
 
 @Component({
   selector: 'app-order-detail',
@@ -19,7 +19,7 @@ export class OrderDetailComponent implements OnInit {
     private router: Router,
     public orderService: OrderService,
     private translate: TranslateService,
-    private langService: LangService
+    private langService: LanguageService
 
   ) {
 

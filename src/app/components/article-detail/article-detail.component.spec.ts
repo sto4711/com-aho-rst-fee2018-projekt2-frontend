@@ -37,7 +37,7 @@ import {MatComponentsModule} from '../../mat-components/mat-components.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {InitAppService} from '../../services/init-app/init-app.service';
 import {UserService} from '../../services/user/user.service';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LanguageService} from '../../services/lang-service/lang.service';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {ArticlesResponseCacheService} from '../../services/articles-response-cache/articles-response-cache.service';
@@ -102,7 +102,7 @@ describe('ArticleDetailComponent', () => {
           }
         })
       ],
-      providers: [InitAppService, UserService, LangService, CanComponentDeactivateGuard, SnackBarService,
+      providers: [InitAppService, UserService, LanguageService, CanComponentDeactivateGuard, SnackBarService,
         ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
         {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},

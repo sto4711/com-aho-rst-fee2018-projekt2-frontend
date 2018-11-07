@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import {LanguageDefinition} from "./language-definition";
 
 @Injectable({ providedIn: 'root' })
-export class LangService {
+export class LanguageService {
   private subject = new Subject<LanguageDefinition>();
 
   public sendLanguage(langDef: LanguageDefinition) {

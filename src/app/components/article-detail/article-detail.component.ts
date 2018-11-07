@@ -9,7 +9,7 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
 import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LanguageService} from "../../services/lang-service/language.service";
 
 @Component({
   selector: 'app-article-detail',
@@ -42,7 +42,7 @@ export class ArticleDetailComponent implements OnInit {
     private translate: TranslateService,
     private snackBarService: SnackBarService,
     public userService: UserService,
-    private langService: LangService
+    private langService: LanguageService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function () {

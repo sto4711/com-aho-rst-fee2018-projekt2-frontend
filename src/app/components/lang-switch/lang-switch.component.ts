@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LanguageService} from "../../services/lang-service/language.service";
 import {LanguageDefinition} from "../../services/lang-service/language-definition";
 
 @Component({
@@ -14,8 +14,8 @@ export class LangSwitchComponent {
   public langSwitch: boolean;
 
   constructor(
-    private translate: TranslateService
-    , private langService: LangService
+    private translate: TranslateService,
+    private languageService: LanguageService
    ) {
     translate.setDefaultLang(this.selectedLanguage);
     this.langSwitch = true;
@@ -28,7 +28,7 @@ export class LangSwitchComponent {
 
       for (let i = 0; i < this.languages.length; i++) {
         if (this.languages[i].code === langCode)  {
-          this.langService.sendLanguage(this.languages[i]);
+          this.languageService.sendLanguage(this.languages[i]);
           break;
         }
       }

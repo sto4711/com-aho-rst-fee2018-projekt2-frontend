@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BreadcrumbPath} from './breadcrumb-path';
 import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../services/lang-service/lang.service';
+import {LanguageService} from "../../services/lang-service/language.service";
 
 @Component({
   selector: 'app-breadcrumb',
@@ -17,9 +17,9 @@ export class BreadcrumbComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private translateService: TranslateService,
-    private langService: LangService
+    private languageService: LanguageService
   ) {
-    this.langService.getLanguage().subscribe(() => this.translateBreadcrumb());
+    this.languageService.getLanguage().subscribe(() => this.translateBreadcrumb());
   }
 
   public ngOnInit() {

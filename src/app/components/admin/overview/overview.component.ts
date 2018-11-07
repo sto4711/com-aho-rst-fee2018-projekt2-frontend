@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
-import {LangService} from '../../../services/lang-service/lang.service';
 import {UserService} from '../../../services/user/user.service';
 import {User} from '../../../services/user/user';
 import {Sort} from '@angular/material';
@@ -17,6 +16,7 @@ import {Address} from '../../../services/order/address';
 import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
+import {LanguageService} from "../../../services/lang-service/language.service";
 
 @Component({
   selector: 'app-overview',
@@ -62,7 +62,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     private orderService: OrderService,
     private userService: UserService,
     private translate: TranslateService,
-    private langService: LangService,
+    private langService: LanguageService,
     private snackBarService: SnackBarService,
     public confirmYesNoService: ConfirmYesNoService
   ) {
