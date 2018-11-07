@@ -79,7 +79,7 @@ export class UserService {
     return this.http.post<string>(backendUrls.user + 'sign-out', {'userId': this.user._id}, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap((result: string) => {
+      tap(() => {
         this.user = null;
         localStorage.removeItem('userId');
         Logger.consoleLog(this.constructor.name, 'signOut', 'ok');
@@ -102,7 +102,7 @@ export class UserService {
     return this.http.post<User>(backendUrls.user + 'updateUser', user, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap((user: User) => {
+      tap(() => {
         Logger.consoleLog(this.constructor.name, 'updateUser', 'ok');
       })
     );

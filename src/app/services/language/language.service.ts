@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {LanguageDefinition} from "./language-definition";
+import {LanguageDefinition} from './language-definition';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {

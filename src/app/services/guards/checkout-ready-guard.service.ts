@@ -31,8 +31,7 @@ export class CheckoutReadyGuardService implements CanActivate {
         tap(() => {
           if (basketIsEmpty) {
             this.router.navigate(['home']).then();
-          }
-          else if (hasNoToken) {
+          } else if (hasNoToken) {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);
             Logger.consoleLog(this.constructor.name, 'canActivate', 'can not');
             this.router.navigate(['my-account']).then();

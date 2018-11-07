@@ -22,8 +22,8 @@ export class AuthAdminGuardService implements CanActivate {
 
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    let canActivate: boolean = false;
-    let wrongRole: boolean = false;
+    let canActivate = false;
+    let wrongRole = false;
     const user = this.userService.getUser();
     if (user) {
       canActivate = user.type === 'admin';

@@ -43,7 +43,7 @@ import {ShoppingBasketListingComponent} from '../shopping-basket-listing/shoppin
 import {OverviewComponent} from '../admin/overview/overview.component';
 import {LoginInfoComponent} from '../login-info/login-info.component';
 import {MyOrdersComponent} from '../my-orders/my-orders.component';
-import {LanguageService} from "../../services/language/language.service";
+import {LanguageService} from '../../services/language/language.service';
 describe('BreadcrumbComponent', () => {
 
   beforeEach(async(() => {

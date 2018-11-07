@@ -12,11 +12,11 @@ import {BreadcrumbPath} from './components/breadcrumb/breadcrumb-path';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
-import {AuthAdminGuardService} from "./services/guards/auth-admin-guard.service";
-import {MyOrdersComponent} from "./components/my-orders/my-orders.component";
-import {AuthGuardService} from "./services/guards/auth-guard.service";
-import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.service";
-import {InitAppService} from "./services/init-app/init-app.service";
+import {AuthAdminGuardService} from './services/guards/auth-admin-guard.service';
+import {MyOrdersComponent} from './components/my-orders/my-orders.component';
+import {AuthGuardService} from './services/guards/auth-guard.service';
+import {CheckoutReadyGuardService} from './services/guards/checkout-ready-guard.service';
+import {InitAppService} from './services/init-app/init-app.service';
 
 const routes: Routes = [
   {

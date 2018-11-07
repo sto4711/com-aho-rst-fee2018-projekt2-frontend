@@ -33,8 +33,7 @@ export class OrderService {
     if (this.order) {
       this.order.doNotStep = false;
       return of<Order>(this.order);
-    }
-    else if (!orderId) {
+    } else if (!orderId) {
       Logger.consoleLog(this.constructor.name, 'getOrder', 'no order, will be created');
       return this.create()
         .pipe(
@@ -46,8 +45,7 @@ export class OrderService {
             }
           })
         );
-    }
-    else {
+    } else {
       Logger.consoleLog(this.constructor.name, 'getOrder', 'order already exists, getting order');
       return this.get(orderId)
         .pipe(
