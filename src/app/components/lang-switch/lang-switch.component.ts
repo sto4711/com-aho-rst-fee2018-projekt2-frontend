@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {LanguageService} from "../../services/language/language.service";
-import {LanguageDefinition} from "../../services/language/language-definition";
+import {LanguageService} from '../../services/language/language.service';
+import {LanguageDefinition} from '../../services/language/language-definition';
 
 @Component({
   selector: 'app-lang-switch',

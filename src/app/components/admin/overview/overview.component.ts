@@ -16,7 +16,7 @@ import {Address} from '../../../services/order/address';
 import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
-import {LanguageService} from "../../../services/language/language.service";
+import {LanguageService} from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-overview',
@@ -147,8 +147,10 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public updateUser(userData) {
     this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
-    const updatedUser: User = new User(userData.value.user_id, userData.value.firstname, userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
-    this.userService.updateUser(updatedUser).subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
+    const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
+      userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
+    this.userService.updateUser(updatedUser).subscribe(() =>
+      this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
   }
 
   public deleteUser(userId) {

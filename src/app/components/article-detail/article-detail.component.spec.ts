@@ -37,7 +37,7 @@ import {MatComponentsModule} from '../../mat-components/mat-components.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {InitAppService} from '../../services/init-app/init-app.service';
 import {UserService} from '../../services/user/user.service';
-import {LanguageService} from "../../services/language/language.service";
+import {LanguageService} from '../../services/language/language.service';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {ArticlesResponseCacheService} from '../../services/articles-response-cache/articles-response-cache.service';
@@ -135,8 +135,8 @@ describe('ArticleDetailComponent', () => {
       'brand': 'Superbike',
       'name': 'E-Bike Modell 1',
       'itemNumber': '10000001',
-      'descriptionDE': 'DE DE DE sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque DE DE DE',
-      'descriptionEN': 'EN EN EN sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit et lorem ferri ponderum sadipscing parturient impetus malorum graecis habeo legimus ultrices id cras gravida interdum reprimique ocurreret augue penatibus constituto accusata recteque pro idque solum docendi mazim luctus conubia platonem menandri autem vim omnesque nihil feugait vituperatoribus conceptam cum posse solum vitae blandit delectus solet rutrum persecuti qualisque maiorum neque porro maximus qualisque EN EN EN',
+      'descriptionDE': 'DE DE DE sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit DE',
+      'descriptionEN': 'EN EN EN sanctus doctus elit sale auctor convenire purus nihil solet quas posse mollis audire platonem percipit EN',
       'price': 1000.35,
       'imageURL2': 'image/bikeOrigin2_clone_pixelated_1.jpg',
       'imageURL': 'image/bikeOrigin_clone_pixelated_1.jpg',

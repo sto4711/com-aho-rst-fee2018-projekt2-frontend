@@ -11,9 +11,9 @@ import {Logger} from '../logger/logger';
 })
 
 export class AuthGuardService implements CanActivate {
-  public static CODE_TRANSLATION_ORDER_CREATED: string = 'ORDER-CREATED';
-  public static CODE_TRANSLATION_SIGN_IN_FIRST: string = 'SIGN-IN-FIRST-PLEASE';
-  public static CODE_TRANSLATION_YOU_NEED_ADMINISTRATOR_RIGHTS: string = 'YOU-NEED-ADMINISTRATOR-RIGHTS';
+  public static CODE_TRANSLATION_ORDER_CREATED = 'ORDER-CREATED';
+  public static CODE_TRANSLATION_SIGN_IN_FIRST = 'SIGN-IN-FIRST-PLEASE';
+  public static CODE_TRANSLATION_YOU_NEED_ADMINISTRATOR_RIGHTS = 'YOU-NEED-ADMINISTRATOR-RIGHTS';
 
   constructor(
     private userService: UserService

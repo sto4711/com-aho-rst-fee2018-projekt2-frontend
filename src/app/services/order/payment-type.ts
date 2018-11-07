@@ -1,5 +1,5 @@
 export class PaymentType {
-  public payment: string = '';
+  public payment: string;
 
   constructor(payment: string) {
     this.payment = payment;
