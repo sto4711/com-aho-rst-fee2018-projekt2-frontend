@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BreadcrumbPath} from './breadcrumb-path';
 import {TranslateService} from '@ngx-translate/core';
-import {LanguageService} from "../../services/lang-service/language.service";
+import {LanguageService} from "../../services/language/language.service";
 
 @Component({
   selector: 'app-breadcrumb',

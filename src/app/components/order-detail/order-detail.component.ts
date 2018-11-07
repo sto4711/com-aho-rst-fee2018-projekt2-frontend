@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../services/order/order';
 import {TranslateService} from '@ngx-translate/core';
-import {LanguageService} from "../../services/lang-service/language.service";
+import {LanguageService} from "../../services/language/language.service";
 
 @Component({
   selector: 'app-order-detail',

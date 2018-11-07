@@ -42,7 +42,7 @@ import {CheckoutReadyGuardService} from "./services/guards/checkout-ready-guard.
 import {ArticlesCacheInterceptor} from "./interceptors/articles-cache-interceptor";
 import {InitAppService} from "./services/init-app/init-app.service";
 import {NavigationCancelService} from "./services/navigation-cancel/navigation-cancel.service";
-import {LanguageService} from "./services/lang-service/language.service";
+import {LanguageService} from "./services/language/language.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
