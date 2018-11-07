@@ -43,7 +43,8 @@ import {NavigationCancelService} from './services/navigation-cancel/navigation-c
 import {ArticlesCacheInterceptor} from './interceptors/articles-cache-interceptor';
 import {ErrorResponseInterceptor} from './interceptors/error-response-interceptor';
 import {APP_BASE_HREF} from '@angular/common';
-import {LanguageService} from "./services/lang-service/language.service";
+import {LanguageService} from './services/language/language.service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
