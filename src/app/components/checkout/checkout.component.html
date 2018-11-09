@@ -36,7 +36,7 @@
         </mat-form-field>
         <br>
         <div class="checkout-nav">
-          <button aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+          <button attr.aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
       </form>
     </mat-step>
@@ -55,8 +55,8 @@
         <br>
         <div class="nav-wrap">
         <div class="checkout-nav">
-          <button aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
-          <button aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+          <button attr.aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+          <button attr.aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
         </div><!-- end .nav-wrap -->
       </form>
@@ -74,8 +74,8 @@
         <br>
         <div class="nav-wrap">
         <div class="checkout-nav">
-          <button aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
-          <button aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+          <button attr.aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+          <button attr.aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
         </div><!-- end .nav-wrap -->
       </form>
@@ -83,19 +83,19 @@
     <mat-step [stepControl]="paymentType">
       <ng-template matStepLabel>{{'PAYING-WITH' | translate}}</ng-template>
       <form [formGroup]="paymentType">
-        <mat-radio-group aria-label="payment" formControlName="payment">
-          <mat-radio-button aria-label="Paypal" value="Paypal">Paypal</mat-radio-button>
+        <mat-radio-group attr.aria-label="payment" formControlName="payment">
+          <mat-radio-button attr.aria-label="Paypal" value="Paypal">Paypal</mat-radio-button>
           <br>
-          <mat-radio-button aria-label="Mastercard" value="Mastercard">Mastercard</mat-radio-button>
+          <mat-radio-button attr.aria-label="Mastercard" value="Mastercard">Mastercard</mat-radio-button>
           <br>
-          <mat-radio-button aria-label="Visa" value="Visa">Visa</mat-radio-button>
+          <mat-radio-button attr.aria-label="Visa" value="Visa">Visa</mat-radio-button>
 
         </mat-radio-group>
         <br>
         <div class="nav-wrap">
         <div class="checkout-nav">
-          <button aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
-          <button aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
+          <button attr.aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+          <button attr.aria-label="{{'NEXT' | translate}}" mat-button matStepperNext class="matStepperNext">{{'NEXT' | translate}}</button>
         </div>
       </div><!-- end .nav-wrap -->
       </form>
@@ -124,13 +124,13 @@
       </div><!-- end article listing -->
       <div  class="cart-next-wrap">
         <div class="checkout-nav">
-          <button aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
-          <button aria-label="{{'RESET' | translate}}" mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
+          <button attr.aria-label="{{'BACK' | translate}}" mat-button matStepperPrevious class="matStepperPrevious">{{'BACK' | translate}}</button>
+          <button attr.aria-label="{{'RESET' | translate}}" mat-button (click)="stepper.reset()" class="matStepperReset">{{'RESET' | translate}}</button>
         </div>
 
         <form *ngIf="shoppingBasketService.shoppingBasket?.items.length>0" #fCreateOrder="ngForm" (ngSubmit)="approveOrder().then() ">
           <p>
-            <button aria-label="{{'ORDER-NOW' | translate}}" id="order-button" class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
+            <button attr.aria-label="{{'ORDER-NOW' | translate}}" id="order-button" class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
           </p>
         </form>
       </div>

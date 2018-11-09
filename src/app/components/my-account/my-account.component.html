@@ -13,7 +13,7 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <br>
-      <button aria-label="{{'LOGIN' | translate}}" class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
+      <button attr.aria-label="{{'LOGIN' | translate}}" class="btn form-btn" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
     </form>
     <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate().then()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
@@ -34,7 +34,7 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <br>
-      <button aria-label="{{'CREATE-ACCOUNT' | translate}}" class="btn form-btn" type="submit"><span class="btn-form-text">{{'CREATE-ACCOUNT' | translate}}</span></button>
+      <button attr.aria-label="{{'CREATE-ACCOUNT' | translate}}" class="btn form-btn" type="submit"><span class="btn-form-text">{{'CREATE-ACCOUNT' | translate}}</span></button>
     </form>
   </div>
 </div><!-- end .row -->

@@ -63,7 +63,7 @@
              <span class="overview-price">CHF {{shoppingBasketService.shoppingBasket.totalSum | amountConverter}}</span></p>
          <br>
          <a [routerLink]="['/shopping-basket/']">
-            <button aria-label="{{'SHOPPING-BASKET' | translate}}" class="btn form-btn mat-menu-btn"  >
+            <button attr.aria-label="{{'SHOPPING-BASKET' | translate}}" class="btn form-btn mat-menu-btn"  >
               <i class="fas fa-shopping-cart"></i>{{'SHOPPING-BASKET' | translate}}</button></a>
          </div>
           <div *ngIf="shoppingBasketService.shoppingBasket?.items.length  === 0"  >
