@@ -10,10 +10,6 @@ export class LanguageService {
     this.subject.next(langDef);
   }
 
-  public clearLanguage() {
-    this.subject.next();
-  }
-
   public getLanguage(): Observable<LanguageDefinition> {
     return this.subject.asObservable();
   }
