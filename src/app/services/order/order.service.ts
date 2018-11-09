@@ -164,7 +164,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap((order) => {
+      tap(() => {
         this.order = order;
         Logger.consoleLog(this.constructor.name, 'change', 'ok');
       })

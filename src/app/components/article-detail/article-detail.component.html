@@ -65,7 +65,7 @@
 
       <p>
         <mat-form-field>
-          <mat-select name="artikel-anzahl" placeholder="{{'PLEASE-CHOOSE-AMOUNT' | translate}}"
+          <mat-select title="{{'PLEASE-CHOOSE-AMOUNT' | translate}}" placeholder="{{'PLEASE-CHOOSE-AMOUNT' | translate}}"
                       [(ngModel)]="selectedValue"
                       (selectionChange)="onSelectedArticleAmount($event.value)">
             <mat-option *ngFor="let anzahl of amount" [value]="anzahl.value">

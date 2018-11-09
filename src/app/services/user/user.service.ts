@@ -38,7 +38,7 @@ export class UserService {
             this.user = user;
             Logger.consoleLog(this.constructor.name, 'initUser', 'user loaded');
           })
-          , map((value) => true)
+          , map(() => true)
         );
     } else {
       return of<boolean>(true);
@@ -91,7 +91,7 @@ export class UserService {
     return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap((user: User) => {
+      tap(() => {
         this.user = user;
         Logger.consoleLog(this.constructor.name, 'create', 'ok');
       })

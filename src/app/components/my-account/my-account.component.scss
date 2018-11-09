@@ -6,18 +6,39 @@
     my account  ////////////////////////////////////////////////////////////////////////////////////////////////
  */
 .login-form-wrap {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 900px;
+  max-width: 600px;
 }
 
 .login-form {
-  border-right: 1px solid #ccc;
-  margin: 0 15px 0 0;
   padding: 0 15px 0 0;
 }
 
-.login-form, .new-account-form {
-  width: 50%;
+.new-account-form {
+  padding: 0 0 0 15px;
+  border-left: 1px solid #ccc;
+}
+
+@media screen and (max-width: 590px){
+  .login-form {
+    margin: 0 0 25px 0;
+    padding: 0 0 15px 0;
+    border-right: 0 solid transparent;
+    border-bottom: 1px solid #ccc;
+  }
+  .login-form, .new-account-form {
+    width: 100%;
+  }
+
+  .login-form-wrap {
+    flex-direction: column;
+  }
+  .new-account-form {
+    border-left: none;
+    padding: 0;
+  }
+
 }

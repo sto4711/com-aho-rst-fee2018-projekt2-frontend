@@ -12,8 +12,8 @@
    */
 
   * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     border: none;
     outline: none;
   }
@@ -218,7 +218,6 @@ a.btn, button.btn {
   background-color: $green;
   cursor:pointer;
 
-
 }
 
 a.btn:hover, .form-btn:hover {
@@ -226,7 +225,7 @@ a.btn:hover, .form-btn:hover {
 }
 
 .prod-listing::after, .btn-form-text::after {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 5 Free', sans-serif;
   font-weight: 900;
   line-height: inherit;
   vertical-align: baseline;
@@ -288,21 +287,6 @@ select {
   color: #ccc;
 }
 
-@media screen and (max-width: 590px){
-  .login-form {
-    margin: 0 0 25px 0;
-    padding: 0 0 15px 0;
-    border-right: 0 solid transparent;
-    border-bottom: 1px solid #ccc;
-  }
-  .login-form, .new-account-form {
-    width: 100%;
-  }
-
-  .login-form-wrap {
-    flex-direction: column;
-  }
-}
 
 /*
     messages ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -355,7 +339,6 @@ select {
   color: gold;
 }
 
-
 .fa-thumbs-up, .fa-thumbs-down {
   margin: 0 0.5em 0 0.5em;
 }
@@ -367,6 +350,11 @@ select {
 }
 .no-bg {
   background-color: transparent;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
 }
 
 .float-left {
