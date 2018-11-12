@@ -30,7 +30,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
   public itemChangePossible = false;
   public isAutoStepping = false;
 
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper') private stepper: MatStepper;
 
   constructor(
     private _formBuilder: FormBuilder

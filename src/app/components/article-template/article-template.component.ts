@@ -10,7 +10,7 @@ import {backendUrls} from '../../constants/backend-urls';
 })
 export class ArticleTemplateComponent implements OnInit {
 
-  @Input() article: Article;
+  @Input() public article: Article;
   public imageURL: string = backendUrls.public;
   public loading  = true;
 
