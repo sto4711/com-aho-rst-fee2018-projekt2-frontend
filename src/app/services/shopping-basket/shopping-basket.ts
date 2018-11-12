@@ -4,7 +4,7 @@ export class ShoppingBasket {
   public _id: string = null;
   public shoppingBasketDate: Date = new Date();
   public items: ShoppingBasketItem[] = [];
-  public totalSum = 0;
+  public totalSum: number = 0;
 
 
 }

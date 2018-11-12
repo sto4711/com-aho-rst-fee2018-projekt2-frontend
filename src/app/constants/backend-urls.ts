@@ -1,6 +1,6 @@
 import {environment} from '../../environments/environment';
 
-export const backendUrls = {
+export const backendUrls: any = {
   public: environment.backendUrl,
   articles: environment.backendUrl + 'webshop/articles/',
   articlesLatest: environment.backendUrl + 'webshop/articles/latest',

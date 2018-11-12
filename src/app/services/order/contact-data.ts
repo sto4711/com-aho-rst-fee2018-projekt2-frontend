@@ -1,6 +1,6 @@
 export class ContactData {
-  public email  = '';
-  public phone  = '';
+  public email: string = '';
+  public phone: string  = '';
 
   constructor(email: string, phone: string) {
     this.email = email;

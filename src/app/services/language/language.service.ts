@@ -4,7 +4,7 @@ import {LanguageDefinition} from './language-definition';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
-  private subject = new Subject<LanguageDefinition>();
+  private subject: any = new Subject<LanguageDefinition>();
 
   public sendLanguage(langDef: LanguageDefinition) {
     this.subject.next(langDef);

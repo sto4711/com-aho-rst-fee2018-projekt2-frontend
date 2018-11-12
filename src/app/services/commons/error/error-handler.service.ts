@@ -6,7 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class ErrorHandlerService extends ErrorHandler {
-  private static CODE_TRANSLATION_OOPS_SOMETHING_WENT_WRONG = 'OOPS-SOMETHING-WENT-WRONG';
+  private static CODE_TRANSLATION_OOPS_SOMETHING_WENT_WRONG: string = 'OOPS-SOMETHING-WENT-WRONG';
 
 
   constructor(private snackBarService: SnackBarService,
@@ -15,7 +15,7 @@ export class ErrorHandlerService extends ErrorHandler {
     super();
   }
 
-  public handleError(exception: any) {
+  public handleError(exception: any): void {
     this.translate.get(ErrorHandlerService.CODE_TRANSLATION_OOPS_SOMETHING_WENT_WRONG).subscribe(translated => {
         if (exception.message && exception.message.length > 0) {
           this.snackBarService.showError(translated + ' -> ' + exception.message);

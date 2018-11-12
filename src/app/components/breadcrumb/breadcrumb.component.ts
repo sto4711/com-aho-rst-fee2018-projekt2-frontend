@@ -22,7 +22,7 @@ export class BreadcrumbComponent implements OnInit {
     this.languageService.getLanguage().subscribe(() => this.translateBreadcrumb());
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.route.paramMap
       .subscribe(() => {
         this.firstParam = this.route.snapshot.queryParams.article;

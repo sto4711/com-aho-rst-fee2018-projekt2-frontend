@@ -17,7 +17,7 @@ import {User} from '../user/user';
   providedIn: 'root'
 })
 export class OrderService {
-  public static STATE_APPROVED = 'APPROVED';
+  public static STATE_APPROVED: string = 'APPROVED';
   private order: Order = null;
 
   constructor(

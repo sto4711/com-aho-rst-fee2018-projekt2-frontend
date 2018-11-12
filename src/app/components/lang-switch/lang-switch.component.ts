@@ -9,8 +9,8 @@ import {LanguageDefinition} from '../../services/language/language-definition';
   styleUrls: ['./lang-switch.component.scss']
 })
 export class LangSwitchComponent {
-  public selectedLanguage = 'de';
-  public languages = [new LanguageDefinition('de', 'Deutsch'), new LanguageDefinition('en', 'English')];
+  public selectedLanguage: string = 'de';
+  public languages: any = [new LanguageDefinition('de', 'Deutsch'), new LanguageDefinition('en', 'English')];
   public langSwitch: boolean;
 
   constructor(

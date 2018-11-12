@@ -9,7 +9,7 @@ import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.servic
   styleUrls: ['./login-info.component.scss']
 })
 export class LoginInfoComponent {
-  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL = 'LOGOUT-SUCCESSFUL';
+  private static CODE_TRANSLATION_LOGOUT_SUCCESSFUL: string = 'LOGOUT-SUCCESSFUL';
 
   constructor(
     public userService: UserService
