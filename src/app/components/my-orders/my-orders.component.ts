@@ -13,7 +13,6 @@ export class MyOrdersComponent implements OnInit {
   public orders: Order[];
   public panelOpenState = false;
 
-
   constructor(
     private userService: UserService,
     private orderService: OrderService,
@@ -24,7 +23,6 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         result => {
           this.orders = result;
-
         }
       );
   }

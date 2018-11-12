@@ -66,23 +66,27 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     private snackBarService: SnackBarService,
     public confirmYesNoService: ConfirmYesNoService
   ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    this.router.routeReuseStrategy.shouldReuseRoute = function (): boolean {
       return false;
     };
 
     this.langService.getLanguage().subscribe(() => this.translateOrderState());
     this.translateOrderState();
   }
-  private static getOrderElement(orderId) {
+
+  private static getOrderElement(orderId): HTMLCollectionOf<Element> {
     return document.getElementsByClassName(orderId);
   }
-  public static compare(a, b, isAsc) {
+
+  public static compare(a, b, isAsc){
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
+
   public ngOnInit() {
     this.getUsers();
     this.getAllOrders();
   }
+
   public canDeactivate(): Observable<boolean> {
     if (this.changed === true) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
@@ -117,12 +121,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     this.changed = false;
     OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
     const deliveryAddress: Address = new Address(orderData.value.givenname, orderData.value.surname,
-          orderData.value.streetHousenumber, orderData.value.postCode, orderData.value.city);
+      orderData.value.streetHousenumber, orderData.value.postCode, orderData.value.city);
     const contactData: ContactData = new ContactData(orderData.value.email, orderData.value.phone);
     const deliveryType: DeliveryType = new DeliveryType(orderData.value.delivery);
     const paymentType: PaymentType = new PaymentType(orderData.value.payment);
     this.orderService.updateOrder(new Order(orderData.value._id, orderData.value.userID,
-          orderData.value.state, deliveryAddress, contactData, deliveryType, paymentType))
+      orderData.value.state, deliveryAddress, contactData, deliveryType, paymentType))
       .subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_UPDATED));
   }
 
@@ -194,6 +198,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       }
     });
   }
+
   private translateOrderState() {
     for (let i = 0; i < this.orderState.length; i++) {
       this.translate.get(this.orderState[i].value).subscribe(translated => {

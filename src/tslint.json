@@ -1,21 +1,40 @@
 {
-    "extends": "../tslint.json",
-    "rules": {
-        "directive-selector": [
-            true,
-            "attribute",
-            "app",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "app",
-            "kebab-case"
-        ],
-      "member-access": [
-        true,
-        "public"
-      ]
-    }
+  "extends": "../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
+    ],
+    "member-access": [
+      true,
+      "public"
+    ],
+    "typedef": [
+      true,
+      "call-signature",
+      "property-declaration"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "avoid-template",
+      "avoid-escape"
+    ]
+  },
+  "triple-equals": [
+    true,
+    "allow-null-check"
+  ],
+  "prefer-conditional-expression": [
+    true,
+    "check-else-if"
+  ]
 }
