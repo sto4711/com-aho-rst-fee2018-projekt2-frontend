@@ -49,7 +49,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     new ValueViewValue('admin', 'admin'),
     new ValueViewValue('customer', 'customer')
   ];
-  public paymethode: ValueViewValue[] = [
+  public deliveryMethod: ValueViewValue[] = [
+    new ValueViewValue('PostPac Priority', 'PostPac Priority'),
+    new ValueViewValue('PostPac Economy', 'PostPac Economy')
+  ];
+  public paymentMethod: ValueViewValue[] = [
     new ValueViewValue('Paypal', 'Paypal'),
     new ValueViewValue('Mastercard', 'Mastercard'),
     new ValueViewValue('Visa', 'Visa')
