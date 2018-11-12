@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
 import {OrderService} from '../order/order.service';
@@ -17,7 +17,7 @@ export class InitAppService implements CanActivate {
   ) {
   }
 
-  public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+  public async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     let ok = true;
     try {
       await this.shoppingBasketService.initBasket().toPromise();

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {tap} from 'rxjs/operators';
@@ -22,7 +22,7 @@ export class CheckoutReadyGuardService implements CanActivate {
   ) {
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const hasNoToken: boolean = this.userService.getToken() === '';
     const basketIsEmpty: boolean = this.shoppingBasketService.shoppingBasket.items.length === 0;
 

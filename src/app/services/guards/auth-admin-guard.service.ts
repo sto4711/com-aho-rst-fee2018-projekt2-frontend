@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {CanActivate, Router} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Observable, of} from 'rxjs';
@@ -21,7 +21,7 @@ export class AuthAdminGuardService implements CanActivate {
   }
 
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  public canActivate(): Observable<boolean> {
     let canActivate = false;
     let wrongRole = false;
     const user = this.userService.getUser();

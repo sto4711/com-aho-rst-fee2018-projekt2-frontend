@@ -44,9 +44,9 @@ export class ShoppingBasketComponent {
     );
   }
 
-  public changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem['articleID']
+  public changeItemAmount_ShoppingBasket (articleId: ShoppingBasketItem['articleID']
                                          , articleName: ShoppingBasketItem['articleName']
-                                         , articleAmount: ShoppingBasketItem['articleAmount']) {
+                                         , articleAmount: ShoppingBasketItem['articleAmount']): void {
     if (articleAmount >= 1 && articleAmount <= 3) {
       this.shoppingBasketService.changeItemAmount(articleId, articleAmount)
         .subscribe(() => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_AMOUNT_CHANGED));
@@ -58,7 +58,7 @@ export class ShoppingBasketComponent {
     }
   }
 
-  public removeShoppingBasketItem(articleId: ShoppingBasketItem['articleID'], articleName: ShoppingBasketItem['articleName']) {
+  public removeShoppingBasketItem(articleId: ShoppingBasketItem['articleID'], articleName: ShoppingBasketItem['articleName']): void {
     this.shoppingBasketService.removeItem(articleId)
       .subscribe(() => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED));
   }
