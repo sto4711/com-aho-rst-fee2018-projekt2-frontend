@@ -10,7 +10,7 @@ import {LanguageDefinition} from '../../services/language/language-definition';
 })
 export class LangSwitchComponent {
   public selectedLanguage: string = 'de';
-  public languages: any = [new LanguageDefinition('de', 'Deutsch'), new LanguageDefinition('en', 'English')];
+  public languages: LanguageDefinition[] = [new LanguageDefinition('de', 'Deutsch'), new LanguageDefinition('en', 'English')];
   public langSwitch: boolean;
 
   constructor(

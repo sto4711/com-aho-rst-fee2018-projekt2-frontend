@@ -23,7 +23,7 @@ export class ArticleDetailComponent implements OnInit {
   private static CODE_TRANSLATION_ADDED: string = 'ADDED-TO-SHOPPING-BASKET';
 
   public article: Article;
-  public imageURL: any = backendUrls.public;
+  public imageURL: string = backendUrls.public;
   public selectedValue: number = 1;
   private articleAmount: number = 1;
   public loading: boolean = true;

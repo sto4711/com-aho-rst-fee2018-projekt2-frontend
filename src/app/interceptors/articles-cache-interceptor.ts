@@ -13,10 +13,9 @@ export class ArticlesCacheInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.method === 'GET' && req.url.indexOf('articles') > 0) { // cache articles only
-      const cachedResponse: any = this.articlesResponseCacheService.get(req);
-      console.log(typeof  cachedResponse);
+      const cachedResponse: HttpResponse<any> = this.articlesResponseCacheService.get(req);
       if (cachedResponse) {
-        Logger.consoleLog(this.constructor.name, 'intercept', 'response in cache, no backend call');
+        Logger.consoleLog(this.constructor.name, 'intercept', 'response cached, no backend call');
         return of(cachedResponse);
       } else {
         return next.handle(req).pipe(
