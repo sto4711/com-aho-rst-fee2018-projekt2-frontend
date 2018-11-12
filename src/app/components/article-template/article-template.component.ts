@@ -19,12 +19,12 @@ export class ArticleTemplateComponent  {
   ) {
   }
 
-  public onLoad() {
+  public onLoad(): void {
     this.loading = false;
   }
 
 
-  public onGoToDetail(articleQueryParameter) {
+  public onGoToDetail(articleQueryParameter): void {
     this.router.navigate(['article-detail'], {queryParams: {article: articleQueryParameter}}).then();
   }
 }

@@ -12,6 +12,7 @@ import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.
 import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {AuthGuardService} from '../../services/guards/auth-guard.service';
+import {promise} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-checkout',
@@ -43,7 +44,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     this.initValidation();
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.orderService.getOrder()
       .subscribe(order => {
         /* micro thread / delay with promise */
@@ -77,7 +78,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     return of(true);
   }
 
-  private initValidation() {
+  private initValidation(): void {
     this.deliveryAddress = this._formBuilder.group({
       givenname: ['', Validators.required],
       surname: ['', Validators.required],
@@ -108,14 +109,14 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     });
   }
 
-  private setFormGroupValues(order: Order) {
+  private setFormGroupValues(order: Order): void {
     this.deliveryAddress.setValue(order.deliveryAddress);
     this.contactData.setValue(order.contactData);
     this.deliveryType.setValue(order.deliveryType);
     this.paymentType.setValue(order.paymentType);
   }
 
-  private handleSteps(order: Order) {
+  private handleSteps(order: Order): void {
     let countSteps = 0;
     countSteps = countSteps + (order.deliveryAddress ? 1 : 0);
     countSteps = countSteps + (order.contactData ? 1 : 0);
@@ -129,7 +130,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     }
   }
 
-  public onSelectionChange() {
+  public onSelectionChange(): void {
     if (!this.isAutoStepping) {
       if (this.deliveryAddress.dirty) {
         this.deliveryAddress.markAsPristine();
@@ -150,8 +151,8 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     }
   }
 
-  public async approveOrder() {
-    const order = await this.orderService.approve().toPromise();
+  public async approveOrder(): Promise<void> {
+    const order: Order = await this.orderService.approve().toPromise();
     this.orderService.clear();
     this.shoppingBasketService.clear();
     await this.shoppingBasketService.initBasket().toPromise();

@@ -33,8 +33,8 @@ export class BreadcrumbComponent implements OnInit {
       });
   }
 
-  private translateBreadcrumb() {
-     for (let i = 0; i < this.breadcrumbPath.length; i++ ) {
+  private translateBreadcrumb(): void {
+     for (let i: number = 0; i < this.breadcrumbPath.length; i++ ) {
         this.translateService.get(this.breadcrumbPath[i].breadcrumb).subscribe(translated => {
            this.breadcrumbPath[i].breadcrumbTranslated = translated;
           }

@@ -97,7 +97,7 @@ export class ArticleDetailComponent implements OnInit {
       );
   }
 
-  public showSlides(n): void {
+  public showSlides(n: number): void {
     this.slideIndex = n;
     let i: number;
     const slides: NodeListOf<Element> = document.getElementsByClassName('article-detail-img');
