@@ -17,6 +17,7 @@ import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
 import {LanguageService} from '../../../services/language/language.service';
+import {ValueViewValue} from './valueViewValue';
 
 @Component({
   selector: 'app-overview',
@@ -39,21 +40,19 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public t: number = 1;
   public panelOpenState: boolean = false;
   public changed: boolean = false;
-  public orderState = [
-    {value: 'APPROVED', viewValue: '???'},
-    {value: 'COMPLETED', viewValue: '???'},
-    {value: 'CANCELED', viewValue: '???'}
+  public orderState: ValueViewValue[] = [
+    new ValueViewValue('APPROVED', '???'),
+    new ValueViewValue('COMPLETED', '???'),
+    new ValueViewValue('CANCELED', '???')
   ];
-
-  public roles = [
-    {value: 'admin', viewValue: 'admin'},
-    {value: 'customer', viewValue: 'customer'}
+  public roles: ValueViewValue[] = [
+    new ValueViewValue('admin', 'admin'),
+    new ValueViewValue('customer', 'customer')
   ];
-
-  public paymethode = [
-    {value: 'Paypal', viewValue: 'Paypal'},
-    {value: 'Mastercard', viewValue: 'Mastercard'},
-    {value: 'Visa', viewValue: 'Visa'}
+  public paymethode: ValueViewValue[] = [
+    new ValueViewValue('Paypal', 'Paypal'),
+    new ValueViewValue('Mastercard', 'Mastercard'),
+    new ValueViewValue('Visa', 'Visa')
   ];
 
   constructor(
