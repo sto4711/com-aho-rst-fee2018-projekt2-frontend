@@ -112,7 +112,7 @@ export class UserService {
     return this.http.post<User>(backendUrls.user + 'deleteUser', {'_id': userID}, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap((user: User) => Logger.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
+      tap( () => Logger.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
     );
   }
 
@@ -121,7 +121,7 @@ export class UserService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
       }
     ).pipe(
-      tap((users: User[]) => Logger.consoleLog(this.constructor.name, 'getUsers', 'ok'))
+      tap(() => Logger.consoleLog(this.constructor.name, 'getUsers', 'ok'))
     );
   }
 
