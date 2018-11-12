@@ -71,7 +71,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-  public async onLogin(): Promise<void> {
+  public async onLogin(): Promise<any> {
     if (this.account.valid) {
       try {
         this.account.markAsPristine();
@@ -92,7 +92,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-  public async onCreate(): Promise<void> {
+  public async onCreate(): Promise<any> {
     if (this.accountNew.valid) {
       try {
         this.accountNew.markAsPristine();
