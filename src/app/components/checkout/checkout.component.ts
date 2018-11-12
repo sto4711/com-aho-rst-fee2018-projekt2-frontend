@@ -117,12 +117,12 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
   }
 
   private handleSteps(order: Order): void {
-    let countSteps = 0;
+    let countSteps: number = 0;
     countSteps = countSteps + (order.deliveryAddress ? 1 : 0);
     countSteps = countSteps + (order.contactData ? 1 : 0);
     countSteps = countSteps + (order.deliveryType ? 1 : 0);
     countSteps = countSteps + (order.paymentType ? 1 : 0);
-    for (let i = 0; i < countSteps; i++) {
+    for (let i: number = 0; i < countSteps; i++) {
       this.stepper.next();
       if (i === 3) {
         document.querySelector('#order-button').scrollIntoView(false);

@@ -11,10 +11,9 @@ export class TopBarComponent  {
   constructor(
     public shoppingBasketService: ShoppingBasketService,
     private router: Router
-  ) {
-  }
+  ) {}
 
-  public goToHome() {
+  public goToHome(): void {
     this.router.navigate(['/home']).then();
   }
 }

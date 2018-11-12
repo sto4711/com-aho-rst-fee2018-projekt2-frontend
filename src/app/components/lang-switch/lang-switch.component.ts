@@ -21,7 +21,7 @@ export class LangSwitchComponent {
     this.langSwitch = true;
   }
 
-  public onLangChanged(langCode) {
+  public onLangChanged(langCode): void {
     if (langCode !== this.selectedLanguage) {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;

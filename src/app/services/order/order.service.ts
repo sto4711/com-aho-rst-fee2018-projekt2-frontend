@@ -114,7 +114,7 @@ export class OrderService {
     return this.change('change-payment-type', this.order);
   }
 
-  public clear() {
+  public clear(): void {
     this.order = null;
     localStorage.removeItem('orderId');
     Logger.consoleLog(this.constructor.name, 'clear', 'ok');

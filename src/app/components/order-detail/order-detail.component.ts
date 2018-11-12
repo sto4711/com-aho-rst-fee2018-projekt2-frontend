@@ -23,7 +23,7 @@ export class OrderDetailComponent implements OnInit {
 
   ) {
 
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
       return false;
     };
     this.langSwitch = true;
@@ -32,7 +32,7 @@ export class OrderDetailComponent implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.route.paramMap
       .subscribe(() => {
         this.orderService.get(this.route.snapshot.queryParams['id'])

@@ -50,7 +50,7 @@ export class ShoppingBasketService {
     }
   }
 
-  public clear() {
+  public clear(): void {
     localStorage.removeItem('shoppingBasketId');
     this.initBasket();
     Logger.consoleLog(this.constructor.name, 'clear', 'ok');
