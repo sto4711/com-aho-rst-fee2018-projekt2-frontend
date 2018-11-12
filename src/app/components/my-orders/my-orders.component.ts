@@ -13,19 +13,17 @@ export class MyOrdersComponent implements OnInit {
   public orders: Order[];
   public panelOpenState = false;
 
-
   constructor(
     private userService: UserService,
     private orderService: OrderService,
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.orderService.getOrdersByUser(this.userService.getUser()._id)
       .subscribe(
         result => {
           this.orders = result;
-
         }
       );
   }
