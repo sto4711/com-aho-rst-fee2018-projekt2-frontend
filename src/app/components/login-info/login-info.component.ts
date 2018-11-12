@@ -18,13 +18,13 @@ export class LoginInfoComponent {
   ) {
   }
 
-  public async onLogOut() {
+  public async onLogOut(): Promise<void> {
     await this.userService.signOut().toPromise();
     this.snackBarService.showInfo(LoginInfoComponent.CODE_TRANSLATION_LOGOUT_SUCCESSFUL);
     this.router.navigate(['home']).then();
   }
 
-  public async onGoToLogIn() {
+  public async onGoToLogIn(): Promise<void> {
     this.router.navigate(['my-account']).then();
   }
 

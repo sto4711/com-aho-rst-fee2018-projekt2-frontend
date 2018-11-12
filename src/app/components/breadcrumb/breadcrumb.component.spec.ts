@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { BreadcrumbComponent } from './breadcrumb.component';
 import {InitAppService} from '../../services/init-app/init-app.service';
 import {UserService} from '../../services/user/user.service';
@@ -103,8 +103,8 @@ describe('BreadcrumbComponent', () => {
   }));
 
   it('should create breadcrumb', async(() => {
-    const fixture = TestBed.createComponent(BreadcrumbComponent);
-    const component = fixture.debugElement.componentInstance;
+    const fixture: ComponentFixture<any> = TestBed.createComponent(BreadcrumbComponent);
+    const component: any = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   }));
 });

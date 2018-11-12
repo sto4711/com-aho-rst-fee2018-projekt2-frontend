@@ -39,7 +39,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     this.initValidation();
   }
 
-  private initValidation() {
+  private initValidation(): void {
     this.account = this._formBuilder.group({
       email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
         Validators.maxLength(60),
@@ -71,7 +71,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-  public async onLogin() {
+  public async onLogin(): Promise<void> {
     if (this.account.valid) {
       try {
         this.account.markAsPristine();
@@ -92,7 +92,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-  public async onCreate() {
+  public async onCreate(): Promise<void> {
     if (this.accountNew.valid) {
       try {
         this.accountNew.markAsPristine();

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MyAccountComponent } from './my-account.component';
+import {AbstractControl} from '@angular/forms';
 
 describe('MyAccountComponent', () => {
   let component: MyAccountComponent;
@@ -30,10 +30,8 @@ describe('MyAccountComponent', () => {
   });
 
   it('should make login form input fields required', () => {
-
-    const controlName = component.account.get('name');
-    const controlPwd = component.account.get('pwd');
-
+    const controlName: AbstractControl = component.account.get('name');
+    const controlPwd: AbstractControl = component.account.get('pwd');
     controlName.setValue('');
     controlPwd.setValue('');
     expect(controlName.valid).toBeFalsy();

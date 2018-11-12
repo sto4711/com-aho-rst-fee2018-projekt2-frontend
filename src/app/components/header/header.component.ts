@@ -10,7 +10,7 @@ export class HeaderComponent  {
   constructor() { }
 
   // noinspection JSMethodCanBeStatic
-  public hamburger() {
+  public hamburger(): void {
     if (window.innerWidth <= 562 ) {
     document.getElementsByClassName('bg-main-nav')[0].classList.toggle('expand');
     document.getElementsByClassName('main-nav')[0].classList.toggle('xs-nav');
