@@ -10,7 +10,7 @@ import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
 import {LanguageService} from '../../services/language/language.service';
-import {ValueViewValue} from '../commons/value-view-value';
+import {ViewValueNumber} from './view-value-number';
 
 
 @Component({
@@ -29,10 +29,10 @@ export class ArticleDetailComponent implements OnInit {
   public loading: boolean = true;
   public articleURLs: ArticleURLs;
   public slideIndex: number = 1;
-  public amount: ValueViewValue[] = [
-    new ValueViewValue('1', '1'),
-    new ValueViewValue('2', '2'),
-    new ValueViewValue('3', '3')
+  public amount: ViewValueNumber[] = [
+    new ViewValueNumber(1, '1'),
+    new ViewValueNumber(2, '2'),
+    new ViewValueNumber(3, '3')
   ];
   public language: string = 'de';
 
@@ -76,8 +76,8 @@ export class ArticleDetailComponent implements OnInit {
       });
   }
 
-  public onSelectedArticleAmount(amount: string): void {
-    this.articleAmount = parseInt(amount, 10);
+  public onSelectedArticleAmount(amount: number): void {
+    this.articleAmount = amount;
   }
 
   public onAddShoppingBasketItem(): void {

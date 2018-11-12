@@ -17,7 +17,7 @@ import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
 import {LanguageService} from '../../../services/language/language.service';
-import {ValueViewValue} from '../../commons/value-view-value';
+import {ViewValueString} from './view-value-string';
 
 @Component({
   selector: 'app-overview',
@@ -40,23 +40,23 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   public t: number = 1;
   public panelOpenState: boolean = false;
   public changed: boolean = false;
-  public orderState: ValueViewValue[] = [
-    new ValueViewValue('APPROVED', '???'),
-    new ValueViewValue('COMPLETED', '???'),
-    new ValueViewValue('CANCELED', '???')
+  public orderState: ViewValueString[] = [
+    new ViewValueString('APPROVED', '???'),
+    new ViewValueString('COMPLETED', '???'),
+    new ViewValueString('CANCELED', '???')
   ];
-  public roles: ValueViewValue[] = [
-    new ValueViewValue('admin', 'admin'),
-    new ValueViewValue('customer', 'customer')
+  public roles: ViewValueString[] = [
+    new ViewValueString('admin', 'admin'),
+    new ViewValueString('customer', 'customer')
   ];
-  public deliveryMethod: ValueViewValue[] = [
-    new ValueViewValue('PostPac Priority', 'PostPac Priority'),
-    new ValueViewValue('PostPac Economy', 'PostPac Economy')
+  public deliveryMethod: ViewValueString[] = [
+    new ViewValueString('PostPac Priority', 'PostPac Priority'),
+    new ViewValueString('PostPac Economy', 'PostPac Economy')
   ];
-  public paymentMethod: ValueViewValue[] = [
-    new ValueViewValue('Paypal', 'Paypal'),
-    new ValueViewValue('Mastercard', 'Mastercard'),
-    new ValueViewValue('Visa', 'Visa')
+  public paymentMethod: ViewValueString[] = [
+    new ViewValueString('Paypal', 'Paypal'),
+    new ViewValueString('Mastercard', 'Mastercard'),
+    new ViewValueString('Visa', 'Visa')
   ];
 
   constructor(
