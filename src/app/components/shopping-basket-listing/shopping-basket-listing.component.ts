@@ -30,14 +30,11 @@ export class ShoppingBasketListingComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
-
-  changeItemAmount_ShoppingBasket(event, articleId, articleName, articleAmount) {
+  public changeItemAmount_ShoppingBasket(event, articleId, articleName, articleAmount) {
     this.itemChange.emit({articleId: articleId, articleName: articleName, articleAmount: articleAmount});
   }
 
-  confirmDelete(event, articleId, articleName) {
+  public confirmDelete(event, articleId, articleName) {
     this.deleteItem.emit({articleId: articleId, articleName: articleName});
 
   }

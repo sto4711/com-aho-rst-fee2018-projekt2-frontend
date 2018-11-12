@@ -5,7 +5,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 })
 export class DeTrimPipe implements PipeTransform {
-  transform(value: string, args?: any) {
+  public transform(value: string, args?: any) {
     if (!value) {
       return null;
     }
