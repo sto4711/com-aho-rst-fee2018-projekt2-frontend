@@ -26,7 +26,7 @@ export class LangSwitchComponent {
       this.translate.use(langCode);
       this.selectedLanguage = langCode;
 
-      for (let i = 0; i < this.languages.length; i++) {
+      for (let i: number = 0; i < this.languages.length; i++) {
         if (this.languages[i].code === langCode)  {
           this.languageService.sendLanguage(this.languages[i]);
           break;

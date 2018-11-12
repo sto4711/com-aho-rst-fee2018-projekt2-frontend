@@ -25,7 +25,7 @@ export class ShoppingBasketService {
   }
 
   public initBasket(): Observable<boolean> {
-    const shoppingBasketId = localStorage.getItem('shoppingBasketId');
+    const shoppingBasketId: string = localStorage.getItem('shoppingBasketId');
 
     if (shoppingBasketId) {
       return this.get(shoppingBasketId)
@@ -76,7 +76,7 @@ export class ShoppingBasketService {
 
   public addItem(articleId: ShoppingBasketItem['articleID'],
                  articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
-    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
+    const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -90,7 +90,7 @@ export class ShoppingBasketService {
 
   public changeItemAmount(articleId: ShoppingBasketItem['articleID'],
                           articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
-    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
+    const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
     return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
@@ -103,7 +103,7 @@ export class ShoppingBasketService {
   }
 
   public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
-    const shoppingBasketItem = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
+    const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
     return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem, {
         headers: {'Content-Type': 'application/json'}
       }
