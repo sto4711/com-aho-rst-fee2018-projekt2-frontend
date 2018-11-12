@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
 import {OrderService} from '../order/order.service';
