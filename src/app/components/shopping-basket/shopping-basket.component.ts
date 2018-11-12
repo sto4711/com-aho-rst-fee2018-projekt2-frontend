@@ -31,20 +31,9 @@ export class ShoppingBasketComponent {
   ) {
   }
 
-  private confirmDelete(articleId: ShoppingBasketItem['articleID'], articleName: ShoppingBasketItem['articleName']) {
-    this.translate.get(ShoppingBasketComponent.CODE_TRANSLATION_REMOVE_FOR_SURE).subscribe(translated => {
-        this.confirmYesNoService.confirm(articleName + ' ' + translated).subscribe(
-          result => {
-            if (result === 'yes') {
-              this.removeShoppingBasketItem(articleId, articleName);
-            }
-          }
-        );
-      }
-    );
-  }
 
-  public changeItemAmount_ShoppingBasket(articleId: ShoppingBasketItem['articleID']
+
+  public changeItemAmount_ShoppingBasket (articleId: ShoppingBasketItem['articleID']
                                          , articleName: ShoppingBasketItem['articleName']
                                          , articleAmount: ShoppingBasketItem['articleAmount']) {
     if (articleAmount >= 1 && articleAmount <= 3) {

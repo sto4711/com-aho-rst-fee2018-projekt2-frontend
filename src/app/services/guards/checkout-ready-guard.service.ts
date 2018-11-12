@@ -22,7 +22,7 @@ export class CheckoutReadyGuardService implements CanActivate {
   ) {
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const hasNoToken: boolean = this.userService.getToken() === '';
     const basketIsEmpty: boolean = this.shoppingBasketService.shoppingBasket.items.length === 0;
 
