@@ -150,7 +150,7 @@ export class OrderService {
     );
   }
 
-  public async resetOrder() {
+  public async resetOrder(): Promise<void> {
     await this.getOrder().toPromise();
     await this.deleteOrder(this.order._id).toPromise();
     this.clear();

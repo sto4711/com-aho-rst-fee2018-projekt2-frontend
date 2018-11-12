@@ -6,7 +6,7 @@ import {LanguageDefinition} from './language-definition';
 export class LanguageService {
   private subject: any = new Subject<LanguageDefinition>();
 
-  public sendLanguage(langDef: LanguageDefinition) {
+  public sendLanguage(langDef: LanguageDefinition): void {
     this.subject.next(langDef);
   }
 

@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
 import {ArticleService} from '../../services/articles/article.service';
 import {Article} from '../../services/articles/article';
- import {Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,7 +16,6 @@ import {Article} from '../../services/articles/article';
 export class SearchComponent {
   public stateCtrl: FormControl = new FormControl();
   public articles$: Observable<Article[]>;
-
 
   constructor(
     private articleService: ArticleService
@@ -38,10 +37,10 @@ export class SearchComponent {
     if (term && term.length > 2) {
       return this.articleService.searchArticles(term.toLowerCase());
     }
-      return of<Article[]>([]); // empty Observable<Article[]>
+    return of<Article[]>([]); // empty Observable<Article[]>
   }
 
-  public onSelected(article: Article) {
+  public onSelected(article: Article): void {
     this.router.navigate(['/article-detail'], {queryParams: {article: article.articleQueryParameter}}).then();
   }
 
