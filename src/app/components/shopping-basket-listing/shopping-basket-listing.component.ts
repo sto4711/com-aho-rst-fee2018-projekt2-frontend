@@ -30,11 +30,11 @@ export class ShoppingBasketListingComponent {
 
   }
 
-  public changeItemAmount_ShoppingBasket(event, articleId, articleName, articleAmount) {
+  public changeItemAmount_ShoppingBasket(event, articleId, articleName, articleAmount): void {
     this.itemChange.emit({articleId: articleId, articleName: articleName, articleAmount: articleAmount});
   }
 
-  public confirmDelete(event, articleId, articleName) {
+  public confirmDelete(event, articleId, articleName): void {
     this.deleteItem.emit({articleId: articleId, articleName: articleName});
 
   }

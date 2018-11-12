@@ -6,20 +6,20 @@ import dateformat from 'dateformat';
  */
 export class Logger {
 
-  public static consoleLog(logger: string, methodName: string, message: string) {
+  public static consoleLog(logger: string, methodName: string, message: string): void {
     if (!environment.production)  {
       console.log(Logger.formatMessage(logger, methodName, message));
     }
   }
 
-  public static consoleError(logger: string, methodName: string, message: string) {
+  public static consoleError(logger: string, methodName: string, message: string): void {
     if (!environment.production)  {
       console.error(Logger.formatMessage(logger, methodName, message));
     }
   }
 
-  private static formatMessage(logger: string, methodName: string, message: string)  {
-    const formatted = logger + '.' + methodName + '()';
+  private static formatMessage(logger: string, methodName: string, message: string): string  {
+    const formatted: string = logger + '.' + methodName + '()';
     return dateformat(new Date(), 'yy.mm.dd h:MM:ss ') + formatted.padEnd(45) + message;
   }
 

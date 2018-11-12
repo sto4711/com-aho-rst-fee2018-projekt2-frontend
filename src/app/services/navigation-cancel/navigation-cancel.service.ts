@@ -11,7 +11,7 @@ export class NavigationCancelService {
   constructor(private router: Router) {
   }
 
-  public init()  {
+  public init(): void  {
     this.router.events
       .subscribe(event => {
         if (event instanceof NavigationCancel) {
@@ -21,7 +21,7 @@ export class NavigationCancelService {
       });
   }
 
-  public getCanceledRoute() {
+  public getCanceledRoute(): string {
     if (!this.canceledRoute)  {
       Logger.consoleLog(this.constructor.name, 'getCanceledRoute', 'canceledRoute not defined; set to /home');
       return '/home';

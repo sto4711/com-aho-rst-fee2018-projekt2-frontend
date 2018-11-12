@@ -9,22 +9,22 @@ export class SnackBarService {
   constructor(private snackBar: MatSnackBar
   , private translateService: TranslateService) { }
 
-  private show(messageToTranslate: string, panelClass: string)  {
+  private show(messageToTranslate: string, panelClass: string): void  {
     this.translateService.get(messageToTranslate).subscribe(translated => {
         this.snackBar.open(translated, null, {duration: 2500, panelClass: panelClass});
       }
     );
   }
 
-  public showInfo(messageToTranslate: string)  {
+  public showInfo(messageToTranslate: string): void  {
     this.show(messageToTranslate, 'snackbar-info');
   }
 
-  public showWarning(messageToTranslate: string)  {
+  public showWarning(messageToTranslate: string): void  {
     this.show(messageToTranslate, 'snackbar-warning');
   }
 
-  public showError(messageToTranslate: string)  {
+  public showError(messageToTranslate: string): void  {
     this.show(messageToTranslate, 'snackbar-error');
   }
 
