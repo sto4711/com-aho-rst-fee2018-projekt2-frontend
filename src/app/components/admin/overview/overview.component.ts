@@ -78,11 +78,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     return document.getElementsByClassName(orderId);
   }
 
-  public static compare(a, b, isAsc){
+  public static compare(a, b, isAsc): number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.getUsers();
     this.getAllOrders();
   }
@@ -98,7 +98,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
-  public confirmDelete(dataId, formType) {
+  public onConfirmDelete(dataId, formType): void {
     const confirmMessage = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE :
       OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
@@ -113,11 +113,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     );
   }
 
-  public getAllOrders() {
+  public getAllOrders(): void {
     this.orderService.getAll().subscribe(result => this.orders = result);
   }
 
-  public updateOrder(orderData) {
+  public updateOrder(orderData): void {
     this.changed = false;
     OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
     const deliveryAddress: Address = new Address(orderData.value.givenname, orderData.value.surname,
@@ -130,12 +130,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       .subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_UPDATED));
   }
 
-  public formChange(dataId) {
+  public formChange(dataId): void {
     OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
     this.changed = true;
   }
 
-  public deleteOrder(orderId) {
+  public deleteOrder(orderId): void {
     this.orderService.deleteOrder(orderId)
       .subscribe(() => {
           this.getAllOrders();
@@ -148,7 +148,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  public updateUser(userData) {
+  public updateUser(userData): void {
     this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
     const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
@@ -157,7 +157,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
   }
 
-  public deleteUser(userId) {
+  public deleteUser(userId): void {
     this.userService.deleteUser(userId)
       .subscribe(() => {
           this.getUsers();
@@ -166,7 +166,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public sortData(sort: Sort) {
+  public sortData(sort: Sort): number {
     const orderData = this.orders;
     const userData = this.users;
     if (!sort.active || sort.direction === '') {
@@ -199,7 +199,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  private translateOrderState() {
+  private translateOrderState(): void {
     for (let i = 0; i < this.orderState.length; i++) {
       this.translate.get(this.orderState[i].value).subscribe(translated => {
           this.orderState[i].viewValue = translated;

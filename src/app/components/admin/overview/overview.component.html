@@ -193,7 +193,7 @@
                   </div><!-- end .admin-orders -->
                   <p>
                     <button attr.aria-label="{{'ORDER-SAVE' | translate}}" (click)="updateOrder(orderForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-SAVE' | translate}}</button>
-                    <button attr.aria-label="{{'ORDER-DELETE' | translate}}" (click)="confirmDelete(order._id, 'orderDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
+                    <button attr.aria-label="{{'ORDER-DELETE' | translate}}" (click)="onConfirmDelete(order._id, 'orderDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'ORDER-DELETE' | translate}}</button>
                   </p>
                 </mat-expansion-panel>
               </td>
@@ -315,7 +315,7 @@
                   </div><!-- end .admin-orders -->
                   <p>
                     <button attr.aria-label="{{'USER-SAVE' | translate}}" (click)="updateUser(userForm)"  class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'USER-SAVE' | translate}}</button>
-                    <button attr.aria-label="{{'USER-DELETE' | translate}}" (click)="confirmDelete(user._id, 'userDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'USER-DELETE' | translate}}</button>
+                    <button attr.aria-label="{{'USER-DELETE' | translate}}" (click)="onConfirmDelete(user._id, 'userDelete')"  class="btn form-btn btn-warning" type="submit"><i class="fas form-btn"></i>{{'USER-DELETE' | translate}}</button>
                   </p>
                 </mat-expansion-panel>
               </td>

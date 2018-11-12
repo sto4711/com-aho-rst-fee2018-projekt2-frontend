@@ -45,7 +45,7 @@ import {NavigationCancelService} from './services/navigation-cancel/navigation-c
 import {LanguageService} from './services/language/language.service';
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient):TranslateHttpLoader {
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 

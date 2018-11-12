@@ -120,7 +120,7 @@ describe('ArticleDetailComponent', () => {
 
   it('should change article rating ', () => {
     // arrange
-    component.onChangeArticleRating = function () {
+    component.onChangeArticleRating = function (): void {
     };
 
     // act
