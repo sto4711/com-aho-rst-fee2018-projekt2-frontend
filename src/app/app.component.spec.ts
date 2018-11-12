@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {HomeComponent} from './components/home/home.component';
 import {ArticleListingComponent} from './components/article-listing/article-listing.component';
@@ -100,8 +100,8 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const fixture: ComponentFixture<any> = TestBed.createComponent(AppComponent);
+    const app: any = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
  /* it(`should have as title 'com-aho-rst-fee2018-projekt2-frontend'`, async(() => {

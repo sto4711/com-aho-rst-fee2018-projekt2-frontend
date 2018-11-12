@@ -45,7 +45,7 @@ export class ArticleDetailComponent implements OnInit {
     private langService: LanguageService
   ) {
     // reload page when ID changes
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    this.router.routeReuseStrategy.shouldReuseRoute = function (): boolean {
       return false;
     };
 
@@ -54,7 +54,7 @@ export class ArticleDetailComponent implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.route.paramMap
       .subscribe( () => {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
@@ -69,7 +69,6 @@ export class ArticleDetailComponent implements OnInit {
 
               };
               this.showSlides(this.slideIndex);
-
             }
           );
       });

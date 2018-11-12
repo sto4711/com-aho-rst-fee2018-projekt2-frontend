@@ -20,7 +20,14 @@
     "typedef": [
       true,
       "call-signature",
-      "property-declaration"
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration"
+    ],
+    "no-inferrable-types": [
+      true,
+      "ignore-params",
+      "ignore-properties"
     ],
     "quotemark": [
       true,

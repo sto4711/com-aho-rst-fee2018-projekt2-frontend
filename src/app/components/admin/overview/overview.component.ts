@@ -17,6 +17,7 @@ import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
 import {LanguageService} from '../../../services/language/language.service';
+import {ValueViewValue} from './valueViewValue';
 
 @Component({
   selector: 'app-overview',
@@ -25,35 +26,33 @@ import {LanguageService} from '../../../services/language/language.service';
 
 })
 export class OverviewComponent implements OnInit, CanComponentDeactivate {
-  private static CODE_TRANSLATION_UPDATED = 'ORDER-UPDATE-SAVE';
-  private static CODE_TRANSLATION_DELETED = 'ORDER-IS-DELETED';
-  private static CODE_TRANSLATION_DELETE_FOR_SURE = 'TO-DELETE-THIS-ORDER-FOR-SURE';
-  private static CODE_TRANSLATION_USER_UPDATED = 'USER-DATA-UPDATED';
-  private static CODE_TRANSLATION_USER_DELETED = 'USER-IS-DELETED';
-  private static CODE_TRANSLATION_DELETE_USER_FOR_SURE = 'TO-DELETE-THIS-USER-FOR-SURE';
+  private static CODE_TRANSLATION_UPDATED: string = 'ORDER-UPDATE-SAVE';
+  private static CODE_TRANSLATION_DELETED: string = 'ORDER-IS-DELETED';
+  private static CODE_TRANSLATION_DELETE_FOR_SURE: string = 'TO-DELETE-THIS-ORDER-FOR-SURE';
+  private static CODE_TRANSLATION_USER_UPDATED: string = 'USER-DATA-UPDATED';
+  private static CODE_TRANSLATION_USER_DELETED: string = 'USER-IS-DELETED';
+  private static CODE_TRANSLATION_DELETE_USER_FOR_SURE: string = 'TO-DELETE-THIS-USER-FOR-SURE';
   public orders: Order[];
   public sortedOrderData: Order[];
   public users: User[];
   public sortedUserData: User[];
-  public p = 1;
-  public t = 1;
-  public panelOpenState = false;
-  public changed = false;
-  public orderState = [
-    {value: 'APPROVED', viewValue: '???'},
-    {value: 'COMPLETED', viewValue: '???'},
-    {value: 'CANCELED', viewValue: '???'}
+  public p: number = 1;
+  public t: number = 1;
+  public panelOpenState: boolean = false;
+  public changed: boolean = false;
+  public orderState: ValueViewValue[] = [
+    new ValueViewValue('APPROVED', '???'),
+    new ValueViewValue('COMPLETED', '???'),
+    new ValueViewValue('CANCELED', '???')
   ];
-
-  public roles = [
-    {value: 'admin', viewValue: 'admin'},
-    {value: 'customer', viewValue: 'customer'}
+  public roles: ValueViewValue[] = [
+    new ValueViewValue('admin', 'admin'),
+    new ValueViewValue('customer', 'customer')
   ];
-
-  public paymethode = [
-    {value: 'Paypal', viewValue: 'Paypal'},
-    {value: 'Mastercard', viewValue: 'Mastercard'},
-    {value: 'Visa', viewValue: 'Visa'}
+  public paymethode: ValueViewValue[] = [
+    new ValueViewValue('Paypal', 'Paypal'),
+    new ValueViewValue('Mastercard', 'Mastercard'),
+    new ValueViewValue('Visa', 'Visa')
   ];
 
   constructor(
