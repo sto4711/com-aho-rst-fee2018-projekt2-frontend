@@ -8,14 +8,14 @@ import {LanguageService} from '../../services/language/language.service';
   templateUrl: './shopping-basket-listing.component.html',
   styleUrls: ['./shopping-basket-listing.component.scss']
 })
-export class ShoppingBasketListingComponent implements OnInit {
-  @Input() itemChangePossible: boolean;
-  @Input() isCheckout: boolean;
-  @Input() isOrderDetail: boolean;
-  @Input() isBasket: boolean;
-  @Input() order: Order;
-  @Output() itemChange: EventEmitter<Object> = new EventEmitter<Object>();
-  @Output() deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
+export class ShoppingBasketListingComponent {
+  @Input() public itemChangePossible: boolean;
+  @Input() public isCheckout: boolean;
+  @Input() public isOrderDetail: boolean;
+  @Input() public isBasket: boolean;
+  @Input() public order: Order;
+  @Output() public itemChange: EventEmitter<Object> = new EventEmitter<Object>();
+  @Output() public deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
   private langSwitch: boolean;
 
   constructor(

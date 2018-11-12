@@ -17,7 +17,7 @@ export class ArticleService {
   ) {
   }
 
-  searchArticles(term: string): Observable<Article[]> {
+  public searchArticles(term: string): Observable<Article[]> {
     if (term === null) {
       return of<Article[]>([]);
     }

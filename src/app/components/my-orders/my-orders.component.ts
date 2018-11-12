@@ -19,7 +19,7 @@ export class MyOrdersComponent implements OnInit {
     private orderService: OrderService,
   ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.orderService.getOrdersByUser(this.userService.getUser()._id)
       .subscribe(
         result => {
