@@ -102,7 +102,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public onConfirmDelete(dataId, formType): void {
-    const confirmMessage = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE :
+    const confirmMessage: string = (formType === 'orderDelete' ? OverviewComponent.CODE_TRANSLATION_DELETE_FOR_SURE :
       OverviewComponent.CODE_TRANSLATION_DELETE_USER_FOR_SURE);
     this.translate.get(confirmMessage).subscribe(translated => {
         this.confirmYesNoService.confirm(' ' + translated).subscribe(
@@ -170,8 +170,8 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public sortData(sort: Sort): number {
-    const orderData = this.orders;
-    const userData = this.users;
+    const orderData: Order[] = this.orders;
+    const userData: User[] = this.users;
     if (!sort.active || sort.direction === '') {
       this.sortedOrderData = orderData;
       this.sortedUserData = userData;
@@ -179,7 +179,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     }
 
     this.sortedOrderData = orderData.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc: boolean = sort.direction === 'asc';
       switch (sort.active) {
         case 'name-order':
           return OverviewComponent.compare(a.deliveryAddress.givenname, b.deliveryAddress.givenname, isAsc);
@@ -192,7 +192,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       }
     });
     this.sortedUserData = userData.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc: boolean = sort.direction === 'asc';
       switch (sort.active) {
         case 'user-name':
           return OverviewComponent.compare(a.name, b.name, isAsc);
@@ -203,7 +203,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   private translateOrderState(): void {
-    for (let i = 0; i < this.orderState.length; i++) {
+    for (let i: number = 0; i < this.orderState.length; i++) {
       this.translate.get(this.orderState[i].value).subscribe(translated => {
           this.orderState[i].viewValue = translated;
         }
