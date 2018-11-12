@@ -17,7 +17,7 @@ import {ContactData} from '../../../services/order/contact-data';
 import {DeliveryType} from '../../../services/order/delivery-type';
 import {PaymentType} from '../../../services/order/payment-type';
 import {LanguageService} from '../../../services/language/language.service';
-import {ValueViewValue} from './valueViewValue';
+import {ValueViewValue} from '../../commons/value-view-value';
 
 @Component({
   selector: 'app-overview',

@@ -10,6 +10,8 @@ import {backendUrls} from '../../constants/backend-urls';
 import {UserService} from '../../services/user/user.service';
 import {ArticleURLs} from './articleURL';
 import {LanguageService} from '../../services/language/language.service';
+import {ValueViewValue} from '../commons/value-view-value';
+
 
 @Component({
   selector: 'app-article-detail',
@@ -27,10 +29,10 @@ export class ArticleDetailComponent implements OnInit {
   public loading: boolean = true;
   public articleURLs: ArticleURLs;
   public slideIndex: number = 1;
-  public amount: object = [
-    {value: 1, viewValue: '1'},
-    {value: 2, viewValue: '2'},
-    {value: 3, viewValue: '3'}
+  public amount: ValueViewValue[] = [
+    new ValueViewValue('1', '1'),
+    new ValueViewValue('2', '2'),
+    new ValueViewValue('3', '3')
   ];
   public language: string = 'de';
 
@@ -74,8 +76,8 @@ export class ArticleDetailComponent implements OnInit {
       });
   }
 
-  public onSelectedArticleAmount(amount): void {
-    this.articleAmount = amount;
+  public onSelectedArticleAmount(amount: string): void {
+    this.articleAmount = parseInt(amount, 10);
   }
 
   public onAddShoppingBasketItem(): void {
@@ -102,7 +104,7 @@ export class ArticleDetailComponent implements OnInit {
     let i: number;
     const slides: NodeListOf<Element> = document.getElementsByClassName('article-detail-img');
     const bullets: NodeListOf<Element> = document.getElementsByClassName('bullet');
-    n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
+    // n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
