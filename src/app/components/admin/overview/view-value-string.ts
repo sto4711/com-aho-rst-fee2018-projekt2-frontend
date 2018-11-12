@@ -1,4 +1,4 @@
-export class ValueViewValue {
+export class ViewValueString {
   public value: string;
   public viewValue: string;
 
