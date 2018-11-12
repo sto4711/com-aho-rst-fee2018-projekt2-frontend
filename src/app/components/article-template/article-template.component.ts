@@ -8,7 +8,7 @@ import {backendUrls} from '../../constants/backend-urls';
   templateUrl: './article-template.component.html',
   styleUrls: ['./article-template.component.scss']
 })
-export class ArticleTemplateComponent  {
+export class ArticleTemplateComponent {
 
   @Input() public article: Article;
   public imageURL: string = backendUrls.public;
