@@ -41,7 +41,7 @@ export class SearchComponent {
       return of<Article[]>([]); // empty Observable<Article[]>
   }
 
-  public onSelected(article: Article) {
+  public onSelected(article: Article): void {
     this.router.navigate(['/article-detail'], {queryParams: {article: article.articleQueryParameter}}).then();
   }
 
