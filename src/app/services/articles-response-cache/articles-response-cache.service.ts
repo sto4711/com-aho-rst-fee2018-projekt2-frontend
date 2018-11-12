@@ -19,9 +19,9 @@ export class ArticlesResponseCacheService  {
   }
 
   public put(req: HttpRequest<any>, response: HttpResponse<any>): void {
-    const expired = Date.now() - ArticlesResponseCacheService.maxAge;
-    const url = req.url;
-    const entry = { url, response, lastRead: Date.now() };
+    const expired: number = Date.now() - ArticlesResponseCacheService.maxAge;
+    const url: string  = req.url;
+    const entry: object = { url, response, lastRead: Date.now() };
     this.cache.set(url, entry);
 
     this.cache.forEach(expiredEntry => {
