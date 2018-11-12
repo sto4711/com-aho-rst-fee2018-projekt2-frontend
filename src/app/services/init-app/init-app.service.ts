@@ -18,7 +18,7 @@ export class InitAppService implements CanActivate {
   }
 
   public async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    let ok = true;
+    let ok: boolean = true;
     try {
       await this.shoppingBasketService.initBasket().toPromise();
       await this.userService.initUser().toPromise();

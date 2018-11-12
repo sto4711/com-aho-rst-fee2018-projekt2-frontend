@@ -74,7 +74,6 @@ export class ArticleDetailComponent implements OnInit {
       });
   }
 
-
   public onSelectedArticleAmount(amount): void {
     this.articleAmount = amount;
   }
@@ -98,12 +97,12 @@ export class ArticleDetailComponent implements OnInit {
       );
   }
 
-  public showSlides(n: number): void {
+  public showSlides(n): void {
     this.slideIndex = n;
     let i: number;
-    const slides: HTMLCollectionOf<Element> = document.getElementsByClassName('article-detail-img');
-    const bullets: HTMLCollectionOf<Element> = document.getElementsByClassName('bullet');
-    // n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
+    const slides: NodeListOf<Element> = document.getElementsByClassName('article-detail-img');
+    const bullets: NodeListOf<Element> = document.getElementsByClassName('bullet');
+    n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
@@ -114,11 +113,11 @@ export class ArticleDetailComponent implements OnInit {
     bullets[this.slideIndex - 1].className += ' active';
   }
 
-  public plusSlides(n: number): void {
+  public plusSlides(n): void {
     this.showSlides(this.slideIndex += n);
   }
 
-  public currentSlide(n: number): void {
+  public currentSlide(n): void {
     this.showSlides(this.slideIndex = n);
   }
 }
