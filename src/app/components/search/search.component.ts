@@ -14,7 +14,7 @@ import {Article} from '../../services/articles/article';
 })
 
 export class SearchComponent {
-  public stateCtrl = new FormControl();
+  public stateCtrl: FormControl = new FormControl();
   public articles$: Observable<Article[]>;
 
 

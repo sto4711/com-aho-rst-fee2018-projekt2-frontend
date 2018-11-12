@@ -20,15 +20,15 @@ import {AuthGuardService} from '../../services/guards/auth-guard.service';
 })
 
 export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit  {
-  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
+  private static CODE_TRANSLATION_ORDER_DETAIL_TAKEN_OVER_FROM_LATEST: string = 'ORDER-DETAIL-TAKEN-OVER-FROM-LATEST-ORDER';
 
-  public isLinear = true;
+  public isLinear: boolean = true;
   public deliveryAddress: FormGroup;
   public contactData: FormGroup;
   public deliveryType: FormGroup;
   public paymentType: FormGroup;
-  public itemChangePossible = false;
-  public isAutoStepping = false;
+  public itemChangePossible: boolean = false;
+  public isAutoStepping: boolean = false;
 
   @ViewChild('stepper') private stepper: MatStepper;
 

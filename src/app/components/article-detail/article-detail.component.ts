@@ -18,21 +18,21 @@ import {LanguageService} from '../../services/language/language.service';
 })
 
 export class ArticleDetailComponent implements OnInit {
-  private static CODE_TRANSLATION_ADDED = 'ADDED-TO-SHOPPING-BASKET';
+  private static CODE_TRANSLATION_ADDED: string = 'ADDED-TO-SHOPPING-BASKET';
 
   public article: Article;
   public imageURL: string = backendUrls.public;
-  public selectedValue = 1;
-  private articleAmount = 1;
-  public loading = true;
+  public selectedValue: number = 1;
+  private articleAmount: number = 1;
+  public loading: boolean = true;
   public articleURLs: ArticleURLs;
-  public slideIndex = 1;
-  public amount = [
+  public slideIndex: number = 1;
+  public amount: object = [
     {value: 1, viewValue: '1'},
     {value: 2, viewValue: '2'},
     {value: 3, viewValue: '3'}
   ];
-  public language = 'de';
+  public language: string = 'de';
 
   constructor(
     private route: ActivatedRoute,

@@ -9,9 +9,9 @@ import {Order} from '../../services/order/order';
   styleUrls: ['./my-orders.component.scss']
 })
 export class MyOrdersComponent implements OnInit {
-  public p = 1;
+  public p: number = 1;
   public orders: Order[];
-  public panelOpenState = false;
+  public panelOpenState: boolean = false;
 
   constructor(
     private userService: UserService,

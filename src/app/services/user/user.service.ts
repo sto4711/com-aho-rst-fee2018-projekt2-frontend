@@ -14,7 +14,7 @@ import {Logger} from '../logger/logger';
 })
 export class UserService {
   private user: User;
-  public differentUserHasLoggedIn = false;
+  public differentUserHasLoggedIn: boolean = false;
 
   constructor(
     private http: HttpClient,

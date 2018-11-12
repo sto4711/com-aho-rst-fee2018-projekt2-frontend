@@ -18,14 +18,14 @@ import {User} from '../../services/user/user';
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements CanComponentDeactivate {
-  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL = 'LOGIN-SUCCESSFUL';
-  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
-  private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD = 'WRONG-EMAIL-OR-PASSWORD';
-  private static CODE_TRANSLATION_ACCOUNT_CREATED = 'ACCOUNT-CREATED';
-  private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN = 'EMAIL-ALREADY-TAKEN';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL: string = 'LOGIN-SUCCESSFUL';
+  private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
+  private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD: string = 'WRONG-EMAIL-OR-PASSWORD';
+  private static CODE_TRANSLATION_ACCOUNT_CREATED: string = 'ACCOUNT-CREATED';
+  private static CODE_TRANSLATION_EMAIL_ALREADY_TAKEN: string = 'EMAIL-ALREADY-TAKEN';
   public account: FormGroup;
   public accountNew: FormGroup;
-  public hide = true;
+  public hide: boolean = true;
 
   constructor(
     private _formBuilder: FormBuilder

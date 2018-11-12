@@ -3,12 +3,12 @@ import {HttpRequest, HttpResponse} from '@angular/common/http';
 
 @Injectable()
 export class ArticlesResponseCacheService  {
-  private static maxAge = 30000;
+  private static maxAge: number = 30000;
 
   constructor() {
   }
 
-  private cache = new Map();
+  private cache: any = new Map();
 
   public get(req: HttpRequest<any>): HttpResponse<any> | undefined {
     const cached = this.cache.get(req.urlWithParams);

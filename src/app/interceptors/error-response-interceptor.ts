@@ -7,8 +7,8 @@ import {SnackBarService} from '../services/commons/snack-bar/snack-bar.service';
 
 @Injectable()
 export class ErrorResponseInterceptor implements HttpInterceptor {
-  private static CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN = 'SESSION-IS-NO-MORE-VALID-PLEASE-SIGNIN-AGAIN';
-  private static CODE_TRANSLATION_BACKEND_DOWN = 'BACKEND-SERVER-IS-UNAVAILABLE-PLEASE-TRY-AGAIN-LATER';
+  private static CODE_TRANSLATION_SESSION_IS_NO_MORE_VALID_PLEASE_SIGNIN_AGAIN: string = 'SESSION-IS-NO-MORE-VALID-PLEASE-SIGNIN-AGAIN';
+  private static CODE_TRANSLATION_BACKEND_DOWN: string = 'BACKEND-SERVER-IS-UNAVAILABLE-PLEASE-TRY-AGAIN-LATER';
 
 
   constructor(private router: Router
