@@ -16,8 +16,7 @@ export class MyOrdersComponent implements OnInit {
   constructor(
     private userService: UserService,
     private orderService: OrderService,
-  ) {
-  }
+  ) { }
 
   public ngOnInit() {
     this.orderService.getOrdersByUser(this.userService.getUser()._id)
