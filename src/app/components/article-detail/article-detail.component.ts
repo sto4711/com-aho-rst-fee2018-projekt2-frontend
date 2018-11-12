@@ -75,11 +75,11 @@ export class ArticleDetailComponent implements OnInit {
   }
 
 
-  public onSelectedArticleAmount(amount) {
+  public onSelectedArticleAmount(amount): void {
     this.articleAmount = amount;
   }
 
-  public onAddShoppingBasketItem() {
+  public onAddShoppingBasketItem(): void {
     this.shoppingBasketService.addItem(this.article._id, this.articleAmount)
       .subscribe(() => {
           this.translate.get(ArticleDetailComponent.CODE_TRANSLATION_ADDED).subscribe(translated => {
@@ -90,7 +90,7 @@ export class ArticleDetailComponent implements OnInit {
       );
   }
 
-  public onChangeArticleRating(rateUp) {
+  public onChangeArticleRating(rateUp): void {
     this.articleService.changeRating(new ArticleRating(this.article._id, rateUp))
       .subscribe(article => {
           this.article = article;
@@ -98,12 +98,12 @@ export class ArticleDetailComponent implements OnInit {
       );
   }
 
-  public showSlides(n) {
+  public showSlides(n: number): void {
     this.slideIndex = n;
-    let i;
-    const slides = document.getElementsByClassName('article-detail-img');
-    const bullets = document.getElementsByClassName('bullet');
-    n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
+    let i: number;
+    const slides: HTMLCollectionOf<Element> = document.getElementsByClassName('article-detail-img');
+    const bullets: HTMLCollectionOf<Element> = document.getElementsByClassName('bullet');
+    // n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
@@ -114,11 +114,11 @@ export class ArticleDetailComponent implements OnInit {
     bullets[this.slideIndex - 1].className += ' active';
   }
 
-  public plusSlides(n) {
+  public plusSlides(n: number): void {
     this.showSlides(this.slideIndex += n);
   }
 
-  public currentSlide(n) {
+  public currentSlide(n: number): void {
     this.showSlides(this.slideIndex = n);
   }
 }

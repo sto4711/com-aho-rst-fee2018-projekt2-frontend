@@ -8,7 +8,7 @@ import {backendUrls} from '../../constants/backend-urls';
   templateUrl: './article-template.component.html',
   styleUrls: ['./article-template.component.scss']
 })
-export class ArticleTemplateComponent  {
+export class ArticleTemplateComponent {
 
   @Input() public article: Article;
   public imageURL: string = backendUrls.public;
@@ -19,12 +19,12 @@ export class ArticleTemplateComponent  {
   ) {
   }
 
-  public onLoad() {
+  public onLoad(): void {
     this.loading = false;
   }
 
 
-  public onGoToDetail(articleQueryParameter) {
+  public onGoToDetail(articleQueryParameter): void {
     this.router.navigate(['article-detail'], {queryParams: {article: articleQueryParameter}}).then();
   }
 }
