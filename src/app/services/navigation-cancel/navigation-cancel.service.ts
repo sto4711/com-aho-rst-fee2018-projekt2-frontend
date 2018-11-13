@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NavigationCancel, Router} from '@angular/router';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,14 @@ export class NavigationCancelService {
       .subscribe(event => {
         if (event instanceof NavigationCancel) {
           this.canceledRoute = event.url;
-          Logger.consoleLog(this.constructor.name, 'constructor', 'NavigationCancel event; route stored ' + this.canceledRoute);
+          LoggerService.consoleLog(this.constructor.name, 'constructor', 'NavigationCancel event; route stored ' + this.canceledRoute);
         }
       });
   }
 
   public getCanceledRoute(): string {
     if (!this.canceledRoute)  {
-      Logger.consoleLog(this.constructor.name, 'getCanceledRoute', 'canceledRoute not defined; set to /home');
+      LoggerService.consoleLog(this.constructor.name, 'getCanceledRoute', 'canceledRoute not defined; set to /home');
       return '/home';
     }
     return this.canceledRoute;

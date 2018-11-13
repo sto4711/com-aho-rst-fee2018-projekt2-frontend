@@ -43,6 +43,7 @@ import {ArticlesCacheInterceptor} from './interceptors/articles-cache-intercepto
 import {InitAppService} from './services/init-app/init-app.service';
 import {NavigationCancelService} from './services/navigation-cancel/navigation-cancel.service';
 import {LanguageService} from './services/language/language.service';
+import {LoggerService} from "./services/logger/logger.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -96,7 +97,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   entryComponents: [
     DialogConfirmYesNoComponent],
   providers: [InitAppService, UserService, LanguageService, CanComponentDeactivateGuard, SnackBarService,
-    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
+    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService, LoggerService,
     {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
   ],

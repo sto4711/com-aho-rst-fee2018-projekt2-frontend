@@ -10,7 +10,7 @@ import {DeliveryType} from './delivery-type';
 import {PaymentType} from './payment-type';
 import {UserService} from '../user/user.service';
 import {backendUrls} from '../../constants/backend-urls';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 import {User} from '../user/user';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class OrderService {
       this.order.doNotStep = false;
       return of<Order>(this.order);
     } else if (!orderId) {
-      Logger.consoleLog(this.constructor.name, 'getOrder', 'no order, will be created');
+      LoggerService.consoleLog(this.constructor.name, 'getOrder', 'no order, will be created');
       return this.create()
         .pipe(
           tap((order) => {
@@ -46,7 +46,7 @@ export class OrderService {
           })
         );
     } else {
-      Logger.consoleLog(this.constructor.name, 'getOrder', 'order already exists, getting order');
+      LoggerService.consoleLog(this.constructor.name, 'getOrder', 'order already exists, getting order');
       return this.get(orderId)
         .pipe(
           tap((order) => {
@@ -63,7 +63,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'create', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
     );
   }
 
@@ -72,7 +72,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
@@ -81,7 +81,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
@@ -90,7 +90,7 @@ export class OrderService {
       headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'getAll', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'getAll', 'ok'))
     );
   }
 
@@ -117,7 +117,7 @@ export class OrderService {
   public clear(): void {
     this.order = null;
     localStorage.removeItem('orderId');
-    Logger.consoleLog(this.constructor.name, 'clear', 'ok');
+    LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
   public approve(): Observable<Order> {
@@ -128,7 +128,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'approve', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'approve', 'ok'))
     );
   }
 
@@ -137,7 +137,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'updateOrder', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'updateOrder', 'ok'))
     );
   }
 
@@ -146,7 +146,7 @@ export class OrderService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'deleteOrder', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'deleteOrder', 'ok'))
     );
   }
 
@@ -156,7 +156,7 @@ export class OrderService {
     this.clear();
     this.shoppingBasketService.clear();
     await this.shoppingBasketService.initBasket().toPromise();
-    Logger.consoleLog(this.constructor.name, 'resetOrder', 'ok');
+    LoggerService.consoleLog(this.constructor.name, 'resetOrder', 'ok');
   }
 
   private change(urlPath: string, order: Order): Observable<Order> {
@@ -166,7 +166,7 @@ export class OrderService {
     ).pipe(
       tap(() => {
         this.order = order;
-        Logger.consoleLog(this.constructor.name, 'change', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'change', 'ok');
       })
     );
   }

@@ -5,7 +5,7 @@ import {share, tap} from 'rxjs/operators';
 import {Article} from 'src/app/services/articles/article';
 import {ArticleRating} from './article-rating';
 import {backendUrls} from '../../constants/backend-urls';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class ArticleService {
       }
     ).pipe(
       share(), /* observable$ | async is used several times in template. To avoid similar backend calls */
-      tap(() => Logger.consoleLog(this.constructor.name, 'searchArticles', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'searchArticles', 'ok'))
     );
   }
 
@@ -38,7 +38,7 @@ export class ArticleService {
         }
       ).pipe(
         share(), /* observable$ | async is used several times in template. To avoid similar backend calls */
-        tap(() => Logger.consoleLog(this.constructor.name, 'getArticlesLatest', 'ok'))
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'getArticlesLatest', 'ok'))
       );
   }
 
@@ -47,7 +47,7 @@ export class ArticleService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'getArticleDetails', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'getArticleDetails', 'ok'))
     );
   }
 
@@ -56,7 +56,7 @@ export class ArticleService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'changeRating', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'changeRating', 'ok'))
     );
   }
 

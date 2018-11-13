@@ -2,11 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-
 import {User} from 'src/app/services/user/user';
 import {Login} from './login';
 import {backendUrls} from '../../constants/backend-urls';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 
 
 @Injectable({
@@ -36,7 +35,7 @@ export class UserService {
         .pipe(
           tap((user: User) => {
             this.user = user;
-            Logger.consoleLog(this.constructor.name, 'initUser', 'user loaded');
+            LoggerService.consoleLog(this.constructor.name, 'initUser', 'user loaded');
           })
           , map(() => true)
         );
@@ -50,7 +49,7 @@ export class UserService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
@@ -65,12 +64,12 @@ export class UserService {
         if (this.user) {
           if (this.user._id !== user._id) {
             this.differentUserHasLoggedIn = true;
-            Logger.consoleLog(this.constructor.name, 'signIn', 'a different user has sign in');
+            LoggerService.consoleLog(this.constructor.name, 'signIn', 'a different user has sign in');
           }
         }
         this.user = user;
         localStorage.setItem('userId', user._id);
-        Logger.consoleLog(this.constructor.name, 'signIn', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'signIn', 'ok');
       })
     );
   }
@@ -82,7 +81,7 @@ export class UserService {
       tap(() => {
         this.user = null;
         localStorage.removeItem('userId');
-        Logger.consoleLog(this.constructor.name, 'signOut', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'signOut', 'ok');
       })
     );
   }
@@ -93,7 +92,7 @@ export class UserService {
     }, ).pipe(
       tap(() => {
         this.user = user;
-        Logger.consoleLog(this.constructor.name, 'create', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'create', 'ok');
       })
     );
   }
@@ -103,7 +102,7 @@ export class UserService {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
       tap(() => {
-        Logger.consoleLog(this.constructor.name, 'updateUser', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'updateUser', 'ok');
       })
     );
   }
@@ -112,7 +111,7 @@ export class UserService {
     return this.http.post<User>(backendUrls.user + 'deleteUser', {'_id': userID}, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap( () => Logger.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
+      tap( () => LoggerService.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
     );
   }
 
@@ -121,7 +120,7 @@ export class UserService {
         headers: {'Content-Type': 'application/json', 'Authorization': this.getToken()}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'getUsers', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'getUsers', 'ok'))
     );
   }
 

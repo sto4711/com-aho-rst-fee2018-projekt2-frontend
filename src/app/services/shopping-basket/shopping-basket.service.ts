@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {ShoppingBasket} from './shopping-basket';
 import {ShoppingBasketItem} from './shopping-basket-item';
 import {backendUrls} from '../../constants/backend-urls';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 
 
 @Injectable({
@@ -33,7 +33,7 @@ export class ShoppingBasketService {
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            Logger.consoleLog(this.constructor.name, 'initBasket', 'shoppingBasket loaded');
+            LoggerService.consoleLog(this.constructor.name, 'initBasket', 'shoppingBasket loaded');
           })
           , map(() => true)
         );
@@ -43,7 +43,7 @@ export class ShoppingBasketService {
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
             localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
-            Logger.consoleLog(this.constructor.name, 'initBasket', 'no shoppingBasket -> created');
+            LoggerService.consoleLog(this.constructor.name, 'initBasket', 'no shoppingBasket -> created');
           })
           , map(() => true)
         );
@@ -53,7 +53,7 @@ export class ShoppingBasketService {
   public clear(): void {
     localStorage.removeItem('shoppingBasketId');
     this.initBasket();
-    Logger.consoleLog(this.constructor.name, 'clear', 'ok');
+    LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
   public create(): Observable<ShoppingBasket> {
@@ -61,7 +61,7 @@ export class ShoppingBasketService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'create', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
     );
   }
 
@@ -70,7 +70,7 @@ export class ShoppingBasketService {
         headers: {'Content-Type': 'application/json'}
       }
     ).pipe(
-      tap(() => Logger.consoleLog(this.constructor.name, 'get', 'ok'))
+      tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
@@ -83,7 +83,7 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'addItem', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'addItem', 'ok');
       })
     );
   }
@@ -97,7 +97,7 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'changeItemAmount', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'changeItemAmount', 'ok');
       })
     );
   }
@@ -110,7 +110,7 @@ export class ShoppingBasketService {
     ).pipe(
       tap((shoppingBasket: ShoppingBasket) => {
         this.shoppingBasket = shoppingBasket;
-        Logger.consoleLog(this.constructor.name, 'removeItem', 'ok');
+        LoggerService.consoleLog(this.constructor.name, 'removeItem', 'ok');
       })
     );
   }

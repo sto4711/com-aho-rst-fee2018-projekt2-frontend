@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
 import {OrderService} from '../order/order.service';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 import {NavigationCancelService} from '../navigation-cancel/navigation-cancel.service';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class InitAppService implements CanActivate {
       await this.shoppingBasketService.initBasket().toPromise();
       await this.userService.initUser().toPromise();
       this.navigationCancelService.init();
-      Logger.consoleLog(this.constructor.name, 'canActivate', 'shopping basket & user loaded');
+      LoggerService.consoleLog(this.constructor.name, 'canActivate', 'shopping basket & user loaded');
     } catch {
       ok = false;
     }

@@ -6,7 +6,7 @@ import {tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {AuthGuardService} from './auth-guard.service';
 import {ShoppingBasketService} from '../shopping-basket/shopping-basket.service';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class CheckoutReadyGuardService implements CanActivate {
             this.router.navigate(['home']).then();
           } else if (hasNoToken) {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);
-            Logger.consoleLog(this.constructor.name, 'canActivate', 'can not');
+            LoggerService.consoleLog(this.constructor.name, 'canActivate', 'can not');
             this.router.navigate(['my-account']).then();
           }
         })

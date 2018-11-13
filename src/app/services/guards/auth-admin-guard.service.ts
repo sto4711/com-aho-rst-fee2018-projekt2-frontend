@@ -5,7 +5,7 @@ import {SnackBarService} from '../commons/snack-bar/snack-bar.service';
 import {Observable, of} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {AuthGuardService} from './auth-guard.service';
-import {Logger} from '../logger/logger';
+import {LoggerService} from '../logger/logger.service';
 import {User} from '../user/user';
 
 @Injectable({
@@ -40,7 +40,7 @@ export class AuthAdminGuardService implements CanActivate {
             this.snackBarService.showInfo(AuthGuardService.CODE_TRANSLATION_SIGN_IN_FIRST);
           }
           if (!ok) {
-            Logger.consoleLog(this.constructor.name, 'canActivate', 'can not');
+            LoggerService.consoleLog(this.constructor.name, 'canActivate', 'can not');
             this.router.navigate(['my-account']).then();
           }
         })
