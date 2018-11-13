@@ -11,7 +11,7 @@ import {backendUrls} from '../../constants/backend-urls';
 export class ArticleTemplateComponent {
 
   @Input() public article: Article;
-  public imageURL: string = backendUrls.public;
+  public rootURL: string = backendUrls.root;
   public loading: boolean  = true;
 
   constructor(
@@ -22,7 +22,6 @@ export class ArticleTemplateComponent {
   public onLoad(): void {
     this.loading = false;
   }
-
 
   public onGoToDetail(articleQueryParameter): void {
     this.router.navigate(['article-detail'], {queryParams: {article: articleQueryParameter}}).then();

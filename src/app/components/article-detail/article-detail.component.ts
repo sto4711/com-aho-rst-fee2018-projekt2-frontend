@@ -23,7 +23,7 @@ export class ArticleDetailComponent implements OnInit {
   private static CODE_TRANSLATION_ADDED: string = 'ADDED-TO-SHOPPING-BASKET';
 
   public article: Article;
-  public imageURL: string = backendUrls.public;
+  public rootURL: string = backendUrls.root;
   public selectedValue: number = 1;
   private articleAmount: number = 1;
   public loading: boolean = true;
@@ -65,9 +65,9 @@ export class ArticleDetailComponent implements OnInit {
               this.article = result;
               this.loading = false;
               this.articleURLs = {
-                img01: this.imageURL + this.article.imageURL,
-                img02: this.imageURL + this.article.imageURL2,
-                img03: this.imageURL + this.article.imageURL3
+                img01: this.rootURL + this.article.imageURL,
+                img02: this.rootURL + this.article.imageURL2,
+                img03: this.rootURL + this.article.imageURL3
 
               };
               this.showSlides(this.slideIndex);

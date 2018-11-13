@@ -1,8 +1,8 @@
 import {environment} from '../../environments/environment';
 
-export const backendUrls: { public: string; articles: string; articlesLatest: string; articlesDetails: string; users: string;
+export const backendUrls: { root: string; articles: string; articlesLatest: string; articlesDetails: string; users: string;
  user: string; userDetails: string; shoppingBasket: string; order: string; orderDetails: string; orderAll: string; userOrders: string } = {
-  public: environment.backendUrl,
+  root: environment.backendUrl,
   articles: environment.backendUrl + 'backend/articles/',
   articlesLatest: environment.backendUrl + 'backend/articles/latest',
   articlesDetails: environment.backendUrl + 'backend/article-details/',
