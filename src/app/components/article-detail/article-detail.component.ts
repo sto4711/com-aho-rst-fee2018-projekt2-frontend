@@ -32,7 +32,6 @@ export class ArticleDetailComponent implements OnInit {
     new ViewValueNumber(2, '2'),
     new ViewValueNumber(3, '3')
   ];
-  public language: string = 'de';
 
   constructor(
     private route: ActivatedRoute,
@@ -42,16 +41,12 @@ export class ArticleDetailComponent implements OnInit {
     private translate: TranslateService,
     private snackBarService: SnackBarService,
     public userService: UserService,
-    private langService: LanguageService
+    public langService: LanguageService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function (): boolean {
       return false;
     };
-
-    this.langService.getLanguage().subscribe(langDef  => {
-      this.language = langDef.code;
-    });
   }
 
   public ngOnInit(): void {
