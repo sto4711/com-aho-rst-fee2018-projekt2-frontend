@@ -149,6 +149,10 @@
   }
 }
 
+/*
+    styles used in serveral components ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
 .article-listing {
   @include flex;
   justify-content: space-between;
@@ -156,14 +160,13 @@
   margin: 0 -10px;
 }
 
+
 .article-container {
   padding: 0 5px;
   margin: 0 0 10px 0;
   width: 25%;
 }
-/*
-    styles used in serveral components ////////////////////////////////////////////////////////////////////////////////////////////////
- */
+
 .order-customer-articles {
   width: 65%;
 }

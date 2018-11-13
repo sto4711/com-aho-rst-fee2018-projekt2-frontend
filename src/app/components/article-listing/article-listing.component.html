@@ -7,11 +7,12 @@
     <app-article-template class="article-container" *ngFor="let item of articles$| async | paginate: { itemsPerPage: 12, currentPage: p }"
                           [article]="item">
     </app-article-template><!-- end .product-container -->
-    
-  <pagination-controls
-    (pageChange)="p = $event"
-    previousLabel="{{'BACK' | translate}}"
-    nextLabel="{{'NEXT' | translate}}">
-  </pagination-controls>
+
   </div><!-- end .product-listing -->
+
 </div><!-- end .row -->
+<pagination-controls
+  (pageChange)="p = $event"
+  previousLabel="{{'BACK' | translate}}"
+  nextLabel="{{'NEXT' | translate}}">
+</pagination-controls>

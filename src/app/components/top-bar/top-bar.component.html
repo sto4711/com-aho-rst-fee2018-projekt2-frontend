@@ -49,7 +49,7 @@
                 <a [routerLink]="['/article-detail/']" [queryParams]="{article:shoppingBasketItem.articleQueryParameter | trim}">
                   {{shoppingBasketItem.articleAmount}}x
                 {{shoppingBasketItem.articleName}}</a><br>
-               <span class="overview-price">CHF {{shoppingBasketItem.articlePrice}}</span>
+               <span class="overview-price">CHF {{shoppingBasketItem.articlePrice | amountConverter}}</span>
               </li>
 
                <li *ngIf=" isLast && i > 3">
