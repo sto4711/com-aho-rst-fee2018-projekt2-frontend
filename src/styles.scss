@@ -338,6 +338,10 @@ select {
   padding: 0;
 }
 
+.fa-eye:hover {
+  cursor: pointer;
+}
+
 .fa-star {
   color: gold;
 }
@@ -385,7 +389,11 @@ select {
 }
 
 .form-icon {
+  font-size: 1.7rem;
+  display: block;
   margin: 0;
+
+
 }
 
 .clearfix:after {

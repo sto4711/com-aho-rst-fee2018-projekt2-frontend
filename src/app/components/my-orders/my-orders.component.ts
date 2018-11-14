@@ -23,7 +23,7 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         result => {
           this.orders = result;
-        }
+         }
       );
   }
 

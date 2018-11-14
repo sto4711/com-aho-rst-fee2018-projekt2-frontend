@@ -54,7 +54,7 @@
                                    [(ngModel)]="order?.deliveryAddress.givenname"
                                    #givenname
                                    required>
-                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
 
                           </mat-form-field>
                         </p>
@@ -67,7 +67,7 @@
                                    [(ngModel)]="order?.deliveryAddress.surname"
                                    #surname
                                    required>
-                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
 
                           </mat-form-field>
                         </p>
@@ -79,7 +79,7 @@
                                    [(ngModel)]=" order?.deliveryAddress.streetHousenumber"
                                    #streetHousenumber
                                    required>
-                            <mat-icon matSuffix>home</mat-icon>
+                            <mat-icon matSuffix><i class="fas fa-home form-icon"></i></mat-icon>
 
                           </mat-form-field>
                         </p>
@@ -91,7 +91,7 @@
                                    [(ngModel)]="order?.deliveryAddress.postCode"
                                    #postCode
                                    required>
-                            <mat-icon matSuffix>home</mat-icon>
+                            <mat-icon matSuffix><i class="fas fa-home form-icon"></i></mat-icon>
 
                           </mat-form-field>
                         </p>
@@ -103,7 +103,7 @@
                                    [(ngModel)]="order?.deliveryAddress.city"
                                    #city
                                    required>
-                            <mat-icon matSuffix>location_city</mat-icon>
+                            <mat-icon matSuffix><i class="fas fa-city form-icon"></i></mat-icon>
 
                           </mat-form-field>
                         </p>
@@ -116,7 +116,7 @@
                                    [(ngModel)]="order?.contactData.email"
                                    #email
                                    required>
-                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-icon matSuffix> <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i></mat-icon></mat-icon>
                           </mat-form-field>
                         </p>
                         <p><span class="review-data">{{'PHONE' | translate}}: </span>
@@ -127,7 +127,7 @@
                                    [(ngModel)]="order?.contactData.phone"
                                    #phone
                                    required>
-                            <mat-icon matSuffix>phone</mat-icon>
+                            <mat-icon matSuffix><i class="fas fa-phone form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
 
@@ -143,7 +143,7 @@
                                 {{delivery.viewValue}}
                               </mat-option>
                             </mat-select>
-                            <mat-icon matSuffix>local_airport</mat-icon>
+                            <mat-icon matSuffix><i class="fas fa-truck form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
 
@@ -157,7 +157,7 @@
                                 {{pay.viewValue}}
                               </mat-option>
                             </mat-select>
-                            <mat-icon matSuffix>payment</mat-icon>
+                            <mat-icon matSuffix><i class="far fa-credit-card form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
                         <br><br>
@@ -270,7 +270,7 @@
                                    [(ngModel)]="user.name"
                                    #name
                                    required>
-                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
                         <p>
@@ -282,7 +282,7 @@
                                    [(ngModel)]="user.firstname"
                                    #firstname
                                    required>
-                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
                         <p>
@@ -294,7 +294,7 @@
                                    [(ngModel)]="user.email"
                                    #email
                                    required>
-                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-icon matSuffix> <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i></mat-icon></mat-icon>
                           </mat-form-field>
                         </p>
                         <p>
@@ -306,6 +306,7 @@
                                    (ngModel)="user.pwd"
                                    #pwd
                                    required>
+                            <mat-icon matSuffix><i class="fas fa-key form-icon"></i></mat-icon>
                           </mat-form-field>
                         </p>
                         <p>

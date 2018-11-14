@@ -7,31 +7,33 @@
       <form [formGroup]="deliveryAddress">
         <mat-form-field class="checkout-field">
           <input aria-label="name" matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname" required>
-          <mat-icon matSuffix>face</mat-icon>
+          <mat-icon matSuffix><mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
+          </mat-icon>
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
           <input aria-label="surname" matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname" required>
-          <mat-icon matSuffix>face</mat-icon>
+          <mat-icon matSuffix><mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
+          </mat-icon>
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
           <input aria-label="street" matInput placeholder="{{'STREET-AND-HOUSE-NUMBER' | translate}}" formControlName="streetHousenumber"
                  required>
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix><i class="fas fa-home form-icon"></i></mat-icon>
 
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
           <input aria-label="post code" matInput placeholder="{{'POST-CODE' | translate}}" maxlength="4" minlength="4"
                  formControlName="postCode" required>
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix><i class="fas fa-home form-icon"></i></mat-icon>
 
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
           <input aria-label="city" matInput placeholder="{{'CITY' | translate}}" formControlName="city" required>
-          <mat-icon matSuffix>location_city</mat-icon>
+          <mat-icon matSuffix><i class="fas fa-city form-icon"></i></mat-icon>
 
         </mat-form-field>
         <br>
@@ -45,12 +47,12 @@
       <form [formGroup]="contactData">
         <mat-form-field class="checkout-field">
           <input aria-label="email" matInput placeholder="{{'E-MAIL' | translate}}" formControlName="email" type="email" required>
-          <mat-icon matSuffix>email </mat-icon>
+          <mat-icon matSuffix> <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i></mat-icon></mat-icon>
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
           <input  aria-label="phone" matInput placeholder="{{'PHONE' | translate}} (+41 ....)" formControlName="phone" required>
-          <mat-icon matSuffix>phone </mat-icon>
+          <mat-icon matSuffix><i class="fas fa-phone form-icon"></i></mat-icon>
         </mat-form-field>
         <br>
         <div class="nav-wrap">
