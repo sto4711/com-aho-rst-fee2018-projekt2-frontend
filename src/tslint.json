@@ -41,5 +41,17 @@
   "prefer-conditional-expression": [
     true,
     "check-else-if"
+  ],
+  "no-shadowed-variable": [
+    true,
+    {
+      "class": true,
+      "enum": true,
+      "function": true,
+      "interface": false,
+      "namespace": false,
+      "typeAlias": false,
+      "typeParameter": false
+    }
   ]
 }

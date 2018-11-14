@@ -87,10 +87,11 @@ export class UserService {
   }
 
   public create(user: User): Observable<User> {
+    // noinspection TsLint
     return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap(() => {
+      tap((user: User) => {
         this.user = user;
         LoggerService.consoleLog(this.constructor.name, 'create', 'ok');
       })
@@ -123,6 +124,4 @@ export class UserService {
       tap(() => LoggerService.consoleLog(this.constructor.name, 'getUsers', 'ok'))
     );
   }
-
-
 }
