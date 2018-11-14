@@ -116,11 +116,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     );
   }
 
-  public getAllOrders(): void {
-    this.orderService.getAll().subscribe(result => this.orders = result);
-  }
-
-  public updateOrder(orderData): void {
+  public onUpdateOrder(orderData): void {
     this.changed = false;
     OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
     const deliveryAddress: Address = new Address(orderData.value.givenname, orderData.value.surname,
@@ -133,25 +129,12 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       .subscribe(() => this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_UPDATED));
   }
 
-  public formChange(dataId): void {
+  public onFormChange(dataId): void {
     OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
     this.changed = true;
   }
 
-  public deleteOrder(orderId): void {
-    this.orderService.deleteOrder(orderId)
-      .subscribe(() => {
-          this.getAllOrders();
-          this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_DELETED);
-        }
-      );
-  }
-
-  public getUsers(): void {
-    this.userService.getUsers().subscribe(users => this.users = users);
-  }
-
-  public updateUser(userData): void {
+  public onUpdateUser(userData): void {
     this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
     const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
@@ -160,7 +143,24 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_USER_UPDATED));
   }
 
-  public deleteUser(userId): void {
+  private getAllOrders(): void {
+    this.orderService.getAll().subscribe(result => this.orders = result);
+  }
+
+  private deleteOrder(orderId): void {
+    this.orderService.deleteOrder(orderId)
+      .subscribe(() => {
+          this.getAllOrders();
+          this.snackBarService.showInfo(OverviewComponent.CODE_TRANSLATION_DELETED);
+        }
+      );
+  }
+
+  private getUsers(): void {
+    this.userService.getUsers().subscribe(users => this.users = users);
+  }
+
+  private deleteUser(userId): void {
     this.userService.deleteUser(userId)
       .subscribe(() => {
           this.getUsers();
@@ -169,7 +169,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  public sortData(sort: Sort): number {
+  private sortData(sort: Sort): number {
     const orderData: Order[] = this.orders;
     const userData: User[] = this.users;
     if (!sort.active || sort.direction === '') {
