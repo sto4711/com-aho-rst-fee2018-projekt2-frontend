@@ -96,17 +96,18 @@
 }
 
 .prev, .next {
-  cursor: pointer;
+  font-weight: bold;
+  font-size: 5rem;
   position: absolute;
   top: 50%;
+  color: white;
   width: auto;
   padding: 16px;
   margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 5rem;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
+  cursor: pointer;
+
 }
 
 .next {
@@ -124,14 +125,15 @@
 }
 
 .bullet {
-  cursor: pointer;
+  display: inline-block;
+  background-color: lighten( $green, 10% );
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: lighten( $green, 10% );
   border-radius: 50%;
-  display: inline-block;
   transition: background-color 0.6s ease;
+  cursor: pointer;
+
 }
 
 .active, .dot:hover {

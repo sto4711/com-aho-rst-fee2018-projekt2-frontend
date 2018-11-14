@@ -149,6 +149,10 @@
   }
 }
 
+/*
+    styles used in serveral components ////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
 .article-listing {
   @include flex;
   justify-content: space-between;
@@ -161,9 +165,8 @@
   margin: 0 0 10px 0;
   width: 25%;
 }
-/*
-    styles used in serveral components ////////////////////////////////////////////////////////////////////////////////////////////////
- */
+
+
 .order-customer-articles {
   width: 65%;
 }
@@ -194,9 +197,9 @@
 }
 
 .order-article-attr {
+  font-weight: $font-weight-bold;
   display: inline-block;
   min-width: 150px;
-  font-weight: $font-weight-bold;
 }
 
 /*
@@ -207,9 +210,9 @@ button, [type="button"], [type="reset"], [type="submit"] {
 }
 
 a.btn, button.btn {
-  display: block;
   @include base-font-style();
   font-weight: $font-weight-light;
+  display: block;
   text-align: center;
   color: #fff;
   width: 100%;
