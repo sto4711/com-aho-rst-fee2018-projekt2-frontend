@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     AppPage.navigateTo();
-    expect(AppPage.getParagraphText()).toEqual('Welcome to com-aho-rst-fee2018-projekt2-frontend!');
+    expect(AppPage.getParagraphText()).toEqual('DE DE Blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Blockquote. Lorem ipsum dolor sit amet,consectetur adipiscing elit. DE DE');
   });
 });
