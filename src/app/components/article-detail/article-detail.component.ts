@@ -12,7 +12,6 @@ import {ArticleURLs} from './articleURL';
 import {LanguageService} from '../../services/language/language.service';
 import {ViewValueNumber} from './view-value-number';
 
-
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
@@ -21,7 +20,6 @@ import {ViewValueNumber} from './view-value-number';
 
 export class ArticleDetailComponent implements OnInit {
   private static CODE_TRANSLATION_ADDED: string = 'ADDED-TO-SHOPPING-BASKET';
-
   public article: Article;
   public rootURL: string = backendUrls.root;
   public selectedValue: number = 1;
@@ -34,7 +32,6 @@ export class ArticleDetailComponent implements OnInit {
     new ViewValueNumber(2, '2'),
     new ViewValueNumber(3, '3')
   ];
-  public language: string = 'de';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,16 +41,12 @@ export class ArticleDetailComponent implements OnInit {
     private translate: TranslateService,
     private snackBarService: SnackBarService,
     public userService: UserService,
-    private langService: LanguageService
+    public langService: LanguageService
   ) {
     // reload page when ID changes
     this.router.routeReuseStrategy.shouldReuseRoute = function (): boolean {
       return false;
     };
-
-    this.langService.getLanguage().subscribe(langDef  => {
-      this.language = langDef.code;
-    });
   }
 
   public ngOnInit(): void {
@@ -100,11 +93,18 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   public showSlides(n: number): void {
-    this.slideIndex = n;
     let i: number;
     const slides: NodeListOf<Element> = document.getElementsByClassName('article-detail-img');
     const bullets: NodeListOf<Element> = document.getElementsByClassName('bullet');
-    // n > slides.length ? this.slideIndex = 1 : n < 1 ? this.slideIndex = slides.length : '';
+
+    if (n > slides.length) {
+      this.slideIndex = 1;
+    } else if (n < 1) {
+      this.slideIndex = slides.length;
+    } else {
+      this.slideIndex = n;
+    }
+
     for (i = 0; i < slides.length; i++) {
       slides[i].setAttribute('style', 'display:none');
     }
