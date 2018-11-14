@@ -1,6 +1,6 @@
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, of} from 'rxjs';
@@ -60,9 +60,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   public canDeactivate(): Observable<boolean> {
     const accountNok: boolean = (this.account.touched && this.account.dirty === true);
-    const accountNewNok: boolean = (this.accountNew.touched && this.accountNew.dirty === true);
 
-    if (accountNok || accountNewNok) {
+    if (accountNok) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes'))
@@ -71,6 +70,13 @@ export class MyAccountComponent implements CanComponentDeactivate {
       return of(true);
     }
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeUnloadHander(event: any): boolean {
+    const accountNok: boolean = (this.account.touched && this.account.dirty === true);
+    return !(accountNok);
+  }
+
 
   public async onLogin(): Promise<any> {
     if (this.account.valid) {
