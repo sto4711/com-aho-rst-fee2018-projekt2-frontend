@@ -9,13 +9,13 @@
       <ng-template matStepLabel>{{'DELIVERY-ADDRESS' | translate}}</ng-template>
       <form [formGroup]="deliveryAddress">
         <mat-form-field class="checkout-field">
-          <input aria-label="name" matInput placeholder="{{'GIVEN-NAME' | translate}}" formControlName="givenname" required>
+          <input aria-label="name" matInput placeholder="{{'FIRST-NAME' | translate}}" formControlName="givenname" required>
           <mat-icon matSuffix><mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
           </mat-icon>
         </mat-form-field>
         <br>
         <mat-form-field class="checkout-field">
-          <input aria-label="surname" matInput placeholder="{{'SURNAME' | translate}}" formControlName="surname" required>
+          <input aria-label="surname" matInput placeholder="{{'LAST-NAME' | translate}}" formControlName="surname" required>
           <mat-icon matSuffix><mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
           </mat-icon>
         </mat-form-field>
