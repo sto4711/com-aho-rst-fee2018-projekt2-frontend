@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, ViewChild} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Router} from '@angular/router';
@@ -12,7 +12,6 @@ import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.
 import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {AuthGuardService} from '../../services/guards/auth-guard.service';
-import {promise} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-checkout',
@@ -44,6 +43,14 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
     this.initValidation();
   }
 
+  private isAnythingDirty(): boolean {
+    const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty);
+    const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty);
+    const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty);
+    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty);
+    return (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok);
+  }
+
   public ngAfterViewInit(): void {
     this.orderService.getOrder()
       .subscribe(order => {
@@ -61,14 +68,13 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
       });
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeUnloadHandler(): boolean {
+    return !this.isAnythingDirty(); // false shows the dialog
+  }
 
   public canDeactivate(): Observable<boolean> {
-    const deliveryAddressNok: boolean = (this.deliveryAddress.touched && this.deliveryAddress.dirty);
-    const contactDataNok: boolean = (this.contactData.touched && this.contactData.dirty);
-    const deliveryTypeNok: boolean = (this.deliveryType.touched && this.deliveryType.dirty);
-    const paymentTypeNok: boolean = (this.paymentType.touched && this.paymentType.dirty);
-
-    if (deliveryAddressNok || contactDataNok || deliveryTypeNok || paymentTypeNok) {
+    if (this.isAnythingDirty()) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes'))

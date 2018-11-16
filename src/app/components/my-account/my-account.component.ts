@@ -59,7 +59,12 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   private isAnythingDirty(): boolean {
-    return (this.account.touched && this.account.dirty === true);
+    return (this.account.touched && this.account.dirty);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeUnloadHandler(): boolean {
+    return !this.isAnythingDirty(); // false shows the dialog
   }
 
   public canDeactivate(): Observable<boolean> {
@@ -71,11 +76,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
     } else {
       return of(true);
     }
-  }
-
-  @HostListener('window:beforeunload', ['$event'])
-  public beforeUnloadHandler(): boolean {
-    return !this.isAnythingDirty(); // false shows the dialog
   }
 
   public async onLogin(): Promise<any> {
