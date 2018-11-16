@@ -1,4 +1,4 @@
-import { AppPage } from './app.po';
+import {AppPage} from './app.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -9,6 +9,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     AppPage.navigateTo();
-    expect(AppPage.getParagraphText()).toEqual('DE DE Blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Blockquote. Lorem ipsum dolor sit amet,consectetur adipiscing elit. DE DE');
+    expect(AppPage.getParagraphText()).toEqual('DE DE Blockquote. Lorem ipsum dolor sit amet, ' +
+      'consectetur adipiscing elit.Blockquote. Lorem ipsum dolor sit amet,consectetur adipiscing elit. DE DE');
   });
 });

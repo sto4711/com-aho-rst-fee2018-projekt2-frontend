@@ -1,11 +1,10 @@
-import { MyAccount } from './login.po';
-import { AppPage } from './app.po';
+import {MyAccount} from './login.po';
+import {AppPage} from './app.po';
 import {browser, element, by} from 'protractor';
 
 describe('myAccount login', () => {
   let page: MyAccount;
   let publicPage: AppPage;
-  let currentURL: string;
 
   const wrongLoginData = {
     username: 'wrong@email.com',
@@ -20,20 +19,16 @@ describe('myAccount login', () => {
 
   it('when login is fails - stay on page', () => {
     page.navigateTo();
-     page.wrongLogin(wrongLoginData);
-
-     let url = browser.getCurrentUrl();
-
-      expect(url).toEqual('http://localhost:4200/my-account');
-    });
-
+    page.wrongLogin(wrongLoginData);
+    const url = browser.getCurrentUrl();
+    expect(url).toEqual('http://localhost:4200/my-account');
+  });
 
 
   it('when login is successful — redicret to home page', () => {
     page.navigateTo();
-     page.login();
-    let url = browser.getCurrentUrl();
-
-    expect(url).toEqual('http://localhost:4200/home');  });
-
+    page.login();
+    const url = browser.getCurrentUrl();
+    expect(url).toEqual('http://localhost:4200/home');
+  });
 });
