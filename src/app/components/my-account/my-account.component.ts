@@ -58,10 +58,13 @@ export class MyAccountComponent implements CanComponentDeactivate {
     });
   }
 
+  private canDeactivatePossible(): boolean {
+    return !(this.account.touched && this.account.dirty === true);
+  }
+
   public canDeactivate(): Observable<boolean> {
     const accountNok: boolean = (this.account.touched && this.account.dirty === true);
-
-    if (accountNok) {
+    if (!this.canDeactivatePossible()) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes'))
@@ -73,10 +76,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   @HostListener('window:beforeunload', ['$event'])
   public beforeUnloadHander(event: any): boolean {
-    const accountNok: boolean = (this.account.touched && this.account.dirty === true);
-    return !(accountNok);
+    return this.canDeactivatePossible(); // false shows the dialog
   }
-
 
   public async onLogin(): Promise<any> {
     if (this.account.valid) {
