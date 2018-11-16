@@ -115,7 +115,7 @@ export class OrderService {
   }
 
   public clear(): void {
-    this.order = null;
+     this.order = null;
     localStorage.removeItem('orderId');
     LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
