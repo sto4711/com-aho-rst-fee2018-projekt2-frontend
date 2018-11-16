@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../services/order/order.service';
 import {Order} from '../../../services/order/order';
@@ -85,13 +85,22 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
+  private isAnythingDirty(): boolean {
+    return this.changed;
+  }
+
   public ngOnInit(): void {
     this.getUsers();
     this.getAllOrders();
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeUnloadHandler(): boolean {
+    return !this.isAnythingDirty(); // false shows the dialog
+  }
+
   public canDeactivate(): Observable<boolean> {
-    if (this.changed === true) {
+    if (this.isAnythingDirty()) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes'))
@@ -169,7 +178,16 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
       );
   }
 
-  private sortData(sort: Sort): number {
+  private translateOrderState(): void {
+    for (let i: number = 0; i < this.orderState.length; i++) {
+      this.translate.get(this.orderState[i].value).subscribe(translated => {
+          this.orderState[i].viewValue = translated;
+        }
+      );
+    }
+  }
+
+  public sortData(sort: Sort): number {
     const orderData: Order[] = this.orders;
     const userData: User[] = this.users;
     if (!sort.active || sort.direction === '') {
@@ -200,15 +218,6 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
           return 0;
       }
     });
-  }
-
-  private translateOrderState(): void {
-    for (let i: number = 0; i < this.orderState.length; i++) {
-      this.translate.get(this.orderState[i].value).subscribe(translated => {
-          this.orderState[i].viewValue = translated;
-        }
-      );
-    }
   }
 
 }
