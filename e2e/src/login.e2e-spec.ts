@@ -1,34 +1,26 @@
 import {MyAccount} from './login.po';
-import {AppPage} from './app.po';
-import {browser, element, by} from 'protractor';
+import {browser} from 'protractor';
+import {Login} from '../../src/app/services/user/login';
 
-describe('myAccount login', () => {
-  let page: MyAccount;
-  let publicPage: AppPage;
+describe('myAccount login / create user', () => {
+  const loginDataNok: Login = new Login('wrong@email.com', '1234223322233test');
+  const loginDataOk: Login = new Login('alain@aholzhauser.ch', 'aho');
+  const names = ['Darth', 'Han', 'Luke', 'Leia'];
+  const firstnames = ['Vader', 'Solo', 'Organa'];
 
-  const wrongLoginData = {
-    username: 'wrong@email.com',
-    password: '1234223322233test'
-  };
-
-  beforeEach(() => {
-    page = new MyAccount();
-    publicPage = new AppPage();
-
+  beforeEach(async () => {
+    await MyAccount.navigateTo();
   });
 
-  it('when login is fails - stay on page', () => {
-    page.navigateTo();
-    page.wrongLogin(wrongLoginData);
-    const url = browser.getCurrentUrl();
-    expect(url).toEqual('http://localhost:4200/my-account');
+  it('when login is fails - stay on page', async () => {
+    MyAccount.login(loginDataNok);
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/my-account');
   });
 
 
-  it('when login is successful — redicret to home page', () => {
-    page.navigateTo();
-    page.login();
-    const url = browser.getCurrentUrl();
-    expect(url).toEqual('http://localhost:4200/home');
+  it('when login is successful -  redicret to home page', async() => {
+    MyAccount.login(loginDataOk);
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
   });
+
 });

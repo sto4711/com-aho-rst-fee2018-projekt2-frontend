@@ -1,16 +1,5 @@
-import {ShoppingBasket} from './shopping-basket.po';
-import {AppPage} from './app.po';
-import {browser, element, by} from 'protractor';
 
 describe('shopping basket testing', () => {
-  let page: ShoppingBasket;
-  let publicPage: AppPage;
-
-  beforeEach(() => {
-    page = new ShoppingBasket();
-    publicPage = new AppPage();
-
-  });
 
   // it('when login is fails - stay on page', () => {
   //   page.navigateTo();

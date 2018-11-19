@@ -1,27 +1,25 @@
 import { browser, by, element } from 'protractor';
-import {SnackBarService} from '../../src/app/services/commons/snack-bar/snack-bar.service';
+import {Login} from '../../src/app/services/user/login';
+import {User} from '../../src/app/services/user/user';
 
 export class  MyAccount {
 
-  public loginData = {
-    username: 'alain@aholzhauser.ch',
-    password: 'aho'
-  };
-
-  navigateTo() {
+  public static navigateTo() {
     return browser.get('/my-account');
   }
 
-  wrongLogin(loginData: any) {
-    element(by.css('[name="loginEmail"]')).sendKeys(loginData.username);
-    element(by.css('[name="loginPassword"]')).sendKeys(loginData.password);
+  public static login(login: Login) {
+    element(by.css('[name="loginEmail"]')).sendKeys(login.email);
+    element(by.css('[name="loginPassword"]')).sendKeys(login.pwd);
     element(by.css('[aria-label="anmelden"]')).click();
   }
 
-  login() {
-    element(by.css('[name="loginEmail"]')).sendKeys(this.loginData.username);
-    element(by.css('[name="loginPassword"]')).sendKeys(this.loginData.password);
-    element(by.css('[aria-label="anmelden"]')).click();
+  public static createUser(user: User) {
+    element(by.css('[name="accountNewName"]')).sendKeys(user.name);
+    element(by.css('[name="accountNewFirstname"]')).sendKeys(user.firstname);
+    element(by.css('[name="accountNewEmail"]')).sendKeys(user.email);
+    element(by.css('[name="accountNewPassword"]')).sendKeys(user.pwd);
+    element(by.css('[aria-label="Konto erstellen"]')).click();
   }
 
 }
