@@ -36,16 +36,14 @@
   }
   .login-form, .new-account-form {
     width: 100%;
+    min-height: inherit;
+
   }
 
   .login-form-wrap {
     flex-direction: column;
   }
 
-  .login-form, .new-account-form {
-    min-height: inherit;
-
-  }
     .new-account-form {
     border-left: none;
     padding: 0;
