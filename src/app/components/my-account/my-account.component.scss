@@ -5,12 +5,17 @@
 /*
     my account  ////////////////////////////////////////////////////////////////////////////////////////////////
  */
+
 .login-form-wrap {
-  position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-flow: row wrap;
   max-width: 600px;
+}
+
+.login-form, .new-account-form {
+  position: relative;
+  width: 50%;
+  min-height: 320px;
 }
 
 .login-form {
@@ -36,7 +41,12 @@
   .login-form-wrap {
     flex-direction: column;
   }
-  .new-account-form {
+
+  .login-form, .new-account-form {
+    min-height: inherit;
+
+  }
+    .new-account-form {
     border-left: none;
     padding: 0;
   }

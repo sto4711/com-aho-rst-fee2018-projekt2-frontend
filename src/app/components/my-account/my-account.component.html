@@ -2,6 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
   <h2>{{'MY-ACCOUNT' | translate}}</h2>
   <div class="login-form-wrap">
+
     <form [formGroup]="account" class="form login-form" (ngSubmit)="onLogin().then()">
       <h4>{{'I-ALREADY-HAVE-AN-ACCOUNT' | translate}}</h4>
       <mat-form-field>
@@ -15,6 +16,8 @@
       <br>
       <button attr.aria-label="{{'LOGIN' | translate}}" class="btn form-btn bottom" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
     </form>
+
+
     <form [formGroup]="accountNew" class="form new-account-form" (ngSubmit)="onCreate().then()">
       <h4>{{'CREATE-NEW-ACCOUNT' | translate}}</h4>
       <mat-form-field>
@@ -34,7 +37,10 @@
         <mat-icon matSuffix (click)="hide = !hide"><i class="fas fa-eye form-icon"></i></mat-icon>
       </mat-form-field>
       <br>
-      <button attr.aria-label="{{'CREATE-ACCOUNT' | translate}}" class="btn form-btn" type="submit"><span class="btn-form-text">{{'CREATE-ACCOUNT' | translate}}</span></button>
+      <button attr.aria-label="{{'CREATE-ACCOUNT' | translate}}" class="btn form-btn bottom" type="submit"><span class="btn-form-text">{{'CREATE-ACCOUNT' | translate}}</span></button>
     </form>
-  </div>
+
+
+  </div><!-- end .login-form-wrap -->
+
 </div><!-- end .row -->
