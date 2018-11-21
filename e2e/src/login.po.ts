@@ -18,6 +18,15 @@ export class  MyAccount {
     {name: 'Hans', firstname: 'Muster', },
     {name: 'Helene', firstname: 'Fischer', },
     {name: 'Stefan', firstname: 'Raab', },
+    {name: 'Elvis', firstname: 'Presley', },
+    {name: 'Barack', firstname: 'Obama', },
+    {name: 'Bill', firstname: 'Clinton', },
+    {name: 'Bud', firstname: 'Spencer', },
+    {name: 'Terence', firstname: 'Hill', },
+    {name: 'Old', firstname: 'Shatterhand', },
+    {name: 'Alfred', firstname: 'Hitchcock', },
+    {name: 'Michael', firstname: 'Ende', },
+    {name: 'Alain', firstname: 'Berset', },
   ];
 
   public static async navigateTo() {
@@ -46,7 +55,7 @@ export class  MyAccount {
 
 
   public static createUserObj(userToCreate: { name: string; firstname: string }): User {
-    const email = (userToCreate.name + '.' + userToCreate.firstname + '@starwars.com').toLowerCase().replace(' ', '');
+    const email = (userToCreate.name + '.' + userToCreate.firstname + '@earth.com').toLowerCase().replace(' ', '');
     const pwd = userToCreate.name.substr(0, 1) + userToCreate.firstname.substr(0, 2);
     return new User(null, userToCreate.firstname, userToCreate.name, email, pwd, null);
   }

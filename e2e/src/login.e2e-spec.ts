@@ -20,7 +20,7 @@ describe('myAccount login / create user', () => {
 
   function createAndLogin(userToCreate: { name: string; firstname: string }) {
     it('when user "' + userToCreate.name + ' ' +  userToCreate.firstname
-      + '" created (ignore, if already exists)  & login is successful -  redicret to home page', async () => {
+      + '" is created (ignore, if already exists)  & login is successful -  redicret to home page', async () => {
       const user: User = MyAccount.createUserObj(userToCreate);
       await MyAccount.createUser(user);
       await MyAccount.navigateTo();
