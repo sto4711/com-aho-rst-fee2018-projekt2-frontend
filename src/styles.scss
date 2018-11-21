@@ -167,6 +167,17 @@
 }
 
 
+@media screen and (max-width: 662px){
+  .article-container {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 498px){
+  .article-container {
+    width: 100%;
+  }
+}
+
 .order-customer-articles {
   width: 65%;
 }
