@@ -4,6 +4,22 @@ import {User} from '../../src/app/services/user/user';
 
 export class  MyAccount {
 
+  public static loginNok: Login = new Login('wrong@email.com', '1234223322233test');
+  public static loginOk: Login = new Login('alain@aholzhauser.ch', 'aho');
+  public static usersToCreate: { name: string; firstname: string }[] = [
+    {name: 'Darth', firstname: 'Vader', },
+    {name: 'Han', firstname: 'Solo', },
+    {name: 'Luke', firstname: 'Skywalker', },
+    {name: 'Leia', firstname: 'Organa', },
+    {name: 'Indiana', firstname: 'Jones', },
+    {name: 'Pink', firstname: 'Panther', },
+    {name: 'Iron', firstname: 'Man', },
+    {name: 'James', firstname: 'Bond', },
+    {name: 'Hans', firstname: 'Muster', },
+    {name: 'Helene', firstname: 'Fischer', },
+    {name: 'Stefan', firstname: 'Raab', },
+  ];
+
   public static async navigateTo() {
     return await browser.get('/my-account');
   }
@@ -28,4 +44,10 @@ export class  MyAccount {
     await browser.waitForAngular();
   }
 
+
+  public static createUserObj(userToCreate: { name: string; firstname: string }): User {
+    const email = (userToCreate.name + '.' + userToCreate.firstname + '@starwars.com').toLowerCase().replace(' ', '');
+    const pwd = userToCreate.name.substr(0, 1) + userToCreate.firstname.substr(0, 2);
+    return new User(null, userToCreate.firstname, userToCreate.name, email, pwd, null);
+  }
 }
