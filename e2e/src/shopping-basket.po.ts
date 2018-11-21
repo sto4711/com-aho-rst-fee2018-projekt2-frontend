@@ -3,8 +3,8 @@ import {SnackBarService} from '../../src/app/services/commons/snack-bar/snack-ba
 
 export class  ShoppingBasket {
 
-  navigateTo() {
-    return browser.get('/shopping-basket');
+  public static async navigateTo() {
+    return await browser.get('/shopping-basket');
   }
 
 
