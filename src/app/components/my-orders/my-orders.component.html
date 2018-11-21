@@ -11,8 +11,14 @@
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{'ORDERED-ON' | translate}}: {{order.orderDate | date:'dd.MM.yyyy'}}
+               <strong> {{'ORDERED-ON' | translate}}:&nbsp;</strong> {{order.orderDate | date:'dd.MM.yyyy'}}
               </mat-panel-title>
+              <mat-panel-description>
+
+                <strong>{{'STATE' | translate}}:&nbsp;</strong> {{order.state | translate}}
+
+              </mat-panel-description>
+
 
             </mat-expansion-panel-header>
             <div class="order-customer-articles">
