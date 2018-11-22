@@ -60,10 +60,20 @@
 
 @media screen and (max-width: 562px) {
 
-  .service-element {
-      width: 100%;
+  .top-bar-service {
+    width: 100%;
+  }
+
+  ul.top-service-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li.top-service-element {
+      width: auto;
   }
 }
+
 .basket-link {
   cursor:pointer;
 }

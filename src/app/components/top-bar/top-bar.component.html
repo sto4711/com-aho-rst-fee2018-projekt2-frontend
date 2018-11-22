@@ -26,17 +26,16 @@
     </ul>
   </div><!-- end .top-bar-contact -->
   <div class="top-bar-service">
-    <ul>
-
-      <li class="service-element">
-        <i class="fas fa-shopping-cart "></i>
+    <ul class="top-service-wrap">
+      <li class="top-service-element">
+        <a [routerLink]="['/shopping-basket/']" ><i class="fas fa-shopping-cart "></i></a>
         <span class="basket-link"
            [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
            matBadgeOverlap="false" matBadgeSize="medium"><span class="hidden-ms">{{'SHOPPING-BASKET' | translate}}</span>
-            <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== null">
+            <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== null">
                 CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}
             </span>
-          <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum == null">
+          <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum == null">
             0.00
           </span>
         </span>
@@ -62,9 +61,8 @@
            <p *ngIf="shoppingBasketService.shoppingBasket?.totalSum"> <span class="overview-price"><strong>{{'SUBTOTAL' | translate}}</strong></span><br>
              <span class="overview-price">CHF {{shoppingBasketService.shoppingBasket.totalSum | amountConverter}}</span></p>
          <br>
-         <a [routerLink]="['/shopping-basket/']">
-            <button attr.aria-label="{{'SHOPPING-BASKET' | translate}}" class="btn form-btn mat-menu-btn"  >
-              <i class="fas fa-shopping-cart"></i>{{'SHOPPING-BASKET' | translate}}</button></a>
+             <a [routerLink]="['/shopping-basket/']" attr.aria-label="{{'SHOPPING-BASKET' | translate}}" class="btn form-btn mat-menu-btn"  >
+              <i class="fas fa-shopping-cart"></i>{{'SHOPPING-BASKET' | translate}}</a>
          </div>
           <div *ngIf="shoppingBasketService.shoppingBasket?.items.length  === 0"  >
             <p>{{'SHOPPING-BASKET-IS-EMPTY' | translate}}</p>
@@ -73,7 +71,7 @@
 
       </li>
 
-      <li class="service-element">
+      <li class="top-service-element">
         <app-search></app-search>
       </li>
     </ul>
