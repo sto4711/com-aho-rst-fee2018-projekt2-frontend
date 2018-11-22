@@ -6,13 +6,13 @@
   </div><!-- end .top-bar-nav -->
 
   <div class="logo-wrap" (click)="goToHome()">
-  <div class="big-letter">E</div>
-  <div class="line"><div class="hyphen"></div></div>
-  <div class="first-word">The</div>
-  <div class="second-word">bike</div>
-  <div class="third-word">store</div>
+    <div class="big-letter">E</div>
+    <div class="line"><div class="hyphen"></div></div>
+    <div class="first-word">The</div>
+    <div class="second-word">bike</div>
+    <div class="third-word">store</div>
 </div><!-- end .bg-top-bar -->
-
+<div class="logo-mobile"><h2>The E-Bike Store</h2></div>
   <div class="row">
 <div class="top-bar">
   <div class="top-bar-contact">
@@ -25,14 +25,14 @@
       </li>
     </ul>
   </div><!-- end .top-bar-contact -->
-  <div id="top-bar-service">
+  <div class="top-bar-service">
     <ul>
 
-      <li>
+      <li class="service-element">
         <i class="fas fa-shopping-cart "></i>
         <span class="basket-link"
            [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
-           matBadgeOverlap="false" matBadgeSize="medium">{{'SHOPPING-BASKET' | translate}}
+           matBadgeOverlap="false" matBadgeSize="medium"><span class="hidden-ms">{{'SHOPPING-BASKET' | translate}}</span>
             <span *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== null">
                 CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}
             </span>
@@ -72,7 +72,8 @@
         </mat-menu>
 
       </li>
-      <li>
+
+      <li class="service-element">
         <app-search></app-search>
       </li>
     </ul>

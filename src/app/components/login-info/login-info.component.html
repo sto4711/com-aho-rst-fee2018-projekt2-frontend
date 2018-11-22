@@ -17,7 +17,7 @@
 
   <ng-container *ngIf="!userService.getUser()">
     <p class="loginInfoContainer__logout" (click)="onGoToLogIn().then()" matTooltip="{{'LOGIN' | translate}}">
-      <i class="fas fa-user-circle "></i>{{'MY-ACCOUNT' | translate}}
+      <i class="fas fa-user-circle "></i><span class="hidden-ms">{{'MY-ACCOUNT' | translate}}</span>
     </p>
   </ng-container>
 

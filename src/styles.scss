@@ -361,11 +361,18 @@ select {
 .fa-thumbs-up, .fa-thumbs-down {
   margin: 0 0.5em 0 0.5em;
 }
+
 .fa-times {
   @include base-font-style();
   color: $color-error;
   float:right;
   cursor: pointer;
+}
+
+@media screen and(max-width: 562px) {
+  .fa-user-circle {
+    font-size: 3rem;
+  }
 }
 
 .stepper-edit {
@@ -416,7 +423,12 @@ select {
   display: block;
   margin: 0;
 
+}
 
+@media screen and (max-width: 562px) {
+  .hidden-ms {
+    display: none;
+  }
 }
 
 .clearfix:after {

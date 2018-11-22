@@ -58,6 +58,12 @@
   align-self: flex-end;
 }
 
+@media screen and (max-width: 562px) {
+
+  .service-element {
+      width: 100%;
+  }
+}
 .basket-link {
   cursor:pointer;
 }
@@ -68,18 +74,16 @@
   }
 }
 
-@media screen and (max-width: 412px) {
-  .top-bar-contact {
-    li:first-child  {
-      margin:0 10px 15px 0;
-    }
-  }
 
-}
 
 /*
     logo  /////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
+
+.logo-mobile {
+  display: none;
+  text-align: center;
+}
 
 .logo-wrap {
   display: grid;
@@ -151,31 +155,14 @@
   }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 562px) {
 
   .logo-wrap {
-    grid-template-columns: 1fr auto 3fr;
-    grid-template-rows: 10px 60px 10px;
-    width:300px;
+    display: none;
   }
 
-  .hyphen {
-    height: 5px;
-    width: 15px;
-  }
-
-  .big-letter {
-    @include font-size($sizeValue:13);
-
-  }
-
-  .first-word, .third-word  {
-    @include font-size($sizeValue:1.5);
-    text-indent: -10px;
-  }
-  .second-word {
-    @include font-size($sizeValue:5);
-
+  .logo-mobile {
+    display: block;
   }
 
 }
