@@ -1,7 +1,7 @@
 <header>
   <app-top-bar></app-top-bar>
   <div class="top-banner">
-    <div class="bg-main-nav"></div><!-- end #main-nav-wrap -->
+    <div class="bg-main-nav" [ngClass]="{'position-fixed': currentWindowWidth <= '562' && windowTopPosition > '100'}"></div><!-- end #main-nav-wrap -->
     <nav class="main-nav">
       <div class="hamburger" (click)="hamburger()">
         <div class="hamburge-line1"></div>

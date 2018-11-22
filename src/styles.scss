@@ -373,6 +373,13 @@ select {
   .fa-user-circle {
     font-size: 3rem;
   }
+
+}
+
+.position-fixed {
+  position: fixed;
+  z-index: 99;
+  top: 0;
 }
 
 .stepper-edit {

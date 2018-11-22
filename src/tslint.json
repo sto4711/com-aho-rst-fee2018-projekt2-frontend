@@ -42,6 +42,9 @@
     true,
     "check-else-if"
   ],
+  "no-trailing-spaces":
+    [2, { "skipBlankLines": true }
+    ],
   "no-shadowed-variable": [
     true,
     {
