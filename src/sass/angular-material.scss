@@ -25,6 +25,10 @@ ul.ngx-pagination {
   padding: 15px 0 15px 12px;
 }
 
+.mat-autocomplete-panel {
+  min-width: 150px !important;
+}
+
 .mat-form-field {
   font-weight: $font-weight-light;
 }

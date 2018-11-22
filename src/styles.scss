@@ -91,7 +91,7 @@
 
   h1, h2, h3, h4 {
     font-weight: $font-weight-medium;
-    margin: 0 0 2rem;
+    padding: 0 0 2rem;
   }
 
   h1 {
@@ -376,11 +376,6 @@ select {
 
 }
 
-.position-fixed {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-}
 
 .stepper-edit {
   margin: 0 5px 0 0;
@@ -449,3 +444,9 @@ select {
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
+/*needs important to overwrite compoents encapsulated styles, mimimimim */
+.position-fixed {
+  position: fixed !important;
+  z-index: 99;
+  top: 0;
+}

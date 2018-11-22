@@ -1,9 +1,11 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewEncapsulation} from '@angular/core';
+import {WindowSizeService} from '../../services/window-size/window-size.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None
 
 
 })
@@ -12,26 +14,22 @@ import {Component, HostListener, OnInit} from '@angular/core';
 
   public currentWindowWidth: number;
   public windowTopPosition: number;
-  public doc: HTMLElement  = document.documentElement;
 
-  @HostListener('window:resize') public onResize($event): void {
-    this.currentWindowWidth = window.innerWidth;
+  @HostListener('window:resize') public onResize(): void {
+    this.currentWindowWidth = this.windowSizeService.windowWidth();
+   }
+  @HostListener('window:scroll', ['$event']) public onScrollEvent(): void {
+    this.windowTopPosition = this.windowSizeService.windowTop();
+   }
 
-  }
-
-  @HostListener('window:scroll', ['$event']) public onScrollEvent($event): void{
-    this.windowTopPosition = (window.pageYOffset || this.doc.scrollTop)  - ( this.doc.clientTop || 0);
-    console.log(this.windowTopPosition);
-
-  }
-
-  constructor() { }
+  constructor(
+    private windowSizeService: WindowSizeService
+  ) { }
 
   public ngOnInit(): void {
-
-    this.windowTopPosition = (window.pageYOffset || this.doc.scrollTop)  - ( this.doc.clientTop || 0);
-    this.currentWindowWidth = window.innerWidth;
-   }
+    this.currentWindowWidth = this.windowSizeService.windowWidth();
+    this.windowTopPosition = this.windowSizeService.windowTop();
+  }
 
 
 
