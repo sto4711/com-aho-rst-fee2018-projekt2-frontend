@@ -12,9 +12,8 @@ export class TopBarComponent implements OnInit {
   public currentWindowWidth: number;
   public windowTopPosition: number;
 
-  @HostListener('window:resize') public onResize(): void {
-    this.currentWindowWidth = this.windowSizeService.windowWidth();
-  }
+
+
   @HostListener('window:scroll', ['$event']) public onScrollEvent(): void {
     this.windowTopPosition = this.windowSizeService.windowTop();
   }
@@ -25,7 +24,9 @@ export class TopBarComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.currentWindowWidth = this.windowSizeService.windowWidth();
+     this.windowSizeService.onResize$().subscribe( result => {
+      this.currentWindowWidth = result.innerWidth;
+    });
     this.windowTopPosition = this.windowSizeService.windowTop();
   }
 
