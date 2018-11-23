@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Router} from '@angular/router';
 import {WindowSizeService} from '../../services/window-size/window-size.service';
@@ -10,13 +10,9 @@ import {WindowSizeService} from '../../services/window-size/window-size.service'
 })
 export class TopBarComponent implements OnInit {
   public currentWindowWidth: number;
-  public windowTopPosition: number;
+  public windowTopPosition: any;
 
 
-
-  @HostListener('window:scroll', ['$event']) public onScrollEvent(): void {
-    this.windowTopPosition = this.windowSizeService.windowTop();
-  }
   constructor(
     public shoppingBasketService: ShoppingBasketService,
     private windowSizeService: WindowSizeService,
@@ -24,10 +20,14 @@ export class TopBarComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-     this.windowSizeService.onResize$().subscribe( result => {
+    this.currentWindowWidth = this.windowSizeService.initWindowWidth();
+
+    this.windowSizeService.onResize$().subscribe( result => {
       this.currentWindowWidth = result.innerWidth;
     });
-    this.windowTopPosition = this.windowSizeService.windowTop();
+    this.windowSizeService.onScroll$().subscribe( result => {
+      this.windowTopPosition = result;
+    });
   }
 
   public goToHome(): void {

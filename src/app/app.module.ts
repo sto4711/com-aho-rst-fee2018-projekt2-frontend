@@ -44,6 +44,7 @@ import {InitAppService} from './services/init-app/init-app.service';
 import {NavigationCancelService} from './services/navigation-cancel/navigation-cancel.service';
 import {LanguageService} from './services/language/language.service';
 import {LoggerService} from './services/logger/logger.service';
+import {SearchResultsComponent} from './components/search-results/search-results.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -76,6 +77,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     OverviewComponent,
     LoginInfoComponent,
     MyOrdersComponent,
+    SearchResultsComponent,
+    SearchComponent
      ],
   imports: [
     BrowserModule,

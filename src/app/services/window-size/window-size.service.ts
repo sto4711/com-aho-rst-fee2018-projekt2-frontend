@@ -8,14 +8,21 @@ import {EventManager} from '@angular/platform-browser';
 export class WindowSizeService {
   private doc: HTMLElement  = document.documentElement;
   private resizeSubject: Subject<Window>;
+  private scrollSubject: Subject<Window>;
 
 
   constructor(private eventManager: EventManager) {
-    this.resizeSubject = new Subject();
+    this.resizeSubject    = new Subject();
+    this.scrollSubject = new Subject();
     this.eventManager.addGlobalEventListener('window', 'resize', this.onResize.bind(this));
+    this.eventManager.addGlobalEventListener('window', 'scroll', this.onScroll.bind(this));
+
+  }
+  public initWindowWidth (): number {
+    return  window.innerWidth;
   }
 
-  public windowTop (): number {
+  public windowTop (): any {
     return (window.pageYOffset || this.doc.scrollTop)  - ( this.doc.clientTop || 0);
   }
 
@@ -25,5 +32,13 @@ export class WindowSizeService {
 
   public onResize(event: UIEvent): void {
     this.resizeSubject.next(<Window>event.target);
+  }
+
+  public onScroll$(): Observable<Window> {
+    return this.scrollSubject.asObservable();
+  }
+
+  public onScroll(): void {
+    this.scrollSubject.next(this.windowTop());
   }
 }

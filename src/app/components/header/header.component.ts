@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {WindowSizeService} from '../../services/window-size/window-size.service';
 
 @Component({
@@ -13,23 +13,24 @@ import {WindowSizeService} from '../../services/window-size/window-size.service'
  export class HeaderComponent implements OnInit {
 
   public currentWindowWidth: number;
-  public windowTopPosition: number;
+  public windowTopPosition: any;
 
-
-  @HostListener('window:scroll', ['$event']) public onScrollEvent(): void {
-    this.windowTopPosition = this.windowSizeService.windowTop();
-   }
 
   constructor(
     private windowSizeService: WindowSizeService
   ) { }
 
   public ngOnInit(): void {
+    this.currentWindowWidth = this.windowSizeService.initWindowWidth();
     this.windowSizeService.onResize$().subscribe( result => {
-      this.currentWindowWidth = result.innerWidth;
+       this.currentWindowWidth = result.innerWidth;
+     });
+
+    this.windowSizeService.onScroll$().subscribe( result => {
+       this.windowTopPosition = result;
     });
-    this.windowTopPosition = this.windowSizeService.windowTop();
-  }
+
+   }
 
 
 
