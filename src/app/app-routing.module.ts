@@ -17,6 +17,7 @@ import {MyOrdersComponent} from './components/my-orders/my-orders.component';
 import {AuthGuardService} from './services/guards/auth-guard.service';
 import {CheckoutReadyGuardService} from './services/guards/checkout-ready-guard.service';
 import {InitAppService} from './services/init-app/init-app.service';
+import {SearchResultsComponent} from './components/search-results/search-results.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'article-detail', component: ArticleDetailComponent,
         data: {breadcrumbPath: [new BreadcrumbPath('article-listing', 'OUR-ARTICLES')]}
+      },
+      {
+        path: 'search-results', component: SearchResultsComponent,
+        data: {breadcrumbPath: [new BreadcrumbPath('search-results', 'SEARCH-RESULTS')]}
       },
       {
         path: 'my-account', component: MyAccountComponent,
