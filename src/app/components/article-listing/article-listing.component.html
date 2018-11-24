@@ -9,10 +9,10 @@
     </app-article-template><!-- end .product-container -->
 
   </div><!-- end .product-listing -->
+  <pagination-controls
+    (pageChange)="p = $event"
+    previousLabel="{{'BACK' | translate}}"
+    nextLabel="{{'NEXT' | translate}}">
+  </pagination-controls>
 
 </div><!-- end .row -->
-<pagination-controls
-  (pageChange)="p = $event"
-  previousLabel="{{'BACK' | translate}}"
-  nextLabel="{{'NEXT' | translate}}">
-</pagination-controls>

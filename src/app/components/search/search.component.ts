@@ -16,7 +16,6 @@ import {Router} from '@angular/router';
 export class SearchComponent {
   public stateCtrl: FormControl = new FormControl();
   public articles$: Observable<Article[]>;
-  public searchValue: string = '';
 
   constructor(
     private articleService: ArticleService

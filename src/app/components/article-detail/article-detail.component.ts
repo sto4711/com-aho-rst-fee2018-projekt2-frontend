@@ -50,23 +50,36 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.route.paramMap
+     this.route.paramMap
       .subscribe( () => {
+        if (this.route.snapshot.queryParams['article'] && this.route.snapshot.queryParams['article'] !== '') {
         this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
-              this.article = result;
-              this.loading = false;
-              this.articleURLs = {
-                img01: this.rootURL + this.article.imageURL,
-                img02: this.rootURL + this.article.imageURL2,
-                img03: this.rootURL + this.article.imageURL3
+              if (result === null) {
+                this.articleNotFound();
+                return;
+              }
+               this.article = result;
+                this.loading = false;
+                this.articleURLs = {
+                  img01: this.rootURL + this.article.imageURL,
+                  img02: this.rootURL + this.article.imageURL2,
+                  img03: this.rootURL + this.article.imageURL3
 
               };
               this.showSlides(this.slideIndex);
             }
           );
+        } else {
+          this.articleNotFound();
+        }
       });
+  }
+
+  private articleNotFound (): void {
+    this.router.navigate(['not-found']).then();
+
   }
 
   public onSelectedArticleAmount(amount: number): void {
