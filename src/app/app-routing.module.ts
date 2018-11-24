@@ -43,7 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'search-results', component: SearchResultsComponent,
-        data: {breadcrumbPath: [new BreadcrumbPath('search-results', 'SEARCH-RESULTS')]}
+        data: {breadcrumbPath: [new BreadcrumbPath('', 'SEARCH-RESULTS')]}
       },
       {
         path: 'my-account', component: MyAccountComponent,
