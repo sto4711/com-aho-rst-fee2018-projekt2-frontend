@@ -43,21 +43,36 @@ export class  ShoppingBasketPo {
     await browser.waitForAngular();
   }
   public static async writeCustomerData(customerData: object) {
+    element(by.css('[aria-label="street"]')).clear();
     element(by.css('[aria-label="street"]')).sendKeys(customerData[0].street);
+
+    element(by.css('[aria-label="post code"]')).clear();
     element(by.css('[aria-label="post code"]')).sendKeys(customerData[0].plz);
+
+    element(by.css('[aria-label="city"]')).clear();
     element(by.css('[aria-label="city"]')).sendKeys(customerData[0].city);
+
     element.all(by.className('matStepperNext')).get(0).click();
     browser.sleep(1000);
+
+    element(by.css('[aria-label="phone"]')).clear();
     element(by.css('[aria-label="phone"]')).sendKeys(customerData[0].phone);
     element.all(by.className('matStepperNext')).get(1).click();
     browser.sleep(1000);
+
     element(by.css('[aria-label="PostPac Priority"]')).click();
     element.all(by.className('matStepperNext')).get(2).click();
     browser.sleep(1000);
+
     element(by.css('[aria-label="Paypal"]')).click();
     element.all(by.className('matStepperNext')).get(3).click();
     browser.sleep(1000);
+
     element(by.css('[aria-label="Jetzt bestellen"]')).click();
     await browser.waitForAngular();
+  }
+  public static async orderDetail() {
+     const title = element(by.css('[aria-label="confirm title"]')).getText();
+    return title;
   }
 }

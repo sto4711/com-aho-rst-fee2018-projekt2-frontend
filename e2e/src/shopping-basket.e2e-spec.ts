@@ -1,4 +1,4 @@
-import {browser, by, element} from 'protractor';
+import {browser} from 'protractor';
 import {ShoppingBasketPo} from './shopping-basket.po';
 
 describe('shopping basket testing', () => {
@@ -39,7 +39,12 @@ describe('shopping basket testing', () => {
 
   it('write customer data', async () => {
     await ShoppingBasketPo.writeCustomerData(ShoppingBasketPo.customerData);
-    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/checkout');
+   });
+
+  it('order-detail - order completed', async () => {
+    ShoppingBasketPo.orderDetail().then(function (title) {
+      expect(title).toEqual('Vielen Dank für Ihre Bestellung!');  });
   });
+
 
 });
