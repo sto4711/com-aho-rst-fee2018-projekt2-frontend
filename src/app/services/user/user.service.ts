@@ -6,6 +6,7 @@ import {User} from 'src/app/services/user/user';
 import {Login} from './login';
 import {backendUrls} from '../../constants/backend-urls';
 import {LoggerService} from '../logger/logger.service';
+import {LocalStorageService} from '../commons/local-storage/local-storage.service';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class UserService {
   }
 
   public initUser(): Observable<boolean> {
-    const userId: string = localStorage.getItem('userId');
+    const userId: string = LocalStorageService.getItem('userId');
     if (userId) {
       return this.get(userId)
         .pipe(
@@ -68,7 +69,7 @@ export class UserService {
           }
         }
         this.user = user;
-        localStorage.setItem('userId', user._id);
+        LocalStorageService.setItem('userId', user._id);
         LoggerService.consoleLog(this.constructor.name, 'signIn', 'ok');
       })
     );
@@ -80,7 +81,7 @@ export class UserService {
     }, ).pipe(
       tap(() => {
         this.user = null;
-        localStorage.removeItem('userId');
+        LocalStorageService.removeItem('userId');
         LoggerService.consoleLog(this.constructor.name, 'signOut', 'ok');
       })
     );

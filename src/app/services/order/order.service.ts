@@ -12,6 +12,7 @@ import {UserService} from '../user/user.service';
 import {backendUrls} from '../../constants/backend-urls';
 import {LoggerService} from '../logger/logger.service';
 import {User} from '../user/user';
+import {LocalStorageService} from '../commons/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class OrderService {
   }
 
   public getOrder(): Observable<Order> {
-    const orderId: string = localStorage.getItem('orderId');
+    const orderId: string = LocalStorageService.getItem('orderId');
 
     if (this.order) {
       this.order.doNotStep = false;
@@ -39,7 +40,7 @@ export class OrderService {
         .pipe(
           tap((order) => {
             this.order = order;
-            localStorage.setItem('orderId', this.order._id);
+            LocalStorageService.setItem('orderId', this.order._id);
             if (this.order.state === 'NEW COPY OF') {
               this.order.doNotStep = true;
             }
@@ -108,7 +109,7 @@ export class OrderService {
 
   public clear(): void {
      this.order = null;
-    localStorage.removeItem('orderId');
+    LocalStorageService.removeItem('orderId');
     LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
