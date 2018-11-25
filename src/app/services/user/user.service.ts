@@ -92,8 +92,8 @@ export class UserService {
     return this.http.post<User>(backendUrls.user + 'create', user, {
       headers: {'Content-Type': 'application/json'}
     }, ).pipe(
-      tap((user: User) => {
-        this.user = user;
+      tap((userCreated: User) => {
+        this.user = userCreated;
         LoggerService.consoleLog(this.constructor.name, 'create', 'ok');
       })
     );

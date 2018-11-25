@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class SearchComponent {
   public stateCtrl: FormControl = new FormControl();
   public articles$: Observable<Article[]>;
-  public searchValue: string = "";
+  public searchValue: string = '';
 
   constructor(
     private articleService: ArticleService
@@ -45,7 +45,7 @@ export class SearchComponent {
     this.router.navigate(['/article-detail'], {queryParams: {article: article.articleQueryParameter}}).then();
   }
 
-  public search() :void {
+  public search(): void {
 
   }
 }

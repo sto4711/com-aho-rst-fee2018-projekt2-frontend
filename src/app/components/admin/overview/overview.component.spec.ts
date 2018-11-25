@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OverviewComponent } from './overview.component';
-import {NO_ERRORS_SCHEMA, Pipe, PipeTransform} from "@angular/core";
+import {NO_ERRORS_SCHEMA, Pipe, PipeTransform} from '@angular/core';
 @Pipe({
-  name: "translate"
+  name: 'translate'
 })
 export class TranslatePipeMock implements PipeTransform {
-  public name: string = "translate";
+  public name: string = 'translate';
 
   public transform(query: string, ...args: any[]): any {
     return query;
