@@ -13,9 +13,15 @@ describe('shopping basket testing', () => {
 
   });
 
-  it('check if article is in shoppingbasket', async () => {
+  it('check if article is in shopping basket', async () => {
     ShoppingBasketPo.getShoppingBasketLength().then(function (amount) {
-      expect(amount).toBeGreaterThanOrEqual(0);    });
+      expect(amount).toBeGreaterThan(0);    });
    });
+
+  it('navigate to shopping basket', async () => {
+    await ShoppingBasketPo.navigateToShoppingBasket();
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/shopping-basket');
+
+  });
 
 });
