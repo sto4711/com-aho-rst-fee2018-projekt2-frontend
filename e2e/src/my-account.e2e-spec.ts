@@ -1,6 +1,6 @@
-import {MyAccount} from './login.po';
 import {browser} from 'protractor';
 import {User} from '../../src/app/services/user/user';
+import {MyAccount} from './my-account';
 
 describe('myAccount login / create user', () => {
 

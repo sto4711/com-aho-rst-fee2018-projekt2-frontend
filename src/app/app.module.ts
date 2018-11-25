@@ -45,6 +45,8 @@ import {NavigationCancelService} from './services/navigation-cancel/navigation-c
 import {LanguageService} from './services/language/language.service';
 import {LoggerService} from './services/logger/logger.service';
 import {SearchResultsComponent} from './components/search-results/search-results.component';
+import {HeaderRequestInterceptor} from './interceptors/header-request-interceptor';
+import {LocalStorageService} from './services/commons/local-storage/local-storage.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -100,9 +102,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   entryComponents: [
     DialogConfirmYesNoComponent],
   providers: [InitAppService, UserService, LanguageService, CanComponentDeactivateGuard, SnackBarService,
-    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService, LoggerService,
-    {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
+    ArticlesResponseCacheService, AuthAdminGuardService, CheckoutReadyGuardService, NavigationCancelService,
+    LoggerService, LocalStorageService,
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderRequestInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ArticlesCacheInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

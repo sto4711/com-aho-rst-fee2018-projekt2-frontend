@@ -6,6 +6,7 @@ import {ShoppingBasket} from './shopping-basket';
 import {ShoppingBasketItem} from './shopping-basket-item';
 import {backendUrls} from '../../constants/backend-urls';
 import {LoggerService} from '../logger/logger.service';
+import {LocalStorageService} from '../commons/local-storage/local-storage.service';
 
 
 @Injectable({
@@ -25,14 +26,14 @@ export class ShoppingBasketService {
   }
 
   public initBasket(): Observable<boolean> {
-    const shoppingBasketId: string = localStorage.getItem('shoppingBasketId');
+    const shoppingBasketId: string = LocalStorageService.getItem('shoppingBasketId');
 
     if (shoppingBasketId) {
       return this.get(shoppingBasketId)
         .pipe(
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
-            localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+            LocalStorageService.setItem('shoppingBasketId', this.shoppingBasket._id);
             LoggerService.consoleLog(this.constructor.name, 'initBasket', 'shoppingBasket loaded');
           })
           , map(() => true)
@@ -42,7 +43,7 @@ export class ShoppingBasketService {
         .pipe(
           tap((shoppingBasket: ShoppingBasket) => {
             this.shoppingBasket = shoppingBasket;
-            localStorage.setItem('shoppingBasketId', this.shoppingBasket._id);
+            LocalStorageService.setItem('shoppingBasketId', this.shoppingBasket._id);
             LoggerService.consoleLog(this.constructor.name, 'initBasket', 'no shoppingBasket -> created');
           })
           , map(() => true)
@@ -51,7 +52,7 @@ export class ShoppingBasketService {
   }
 
   public clear(): void {
-    localStorage.removeItem('shoppingBasketId');
+    LocalStorageService.removeItem('shoppingBasketId');
     this.initBasket();
     LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }

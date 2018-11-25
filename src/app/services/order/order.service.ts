@@ -12,6 +12,7 @@ import {UserService} from '../user/user.service';
 import {backendUrls} from '../../constants/backend-urls';
 import {LoggerService} from '../logger/logger.service';
 import {User} from '../user/user';
+import {LocalStorageService} from '../commons/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class OrderService {
   }
 
   public getOrder(): Observable<Order> {
-    const orderId: string = localStorage.getItem('orderId');
+    const orderId: string = LocalStorageService.getItem('orderId');
 
     if (this.order) {
       this.order.doNotStep = false;
@@ -39,7 +40,7 @@ export class OrderService {
         .pipe(
           tap((order) => {
             this.order = order;
-            localStorage.setItem('orderId', this.order._id);
+            LocalStorageService.setItem('orderId', this.order._id);
             if (this.order.state === 'NEW COPY OF') {
               this.order.doNotStep = true;
             }
@@ -59,36 +60,28 @@ export class OrderService {
 
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
-    return this.http.post<Order>(backendUrls.order + 'create', {'shoppingBasketId': shoppingBasketId}, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
-      }
+    return this.http.post<Order>(backendUrls.order + 'create', {'shoppingBasketId': shoppingBasketId}
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
     );
   }
 
   public get(id: string): Observable<Order> {
-    return this.http.get<Order>(backendUrls.orderDetails + '?id=' + id, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
-      }
+    return this.http.get<Order>(backendUrls.orderDetails + '?id=' + id
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
   public getOrdersByUser(userId: User['_id']): Observable<Order[]> {
-    return this.http.get<Order[]>(backendUrls.userOrders + '?userId=' + userId, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
-      }
+    return this.http.get<Order[]>(backendUrls.userOrders + '?userId=' + userId
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
   }
 
   public getAll(): Observable<Order[]> {
-    return this.http.get<Order[]>(backendUrls.orderAll, {
-      headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
-      }
+    return this.http.get<Order[]>(backendUrls.orderAll
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'getAll', 'ok'))
     );
@@ -116,7 +109,7 @@ export class OrderService {
 
   public clear(): void {
      this.order = null;
-    localStorage.removeItem('orderId');
+    LocalStorageService.removeItem('orderId');
     LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
@@ -124,8 +117,6 @@ export class OrderService {
     return this.http.patch<Order>(backendUrls.order + 'state', {
         'orderId': this.order._id,
         'state': OrderService.STATE_APPROVED
-      }, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
       }
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'approve', 'ok'))
@@ -160,9 +151,7 @@ export class OrderService {
   }
 
   private change(urlPath: string, order: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + urlPath, order, {
-        headers: {'Content-Type': 'application/json', 'Authorization': this.userService.getToken()}
-      }
+    return this.http.patch<Order>(backendUrls.order + urlPath, order
     ).pipe(
       tap(() => {
         this.order = order;
