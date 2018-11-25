@@ -88,12 +88,12 @@
     <mat-step [stepControl]="paymentType">
       <ng-template matStepLabel>{{'PAYING-WITH' | translate}}</ng-template>
       <form [formGroup]="paymentType">
-        <mat-radio-group attr.aria-label="payment" formControlName="payment">
-          <mat-radio-button attr.aria-label="Paypal" value="Paypal">Paypal</mat-radio-button>
+        <mat-radio-group aria-label="payment" formControlName="payment">
+          <mat-radio-button aria-label="Paypal" value="Paypal">Paypal</mat-radio-button>
           <br>
-          <mat-radio-button attr.aria-label="Mastercard" value="Mastercard">Mastercard</mat-radio-button>
+          <mat-radio-button aria-label="Mastercard" value="Mastercard">Mastercard</mat-radio-button>
           <br>
-          <mat-radio-button attr.aria-label="Visa" value="Visa">Visa</mat-radio-button>
+          <mat-radio-button aria-label="Visa" value="Visa">Visa</mat-radio-button>
 
         </mat-radio-group>
         <br>
@@ -135,7 +135,7 @@
 
         <form *ngIf="shoppingBasketService.shoppingBasket?.items.length>0" #fCreateOrder="ngForm" (ngSubmit)="approveOrder().then() ">
           <p>
-            <button attr.aria-label="{{'ORDER-NOW' | translate}}" id="order-button" class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
+            <button attr.aria-label="{{'ORDER-NOW' | translate}}" class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'ORDER-NOW' | translate}}</button>
           </p>
         </form>
       </div>
