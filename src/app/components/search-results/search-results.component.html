@@ -18,7 +18,7 @@
            [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleQueryParameter | trim}">{{'VIEW-ARTICLE' | translate}}</a>
      </div><!-- end .search-result-wrap -->
   </div>
-  <div [ngClass]="((articles$ | async)?.length==0 || articles$ === null)?'hidden':''">
+  <div [ngClass]="((articles$ | async)?.length==0 || articles$ === null)?'hidden':'show'">
       <pagination-controls
       (pageChange)="n = $event"
        previousLabel="{{'BACK' | translate}}"
