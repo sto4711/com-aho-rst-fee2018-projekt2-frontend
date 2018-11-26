@@ -57,13 +57,6 @@ export class ShoppingBasketService {
     LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
-  public create(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'create', {})
-      .pipe(
-        tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
-      );
-  }
-
   public get(shoppingBasketID: ShoppingBasket['_id']): Observable<ShoppingBasket> {
     return this.http.get<ShoppingBasket>(backendUrls.shoppingBasket + '?id=' + shoppingBasketID)
       .pipe(
@@ -71,10 +64,17 @@ export class ShoppingBasketService {
       );
   }
 
+  public create(): Observable<ShoppingBasket> {
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketCreate, null)
+      .pipe(
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
+      );
+  }
+
   public addItem(articleId: ShoppingBasketItem['articleID'],
                  articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem)
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketAddItem, shoppingBasketItem)
       .pipe(
         tap((shoppingBasket: ShoppingBasket) => {
           this.shoppingBasket = shoppingBasket;
@@ -83,10 +83,21 @@ export class ShoppingBasketService {
       );
   }
 
+  public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
+    const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketRemoveItem, shoppingBasketItem)
+      .pipe(
+        tap((shoppingBasket: ShoppingBasket) => {
+          this.shoppingBasket = shoppingBasket;
+          LoggerService.consoleLog(this.constructor.name, 'removeItem', 'ok');
+        })
+      );
+  }
+
   public changeItemAmount(articleId: ShoppingBasketItem['articleID'],
                           articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem)
+    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasketChangeItemAmount, shoppingBasketItem)
       .pipe(
         tap((shoppingBasket: ShoppingBasket) => {
           this.shoppingBasket = shoppingBasket;
@@ -95,15 +106,5 @@ export class ShoppingBasketService {
       );
   }
 
-  public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
-    const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem)
-      .pipe(
-        tap((shoppingBasket: ShoppingBasket) => {
-          this.shoppingBasket = shoppingBasket;
-          LoggerService.consoleLog(this.constructor.name, 'removeItem', 'ok');
-        })
-      );
-  }
 
 }
