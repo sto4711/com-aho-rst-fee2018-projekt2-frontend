@@ -1,11 +1,11 @@
 import {environment} from '../../environments/environment';
 
 export const backendUrls: {
-  root: string;
-  articles: string; articlesLatest: string; articlesDetails: string;
-  users: string; user: string; userSignIn: string; userSignOut: string; userCreate: string; userUpdate: string; userDelete: string;
- shoppingBasket: string; shoppingBasketCreate: string; shoppingBasketAddItem: string; shoppingBasketRemoveItem: string; shoppingBasketChangeItemAmount: string;
- order: string; orderDetails: string; orderAll: string; userOrders: string
+  root: string; articles: string; articlesLatest: string; articlesDetails: string; users: string; user: string;
+  userSignIn: string; userSignOut: string; userCreate: string; userUpdate: string; userDelete: string;
+  shoppingBasket: string; shoppingBasketCreate: string; shoppingBasketAddItem: string; shoppingBasketRemoveItem: string;
+  shoppingBasketChangeItemAmount: string; order: string; orderCreate: string; orderUpdate: string; orderState: string;
+  orderDelete: string; orderDetails: string; orderAll: string; userOrders: string
 } = {
   root: environment.backendUrl,
 
@@ -28,12 +28,15 @@ export const backendUrls: {
   shoppingBasketRemoveItem: environment.backendUrl + 'backend/shopping-basket/remove-item',
   shoppingBasketChangeItemAmount: environment.backendUrl + 'backend/shopping-basket/change-item-amount',
 
-
-
-
   order: environment.backendUrl + 'backend/order/',
+  orderCreate: environment.backendUrl + 'backend/order/create',
+  orderUpdate: environment.backendUrl + 'backend/order/update',
+  orderState: environment.backendUrl + 'backend/order/state',
+  orderDelete: environment.backendUrl + 'backend/order/delete-order',
+
   orderDetails: environment.backendUrl + 'backend/order-details/',
   orderAll: environment.backendUrl + 'backend/order-all/',
+
   userOrders: environment.backendUrl + 'backend/user-orders/',
 };
 

@@ -60,10 +60,26 @@ export class OrderService {
 
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
-    return this.http.post<Order>(backendUrls.order + 'create', {'shoppingBasketId': shoppingBasketId})
+    return this.http.post<Order>(backendUrls.orderCreate, {'shoppingBasketId': shoppingBasketId})
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
       );
+  }
+
+  private change(urlPath: string, order: Order): Observable<Order> {
+    return this.http.patch<Order>(backendUrls.order + urlPath, order)
+      .pipe(
+        tap(() => {
+          this.order = order;
+          LoggerService.consoleLog(this.constructor.name, 'change', 'ok');
+        })
+      );
+  }
+
+  public clear(): void {
+    this.order = null;
+    LocalStorageService.removeItem('orderId');
+    LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
   }
 
   public get(id: string): Observable<Order> {
@@ -107,14 +123,8 @@ export class OrderService {
     return this.change('change-payment-type', this.order);
   }
 
-  public clear(): void {
-    this.order = null;
-    LocalStorageService.removeItem('orderId');
-    LoggerService.consoleLog(this.constructor.name, 'clear', 'ok');
-  }
-
   public approve(): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + 'state', {
+    return this.http.patch<Order>(backendUrls.orderState, {
       'orderId': this.order._id,
       'state': OrderService.STATE_APPROVED
     })
@@ -124,14 +134,14 @@ export class OrderService {
   }
 
   public updateOrder(orderData: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + 'update', orderData)
+    return this.http.patch<Order>(backendUrls.orderUpdate, orderData)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'updateOrder', 'ok'))
       );
   }
 
   public deleteOrder(orderID: Order['_id']): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + 'delete-order', {'_id': orderID})
+    return this.http.patch<Order>(backendUrls.orderDelete, {'_id': orderID})
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'deleteOrder', 'ok'))
       );
@@ -146,15 +156,6 @@ export class OrderService {
     LoggerService.consoleLog(this.constructor.name, 'resetOrder', 'ok');
   }
 
-  private change(urlPath: string, order: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + urlPath, order)
-      .pipe(
-        tap(() => {
-          this.order = order;
-          LoggerService.consoleLog(this.constructor.name, 'change', 'ok');
-        })
-      );
-  }
 
 
 }
