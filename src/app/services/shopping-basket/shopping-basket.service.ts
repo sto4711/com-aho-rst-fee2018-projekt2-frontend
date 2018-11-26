@@ -58,62 +58,52 @@ export class ShoppingBasketService {
   }
 
   public create(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'create', {
-        headers: {'Content-Type': 'application/json'}
-      }
-    ).pipe(
-      tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
-    );
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'create', {})
+      .pipe(
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
+      );
   }
 
   public get(shoppingBasketID: ShoppingBasket['_id']): Observable<ShoppingBasket> {
-    return this.http.get<ShoppingBasket>(backendUrls.shoppingBasket + '?id=' + shoppingBasketID, {
-        headers: {'Content-Type': 'application/json'}
-      }
-    ).pipe(
-      tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
-    );
+    return this.http.get<ShoppingBasket>(backendUrls.shoppingBasket + '?id=' + shoppingBasketID)
+      .pipe(
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
+      );
   }
 
   public addItem(articleId: ShoppingBasketItem['articleID'],
                  articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem, {
-        headers: {'Content-Type': 'application/json'}
-      }
-    ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => {
-        this.shoppingBasket = shoppingBasket;
-        LoggerService.consoleLog(this.constructor.name, 'addItem', 'ok');
-      })
-    );
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'add-item', shoppingBasketItem)
+      .pipe(
+        tap((shoppingBasket: ShoppingBasket) => {
+          this.shoppingBasket = shoppingBasket;
+          LoggerService.consoleLog(this.constructor.name, 'addItem', 'ok');
+        })
+      );
   }
 
   public changeItemAmount(articleId: ShoppingBasketItem['articleID'],
                           articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem, {
-        headers: {'Content-Type': 'application/json'}
-      }
-    ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => {
-        this.shoppingBasket = shoppingBasket;
-        LoggerService.consoleLog(this.constructor.name, 'changeItemAmount', 'ok');
-      })
-    );
+    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasket + 'change-item-amount', shoppingBasketItem)
+      .pipe(
+        tap((shoppingBasket: ShoppingBasket) => {
+          this.shoppingBasket = shoppingBasket;
+          LoggerService.consoleLog(this.constructor.name, 'changeItemAmount', 'ok');
+        })
+      );
   }
 
   public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem, {
-        headers: {'Content-Type': 'application/json'}
-      }
-    ).pipe(
-      tap((shoppingBasket: ShoppingBasket) => {
-        this.shoppingBasket = shoppingBasket;
-        LoggerService.consoleLog(this.constructor.name, 'removeItem', 'ok');
-      })
-    );
+    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasket + 'remove-item', shoppingBasketItem)
+      .pipe(
+        tap((shoppingBasket: ShoppingBasket) => {
+          this.shoppingBasket = shoppingBasket;
+          LoggerService.consoleLog(this.constructor.name, 'removeItem', 'ok');
+        })
+      );
   }
 
 }
