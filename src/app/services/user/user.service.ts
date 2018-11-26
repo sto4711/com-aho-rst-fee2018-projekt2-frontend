@@ -46,9 +46,7 @@ export class UserService {
   }
 
   public get(userID: User['_id']): Observable<User> {
-    return this.http.get<User>(backendUrls.user + '?id=' + userID, {
-        headers: {'Content-Type': 'application/json'}
-      }
+    return this.http.get<User>(backendUrls.user + '?id=' + userID
     ).pipe(
       tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
     );
