@@ -82,7 +82,7 @@ export class UserService {
   }
 
   public create(user: User): Observable<User> {
-    return this.http.post<User>(backendUrls.user + 'create', user)
+    return this.http.post<User>(backendUrls.userCreate, user)
       .pipe(
         tap((userCreated: User) => {
           this.user = userCreated;
