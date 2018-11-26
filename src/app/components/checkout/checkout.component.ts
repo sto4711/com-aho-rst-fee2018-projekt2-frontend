@@ -12,6 +12,7 @@ import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.
 import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
 import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {AuthGuardService} from '../../services/guards/auth-guard.service';
+import {LoggerService} from '../../services/logger/logger.service';
 
 @Component({
   selector: 'app-checkout',
@@ -54,10 +55,11 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
   public ngAfterViewInit(): void {
     this.orderService.getOrder()
       .subscribe(order => {
-        /* micro thread / delay with promise */
+        /* micro thread / delay with promise for stepping... */
         Promise.resolve(null).then(() => {
           this.setFormGroupValues(order);
-          if (!order.doNotStep) {
+          if (order.state !== 'NEW COPY OF') {
+            LoggerService.consoleLog(this.constructor.name, 'ngAfterViewInit', 'order is a copy of latest order');
             this.isAutoStepping = true;
             this.handleSteps(order);
             this.isAutoStepping = false;

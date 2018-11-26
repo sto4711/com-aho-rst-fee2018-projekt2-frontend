@@ -29,30 +29,29 @@ export class OrderService {
   }
 
   public getOrder(): Observable<Order> {
-    const orderId: string = LocalStorageService.getItem('orderId');
-
     if (this.order) {
-      this.order.doNotStep = false;
       return of<Order>(this.order);
-    } else if (!orderId) {
-      LoggerService.consoleLog(this.constructor.name, 'getOrder', 'no order, will be created');
+    }
+    return this.initOrder();
+  }
+
+  private initOrder(): Observable<Order> {
+    const orderId: string = LocalStorageService.getItem('orderId');
+    if (!orderId) {
+      LoggerService.consoleLog(this.constructor.name, 'initOrder', 'no order, will be created');
       return this.create()
         .pipe(
           tap((order) => {
             this.order = order;
             LocalStorageService.setItem('orderId', this.order._id);
-            if (this.order.state === 'NEW COPY OF') {
-              this.order.doNotStep = true;
-            }
           })
         );
     } else {
-      LoggerService.consoleLog(this.constructor.name, 'getOrder', 'order already exists, getting order');
+      LoggerService.consoleLog(this.constructor.name, 'initOrder', 'order already exists, getting order');
       return this.get(orderId)
         .pipe(
           tap((order) => {
             this.order = order;
-            this.order.doNotStep = false;
           })
         );
     }
@@ -155,7 +154,6 @@ export class OrderService {
     await this.shoppingBasketService.initBasket().toPromise();
     LoggerService.consoleLog(this.constructor.name, 'resetOrder', 'ok');
   }
-
 
 
 }
