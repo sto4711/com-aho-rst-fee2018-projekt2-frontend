@@ -1,14 +1,23 @@
 import {environment} from '../../environments/environment';
 
-export const backendUrls: { root: string; articles: string; articlesLatest: string; articlesDetails: string; users: string;
- user: string; userDetails: string; shoppingBasket: string; order: string; orderDetails: string; orderAll: string; userOrders: string } = {
+export const backendUrls: {
+  root: string;
+  articles: string; articlesLatest: string; articlesDetails: string;
+  users: string; user: string;
+ shoppingBasket: string;
+ order: string; orderDetails: string; orderAll: string; userOrders: string
+} = {
   root: environment.backendUrl,
+
+
+
+
+
   articles: environment.backendUrl + 'backend/articles/',
   articlesLatest: environment.backendUrl + 'backend/articles/latest',
   articlesDetails: environment.backendUrl + 'backend/article-details/',
   users: environment.backendUrl + 'backend/users/',
   user: environment.backendUrl + 'backend/user/',
-  userDetails: environment.backendUrl + 'backend/user-details/',
   shoppingBasket: environment.backendUrl + 'backend/shopping-basket/',
   order: environment.backendUrl + 'backend/order/',
   orderDetails: environment.backendUrl + 'backend/order-details/',
