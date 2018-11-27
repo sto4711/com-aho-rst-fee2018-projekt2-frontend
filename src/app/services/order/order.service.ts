@@ -65,12 +65,13 @@ export class OrderService {
       );
   }
 
-  private change(urlPath: string, order: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.order + urlPath, order)
+  private change(backendUrl: string, order: Order): Observable<Order> {
+    return this.http.patch<Order>(backendUrl, order)
       .pipe(
         tap(() => {
           this.order = order;
-          LoggerService.consoleLog(this.constructor.name, 'change', 'ok');
+          const urlLastPart: string = backendUrl.substr(backendUrl.lastIndexOf('/') + 1).replace(/-/g, ' ');
+          LoggerService.consoleLog(this.constructor.name, 'change', 'ok (' + urlLastPart + ')');
         })
       );
   }
@@ -104,22 +105,22 @@ export class OrderService {
 
   public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
     this.order.deliveryAddress = deliveryAddress;
-    return this.change('change-delivery-address', this.order);
+    return this.change(backendUrls.orderChangeDeliveryAddress, this.order);
   }
 
   public updateContactData(contactData: ContactData): Observable<Order> {
     this.order.contactData = contactData;
-    return this.change('change-contact-data', this.order);
+    return this.change(backendUrls.orderChangeContactData, this.order);
   }
 
   public updateDeliveryType(deliveryType: DeliveryType): Observable<Order> {
     this.order.deliveryType = deliveryType;
-    return this.change('change-delivery-type', this.order);
+    return this.change(backendUrls.orderChangeDeliveryType, this.order);
   }
 
   public updatePaymentType(paymentType: PaymentType): Observable<Order> {
     this.order.paymentType = paymentType;
-    return this.change('change-payment-type', this.order);
+    return this.change(backendUrls.orderChangePaymentType, this.order);
   }
 
   public approve(): Observable<Order> {
