@@ -108,7 +108,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
         await this.userService.create(user).toPromise();
         this.orderService.clear();
         this.snackBarService.showInfo(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_CREATED);
-        this.router.navigate(['home']).then();
+        this.router.navigate([this.navigationCancelService.getCanceledRoute()]).then();
       } catch (error) {
         if (error.status === 400) {
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_TAKEN);
