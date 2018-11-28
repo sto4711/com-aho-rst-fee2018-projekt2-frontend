@@ -2,16 +2,16 @@
   <app-top-bar ></app-top-bar>
   <div class="top-banner">
     <div class="bg-main-nav" [ngClass]="{'position-fixed': currentWindowWidth <= 562 && windowTopPosition > 155}"></div><!-- end #main-nav-wrap -->
-    <nav class="main-nav" [ngClass]="{'position-fixed': currentWindowWidth <= 562 && windowTopPosition > 155}">
+    <nav class="main-nav" aria-role="navigation" [ngClass]="{'position-fixed': currentWindowWidth <= 562 && windowTopPosition > 155}">
       <div class="hamburger" (click)="hamburger()">
         <div class="hamburge-line1"></div>
         <div class="hamburge-line2"></div>
         <div class="hamburge-line3"></div>
       </div>
       <ul>
-        <li><a routerLinkActive="active" role="link" routerLink="/home" (click)="hamburger()">{{'HOME' | translate}}</a></li>
-        <li><a routerLinkActive="active" role="link" routerLink="/article-listing" (click)="hamburger()">{{'ARTICLES' | translate}}</a></li>
-        <li><a routerLinkActive="active" role="link" routerLink="/my-orders" (click)="hamburger()">{{'MY-ORDERS' | translate}}</a></li>
+        <li><a routerLinkActive="active" role="link" title="{{'HOME' | translate}}" routerLink="/home" (click)="hamburger()">{{'HOME' | translate}}</a></li>
+        <li><a routerLinkActive="active" role="link" title="{{'ARTICLES' | translate}}" routerLink="/article-listing" (click)="hamburger()">{{'ARTICLES' | translate}}</a></li>
+        <li><a routerLinkActive="active" role="link" title="{{'MY-ORDERS' | translate}}" routerLink="/my-orders" (click)="hamburger()">{{'MY-ORDERS' | translate}}</a></li>
       </ul>
     </nav>
     <div class="banner">

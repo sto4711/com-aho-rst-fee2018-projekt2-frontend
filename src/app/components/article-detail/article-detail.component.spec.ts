@@ -49,6 +49,7 @@ import {ErrorResponseInterceptor} from '../../interceptors/error-response-interc
 import {HttpLoaderFactory} from '../../app.module';
 import {APP_BASE_HREF} from '@angular/common';
 import {Article} from '../../services/articles/article';
+import {SearchResultsComponent} from "../search-results/search-results.component";
 
 describe('ArticleDetailComponent', () => {
   let component: ArticleDetailComponent;
@@ -84,6 +85,7 @@ describe('ArticleDetailComponent', () => {
         OverviewComponent,
         LoginInfoComponent,
         MyOrdersComponent,
+        SearchResultsComponent
       ],
       imports: [
         BrowserModule,

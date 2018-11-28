@@ -8,7 +8,7 @@ describe('shopping basket testing', () => {
 
   it('navigate to article', async () => {
     await ShoppingBasketPo.navigateToArticle();
-    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/article-detail?article=Superbike-E-Bike-Modell-1');
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/article-detail?article=Superbike-E-Bike-Modell-1');
 
   });
   it('add article', async () => {
@@ -23,18 +23,18 @@ describe('shopping basket testing', () => {
 
   it('navigate to shopping basket', async () => {
     await ShoppingBasketPo.navigateToShoppingBasket();
-    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/shopping-basket');
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/shopping-basket');
   });
 
   it('navigate to login', async () => {
     await ShoppingBasketPo.navigateToLogin();
-    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/my-account');
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/my-account');
 
   });
 
   it('login user', async () => {
     await ShoppingBasketPo.loginUser(ShoppingBasketPo.loginOk);
-    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4300/checkout');
+    await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/checkout');
   });
 
   it('write customer data', async () => {

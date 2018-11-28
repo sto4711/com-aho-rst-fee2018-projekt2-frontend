@@ -44,6 +44,7 @@ import {ArticlesCacheInterceptor} from './interceptors/articles-cache-intercepto
 import {ErrorResponseInterceptor} from './interceptors/error-response-interceptor';
 import {APP_BASE_HREF} from '@angular/common';
 import {LanguageService} from './services/language/language.service';
+import {SearchResultsComponent} from './components/search-results/search-results.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -73,6 +74,7 @@ describe('AppComponent', () => {
         OverviewComponent,
         LoginInfoComponent,
         MyOrdersComponent,
+        SearchResultsComponent
       ],
       imports: [
         BrowserModule,
@@ -104,16 +106,19 @@ describe('AppComponent', () => {
     const app: any = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
- /* it(`should have as title 'com-aho-rst-fee2018-projekt2-frontend'`, async(() => {
+  /*
+  it(`should have as title The E-Bike Store`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('com-aho-rst-fee2018-projekt2-frontend');
-  }));
-  it('should render title in a h1 tag', async(() => {
+    let app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('The E-Bike Store');
+  }));*/
+
+  it('should render title in a h2 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to com-aho-rst-fee2018-projekt2-frontend!');
+    expect(compiled.querySelector('h2').textContent).toContain('The E-Bike Store');
+
   }));
-  */
+
 });
