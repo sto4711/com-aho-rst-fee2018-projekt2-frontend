@@ -85,7 +85,7 @@ export class ShoppingBasketService {
 
   public removeItem(articleId: ShoppingBasketItem['articleID']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, 4711);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketRemoveItem, shoppingBasketItem)
+    return this.http.post<ShoppingBasket>(backendUrls.removeItemShoppingBasket, shoppingBasketItem)
       .pipe(
         tap((shoppingBasket: ShoppingBasket) => {
           this.shoppingBasket = shoppingBasket;
@@ -97,7 +97,7 @@ export class ShoppingBasketService {
   public changeItemAmount(articleId: ShoppingBasketItem['articleID'],
                           articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.patch<ShoppingBasket>(backendUrls.shoppingBasketChangeItemAmount, shoppingBasketItem)
+    return this.http.patch<ShoppingBasket>(backendUrls.changeItemAmountShoppingBasket, shoppingBasketItem)
       .pipe(
         tap((shoppingBasket: ShoppingBasket) => {
           this.shoppingBasket = shoppingBasket;

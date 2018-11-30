@@ -15,8 +15,8 @@ export const backendUrls: {
   changeRatingArticle: string;
 
 
-  addItemShoppingBasket: string; shoppingBasketRemoveItem: string;
-  shoppingBasketChangeItemAmount: string; order: string; orderCreate: string; orderUpdate: string;
+  addItemShoppingBasket: string; removeItemShoppingBasket: string;
+  changeItemAmountShoppingBasket: string; order: string; orderCreate: string; orderUpdate: string;
   orderChangeDeliveryAddress: string;
   orderChangeContactData: string;
   orderChangeDeliveryType: string;
@@ -33,7 +33,7 @@ export const backendUrls: {
   shoppingBasket: environment.backendUrl + 'backend/shopping-basket/',
 
 
-  changeRatingArticle : environment.backendUrl + 'backend/change-rating/article',
+  changeRatingArticle: environment.backendUrl + 'backend/change-rating/article',
 
   signInUser: environment.backendUrl + 'backend/sign-in/user',
   signOutUser: environment.backendUrl + 'backend/sign-out/user',
@@ -42,33 +42,15 @@ export const backendUrls: {
   createShoppingBasket: environment.backendUrl + 'backend/create/shopping-basket',
 
 
-    updateUser: environment.backendUrl + 'backend/update/user',
-    addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
+  updateUser: environment.backendUrl + 'backend/update/user',
+  addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
+  removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
+  changeItemAmountShoppingBasket: environment.backendUrl + 'backend/change-item-amount/shopping-basket',
 
 
 
 
-
-    deleteUser: environment.backendUrl + 'backend/delete/user',
-
-
-
-
-
-
-
-
-
-  shoppingBasketRemoveItem: environment.backendUrl + 'backend/shopping-basket/remove-item',
-  shoppingBasketChangeItemAmount: environment.backendUrl + 'backend/shopping-basket/change-item-amount',
-
-
-
-
-
-
-
-
+  deleteUser: environment.backendUrl + 'backend/delete/user',
 
 
 
@@ -78,8 +60,6 @@ export const backendUrls: {
   orderAll: environment.backendUrl + 'backend/order-all/',
 
 
-
-
   orderCreate: environment.backendUrl + 'backend/order/create',
   orderUpdate: environment.backendUrl + 'backend/order/update',
 
@@ -87,7 +67,6 @@ export const backendUrls: {
   orderChangeContactData: environment.backendUrl + 'backend/order/change-contact-data',
   orderChangeDeliveryType: environment.backendUrl + 'backend/order/change-delivery-type',
   orderChangePaymentType: environment.backendUrl + 'backend/order/change-payment-type',
-
 
 
   orderState: environment.backendUrl + 'backend/order/state',
