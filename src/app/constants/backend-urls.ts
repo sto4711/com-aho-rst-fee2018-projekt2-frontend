@@ -5,12 +5,14 @@ export const backendUrls: {
   article: string; articles: string; articlesLatest: string;
   user: string; users: string;
   shoppingBasket: string;
-  order: string; orders: string;
+  order: string; orders: string; ordersUser: string;
 
   signInUser: string; signOutUser: string;
-  createUser: string; createShoppingBasket: string;
+  createUser: string; createShoppingBasket: string; createOrder: string;
 
-  updateUser: string; deleteUser: string;
+  updateUser: string; updateOrder: string;
+
+  deleteUser: string;
 
 
   changeRatingArticle: string;
@@ -19,13 +21,13 @@ export const backendUrls: {
 
 
   addItemShoppingBasket: string; removeItemShoppingBasket: string;
-  changeItemAmountShoppingBasket: string; orderCreate: string; orderUpdate: string;
+  changeItemAmountShoppingBasket: string;
   orderChangeDeliveryAddress: string;
   orderChangeContactData: string;
   orderChangeDeliveryType: string;
   orderChangePaymentType: string;
   orderState: string;
-  orderDelete: string; userOrders: string
+  orderDelete: string
 } = {
   root: environment.backendUrl,
   article: environment.backendUrl + 'backend/article/',
@@ -36,6 +38,7 @@ export const backendUrls: {
   shoppingBasket: environment.backendUrl + 'backend/shopping-basket/',
   order: environment.backendUrl + 'backend/order/',
   orders: environment.backendUrl + 'backend/orders/',
+  ordersUser: environment.backendUrl + 'backend/orders/user',
 
 
 
@@ -47,14 +50,22 @@ export const backendUrls: {
 
   createUser: environment.backendUrl + 'backend/create/user',
   createShoppingBasket: environment.backendUrl + 'backend/create/shopping-basket',
+  createOrder: environment.backendUrl + 'backend/create/order',
+
+
 
 
   updateUser: environment.backendUrl + 'backend/update/user',
+  updateOrder: environment.backendUrl + 'backend/update/order',
 
 
 
 
   deleteUser: environment.backendUrl + 'backend/delete/user',
+
+
+
+  orderDelete: environment.backendUrl + 'backend/order/delete-order',
 
 
   addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
@@ -66,8 +77,6 @@ export const backendUrls: {
 
 
 
-  orderCreate: environment.backendUrl + 'backend/order/create',
-  orderUpdate: environment.backendUrl + 'backend/order/update',
 
   orderChangeDeliveryAddress: environment.backendUrl + 'backend/order/change-delivery-address',
   orderChangeContactData: environment.backendUrl + 'backend/order/change-contact-data',
@@ -76,9 +85,7 @@ export const backendUrls: {
 
 
   orderState: environment.backendUrl + 'backend/order/state',
-  orderDelete: environment.backendUrl + 'backend/order/delete-order',
 
 
-  userOrders: environment.backendUrl + 'backend/user-orders/',
 };
 

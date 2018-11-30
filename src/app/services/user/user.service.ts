@@ -92,7 +92,7 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.http.post<User>(backendUrls.updateUser, user)
+    return this.http.patch<User>(backendUrls.updateUser, user)
       .pipe(
         tap(() => {
           LoggerService.consoleLog(this.constructor.name, 'updateUser', 'ok');

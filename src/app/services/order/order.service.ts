@@ -59,7 +59,7 @@ export class OrderService {
 
   private create(): Observable<Order> {
     const shoppingBasketId: string = this.shoppingBasketService.shoppingBasket._id;
-    return this.http.post<Order>(backendUrls.orderCreate, {'shoppingBasketId': shoppingBasketId})
+    return this.http.post<Order>(backendUrls.createOrder, {'shoppingBasketId': shoppingBasketId})
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
       );
@@ -97,7 +97,7 @@ export class OrderService {
   }
 
   public getOrdersByUser(userId: User['_id']): Observable<Order[]> {
-    return this.http.get<Order[]>(backendUrls.userOrders + '?userId=' + userId)
+    return this.http.get<Order[]>(backendUrls.ordersUser + '?userId=' + userId)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
       );
@@ -134,7 +134,7 @@ export class OrderService {
   }
 
   public updateOrder(orderData: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.orderUpdate, orderData)
+    return this.http.patch<Order>(backendUrls.updateOrder, orderData)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'updateOrder', 'ok'))
       );
