@@ -3,8 +3,9 @@ import {environment} from '../../environments/environment';
 export const backendUrls: {
   root: string;
   signInUser: string; signOutUser: string;
+  createUser: string; updateUser: string; deleteUser: string;
+
   articles: string; articlesLatest: string; articlesDetails: string; users: string; user: string;
-   userCreate: string; userUpdate: string; userDelete: string;
   shoppingBasket: string; shoppingBasketCreate: string; shoppingBasketAddItem: string; shoppingBasketRemoveItem: string;
   shoppingBasketChangeItemAmount: string; order: string; orderCreate: string; orderUpdate: string;
   orderChangeDeliveryAddress: string;
@@ -18,6 +19,19 @@ export const backendUrls: {
   signInUser: environment.backendUrl + 'backend/sign-in/user',
   signOutUser: environment.backendUrl + 'backend/sign-out/user',
 
+  users: environment.backendUrl + 'backend/users/',
+  user: environment.backendUrl + 'backend/user/',
+
+  createUser: environment.backendUrl + 'backend/create/user',
+
+  updateUser: environment.backendUrl + 'backend/update/user',
+
+  deleteUser: environment.backendUrl + 'backend/delete/user',
+
+//  - delete/user
+
+
+
 
 
 
@@ -26,11 +40,6 @@ export const backendUrls: {
   articlesLatest: environment.backendUrl + 'backend/articles/latest',
   articlesDetails: environment.backendUrl + 'backend/article-details/',
 
-  users: environment.backendUrl + 'backend/users/',
-  user: environment.backendUrl + 'backend/user/',
-  userCreate: environment.backendUrl + 'backend/user/create',
-  userUpdate: environment.backendUrl + 'backend/user/updateUser',
-  userDelete: environment.backendUrl + 'backend/user/deleteUser',
 
 
   shoppingBasket: environment.backendUrl + 'backend/shopping-basket/',

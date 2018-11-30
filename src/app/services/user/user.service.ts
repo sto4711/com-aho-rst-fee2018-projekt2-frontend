@@ -82,7 +82,7 @@ export class UserService {
   }
 
   public create(user: User): Observable<User> {
-    return this.http.post<User>(backendUrls.userCreate, user)
+    return this.http.post<User>(backendUrls.createUser, user)
       .pipe(
         tap((userCreated: User) => {
           this.user = userCreated;
@@ -92,7 +92,7 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.http.post<User>(backendUrls.userUpdate, user)
+    return this.http.post<User>(backendUrls.updateUser, user)
       .pipe(
         tap(() => {
           LoggerService.consoleLog(this.constructor.name, 'updateUser', 'ok');
@@ -101,7 +101,7 @@ export class UserService {
   }
 
   public deleteUser(userID: User['_id']): Observable<User> {
-    return this.http.post<User>(backendUrls.userDelete, {'_id': userID})
+    return this.http.post<User>(backendUrls.deleteUser, {'_id': userID})
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'deleteUser', 'ok'))
       );
