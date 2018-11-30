@@ -65,7 +65,7 @@ export class ShoppingBasketService {
   }
 
   public create(): Observable<ShoppingBasket> {
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketCreate, null)
+    return this.http.post<ShoppingBasket>(backendUrls.createShoppingBasket, null)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'create', 'ok'))
       );
@@ -74,7 +74,7 @@ export class ShoppingBasketService {
   public addItem(articleId: ShoppingBasketItem['articleID'],
                  articleAmount: ShoppingBasketItem['articleAmount']): Observable<ShoppingBasket> {
     const shoppingBasketItem: object = new ShoppingBasketItem(this.shoppingBasket._id, articleId, articleAmount);
-    return this.http.post<ShoppingBasket>(backendUrls.shoppingBasketAddItem, shoppingBasketItem)
+    return this.http.post<ShoppingBasket>(backendUrls.addItemShoppingBasket, shoppingBasketItem)
       .pipe(
         tap((shoppingBasket: ShoppingBasket) => {
           this.shoppingBasket = shoppingBasket;

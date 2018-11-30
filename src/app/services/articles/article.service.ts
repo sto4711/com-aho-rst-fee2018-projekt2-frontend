@@ -46,7 +46,7 @@ export class ArticleService {
   }
 
   public changeRating(articleRating: ArticleRating): Observable<Article> {
-    return this.http.patch<Article>(backendUrls.article + 'change-rating', articleRating)
+    return this.http.patch<Article>(backendUrls.changeRatingArticle, articleRating)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'changeRating', 'ok'))
       );
