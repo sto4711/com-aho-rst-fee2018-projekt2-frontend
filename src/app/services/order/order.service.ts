@@ -105,26 +105,26 @@ export class OrderService {
 
   public updateDeliveryAddress(deliveryAddress: Address): Observable<Order> {
     this.order.deliveryAddress = deliveryAddress;
-    return this.change(backendUrls.orderChangeDeliveryAddress, this.order);
+    return this.change(backendUrls.updateOrderDeliveryAddress, this.order);
   }
 
   public updateContactData(contactData: ContactData): Observable<Order> {
     this.order.contactData = contactData;
-    return this.change(backendUrls.orderChangeContactData, this.order);
+    return this.change(backendUrls.updateOrderContactData, this.order);
   }
 
   public updateDeliveryType(deliveryType: DeliveryType): Observable<Order> {
     this.order.deliveryType = deliveryType;
-    return this.change(backendUrls.orderChangeDeliveryType, this.order);
+    return this.change(backendUrls.updateOrderDeliveryType, this.order);
   }
 
   public updatePaymentType(paymentType: PaymentType): Observable<Order> {
     this.order.paymentType = paymentType;
-    return this.change(backendUrls.orderChangePaymentType, this.order);
+    return this.change(backendUrls.updateOrderPaymentType, this.order);
   }
 
   public approve(): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.orderState, {
+    return this.http.patch<Order>(backendUrls.updateOrderState, {
       'orderId': this.order._id,
       'state': OrderService.STATE_APPROVED
     })
@@ -141,7 +141,7 @@ export class OrderService {
   }
 
   public deleteOrder(orderID: Order['_id']): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.orderDelete, {'_id': orderID})
+    return this.http.patch<Order>(backendUrls.deleteOrder, {'_id': orderID})
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'deleteOrder', 'ok'))
       );
