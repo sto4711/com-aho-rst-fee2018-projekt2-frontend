@@ -3,8 +3,9 @@ import {environment} from '../../environments/environment';
 export const backendUrls: {
   root: string;
   article: string; articles: string; articlesLatest: string;
-  users: string; user: string;
+  user: string; users: string;
   shoppingBasket: string;
+  order: string; orders: string;
 
   signInUser: string; signOutUser: string;
   createUser: string; createShoppingBasket: string;
@@ -15,14 +16,16 @@ export const backendUrls: {
   changeRatingArticle: string;
 
 
+
+
   addItemShoppingBasket: string; removeItemShoppingBasket: string;
-  changeItemAmountShoppingBasket: string; order: string; orderCreate: string; orderUpdate: string;
+  changeItemAmountShoppingBasket: string; orderCreate: string; orderUpdate: string;
   orderChangeDeliveryAddress: string;
   orderChangeContactData: string;
   orderChangeDeliveryType: string;
   orderChangePaymentType: string;
   orderState: string;
-  orderDelete: string; orderDetails: string; orderAll: string; userOrders: string
+  orderDelete: string; userOrders: string
 } = {
   root: environment.backendUrl,
   article: environment.backendUrl + 'backend/article/',
@@ -31,6 +34,10 @@ export const backendUrls: {
   user: environment.backendUrl + 'backend/user/',
   users: environment.backendUrl + 'backend/users/',
   shoppingBasket: environment.backendUrl + 'backend/shopping-basket/',
+  order: environment.backendUrl + 'backend/order/',
+  orders: environment.backendUrl + 'backend/orders/',
+
+
 
 
   changeRatingArticle: environment.backendUrl + 'backend/change-rating/article',
@@ -43,9 +50,6 @@ export const backendUrls: {
 
 
   updateUser: environment.backendUrl + 'backend/update/user',
-  addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
-  removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
-  changeItemAmountShoppingBasket: environment.backendUrl + 'backend/change-item-amount/shopping-basket',
 
 
 
@@ -53,11 +57,13 @@ export const backendUrls: {
   deleteUser: environment.backendUrl + 'backend/delete/user',
 
 
+  addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
+  removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
+  changeItemAmountShoppingBasket: environment.backendUrl + 'backend/change-item-amount/shopping-basket',
 
 
-  order: environment.backendUrl + 'backend/order/',
-  orderDetails: environment.backendUrl + 'backend/order-details/',
-  orderAll: environment.backendUrl + 'backend/order-all/',
+
+
 
 
   orderCreate: environment.backendUrl + 'backend/order/create',

@@ -49,7 +49,7 @@ import {ErrorResponseInterceptor} from '../../interceptors/error-response-interc
 import {HttpLoaderFactory} from '../../app.module';
 import {APP_BASE_HREF} from '@angular/common';
 import {Article} from '../../services/articles/article';
-import {SearchResultsComponent} from "../search-results/search-results.component";
+import {SearchResultsComponent} from '../search-results/search-results.component';
 
 describe('ArticleDetailComponent', () => {
   let component: ArticleDetailComponent;
@@ -150,7 +150,7 @@ describe('ArticleDetailComponent', () => {
 
     };
     component.ngOnInit();
-    spyOn(articleService, 'getArticleDetails').and.callFake(() => {
+    spyOn(articleService, 'getArticle').and.callFake(() => {
       return Observable.from([{article}]);
     });
 

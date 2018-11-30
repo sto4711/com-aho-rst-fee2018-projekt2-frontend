@@ -38,10 +38,10 @@ export class ArticleService {
       );
   }
 
-  public getArticleDetails(articleQueryParameter: Article['articleQueryParameter']): Observable<Article> {
+  public getArticle(articleQueryParameter: Article['articleQueryParameter']): Observable<Article> {
     return this.http.get<Article>(backendUrls.article + '?article=' + articleQueryParameter)
       .pipe(
-        tap(() => LoggerService.consoleLog(this.constructor.name, 'getArticleDetails', 'ok'))
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'getArticle', 'ok'))
       );
   }
 

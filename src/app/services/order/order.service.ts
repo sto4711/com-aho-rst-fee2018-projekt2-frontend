@@ -83,9 +83,16 @@ export class OrderService {
   }
 
   public get(id: string): Observable<Order> {
-    return this.http.get<Order>(backendUrls.orderDetails + '?id=' + id)
+    return this.http.get<Order>(backendUrls.order + '?id=' + id)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
+      );
+  }
+
+  public getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(backendUrls.orders)
+      .pipe(
+        tap(() => LoggerService.consoleLog(this.constructor.name, 'getAll', 'ok'))
       );
   }
 
@@ -93,13 +100,6 @@ export class OrderService {
     return this.http.get<Order[]>(backendUrls.userOrders + '?userId=' + userId)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'get', 'ok'))
-      );
-  }
-
-  public getAll(): Observable<Order[]> {
-    return this.http.get<Order[]>(backendUrls.orderAll)
-      .pipe(
-        tap(() => LoggerService.consoleLog(this.constructor.name, 'getAll', 'ok'))
       );
   }
 

@@ -153,7 +153,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   private getAllOrders(): void {
-    this.orderService.getAll().subscribe(result => this.orders = result);
+    this.orderService.getOrders().subscribe(result => this.orders = result);
   }
 
   private deleteOrder(orderId): void {

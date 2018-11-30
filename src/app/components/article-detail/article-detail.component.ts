@@ -53,7 +53,7 @@ export class ArticleDetailComponent implements OnInit {
      this.route.paramMap
       .subscribe( () => {
         if (this.route.snapshot.queryParams['article'] && this.route.snapshot.queryParams['article'] !== '') {
-        this.articleService.getArticleDetails(this.route.snapshot.queryParams['article'])
+        this.articleService.getArticle(this.route.snapshot.queryParams['article'])
           .subscribe(
             result => {
               if (result === null) {
