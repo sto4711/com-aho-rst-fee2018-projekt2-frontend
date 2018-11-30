@@ -54,7 +54,7 @@ export class UserService {
 
   public signIn(login: Login): Observable<User> {
     this.differentUserHasLoggedIn = false;
-    return this.http.post<User>(backendUrls.userSignIn, login)
+    return this.http.post<User>(backendUrls.signInUser, login)
       .pipe(
         tap((user: User) => {
           if (this.user) {
@@ -71,7 +71,7 @@ export class UserService {
   }
 
   public signOut(): Observable<string> {
-    return this.http.post<string>(backendUrls.userSignOut, {'userId': this.user._id})
+    return this.http.post<string>(backendUrls.signOutUser, {'userId': this.user._id})
       .pipe(
         tap(() => {
           this.user = null;
