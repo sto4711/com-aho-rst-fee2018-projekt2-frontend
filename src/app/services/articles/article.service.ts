@@ -39,14 +39,14 @@ export class ArticleService {
   }
 
   public getArticleDetails(articleQueryParameter: Article['articleQueryParameter']): Observable<Article> {
-    return this.http.get<Article>(backendUrls.articlesDetails + '?article=' + articleQueryParameter)
+    return this.http.get<Article>(backendUrls.article + '?article=' + articleQueryParameter)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'getArticleDetails', 'ok'))
       );
   }
 
   public changeRating(articleRating: ArticleRating): Observable<Article> {
-    return this.http.patch<Article>(backendUrls.articlesDetails + 'change-rating', articleRating)
+    return this.http.patch<Article>(backendUrls.article + 'change-rating', articleRating)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'changeRating', 'ok'))
       );

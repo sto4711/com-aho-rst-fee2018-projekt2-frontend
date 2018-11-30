@@ -2,10 +2,12 @@ import {environment} from '../../environments/environment';
 
 export const backendUrls: {
   root: string;
+  article: string; articles: string; articlesLatest: string;
+
   signInUser: string; signOutUser: string;
   createUser: string; updateUser: string; deleteUser: string;
 
-  articles: string; articlesLatest: string; articlesDetails: string; users: string; user: string;
+  users: string; user: string;
   shoppingBasket: string; shoppingBasketCreate: string; shoppingBasketAddItem: string; shoppingBasketRemoveItem: string;
   shoppingBasketChangeItemAmount: string; order: string; orderCreate: string; orderUpdate: string;
   orderChangeDeliveryAddress: string;
@@ -16,11 +18,21 @@ export const backendUrls: {
   orderDelete: string; orderDetails: string; orderAll: string; userOrders: string
 } = {
   root: environment.backendUrl,
+  article: environment.backendUrl + 'backend/article/',
+  articles: environment.backendUrl + 'backend/articles/',
+  articlesLatest: environment.backendUrl + 'backend/articles/latest',
+
+
+  user: environment.backendUrl + 'backend/user/',
+  users: environment.backendUrl + 'backend/users/',
+
+
+
+
   signInUser: environment.backendUrl + 'backend/sign-in/user',
   signOutUser: environment.backendUrl + 'backend/sign-out/user',
 
-  users: environment.backendUrl + 'backend/users/',
-  user: environment.backendUrl + 'backend/user/',
+
 
   createUser: environment.backendUrl + 'backend/create/user',
 
@@ -28,7 +40,6 @@ export const backendUrls: {
 
   deleteUser: environment.backendUrl + 'backend/delete/user',
 
-//  - delete/user
 
 
 
@@ -36,9 +47,6 @@ export const backendUrls: {
 
 
 
-  articles: environment.backendUrl + 'backend/articles/',
-  articlesLatest: environment.backendUrl + 'backend/articles/latest',
-  articlesDetails: environment.backendUrl + 'backend/article-details/',
 
 
 
