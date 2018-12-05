@@ -26,6 +26,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public account: FormGroup;
   public accountNew: FormGroup;
   public hide: boolean = true;
+  public keyPressed: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder
@@ -68,7 +69,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
   }
 
   public canDeactivate(): Observable<boolean> {
-    if (this.isAnythingDirty()) {
+    if (this.keyPressed == true) {
       return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
         .pipe(
           map((value) => (value === 'yes'))
@@ -117,5 +118,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
-
+  @HostListener('document:keypress', ['$event'])
+  public onKey(event: KeyboardEvent) {
+      this.keyPressed = true;
+     }
 }
