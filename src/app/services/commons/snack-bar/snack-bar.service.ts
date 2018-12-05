@@ -11,7 +11,7 @@ export class SnackBarService {
 
   private show(messageToTranslate: string, panelClass: string): void  {
     this.translateService.get(messageToTranslate).subscribe(translated => {
-        this.snackBar.open(translated, null, {duration: 2500, panelClass: panelClass});
+        this.snackBar.open(translated, null, {duration: 3500, verticalPosition: 'top', panelClass: panelClass});
       }
     );
   }

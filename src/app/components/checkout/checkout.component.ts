@@ -30,6 +30,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
   public paymentType: FormGroup;
   public itemChangePossible: boolean = false;
   public isAutoStepping: boolean = false;
+  public keyPressed: boolean = false;
 
   @ViewChild('stepper') private stepper: MatStepper;
 

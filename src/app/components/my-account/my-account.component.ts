@@ -17,7 +17,8 @@ import {User} from '../../services/user/user';
   templateUrl: './my-account.component.html',
   styleUrls: ['./my-account.component.scss']
 })
-export class MyAccountComponent implements CanComponentDeactivate {
+export class MyAccountComponent implements CanComponentDeactivate
+{
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL: string = 'LOGIN-SUCCESSFUL';
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD: string = 'WRONG-EMAIL-OR-PASSWORD';
@@ -79,6 +80,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
     }
   }
 
+
   public async onLogin(): Promise<any> {
     if (this.account.valid) {
       try {
@@ -120,6 +122,6 @@ export class MyAccountComponent implements CanComponentDeactivate {
 
   @HostListener('document:keypress', ['$event'])
   public onKey(event: KeyboardEvent) {
-      this.keyPressed = true;
-     }
+    this.keyPressed = true;
+  }
 }
