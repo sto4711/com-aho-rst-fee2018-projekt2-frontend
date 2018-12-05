@@ -1,5 +1,4 @@
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {Component, HostListener} from '@angular/core';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -7,7 +6,6 @@ import {Observable, of} from 'rxjs';
 import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.service';
 import {UserService} from '../../services/user/user.service';
 import {CanComponentDeactivate} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate';
-import {CanComponentDeactivateGuard} from '../../services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {OrderService} from '../../services/order/order.service';
 import {NavigationCancelService} from '../../services/navigation-cancel/navigation-cancel.service';
 import {User} from '../../services/user/user';
@@ -70,14 +68,9 @@ export class MyAccountComponent implements CanComponentDeactivate
   }
 
   public canDeactivate(): Observable<boolean> {
-    if (this.keyPressed == true) {
-      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
-        .pipe(
-          map((value) => (value === 'yes'))
-        );
-    } else {
+
       return of(true);
-    }
+
   }
 
 
@@ -120,8 +113,4 @@ export class MyAccountComponent implements CanComponentDeactivate
     }
   }
 
-  @HostListener('document:keypress', ['$event'])
-  public onKey(event: KeyboardEvent) {
-    this.keyPressed = true;
-  }
 }
