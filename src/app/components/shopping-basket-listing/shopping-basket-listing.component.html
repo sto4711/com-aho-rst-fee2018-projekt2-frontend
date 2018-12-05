@@ -11,6 +11,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let article of shoppingBasketService.getShoppingBasket().items" >
+
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
