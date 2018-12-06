@@ -3,7 +3,7 @@
    <div class="article-content" (click)="onGoToDetail(article.articleQueryParameter)">
   <picture>
     <source media="(min-width: 300px)" srcset="{{rootURL + article.imageURL}}">
-      <img [hidden]="loading" (load)="onLoad()" class="article-img" src="{{rootURL + article.imageURL}}" width="100%" height="auto"/>
+      <img alt="{{article.name}}" [hidden]="loading" (load)="onLoad()" class="article-img" src="{{rootURL + article.imageURL}}" width="100%" height="auto"/>
        <div class="article-detail-rating">
       <span *ngFor="let rating of article?.rating; index as i ">
         <i class="fas fa-star" *ngIf="rating" ></i>

@@ -12,9 +12,14 @@
   </thead>
   <tbody>
   <tr *ngFor="let article of shoppingBasketService.getShoppingBasket().items" >
-    <td class="img-row"><img src="{{rootURL+article.imageURL}}" width="100%" height="auto"> </td>
+    <td class="img-row">
+      <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleBrand+'-'+article.articleName | trim}" >
+        <img alt="{{article.articleName}}" src="{{rootURL+article.imageURL}}" width="100%" height="auto">
+      </a>
+    </td>
      <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
-    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.articleName}}</td>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
+      <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleBrand+'-'+article.articleName | trim}" >{{article.articleName}}</a>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form class="add-to-chart"><label title="articleCount"></label>
@@ -84,7 +89,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let orderItem of order?.shoppingBasket.items">
-      <td class="img-row"><img src="{{rootURL+orderItem.imageURL}}" width="100%" height="auto"> </td>
+      <td class="img-row"><img src="{{rootURL+orderItem.imageURL}}" alt="{{orderItem.articleName}}" width="100%" height="auto"> </td>
 
       <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
         {{orderItem.itemNumber}}

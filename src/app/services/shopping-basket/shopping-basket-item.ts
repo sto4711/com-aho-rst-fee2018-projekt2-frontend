@@ -2,6 +2,7 @@ export class ShoppingBasketItem {
   public shoppingBasketID: string = '';
   public articleID: string = '';
   public articleName: string =  '';
+  public articleBrand: string =  '';
   public articlePrice: number =  null;
   public imageURL: string =  '';
   public articlePriceSum: number =  null;
