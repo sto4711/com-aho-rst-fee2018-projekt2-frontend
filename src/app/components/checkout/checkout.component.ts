@@ -78,7 +78,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
 
   public canDeactivate(): Observable<boolean> {
     if (this.isAnythingDirty()) {
-      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHANGES)
+      return this.confirmYesNoService.confirm(CanComponentDeactivateGuard.CODE_TRANSLATION_DISCARD_CHECKOUT)
         .pipe(
           map((value) => (value === 'yes'))
         );

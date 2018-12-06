@@ -9,6 +9,8 @@ import {CanComponentDeactivate} from './can-component-deactivate';
 
 export class CanComponentDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
   public static CODE_TRANSLATION_DISCARD_CHANGES: string = 'DISCARD-CHANGES';
+  public static CODE_TRANSLATION_DISCARD_LOGIN: string = 'DISCARD-LOGIN';
+  public static CODE_TRANSLATION_DISCARD_CHECKOUT: string = 'DISCARD-CHECKOUT';
 
 
   public canDeactivate (

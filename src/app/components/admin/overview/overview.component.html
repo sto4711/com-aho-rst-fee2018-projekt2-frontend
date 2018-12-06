@@ -29,10 +29,10 @@
                       {{order?.deliveryAddress.surname}}
                     </mat-panel-description>
                     <mat-panel-description>
-                      <strong>{{'ORDERED-ON' | translate}}</strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy' }}
+                      <strong>{{'ORDERED-ON' | translate}}: </strong>&nbsp;{{order?.orderDate | date:'dd.MM.yyyy' }}
                     </mat-panel-description>
                     <mat-panel-description>
-                      <strong>{{'STATE' | translate}}&nbsp;</strong>{{order?.state | translate }}
+                      <strong>{{'STATE' | translate}}:&nbsp;</strong>{{order?.state | translate }}
                     </mat-panel-description>
                     <mat-panel-description>
                       <span class="warning hidden {{order._id}}">{{'WARNING-ORDER-CHANGED' | translate}}</span>
@@ -46,7 +46,7 @@
                         <input type="hidden" name="_id" [(ngModel)]="order._id" #_id>
                         <input type="hidden" name="userID" [(ngModel)]="order.userID" #userID>
                         <p>
-                          <span class="review-data">{{'GIVEN-NAME' | translate}}: </span>
+                          <span class="review-data">{{'FIRST-NAME' | translate}}: </span>
                           <mat-form-field class="overview-input">
                             <input aria-label="name" matInput placeholder=""
                                    (change)="onFormChange(order._id);"
@@ -59,7 +59,7 @@
                           </mat-form-field>
                         </p>
 
-                        <p><span class="review-data">{{'SURNAME' | translate}}: </span>
+                        <p><span class="review-data">{{'LAST-NAME' | translate}}: </span>
                           <mat-form-field class="overview-input">
                             <input aria-label="surname" matInput placeholder=""
                                    (change)="onFormChange(order._id);"
