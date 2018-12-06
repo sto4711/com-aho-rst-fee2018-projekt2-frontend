@@ -10,6 +10,12 @@ import { Router, Event, NavigationEnd } from '@angular/router';
 export class BottomBasketComponent implements OnInit {
 
   public showBasket: boolean = true;
+  private forbiddenRoutes: string[] = [
+    '/shopping-basket',
+    '/checkout',
+    '/order-detail',
+
+  ]
   constructor(
     public shoppingBasketService: ShoppingBasketService,
      private router: Router
@@ -20,14 +26,18 @@ export class BottomBasketComponent implements OnInit {
     this.router.events.subscribe( (event: Event) => {
 
       if (event instanceof NavigationEnd) {
-         if(window.location.pathname == '/shopping-basket') {
+         if( window.location.pathname == this.forbiddenRoutes[0] ||
+             window.location.pathname == this.forbiddenRoutes[1] ||
+             window.location.pathname == this.forbiddenRoutes[2] ) {
           this.showBasket = false;
-          console.log(this.showBasket);
-        }
+         }
+        else {
+           this.showBasket = true;
+         }
       }
 
     });
 
   }
- 
+
 }

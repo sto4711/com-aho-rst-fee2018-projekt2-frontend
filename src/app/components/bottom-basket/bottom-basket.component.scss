@@ -19,6 +19,11 @@
 
 }
 
+@media screen and (max-width: 562px) {
+  .bottom-basket-wrap {
+      display: none;
+    }
+  }
 .bottom-basket-info > a:hover {
   color: $orange;
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {WindowSizeService} from '../../services/window-size/window-size.service';
+import {Event, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,13 @@ import {WindowSizeService} from '../../services/window-size/window-size.service'
 
   public currentWindowWidth: number;
   public windowTopPosition: any;
+  public showBanner: boolean = true;
 
 
   constructor(
-    private windowSizeService: WindowSizeService
+    private windowSizeService: WindowSizeService,
+    private router: Router
+
   ) { }
 
   public ngOnInit(): void {
@@ -30,7 +34,21 @@ import {WindowSizeService} from '../../services/window-size/window-size.service'
        this.windowTopPosition = result;
     });
 
-   }
+
+    this.router.events.subscribe( (event: Event) => {
+
+      if (event instanceof NavigationEnd) {
+        if( window.location.pathname != '/home' ) {
+          this.showBanner = false;
+        }
+        else {
+          this.showBanner = true;
+        }
+      }
+
+    });
+
+  }
 
 
 
