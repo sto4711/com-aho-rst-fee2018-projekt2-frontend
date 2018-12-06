@@ -47,6 +47,7 @@ import {LoggerService} from './services/logger/logger.service';
 import {SearchResultsComponent} from './components/search-results/search-results.component';
 import {HeaderRequestInterceptor} from './interceptors/header-request-interceptor';
 import {LocalStorageService} from './services/commons/local-storage/local-storage.service';
+ import { BottomBasketComponent } from './components/bottom-basket/bottom-basket.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -80,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     LoginInfoComponent,
     MyOrdersComponent,
     SearchResultsComponent,
-    SearchComponent
+    SearchComponent,
+    BottomBasketComponent
      ],
   imports: [
     BrowserModule,

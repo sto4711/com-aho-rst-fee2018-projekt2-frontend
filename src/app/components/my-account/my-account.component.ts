@@ -25,7 +25,8 @@ export class MyAccountComponent implements CanComponentDeactivate
   public account: FormGroup;
   public accountNew: FormGroup;
   public hide: boolean = true;
-  public keyPressed: boolean = false;
+
+
 
   constructor(
     private _formBuilder: FormBuilder
@@ -89,6 +90,7 @@ export class MyAccountComponent implements CanComponentDeactivate
         }
       } catch (error) {
         if (error.status === 404) {
+          this.hide = false;
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
         }
       }

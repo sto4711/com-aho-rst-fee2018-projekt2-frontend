@@ -17,7 +17,7 @@
       </mat-form-field>
       <br>
       <button attr.aria-label="{{'LOGIN' | translate}}" class="btn form-btn bottom" type="submit"><span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
-      <p class="warning">Benutzername oder Password falsch.</p>
+      <p class="warning" *ngIf="hide == false">Benutzername oder Password falsch.</p>
     </form>
 
 

@@ -1,0 +1,24 @@
+@import '../../../sass/mixins.scss';
+@import '../../../sass/variables.scss';
+
+/*
+    bottom basket /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+
+.bottom-basket-wrap {
+  font-size: 2rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  padding: 20px 0;
+   width: 100%;
+  background-color: #2a2c2e;
+  color: #fff;
+  z-index: 100;
+
+}
+
+.bottom-basket-info > a:hover {
+  color: $orange;
+}

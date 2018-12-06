@@ -1,0 +1,11 @@
+<ng-container *ngIf="shoppingBasketService.shoppingBasket?.items.length > 0 && showBasket == true ">
+  <div class="bottom-basket-wrap">
+      <div class="bottom-basket-info">
+        <a [routerLink]="['/shopping-basket/']" ><i class="fas fa-shopping-cart "></i>
+        <span class="hidden-ms">Zum {{'SHOPPING-BASKET' | translate}}</span>
+
+       </a>
+      </div>
+  </div>
+</ng-container>
+
