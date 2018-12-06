@@ -32,10 +32,10 @@
         <span class="basket-link"
            [matMenuTriggerFor]="menu" matBadge="{{shoppingBasketService.shoppingBasket?.items.length}}"
            matBadgeOverlap="false" matBadgeSize="medium"><span class="hidden-ms">{{'SHOPPING-BASKET' | translate}}</span>
-            <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== null">
+            <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum !== 0">
                 CHF {{shoppingBasketService.shoppingBasket?.totalSum | amountConverter}}
             </span>
-          <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum == null">
+          <span class=" hidden-ms" *ngIf="shoppingBasketService.shoppingBasket?.totalSum == 0">
             0.00
           </span>
         </span>

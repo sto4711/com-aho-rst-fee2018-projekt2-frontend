@@ -22,7 +22,7 @@ export class ShoppingBasketService {
   }
 
   public getShoppingBasket(): ShoppingBasket {
-    return this.shoppingBasket;
+     return this.shoppingBasket;
   }
 
   public initBasket(): Observable<boolean> {

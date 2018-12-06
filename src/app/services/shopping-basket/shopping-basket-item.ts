@@ -3,6 +3,7 @@ export class ShoppingBasketItem {
   public articleID: string = '';
   public articleName: string =  '';
   public articlePrice: number =  null;
+  public imageURL: string =  '';
   public articlePriceSum: number =  null;
   public articleAvailability: boolean =  null;
   public articleAmount: number =  null;

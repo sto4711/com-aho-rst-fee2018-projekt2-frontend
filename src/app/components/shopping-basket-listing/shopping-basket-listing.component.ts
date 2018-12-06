@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output, Input} from '@angular/core';
 import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
 import {Order} from '../../services/order/order';
 import {LanguageService} from '../../services/language/language.service';
+import {backendUrls} from '../../constants/backend-urls';
 
 @Component({
   selector: 'app-shopping-basket-listing',
@@ -17,6 +18,7 @@ export class ShoppingBasketListingComponent {
   @Output() public itemChange: EventEmitter<Object> = new EventEmitter<Object>();
   @Output() public deleteItem: EventEmitter<Object> = new EventEmitter<Object>();
   private langSwitch: boolean;
+  public rootURL: string = backendUrls.root;
 
   constructor(
     public shoppingBasketService: ShoppingBasketService
