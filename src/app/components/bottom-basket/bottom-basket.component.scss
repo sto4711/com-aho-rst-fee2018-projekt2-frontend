@@ -24,6 +24,15 @@
       display: none;
     }
   }
-.bottom-basket-info > a:hover {
+.bottom-basket-info a:hover {
   color: $orange;
+}
+
+.bottom-basket-info a::after {
+  font-family: 'Font Awesome 5 Free', sans-serif;
+  font-weight: 900;
+  line-height: inherit;
+  vertical-align: baseline;
+  content: "\f061";
+  margin: 0 0 0 5px;
 }

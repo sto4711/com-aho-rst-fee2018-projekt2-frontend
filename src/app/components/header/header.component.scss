@@ -81,6 +81,7 @@ h2.headline {
   -moz-box-shadow: 0 10px 30px -10px rgba(0,0,0,0.75);
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.75);
   transition:  height 600ms ease-out;
+  z-index: 500;
 }
 
 nav.main-nav {
