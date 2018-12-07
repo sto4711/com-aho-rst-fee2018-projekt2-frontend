@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {WindowSizeService} from '../../services/window-size/window-size.service';
-import {Event, NavigationEnd, Router} from '@angular/router';
+import {Event, NavigationEnd, NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
 
     this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationStart) {
         this.showBanner =  (event.url === '/home');
       }
     });
