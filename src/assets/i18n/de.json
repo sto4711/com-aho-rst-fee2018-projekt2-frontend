@@ -8,7 +8,7 @@
   "BOTTOM-SHOPPING-BASKET": "Zum Warenkorb",
   "MY-SHOPPING-BASKET": "Mein Warenkorb",
   "SEARCH-FOR-ARTICLES": "Artikel suchen",
-  "LATEST-ARTICLES": "Neu eingetroffen",
+  "ARTICLES_NEW": "Neu eingetroffen",
   "VIEW-ARTICLE": "Zum Artikel",
   "OUR-ARTICLES": "Unsere Artikel",
   "SEARCH-RESULTS": "Suchresultate",
@@ -118,9 +118,6 @@
   "WRONG-EMAIL-OR-PASSWORD": "Falsche Email oder Password.",
   "EMAIL-ALREADY-TAKEN": "Email bereits vergeben.",
   "ACCOUNT-ALREADY-USE": "Account is already in use.",
-
-
-
   "BACKEND-SERVER-IS-UNAVAILABLE-PLEASE-TRY-AGAIN-LATER": "Der Backend-Server ist nicht erreichbar, bitte veruchen Sie es später nochmals.",
   "ORDER-STATUS-UPDATED": "Der Bestellstatus ist aktualisiert.",
   "ORDER-UPDATE-SAVE": "Die Bestellung wurde gespeichert.",
