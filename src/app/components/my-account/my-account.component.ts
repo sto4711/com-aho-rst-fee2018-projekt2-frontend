@@ -26,6 +26,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
   public account: FormGroup;
   public accountNew: FormGroup;
   public hide: boolean = true;
+  public showPwlo: boolean = true;
+  public showPwCr: boolean = true;
   public keyPressed: boolean = false;
 
   constructor(
