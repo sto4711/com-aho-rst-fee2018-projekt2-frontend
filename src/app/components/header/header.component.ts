@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.showBanner = window.location.pathname === '/home';
+        this.showBanner =  (event.url === '/home');
       }
     });
   }
