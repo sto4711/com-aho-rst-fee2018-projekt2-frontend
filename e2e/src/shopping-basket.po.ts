@@ -32,8 +32,7 @@ export class  ShoppingBasketPo {
   }
 
   public static async getShoppingBasketLength() {
-    const amount = element(by.id('mat-badge-content-0')).getText();
-    return amount;
+    return element(by.id('mat-badge-content-0')).getText();
   }
 
   public static async loginUser(login: Login) {
@@ -72,7 +71,6 @@ export class  ShoppingBasketPo {
     await browser.waitForAngular();
   }
   public static async orderDetail() {
-     const title = element(by.css('[aria-label="confirm title"]')).getText();
-    return title;
+    return element(by.css('[aria-label="confirm title"]')).getText();
   }
 }

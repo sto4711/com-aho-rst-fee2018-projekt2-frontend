@@ -14,7 +14,6 @@ export class Order {
   public contactData: ContactData = new ContactData('', '');
   public deliveryType: DeliveryType = new DeliveryType('');
   public paymentType: PaymentType = new PaymentType('');
-  public doNotStep: boolean = false;
 
   constructor(_id: string, userID: string, state: string, deliveryAddress: Address, contactData: ContactData,
               deliveryType: DeliveryType, paymentType: PaymentType) {

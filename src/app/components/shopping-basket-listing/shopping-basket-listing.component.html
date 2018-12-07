@@ -11,36 +11,36 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let article of shoppingBasketService.getShoppingBasket().items" >
+  <tr *ngFor="let shoppingBasketItem of shoppingBasketService.getShoppingBasket().items" >
     <td class="img-row">
-      <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleBrand+'-'+article.articleName | trim}" >
-        <img alt="{{article.articleName}}" src="{{rootURL+article.imageURL}}" width="100%" height="auto">
+      <a [routerLink]="['/article-detail/']" [queryParams]="{article:shoppingBasketItem.articleBrand+'-'+shoppingBasketItem.articleName | trim}" >
+        <img alt="{{shoppingBasketItem.articleName}}" src="{{rootURL+shoppingBasketItem.imageURL}}" width="100%" height="auto">
       </a>
     </td>
-     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{article.itemNumber}}</td>
+     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">{{shoppingBasketItem.itemNumber}}</td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">
-      <a [routerLink]="['/article-detail/']" [queryParams]="{article:article.articleBrand+'-'+article.articleName | trim}" >{{article.articleName}}</a>
-    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{article.articlePrice | amountConverter}}</span></td>
+      <a [routerLink]="['/article-detail/']" [queryParams]="{article:shoppingBasketItem.articleBrand+'-'+shoppingBasketItem.articleName | trim}" >{{shoppingBasketItem.articleName}}</a>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}">CHF <span class="amount-spacer">{{shoppingBasketItem.articlePrice | amountConverter}}</span></td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible== true ">
       <form class="add-to-chart"><label title="articleCount"></label>
         <button attr.aria-label="minus" class="minus" name="articleMinus" attr.aria-label="minus"
-                (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount-1)">
+                (click)="changeItemAmount_ShoppingBasket($event, shoppingBasketItem.articleID, shoppingBasketItem.articleName, shoppingBasketItem.articleAmount-1)">
           <img src="./assets/images/button-minus.gif" alt="button-minus" width="11" height="11"></button>
         <input title="articleCount" disabled class="cart-article-count" type="text" name="articleCount"
-               [(ngModel)]="article.articleAmount" #articleAmount="ngModel"/>
+               [(ngModel)]="shoppingBasketItem.articleAmount" #articleAmount="ngModel"/>
         <button attr.aria-label="plus" class="plus" name="articlePlus" attr.aria-label="plus"
-                (click)="changeItemAmount_ShoppingBasket($event, article.articleID, article.articleName, article.articleAmount+1)">
+                (click)="changeItemAmount_ShoppingBasket($event, shoppingBasketItem.articleID, shoppingBasketItem.articleName, shoppingBasketItem.articleAmount+1)">
           <img src="./assets/images/button-plus.gif" alt="button-plus" width="11" height="11"></button>
       </form>
 
     </td>
     <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" *ngIf="itemChangePossible==false">
-    <p class="article-amount">{{article.articleAmount}}</p>
+    <p class="article-amount">{{shoppingBasketItem.articleAmount}}</p>
     </td>
-    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF <span class="amount-spacer">{{article.articlePriceSum | amountConverter}}</span>
+    <td [ngClass]="{'article-row':'article-row', 'de': langSwitch, 'en': !langSwitch}" >CHF <span class="amount-spacer">{{shoppingBasketItem.articlePriceSum | amountConverter}}</span>
       <ng-container *ngIf="itemChangePossible== true ">
       <i class="fa fa-times" aria-hidden="true"
-         (click)="confirmDelete($event, article.articleID, article.articleName)"></i>
+         (click)="confirmDelete($event, shoppingBasketItem.articleID, shoppingBasketItem.articleName)"></i>
       </ng-container>
     </td>
   </tr>

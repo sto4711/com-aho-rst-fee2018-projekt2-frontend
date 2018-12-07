@@ -114,9 +114,9 @@ describe('AppComponent', () => {
   }));*/
 
   it('should render title in a h2 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled: any = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('The E-Bike Store');
 
   }));

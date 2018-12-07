@@ -1,4 +1,4 @@
-import {HostListener, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {EventManager} from '@angular/platform-browser';
 
@@ -18,7 +18,7 @@ export class WindowSizeService {
     this.eventManager.addGlobalEventListener('window', 'scroll', this.onScroll.bind(this));
 
   }
-  public initWindowWidth (): number {
+  public static initWindowWidth (): number {
     return  window.innerWidth;
   }
 

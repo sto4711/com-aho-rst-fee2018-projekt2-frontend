@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingBasketService} from "../../services/shopping-basket/shopping-basket.service";
-import { Router, Event, NavigationEnd } from '@angular/router';
+import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
+import {Router, Event, NavigationEnd} from '@angular/router';
 
 @Component({
   selector: 'app-bottom-basket',
@@ -15,29 +15,22 @@ export class BottomBasketComponent implements OnInit {
     '/checkout',
     '/order-detail',
 
-  ]
+  ];
+
   constructor(
     public shoppingBasketService: ShoppingBasketService,
-     private router: Router
+    private router: Router
+  ) {
+  }
 
-  ) { }
   public ngOnInit(): void {
-
-    this.router.events.subscribe( (event: Event) => {
-
+    this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-         if( window.location.pathname == this.forbiddenRoutes[0] ||
-             window.location.pathname == this.forbiddenRoutes[1] ||
-             window.location.pathname == this.forbiddenRoutes[2] ) {
-          this.showBasket = false;
-         }
-        else {
-           this.showBasket = true;
-         }
+        this.showBasket = !(window.location.pathname === this.forbiddenRoutes[0] ||
+          window.location.pathname === this.forbiddenRoutes[1] ||
+          window.location.pathname === this.forbiddenRoutes[2]);
       }
-
     });
-
   }
 
 }

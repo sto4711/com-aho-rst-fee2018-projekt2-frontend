@@ -17,15 +17,16 @@ export class TopBarComponent implements OnInit {
     public shoppingBasketService: ShoppingBasketService,
     private windowSizeService: WindowSizeService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
-    this.currentWindowWidth = this.windowSizeService.initWindowWidth();
+    this.currentWindowWidth = WindowSizeService.initWindowWidth();
 
-    this.windowSizeService.onResize$().subscribe( result => {
+    this.windowSizeService.onResize$().subscribe(result => {
       this.currentWindowWidth = result.innerWidth;
     });
-    this.windowSizeService.onScroll$().subscribe( result => {
+    this.windowSizeService.onScroll$().subscribe(result => {
       this.windowTopPosition = result;
     });
   }

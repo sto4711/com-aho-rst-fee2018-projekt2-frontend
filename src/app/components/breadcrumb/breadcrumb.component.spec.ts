@@ -44,7 +44,7 @@ import {OverviewComponent} from '../admin/overview/overview.component';
 import {LoginInfoComponent} from '../login-info/login-info.component';
 import {MyOrdersComponent} from '../my-orders/my-orders.component';
 import {LanguageService} from '../../services/language/language.service';
-import {SearchResultsComponent} from "../search-results/search-results.component";
+import {SearchResultsComponent} from '../search-results/search-results.component';
 describe('BreadcrumbComponent', () => {
 
   beforeEach(async(() => {

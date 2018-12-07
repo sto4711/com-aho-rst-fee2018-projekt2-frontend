@@ -6,7 +6,6 @@ import {ShoppingBasketItem} from '../../services/shopping-basket/shopping-basket
 import {TranslateService} from '@ngx-translate/core';
 import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
 import {ConfirmYesNoService} from '../../services/commons/dialog/confirm-yes-no.service';
-import {backendUrls} from '../../constants/backend-urls';
 
 @Component({
   selector: 'app-shopping-basket',
@@ -21,7 +20,6 @@ export class ShoppingBasketComponent {
   private static CODE_TRANSLATION_MAX_QUANTITY: string = 'MAXIMUM-ORDER-QUANTITY-IS';
   private static CODE_TRANSLATION_AMOUNT_CHANGED: string = 'ARTICLE-AMOUNT-CHANGED';
   public itemChangePossible: boolean = true;
-  public rootURL: string = backendUrls.root;
 
    constructor(
     private snackBarService: SnackBarService,
@@ -39,7 +37,7 @@ export class ShoppingBasketComponent {
         this.confirmYesNoService.confirm(articleName + ' ' + translated).subscribe(
           result => {
             if (result === 'yes') {
-              this.removeShoppingBasketItem(articleId, articleName);
+              this.removeShoppingBasketItem(articleId);
             }
           }
         );
@@ -61,7 +59,7 @@ export class ShoppingBasketComponent {
     }
   }
 
-  public removeShoppingBasketItem(articleId: ShoppingBasketItem['articleID'], articleName: ShoppingBasketItem['articleName']): void {
+  public removeShoppingBasketItem(articleId: ShoppingBasketItem['articleID']): void {
     this.shoppingBasketService.removeItem(articleId)
       .subscribe(() => this.snackBarService.showInfo(ShoppingBasketComponent.CODE_TRANSLATION_REMOVED));
   }
