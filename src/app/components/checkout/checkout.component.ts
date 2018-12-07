@@ -105,7 +105,7 @@ export class CheckoutComponent implements CanComponentDeactivate, AfterViewInit 
       ],
       phone: ['', [Validators.required, Validators.pattern('^(?=.*?[1-9])[+0-9()-/^\" "]+$'),
         Validators.maxLength(30),
-        Validators.minLength(10)]
+        Validators.minLength(9)]
       ]
     });
 
