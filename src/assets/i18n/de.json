@@ -117,6 +117,10 @@
   "OOPS-SOMETHING-WENT-WRONG": "Ups, irgendwas lief schief.",
   "WRONG-EMAIL-OR-PASSWORD": "Falsche Email oder Password.",
   "EMAIL-ALREADY-TAKEN": "Email bereits vergeben.",
+  "ACCOUNT-ALREADY-USE": "Account is already in use.",
+
+
+
   "BACKEND-SERVER-IS-UNAVAILABLE-PLEASE-TRY-AGAIN-LATER": "Der Backend-Server ist nicht erreichbar, bitte veruchen Sie es später nochmals.",
   "ORDER-STATUS-UPDATED": "Der Bestellstatus ist aktualisiert.",
   "ORDER-UPDATE-SAVE": "Die Bestellung wurde gespeichert.",
