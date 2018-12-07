@@ -28,10 +28,7 @@ ul.ngx-pagination {
 .mat-autocomplete-panel {
   min-width: 170px !important;
 }
-.mat-menu-panel {
-  min-width: 200px !important;
 
-}
 
 .mat-form-field {
   font-weight: $font-weight-light;
@@ -84,8 +81,9 @@ input.mat-input-element, .mat-select-value-text {
 
 }
 
-a button.mat-menu-btn {
+a.mat-menu-btn {
   @include base-font-style();
+  min-width: 200px;
 }
 
 .overview-price {

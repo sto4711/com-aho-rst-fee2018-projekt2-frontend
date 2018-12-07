@@ -13,6 +13,9 @@
     <p *ngIf="userService.getUser()?.type ==='admin'">
       <a href="#" class="white" routerLink="/admin/overview">{{'GO-TO-ADMIN' | translate}}</a>
     </p>
+    <p *ngIf="userService.getUser()?.type !=='admin'">
+      <a href="#" class="white" routerLink="/my-orders">{{'TO-MY-ORDERS' | translate}}</a>
+    </p>
   </ng-container>
 
   <ng-container *ngIf="!userService.getUser()">
