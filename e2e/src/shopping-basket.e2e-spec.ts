@@ -1,5 +1,7 @@
 import {browser} from 'protractor';
 import {ShoppingBasketPo} from './shopping-basket.po';
+import {MyAccountPo} from './my-account.po';
+import {Login} from '../../src/app/services/user/login';
 
 describe('shopping basket testing', () => {
 
@@ -45,6 +47,29 @@ describe('shopping basket testing', () => {
     ShoppingBasketPo.orderDetail().then(function (title) {
       expect(title).toEqual('Vielen Dank für Ihre Bestellung!');  });
   });
+
+  it('logout user', async () => {
+    await ShoppingBasketPo.logoutUser();
+  });
+
+  function createOrder(userLogins: { email: string; pwd: string }) {
+    it('it should login user', async () => {
+      const login: Login = ShoppingBasketPo.createShoppingBasket(userLogins);
+      const customerData = ShoppingBasketPo.customerData;
+      await ShoppingBasketPo.navigateToArticle();
+      await ShoppingBasketPo.addArticle();
+      await ShoppingBasketPo.navigateToShoppingBasket();
+      await ShoppingBasketPo.navigateToLogin();
+      await ShoppingBasketPo.loginUser(login);
+      await ShoppingBasketPo.writeCustomerData(customerData);
+      await ShoppingBasketPo.orderDetail();
+      await ShoppingBasketPo.logoutUser();
+    });
+  }
+  ShoppingBasketPo.userLogins.forEach(async userLogins => {
+    createOrder(userLogins);
+  });
+
 
 
 });

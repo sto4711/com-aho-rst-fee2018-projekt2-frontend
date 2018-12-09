@@ -9,7 +9,12 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+  },
+  suites: {
+    myAccount: './src/my-account.e2e-spec.ts',
+    shoppingBasket: './src/shopping-basket.e2e-spec.ts'
+
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
