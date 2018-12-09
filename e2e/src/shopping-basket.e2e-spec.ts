@@ -1,6 +1,5 @@
 import {browser} from 'protractor';
 import {ShoppingBasketPo} from './shopping-basket.po';
-import {MyAccountPo} from './my-account.po';
 import {Login} from '../../src/app/services/user/login';
 
 describe('shopping basket testing', () => {

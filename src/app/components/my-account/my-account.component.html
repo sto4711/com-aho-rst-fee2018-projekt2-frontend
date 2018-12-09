@@ -18,7 +18,7 @@
       <br>
       <button attr.aria-label="{{'LOGIN' | translate}}" class="btn form-btn bottom" type="submit">
         <span class="btn-form-text">{{'LOGIN' | translate}}</span> </button>
-      <p class="warning" *ngIf="hide == false">{{'WRONG-EMAIL-OR-PASSWORD' | translate}}</p>
+      <p class="warning" *ngIf="hideErrorWrong == false">{{'WRONG-EMAIL-OR-PASSWORD' | translate}}</p>
     </form>
 
 
@@ -46,6 +46,8 @@
       </mat-form-field>
       <br>
       <button attr.aria-label="{{'CREATE-ACCOUNT' | translate}}" class="btn form-btn bottom" type="submit"><span class="btn-form-text">{{'CREATE-ACCOUNT' | translate}}</span></button>
+      <p class="warning" *ngIf="hideErrorTaken == false">{{'EMAIL-ALREADY-TAKEN' | translate}}</p>
+
     </form>
 
 

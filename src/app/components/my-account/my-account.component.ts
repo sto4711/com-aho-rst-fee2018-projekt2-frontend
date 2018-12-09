@@ -22,10 +22,11 @@ export class MyAccountComponent implements CanComponentDeactivate {
   private static CODE_TRANSLATION_LOGIN_SUCCESSFUL_USER_HAS_CHANGED: string = 'LOGIN-SUCCESSFUL-USER-HAS-CHANGED';
   private static CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD: string = 'WRONG-EMAIL-OR-PASSWORD';
   private static CODE_TRANSLATION_ACCOUNT_CREATED: string = 'ACCOUNT-CREATED';
-  private static CODE_TRANSLATION_ACCOUNT_ALREADY_USE: string = 'ACCOUNT-ALREADY-USE';
+  private static CODE_TRANSLATION_EMAIL_ALREADY_USE: string = 'EMAIL-ALREADY-TAKEN';
   public account: FormGroup;
   public accountNew: FormGroup;
-  public hide: boolean = true;
+  public hideErrorWrong: boolean = true;
+  public hideErrorTaken: boolean = true;
   public showPwlo: boolean = true;
   public showPwCr: boolean = true;
   public keyPressed: boolean = false;
@@ -103,7 +104,7 @@ export class MyAccountComponent implements CanComponentDeactivate {
         }
       } catch (error) {
         if (error.status === 404) {
-          this.hide = false;
+          this.hideErrorWrong = false;
           this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_WRONG_EMAIL_OR_PASSWORD);
         }
       }
@@ -123,7 +124,8 @@ export class MyAccountComponent implements CanComponentDeactivate {
         this.router.navigate([this.navigationCancelService.getCanceledRoute()]).then();
       } catch (error) {
         if (error.status === 400) {
-          this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_ACCOUNT_ALREADY_USE);
+          this.hideErrorTaken = false;
+          this.snackBarService.showError(MyAccountComponent.CODE_TRANSLATION_EMAIL_ALREADY_USE);
         }
       }
     }
