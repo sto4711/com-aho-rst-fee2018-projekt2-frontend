@@ -36,7 +36,7 @@ export class  MyAccountPo {
   public static async login(login: Login) {
     element(by.css('[name="loginEmail"]')).sendKeys(login.email);
     element(by.css('[name="loginPassword"]')).sendKeys(login.pwd);
-    element(by.css('[aria-label="anmelden"]')).click();
+    element(by.css('[aria-label="Anmelden"]')).click();
     await browser.waitForAngular();
   }
 
