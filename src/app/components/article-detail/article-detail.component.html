@@ -32,10 +32,10 @@
           <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
           <ng-container *ngIf="userService.getUser()">
-        <span class="article-like">
-          {{'LIKE' | translate}}<i (click)="onChangeArticleRating(true)" class="fas fa-thumbs-up"></i>
-          {{'DISLIKE' | translate}}<i (click)="onChangeArticleRating(false)" class="fas fa-thumbs-down"></i>
-        </span>
+            <span class="article-like">
+              {{'LIKE' | translate}}<i (click)="onChangeArticleRating(true)" class="fas fa-thumbs-up"></i>
+              {{'DISLIKE' | translate}}<i (click)="onChangeArticleRating(false)" class="fas fa-thumbs-down"></i>
+            </span>
           </ng-container>
         </p>
       </div>
@@ -65,7 +65,8 @@
 
       <p>
         <mat-form-field>
-          <mat-select title="{{'PLEASE-CHOOSE-AMOUNT' | translate}}" placeholder="{{'PLEASE-CHOOSE-AMOUNT' | translate}}"
+          <mat-select title="{{'PLEASE-CHOOSE-AMOUNT' | translate}}"
+                      placeholder="{{'PLEASE-CHOOSE-AMOUNT' | translate}}"
                       [(ngModel)]="selectedValue"
                       (selectionChange)="onSelectedArticleAmount($event.value)">
             <mat-option *ngFor="let anzahl of amount" [value]="anzahl.value">
@@ -78,7 +79,8 @@
 
       <form class="form" #f1="ngForm" (ngSubmit)="onAddShoppingBasketItem()">
         <p>
-          <button attr.aria-label="{{'ADD-TO-SHOPPING-BASKET' | translate}}" class="btn form-btn" type="submit"><i class="fas fa-shopping-cart"></i>{{'ADD-TO-SHOPPING-BASKET' |
+          <button attr.aria-label="{{'ADD-TO-SHOPPING-BASKET' | translate}}" class="btn form-btn" type="submit"><i
+            class="fas fa-shopping-cart"></i>{{'ADD-TO-SHOPPING-BASKET' |
             translate}}
           </button>
         </p>
