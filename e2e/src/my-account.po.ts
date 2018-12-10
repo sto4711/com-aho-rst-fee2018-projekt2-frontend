@@ -45,7 +45,7 @@ export class  MyAccountPo {
   }
 
   public static async logOut() {
-    element(by.css('[name="logOut"]')).click();
+    element.all(by.className('fa-sign-out-alt')).get(0).click();
     await browser.waitForAngular();
   }
 
