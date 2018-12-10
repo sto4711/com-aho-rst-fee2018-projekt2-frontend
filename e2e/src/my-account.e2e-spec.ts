@@ -28,7 +28,6 @@ describe('myAccount login / create user', () => {
       await expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/my-account');
       await MyAccountPo.navigateToHome();
       await MyAccountPo.logOut();
-      await expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
     });
   }
 
