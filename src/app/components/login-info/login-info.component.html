@@ -7,7 +7,7 @@
         class="loginInfoContainer__name">{{userService.getUser() ?.name  }} {{userService.getUser()?.firstname}}
       </span>
       <i *ngIf="userService.getUser()?.token" (click)="onLogOut().then()"
-         class="fas fa-sign-out-alt loginInfoContainer__logout"
+         class="fas fa-sign-out-alt loginInfoContainer__logout" name="logOut"
          matTooltip="{{'LOG-OUT' | translate}}"></i>
     </p>
     <p *ngIf="userService.getUser()?.type ==='admin'">

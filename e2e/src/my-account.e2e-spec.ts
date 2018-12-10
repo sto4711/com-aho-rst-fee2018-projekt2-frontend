@@ -5,7 +5,7 @@ import {MyAccountPo} from './my-account.po';
 describe('myAccount login / create user', () => {
 
   beforeEach(async () => {
-    await MyAccountPo.navigateTo();
+    await MyAccountPo.navigateToMyAccount();
   });
 
   it('when login is fails - stay on page', async () => {
@@ -18,19 +18,22 @@ describe('myAccount login / create user', () => {
     await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
   });
 
-  function createAndLogin(userToCreate: { name: string; firstname: string }) {
+  function createUserLogInLogOut(userToCreate: { name: string; firstname: string }) {
     it('when user "' + userToCreate.name + ' ' +  userToCreate.firstname
       + '" is created (ignore, if already exists)  & login is successful -  redicret to my account page', async () => {
       const user: User = MyAccountPo.createUserObj(userToCreate);
       await MyAccountPo.createUser(user);
-      await MyAccountPo.navigateTo();
+      await MyAccountPo.navigateToMyAccount();
       await MyAccountPo.login(user);
       await expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/my-account');
+      await MyAccountPo.navigateToHome();
+      await MyAccountPo.logOut();
+      await expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
     });
   }
 
   MyAccountPo.usersToCreate.forEach(async userToCreate => {
-    createAndLogin(userToCreate);
+    createUserLogInLogOut(userToCreate);
   });
 
 

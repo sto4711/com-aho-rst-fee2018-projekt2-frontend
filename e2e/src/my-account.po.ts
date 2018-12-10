@@ -29,14 +29,23 @@ export class  MyAccountPo {
     {name: 'Alain', firstname: 'Berset', },
   ];
 
-  public static async navigateTo() {
+  public static async navigateToMyAccount() {
     return await browser.get('/my-account');
+  }
+
+  public static async navigateToHome() {
+    return await browser.get('/home');
   }
 
   public static async login(login: Login) {
     element(by.css('[name="loginEmail"]')).sendKeys(login.email);
     element(by.css('[name="loginPassword"]')).sendKeys(login.pwd);
     element(by.css('[aria-label="Anmelden"]')).click();
+    await browser.waitForAngular();
+  }
+
+  public static async logOut() {
+    element(by.css('[name="logOut"]')).click();
     await browser.waitForAngular();
   }
 
