@@ -36,12 +36,12 @@ describe('shopping basket / order', () => {
   });
 
   it('login user', async () => {
-    await ShoppingBasketPo.loginUser(TestData.loginOk);
+    await ShoppingBasketPo.loginUser(TestData.LOGIN_OK);
     await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/checkout');
   });
 
   it('write customer data', async () => {
-    await ShoppingBasketPo.writeCustomerData(TestData.customerData);
+    await ShoppingBasketPo.writeCustomerData(TestData.CUSTOMER_DATA);
    });
 
   it('order-detail - order completed', async () => {
@@ -60,14 +60,16 @@ describe('shopping basket / order', () => {
       await ShoppingBasketPo.navigateToShoppingBasket();
       await ShoppingBasketPo.navigateToLogin();
       await ShoppingBasketPo.loginUser(MyAccountPo.userToLogin(user));
-      await ShoppingBasketPo.writeCustomerData(TestData.customerData);
+      await ShoppingBasketPo.writeCustomerData(TestData.CUSTOMER_DATA);
       await ShoppingBasketPo.orderDetail();
       await ShoppingBasketPo.logoutUser();
     });
   }
 
-  TestData.users.forEach(async user => {
-    createOrder(MyAccountPo.createUserObj(user));
+  TestData.USERS.forEach(async user => {
+    for (let i = 0; i < 1; i++)  {
+      createOrder(MyAccountPo.createUserObj(user));
+    }
   });
 
 });

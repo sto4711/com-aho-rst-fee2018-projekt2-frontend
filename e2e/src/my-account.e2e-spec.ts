@@ -10,12 +10,12 @@ describe('myAccount login / create user', () => {
   });
 
   it('when login fails - stay on page', async () => {
-    await MyAccountPo.login(TestData.loginNok);
+    await MyAccountPo.login(TestData.LOGIN_NOK);
     await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/my-account');
   });
 
   it('when login is successful -  redicret to home page', async () => {
-    await MyAccountPo.login(TestData.loginOk);
+    await MyAccountPo.login(TestData.LOGIN_OK);
     await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
   });
 
@@ -30,7 +30,7 @@ describe('myAccount login / create user', () => {
     });
   }
 
-  TestData.users.forEach(async user => {
+  TestData.USERS.forEach(async user => {
     createUserLogIn(user);
   });
 
