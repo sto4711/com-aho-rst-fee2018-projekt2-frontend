@@ -3,7 +3,6 @@ import {Login} from '../../src/app/services/user/login';
 import {User} from '../../src/app/services/user/user';
 
 export class  MyAccountPo {
-
   public static loginNok: Login = new Login('wrong@email.com', '1234223322233test');
   public static loginOk: Login = new Login('alain@aholzhauser.ch', 'aho');
   public static usersToCreate: { name: string; firstname: string }[] = [
