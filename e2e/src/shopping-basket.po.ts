@@ -2,6 +2,8 @@ import { browser, by, element } from 'protractor';
 import {Login} from '../../src/app/services/user/login';
 
 export class  ShoppingBasketPo {
+  private static DELAY_MS = 200;
+
   public static async navigateToArticle() {
     return await browser.get('/article-detail?article=Superbike-E-Bike-Modell-1');
   }
@@ -43,20 +45,20 @@ export class  ShoppingBasketPo {
     element(by.css('[aria-label="city"]')).sendKeys(customerData[0].city);
 
     element.all(by.className('matStepperNext')).get(0).click();
-    browser.sleep(1000);
+    browser.sleep(ShoppingBasketPo.DELAY_MS);
 
     element(by.css('[aria-label="phone"]')).clear();
     element(by.css('[aria-label="phone"]')).sendKeys(customerData[0].phone);
     element.all(by.className('matStepperNext')).get(1).click();
-    browser.sleep(1000);
+    browser.sleep(ShoppingBasketPo.DELAY_MS);
 
-    element(by.css('[aria-label="PostPac Priority"]')).click();
+    element.all(by.css('[aria-label="PostPac Priority"]')).get(0).click();
     element.all(by.className('matStepperNext')).get(2).click();
-    browser.sleep(1000);
+    browser.sleep(ShoppingBasketPo.DELAY_MS);
 
-    element(by.css('[aria-label="Paypal"]')).click();
+    element.all(by.css('[aria-label="Paypal"]')).get(0).click();
     element.all(by.className('matStepperNext')).get(3).click();
-    browser.sleep(1000);
+    browser.sleep(ShoppingBasketPo.DELAY_MS);
 
     element(by.css('[aria-label="Jetzt bestellen"]')).click();
     await browser.waitForAngular();
@@ -66,15 +68,7 @@ export class  ShoppingBasketPo {
   }
   public static async logoutUser() {
     element.all(by.className('fa-sign-out-alt')).get(0).click();
-    browser.sleep(1000);
+    browser.sleep(ShoppingBasketPo.DELAY_MS);
 
   }
-
-  public static createShoppingBasket(userLogins: { email: string; pwd: string }): Login {
-    const email = userLogins.email;
-    const pwd = userLogins.pwd;
-    return new Login (email, pwd );
-  }
-
-
 }

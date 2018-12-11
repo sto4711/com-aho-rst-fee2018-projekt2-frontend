@@ -1,11 +1,10 @@
 import {browser} from 'protractor';
 import {ShoppingBasketPo} from './shopping-basket.po';
-import {Login} from '../../src/app/services/user/login';
 import {TestData} from './test-data';
 import {User} from '../../src/app/services/user/user';
 import {MyAccountPo} from './my-account.po';
 
-describe('shopping basket testing', () => {
+describe('shopping basket / order', () => {
 
   beforeEach(async () => {
   });
@@ -54,14 +53,13 @@ describe('shopping basket testing', () => {
     await ShoppingBasketPo.logoutUser();
   });
 
-  function createOrder(userLogins: { email: string; pwd: string }) {
-    it('it should login user', async () => {
-      const login: Login = ShoppingBasketPo.createShoppingBasket(userLogins);
+  function createOrder(user: User) {
+    it('create shopping basket & order for "' + user.name + ' ' + user.firstname + '"', async () => {
       await ShoppingBasketPo.navigateToArticle();
       await ShoppingBasketPo.addArticle();
       await ShoppingBasketPo.navigateToShoppingBasket();
       await ShoppingBasketPo.navigateToLogin();
-      await ShoppingBasketPo.loginUser(login);
+      await ShoppingBasketPo.loginUser(MyAccountPo.userToLogin(user));
       await ShoppingBasketPo.writeCustomerData(TestData.customerData);
       await ShoppingBasketPo.orderDetail();
       await ShoppingBasketPo.logoutUser();
@@ -69,7 +67,7 @@ describe('shopping basket testing', () => {
   }
 
   TestData.users.forEach(async user => {
-    createOrder(MyAccountPo.userToLogin(MyAccountPo.createUserObj(user)));
+    createOrder(MyAccountPo.createUserObj(user));
   });
 
 });
