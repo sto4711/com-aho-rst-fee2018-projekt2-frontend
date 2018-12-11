@@ -18,7 +18,7 @@ describe('myAccount login / create user', () => {
     await expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
   });
 
-  function createUserLogInLogOut(userToCreate: { name: string; firstname: string }) {
+  function createUserLogIn(userToCreate: { name: string; firstname: string }) {
     it('when user "' + userToCreate.name + ' ' +  userToCreate.firstname
       + '" is created (ignore, if already exists)  & login is successful -  redicret to my account page', async () => {
       const user: User = MyAccountPo.createUserObj(userToCreate);
@@ -30,7 +30,7 @@ describe('myAccount login / create user', () => {
   }
 
   MyAccountPo.usersToCreate.forEach(async userToCreate => {
-    createUserLogInLogOut(userToCreate);
+    createUserLogIn(userToCreate);
   });
 
   it('when logout is successful -  redicret to home page', async () => {
