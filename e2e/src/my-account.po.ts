@@ -3,31 +3,6 @@ import {Login} from '../../src/app/services/user/login';
 import {User} from '../../src/app/services/user/user';
 
 export class  MyAccountPo {
-  public static loginNok: Login = new Login('wrong@email.com', '1234223322233test');
-  public static loginOk: Login = new Login('alain@aholzhauser.ch', 'aho');
-  public static usersToCreate: { name: string; firstname: string }[] = [
-    {name: 'Darth', firstname: 'Vader', },
-    {name: 'Han', firstname: 'Solo', },
-    {name: 'Luke', firstname: 'Skywalker', },
-    {name: 'Leia', firstname: 'Organa', },
-    {name: 'Indiana', firstname: 'Jones', },
-    {name: 'Pink', firstname: 'Panther', },
-    {name: 'Iron', firstname: 'Man', },
-    {name: 'James', firstname: 'Bond', },
-    {name: 'Hans', firstname: 'Muster', },
-    {name: 'Helene', firstname: 'Fischer', },
-    {name: 'Stefan', firstname: 'Raab', },
-    {name: 'Elvis', firstname: 'Presley', },
-    {name: 'Barack', firstname: 'Obama', },
-    {name: 'Bill', firstname: 'Clinton', },
-    {name: 'Bud', firstname: 'Spencer', },
-    {name: 'Terence', firstname: 'Hill', },
-    {name: 'Old', firstname: 'Shatterhand', },
-    {name: 'Alfred', firstname: 'Hitchcock', },
-    {name: 'Michael', firstname: 'Ende', },
-    {name: 'Alain', firstname: 'Berset', },
-  ];
-
   public static async navigateToMyAccount() {
     return await browser.get('/my-account');
   }
@@ -67,4 +42,9 @@ export class  MyAccountPo {
     const pwd = userToCreate.name.substr(0, 1) + userToCreate.firstname.substr(0, 2);
     return new User(null, userToCreate.firstname, userToCreate.name, email, pwd, null);
   }
+
+  public static userToLogin(user: User): Login {
+    return new Login(user.email, user.pwd);
+  }
+
 }

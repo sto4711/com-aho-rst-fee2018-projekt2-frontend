@@ -1,37 +1,7 @@
 import { browser, by, element } from 'protractor';
-import {ShoppingBasketService} from '../../src/app/services/shopping-basket/shopping-basket.service';
 import {Login} from '../../src/app/services/user/login';
 
 export class  ShoppingBasketPo {
-  public static shoppingBasketService: ShoppingBasketService;
-  public static loginOk: Login = new Login('alain@aholzhauser.ch', 'aho');
-  public static customerData:  { street: string; plz: string; city: string; phone: string }[] = [
-    {street: 'Wiesenstrasse 2', plz: '8020', city: 'Zürich', phone: '+41 78 546 52 32' },
-  ];
-
-  public static userLogins: { email: string; pwd: string }[] = [
-    {email: 'darth.vader@earth.com', pwd: 'DVa', },
-    {email: 'han.solo@earth.com', pwd: 'HSo', },
-    {email: 'luke.skywalker@earth.com', pwd: 'LSk', },
-    {email: 'leia.organa@earth.com', pwd: 'LOr', },
-    {email: 'indiana.jones@earth.com', pwd: 'IJo', },
-    {email: 'pink.panther@earth.com', pwd: 'PPa', },
-    {email: 'iron.man@earth.com', pwd: 'IMa', },
-    {email: 'james.bond@earth.com', pwd: 'JBo', },
-    {email: 'hans.muster@earth.com', pwd: 'HMu', },
-    {email: 'helene.fischer@earth.com', pwd: 'HFi', },
-    {email: 'stefan.raab@earth.com', pwd: 'SRa', },
-    {email: 'elvis.presley@earth.com', pwd: 'EPr', },
-    {email: 'barack.obama@earth.com', pwd: 'BOb', },
-    {email: 'bill.clinton@earth.com', pwd: 'BCl', },
-    {email: 'bud.spencer@earth.com', pwd: 'BSp', },
-    {email: 'terence.hill@earth.com', pwd: 'THi', },
-    {email: 'old.shatterhand@earth.com', pwd: 'OSh', },
-    {email: 'alfred.hitchcock@earth.com', pwd: 'AHi', },
-    {email: 'michael.ende@earth.com', pwd: 'MEn', },
-    {email: 'alain.berset@earth.com', pwd: 'ABe', },
-  ];
-
   public static async navigateToArticle() {
     return await browser.get('/article-detail?article=Superbike-E-Bike-Modell-1');
   }
