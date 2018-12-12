@@ -29,5 +29,9 @@ export class NavigationCancelService {
     return this.canceledRoute;
   }
 
+  public setCanceledRoute(route: string): void {
+    this.canceledRoute = route;
+    LoggerService.consoleLog(this.constructor.name, 'setCanceledRoute', 'route stored ' + this.canceledRoute);
+  }
 
 }
