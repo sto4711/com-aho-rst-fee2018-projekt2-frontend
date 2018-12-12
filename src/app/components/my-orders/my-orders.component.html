@@ -27,7 +27,7 @@
               <div class="order-item-listing">
                 <div class="order-item" *ngFor="let item of order.shoppingBasket.items">
 
-                  <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{item.articleID}}</p>
+                  <p><span class="order-article-attr">{{'ITEM-NUMBER' | translate}}:</span>{{item.itemNumber}}</p>
                   <p><span class="order-article-attr">{{'AMOUNT' | translate}}:</span>{{item.articleAmount}}
                   </p>
                   <p><span class="order-article-attr">{{'PRICE' | translate}}:</span>CHF {{item.articlePrice |
