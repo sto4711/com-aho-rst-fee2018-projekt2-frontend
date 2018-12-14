@@ -119,7 +119,7 @@
   "ORDER-STATUS-UPDATED": "Order state updated.",
   "ORDER-UPDATE-SAVE": "Order has been saved.",
   "ORDER-IS-DELETED": "Order has been deleted.",
-  "WARNING-MY-DATA-CHANGED": "My changes haven't been saved yet!",
+  "WARNING-MY-DATA-CHANGED": "Changes haven't been saved yet!",
   "WARNING-ORDER-CHANGED": "Order has been changed!",
   "WARNING-USER-CHANGED": "User has been changed!",
   "ORDER-SAVE": "Save order",

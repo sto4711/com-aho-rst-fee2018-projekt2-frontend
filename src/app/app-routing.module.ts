@@ -63,6 +63,7 @@ const routes: Routes = [
       {
         path: 'my-orders', component: MyOrdersComponent,
         canActivate: [AuthGuardService],
+        canDeactivate: [CanComponentDeactivateGuard],
         data: {breadcrumbPath: [new BreadcrumbPath('', 'MY-ORDERS')]}
       },
       {path: 'order-detail', component: OrderDetailComponent},

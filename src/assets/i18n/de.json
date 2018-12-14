@@ -124,7 +124,7 @@
   "ORDER-UPDATE-SAVE": "Die Bestellung wurde gespeichert.",
   "ORDER-IS-DELETED": "Die Bestellung wurde gelöscht.",
   "USER-DATA-UPDATED": "Der Benutzer wurde aktualisiert.",
-  "WARNING-MY-DATA-CHANGED": "Mein Änderungen sind noch nicht gespeichert!",
+  "WARNING-MY-DATA-CHANGED": "Änderungen sind noch nicht gespeichert!",
   "WARNING-ORDER-CHANGED": "Bestellung wurde verändert!",
   "WARNING-USER-CHANGED": "Benutzer wurde verändert!",
   "TO-DELETE-THIS-USER-FOR-SURE": "Diesen Benutzer wirklich löschen?",
