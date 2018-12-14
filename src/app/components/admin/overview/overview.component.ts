@@ -127,7 +127,7 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
 
   public onUpdateOrder(orderData): void {
     this.changed = false;
-    OverviewComponent.getOrderElement(orderData.value._id)[0].classList.toggle('show');
+    OverviewComponent.getOrderElement(orderData.value._id)[0].classList.remove('show');
     const deliveryAddress: Address = new Address(orderData.value.givenname, orderData.value.surname,
       orderData.value.streetHousenumber, orderData.value.postCode, orderData.value.city);
     const contactData: ContactData = new ContactData(orderData.value.email, orderData.value.phone);
@@ -140,11 +140,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
 
   public onFormChange(dataId): void {
     OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
-    this.changed = true;
+     this.changed = true;
   }
 
   public onUpdateUser(userData): void {
-    this.changed = false;
+  this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
     const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
       userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
