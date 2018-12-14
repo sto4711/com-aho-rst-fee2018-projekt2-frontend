@@ -7,37 +7,6 @@
  */
 
 
-form.admin-form {
-  display: inherit;
-  flex-flow: row wrap;
-  width: 100%;
-}
-
-.admin-order {
-  @include flex;
-  justify-content: space-between;
-}
-
-
-.overview-input {
-  height: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-.overview-input .mat-form-field-wrapper, .overview-select {
-  max-width: 200px;
-}
-
-
-
-
-.admin-customer-data {
-
-  width: 35%;
-}
-
-
 .role {
   margin: 0 0 13px 0;
 }

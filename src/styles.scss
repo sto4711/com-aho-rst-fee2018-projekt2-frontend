@@ -182,9 +182,38 @@ main {
   }
 }
 
+.form-customer-data {
+  display: inherit;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.customer-order {
+  @include flex;
+  justify-content: space-between;
+}
+
+
 .order-customer-articles {
   width: 65%;
 }
+
+.customer-data {
+  width: 35%;
+}
+
+
+.customer-data-input {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.customer-data-input .mat-form-field-wrapper, .overview-select {
+  max-width: 200px;
+}
+
+
 
 @media screen and (max-width: 675px) {
   .order-customer-articles,   .order-customer-data  {

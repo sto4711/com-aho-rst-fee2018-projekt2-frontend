@@ -5,9 +5,9 @@ import {ArticleListingComponent} from './components/article-listing/article-list
 import {MyAccountComponent} from './components/my-account/my-account.component';
 import {ArticleDetailComponent} from './components/article-detail/article-detail.component';
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
-import {ArticleTemplateComponent} from './components/article-template/article-template.component';
+import {ArticleTemplateComponent} from './components/article-listing/article-template/article-template.component';
 import {HeaderComponent} from './components/header/header.component';
-import {TopBarComponent} from './components/top-bar/top-bar.component';
+import {TopBarComponent} from './components/header/top-bar/top-bar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {DialogConfirmYesNoComponent} from './components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
@@ -18,10 +18,10 @@ import {TrimPipe} from './pipes/trim.pipe';
 import {DeTrimPipe} from './pipes/de-trim.pipe';
 import {AmountConverterPipe} from './pipes/currency.pipe';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {LangSwitchComponent} from './components/lang-switch/lang-switch.component';
-import {ShoppingBasketListingComponent} from './components/shopping-basket-listing/shopping-basket-listing.component';
+import {LangSwitchComponent} from './components/header/lang-switch/lang-switch.component';
+import {ShoppingBasketListingComponent} from './components/shopping-basket/shopping-basket-listing/shopping-basket-listing.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
-import {LoginInfoComponent} from './components/login-info/login-info.component';
+import {LoginInfoComponent} from './components/header/login-info/login-info.component';
 import {MyOrdersComponent} from './components/my-orders/my-orders.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
@@ -44,7 +44,7 @@ import {ArticlesCacheInterceptor} from './interceptors/articles-cache-intercepto
 import {ErrorResponseInterceptor} from './interceptors/error-response-interceptor';
 import {APP_BASE_HREF} from '@angular/common';
 import {LanguageService} from './services/language/language.service';
-import {SearchResultsComponent} from './components/search-results/search-results.component';
+import {SearchResultsComponent} from './components/search/search-results/search-results.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

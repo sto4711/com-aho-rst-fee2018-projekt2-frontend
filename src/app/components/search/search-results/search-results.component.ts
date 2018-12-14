@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleService} from '../../services/articles/article.service';
+import {ArticleService} from '../../../services/articles/article.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Article} from '../../services/articles/article';
-import {LanguageService} from '../../services/language/language.service';
+import {Article} from '../../../services/articles/article';
+import {LanguageService} from '../../../services/language/language.service';
 
 
 @Component({

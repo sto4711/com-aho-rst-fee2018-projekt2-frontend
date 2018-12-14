@@ -17,7 +17,7 @@ import {MyOrdersComponent} from './components/my-orders/my-orders.component';
 import {AuthGuardService} from './services/guards/auth-guard.service';
 import {CheckoutReadyGuardService} from './services/guards/checkout-ready-guard.service';
 import {InitAppService} from './services/init-app/init-app.service';
-import {SearchResultsComponent} from './components/search-results/search-results.component';
+import {SearchResultsComponent} from './components/search/search-results/search-results.component';
 
 const routes: Routes = [
   {

@@ -26,9 +26,9 @@ import {ArticleListingComponent} from '../article-listing/article-listing.compon
 import {MyAccountComponent} from '../my-account/my-account.component';
 import {ArticleDetailComponent} from '../article-detail/article-detail.component';
 import {ShoppingBasketComponent} from '../shopping-basket/shopping-basket.component';
-import {ArticleTemplateComponent} from '../article-template/article-template.component';
+import {ArticleTemplateComponent} from '../article-listing/article-template/article-template.component';
 import {HeaderComponent} from '../header/header.component';
-import {TopBarComponent} from '../top-bar/top-bar.component';
+import {TopBarComponent} from '../header/top-bar/top-bar.component';
 import {FooterComponent} from '../footer/footer.component';
 import {DialogConfirmYesNoComponent} from '../commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component';
 import {OrderDetailComponent} from '../order-detail/order-detail.component';
@@ -38,13 +38,13 @@ import {TrimPipe} from '../../pipes/trim.pipe';
 import {DeTrimPipe} from '../../pipes/de-trim.pipe';
 import {AmountConverterPipe} from '../../pipes/currency.pipe';
 import {NotFoundComponent} from '../not-found/not-found.component';
-import {LangSwitchComponent} from '../lang-switch/lang-switch.component';
-import {ShoppingBasketListingComponent} from '../shopping-basket-listing/shopping-basket-listing.component';
+import {LangSwitchComponent} from '../header/lang-switch/lang-switch.component';
+import {ShoppingBasketListingComponent} from '../shopping-basket/shopping-basket-listing/shopping-basket-listing.component';
 import {OverviewComponent} from '../admin/overview/overview.component';
-import {LoginInfoComponent} from '../login-info/login-info.component';
+import {LoginInfoComponent} from '../header/login-info/login-info.component';
 import {MyOrdersComponent} from '../my-orders/my-orders.component';
 import {LanguageService} from '../../services/language/language.service';
-import {SearchResultsComponent} from '../search-results/search-results.component';
+import {SearchResultsComponent} from '../search/search-results/search-results.component';
 describe('BreadcrumbComponent', () => {
 
   beforeEach(async(() => {

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {UserService} from '../../services/user/user.service';
+import {UserService} from '../../../services/user/user.service';
 import {Router} from '@angular/router';
-import {SnackBarService} from '../../services/commons/snack-bar/snack-bar.service';
+import {SnackBarService} from '../../../services/commons/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-login-info',

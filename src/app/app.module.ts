@@ -16,24 +16,24 @@ import {SearchComponent} from './components/search/search.component';
 import {TrimPipe} from './pipes/trim.pipe';
 import {ShoppingBasketComponent} from './components/shopping-basket/shopping-basket.component';
 import {AmountConverterPipe} from './pipes/currency.pipe';
-import {ArticleTemplateComponent} from './components/article-template/article-template.component';
+import {ArticleTemplateComponent} from './components/article-listing/article-template/article-template.component';
 import {MatComponentsModule} from './mat-components/mat-components.module';
 import {HeaderComponent} from './components/header/header.component';
-import {TopBarComponent} from './components/top-bar/top-bar.component';
+import {TopBarComponent} from './components/header/top-bar/top-bar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {OrderDetailComponent} from './components/order-detail/order-detail.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {DeTrimPipe} from './pipes/de-trim.pipe';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {LangSwitchComponent} from './components/lang-switch/lang-switch.component';
-import {ShoppingBasketListingComponent} from './components/shopping-basket-listing/shopping-basket-listing.component';
+import {LangSwitchComponent} from './components/header/lang-switch/lang-switch.component';
+import {ShoppingBasketListingComponent} from './components/shopping-basket/shopping-basket-listing/shopping-basket-listing.component';
 import {OverviewComponent} from './components/admin/overview/overview.component';
 import {SnackBarService} from './services/commons/snack-bar/snack-bar.service';
 import {DialogConfirmYesNoComponent} from './components/commons/dialog/dialog-confirm-yes-no/dialog-confirm-yes-no.component';
 import {CanComponentDeactivateGuard} from './services/commons/can-component-deactivate-guard/can-component-deactivate-guard';
 import {ErrorResponseInterceptor} from './interceptors/error-response-interceptor';
-import { LoginInfoComponent } from './components/login-info/login-info.component';
+import { LoginInfoComponent } from './components/header/login-info/login-info.component';
 import {UserService} from './services/user/user.service';
 import {ArticlesResponseCacheService} from './services/articles-response-cache/articles-response-cache.service';
 import {AuthAdminGuardService} from './services/guards/auth-admin-guard.service';
@@ -44,10 +44,10 @@ import {InitAppService} from './services/init-app/init-app.service';
 import {NavigationCancelService} from './services/navigation-cancel/navigation-cancel.service';
 import {LanguageService} from './services/language/language.service';
 import {LoggerService} from './services/logger/logger.service';
-import {SearchResultsComponent} from './components/search-results/search-results.component';
+import {SearchResultsComponent} from './components/search/search-results/search-results.component';
 import {HeaderRequestInterceptor} from './interceptors/header-request-interceptor';
 import {LocalStorageService} from './services/commons/local-storage/local-storage.service';
- import { BottomBasketComponent } from './components/bottom-basket/bottom-basket.component';
+ import { BottomBasketComponent } from './components/shopping-basket/bottom-basket/bottom-basket.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -83,7 +83,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SearchResultsComponent,
     SearchComponent,
     BottomBasketComponent
-     ],
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,

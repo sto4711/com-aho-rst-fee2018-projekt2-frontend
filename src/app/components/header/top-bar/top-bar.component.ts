@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingBasketService} from '../../services/shopping-basket/shopping-basket.service';
+import {ShoppingBasketService} from '../../../services/shopping-basket/shopping-basket.service';
 import {Router} from '@angular/router';
-import {WindowSizeService} from '../../services/window-size/window-size.service';
+import {WindowSizeService} from '../../../services/window-size/window-size.service';
 
 @Component({
   selector: 'app-top-bar',
