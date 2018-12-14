@@ -67,8 +67,7 @@ export class MyOrdersComponent implements OnInit, CanComponentDeactivate {
       .subscribe(
         result => {
           this.orders = result;
-          console.log(result);
-          this.getUserData(result[0].userID);
+           this.getUserData(result[0].userID);
         }
       );
   }
