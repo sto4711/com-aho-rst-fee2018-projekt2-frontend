@@ -15,9 +15,11 @@ export class MyOrdersComponent implements OnInit {
   private static CODE_TRANSLATION_USER_DELETED: string = 'USER-IS-DELETED';
   public p: number = 1;
   public orders: Order[];
+  public userID: string = '';
   public panelOpenState: boolean = false;
   public customerPersonalData: User;
   public changed: boolean = false;
+  public isCDataLoaded: boolean = false;
 
 
   constructor(
@@ -30,21 +32,29 @@ export class MyOrdersComponent implements OnInit {
   private static getOrderElement(orderId): HTMLCollectionOf<Element> {
     return document.getElementsByClassName(orderId);
   }
+  private isAnythingDirty(): boolean {
+    return this.changed;
+  }
+
   public ngOnInit(): void {
+    this.getUserOrders();
+  }
+
+  public getUserOrders(): void {
     this.orderService.getOrdersByUser(this.userService.getUser()._id)
       .subscribe(
         result => {
           this.orders = result;
-           this.getUserData(result[0].userID);
-         }
+          this.getUserData(result[0].userID);
+        }
       );
   }
-
   public getUserData (userData): void {
     this.userService.get(userData)
       .subscribe(
         result => {
           this.customerPersonalData = result;
+          this.isCDataLoaded = true;
         }
       );
   }

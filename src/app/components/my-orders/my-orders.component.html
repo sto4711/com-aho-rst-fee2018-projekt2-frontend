@@ -9,7 +9,7 @@
     <p>{{'NO-ORDERS-FOUND' | translate}}</p>
   </ng-container>
   <ng-container *ngIf="orders?.length > 0">
-    <div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p }; trackBy: order?._id" >
+    <div *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p };" >
       <ng-container>
 
         <mat-accordion>
@@ -105,70 +105,71 @@
 
      <mat-tab label="{{'PARTICULARS' | translate}}">
 
-      <div class="customer-order personal-data-wrap">
+       <div class="customer-order personal-data-wrap" *ngIf="isCDataLoaded">
          <form #userForm="ngForm" class="form-customer-data">
-          <div class="customer-data">
-            <h4>{{'PARTICULARS' | translate}} <span class="warning hidden
-                {{customerPersonalData._id}}">{{'WARNING-MY-DATA-CHANGED' | translate}}</span>
-            </h4>
-            <input type="hidden" name="user_id" [(ngModel)]="customerPersonalData._id" #user_id>
-            <p>
-              <span class="review-data">{{'FIRST-NAME' | translate}}: </span>
-              <mat-form-field class="customer-data-input">
-                <input matInput placeholder=""
-                       (change)="onFormChange(customerPersonalData._id);"
-                       name="name"
-                       [(ngModel)]="customerPersonalData.name"
-                       #name
-                       required>
-                <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
-              </mat-form-field>
-            </p>
-            <p>
-              <span class="review-data">{{'LAST-NAME' | translate}}: </span>
-              <mat-form-field class="customer-data-input">
-                <input matInput placeholder=""
-                       (change)="onFormChange(customerPersonalData._id);"
-                       name="firstname"
-                       [(ngModel)]="customerPersonalData.firstname"
-                       #firstname
-                       required>
-                <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
-              </mat-form-field>
-            </p>
-            <p>
-              <span class="review-data">{{'E-MAIL' | translate}}: </span>
-              <mat-form-field class="customer-data-input">
-                <input matInput placeholder=""
-                       (change)="onFormChange(customerPersonalData._id);"
-                       name="email"
-                       [(ngModel)]="customerPersonalData.email"
-                       #email
-                       required>
-                <mat-icon matSuffix> <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i></mat-icon></mat-icon>
-              </mat-form-field>
-            </p>
-            <p>
-              <span class="review-data">{{'PASSWORD' | translate}}: </span>
-              <mat-form-field class="customer-data-input">
-                <input matInput placeholder=""
-                       (change)="onFormChange(customerPersonalData._id);"
-                       name="pwd"
-                       (ngModel)="customerPersonalData.pwd"
-                       #pwd
-                       required>
-                <mat-icon matSuffix><i class="fas fa-key form-icon"></i></mat-icon>
-              </mat-form-field>
-            </p>
 
-          </div><!-- end .customer-data -->
+           <div class="customer-data">
+             <h4>{{'PARTICULARS' | translate}} <span class="warning hidden
+          {{customerPersonalData._id}}">{{'WARNING-MY-DATA-CHANGED' | translate}}</span>
+             </h4>
+             <input type="hidden" name="user_id" [(ngModel)]="customerPersonalData._id" #user_id>
+             <p>
+               <span class="review-data">{{'FIRST-NAME' | translate}}: </span>
+               <mat-form-field class="customer-data-input">
+                 <input matInput placeholder=""
+                        (change)="onFormChange(customerPersonalData._id);"
+                        name="name"
+                        [(ngModel)]="customerPersonalData.name"
+                        #name
+                        required>
+                 <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
+               </mat-form-field>
+             </p>
+             <p>
+               <span class="review-data">{{'LAST-NAME' | translate}}: </span>
+               <mat-form-field class="customer-data-input">
+                 <input matInput placeholder=""
+                        (change)="onFormChange(customerPersonalData._id);"
+                        name="firstname"
+                        [(ngModel)]="customerPersonalData.firstname"
+                        #firstname
+                        required>
+                 <mat-icon matSuffix><i class="far fa-grin-beam form-icon"></i></mat-icon>
+               </mat-form-field>
+             </p>
+             <p>
+               <span class="review-data">{{'E-MAIL' | translate}}: </span>
+               <mat-form-field class="customer-data-input">
+                 <input matInput placeholder=""
+                        (change)="onFormChange(customerPersonalData._id);"
+                        name="email"
+                        [(ngModel)]="customerPersonalData.email"
+                        #email
+                        required>
+                 <mat-icon matSuffix> <mat-icon matSuffix><i class="fas fa-envelope form-icon"></i></mat-icon></mat-icon>
+               </mat-form-field>
+             </p>
+             <p>
+               <span class="review-data">{{'PASSWORD' | translate}}: </span>
+               <mat-form-field class="customer-data-input">
+                 <input matInput placeholder=""
+                        (change)="onFormChange(customerPersonalData._id);"
+                        name="pwd"
+                        (ngModel)="customerPersonalData.pwd"
+                        #pwd
+                        required>
+                 <mat-icon matSuffix><i class="fas fa-key form-icon"></i></mat-icon>
+               </mat-form-field>
+             </p>
 
-        </form>
-        <button attr.aria-label="{{'USER-SAVE' | translate}}" (click)="onUpdateUser(userForm)"
-                class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'SAVE' | translate}}
-        </button>
-      </div><!-- end .customer-orders -->
+           </div><!-- end .customer-data -->
 
+
+         </form>
+         <button attr.aria-label="{{'USER-SAVE' | translate}}" (click)="onUpdateUser(userForm)"
+                 class="btn form-btn" type="submit"><i class="fas form-btn"></i>{{'SAVE' | translate}}
+         </button>
+       </div><!-- end .customer-orders -->
 
      </mat-tab>
 

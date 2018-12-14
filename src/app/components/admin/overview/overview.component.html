@@ -18,7 +18,7 @@
             </thead>
             <tbody>
             <tr
-              *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' }; trackBy: order?._id ">
+              *ngFor="let order of orders | paginate: { itemsPerPage: 6, currentPage: p, id: 'customer-orders' };">
               <td class="custom-expansion-panel" colspan="3"
                   *ngIf="(order.state =='APPROVED' || order.state =='COMPLETED' || order.state =='CANCELED') ">
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -243,7 +243,7 @@
             </thead>
             <tbody>
             <tr
-              *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' }; trackBy: user?._id ">
+              *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: t, id: 'users-data' }; ">
               <td>
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                   <mat-expansion-panel-header>
