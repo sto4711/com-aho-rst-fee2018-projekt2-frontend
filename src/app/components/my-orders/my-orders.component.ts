@@ -17,8 +17,9 @@ import {backendUrls} from '../../constants/backend-urls';
   styleUrls: ['./my-orders.component.scss']
 })
 export class MyOrdersComponent implements OnInit, CanComponentDeactivate {
-  private static CODE_TRANSLATION_USER_UPDATED: string = 'USER-DATA-UPDATED';
-   public p: number = 1;
+  private static CODE_TRANSLATION_PARTICULARS_UPDATED: string = 'USER-PARTICULARS-UPDATED';
+
+  public p: number = 1;
   public orders: Order[];
   public userID: string = '';
   public panelOpenState: boolean = false;
@@ -93,7 +94,7 @@ export class MyOrdersComponent implements OnInit, CanComponentDeactivate {
     const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
       userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
     this.userService.updateUser(updatedUser).subscribe(() =>
-      this.snackBarService.showInfo(MyOrdersComponent.CODE_TRANSLATION_USER_UPDATED));
+      this.snackBarService.showInfo(MyOrdersComponent.CODE_TRANSLATION_PARTICULARS_UPDATED));
   }
 
 }

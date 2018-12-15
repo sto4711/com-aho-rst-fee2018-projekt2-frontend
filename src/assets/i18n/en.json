@@ -117,6 +117,7 @@
   "EMAIL-ALREADY-TAKEN": "Email has already been taken.",
   "ACCOUNT-ALREADY-USE": "This Account already exists.",
   "ORDER-STATUS-UPDATED": "Order state updated.",
+  "USER-PARTICULARS-UPDATED": "Particulars updated.",
   "ORDER-UPDATE-SAVE": "Order has been saved.",
   "ORDER-IS-DELETED": "Order has been deleted.",
   "WARNING-MY-DATA-CHANGED": "Changes haven't been saved yet!",
