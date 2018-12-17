@@ -33,7 +33,7 @@ export const backendUrls: {
   createShoppingBasket: environment.backendUrl + 'backend/create/shopping-basket',
   createOrder: environment.backendUrl + 'backend/create/order',
   deleteUser: environment.backendUrl + 'backend/delete/user',
-  deleteOrder: environment.backendUrl + 'backend/order/delete-order',
+  deleteOrder: environment.backendUrl + 'backend/delete/order',
   addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
   removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
   // PATCH
