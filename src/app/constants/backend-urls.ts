@@ -36,8 +36,10 @@ export const backendUrls: {
   deleteOrder: environment.backendUrl + 'backend/delete/order',
   addItemShoppingBasket: environment.backendUrl + 'backend/add-item/shopping-basket',
   removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
-  // PATCH
+  // PUT
   updateUser: environment.backendUrl + 'backend/update/user',
+
+  // PATCH
   updateOrder: environment.backendUrl + 'backend/update/order',
   updateOrderState: environment.backendUrl + 'backend/update/order/state',
   updateOrderDeliveryAddress: environment.backendUrl + 'backend/update/order/delivery-address',

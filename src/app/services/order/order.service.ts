@@ -134,7 +134,7 @@ export class OrderService {
   }
 
   public updateOrder(orderData: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrls.updateOrder, orderData)
+    return this.http.put<Order>(backendUrls.updateOrder, orderData)
       .pipe(
         tap(() => LoggerService.consoleLog(this.constructor.name, 'updateOrder', 'ok'))
       );
