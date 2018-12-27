@@ -66,7 +66,7 @@ export class OrderService {
   }
 
   private change(backendUrl: string, order: Order): Observable<Order> {
-    return this.http.patch<Order>(backendUrl, order)
+    return this.http.put<Order>(backendUrl, order)
       .pipe(
         tap(() => {
           this.order = order;

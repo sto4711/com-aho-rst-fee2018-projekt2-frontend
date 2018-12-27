@@ -38,14 +38,13 @@ export const backendUrls: {
   removeItemShoppingBasket: environment.backendUrl + 'backend/remove-item/shopping-basket',
   // PUT
   updateUser: environment.backendUrl + 'backend/update/user',
-
-  // PATCH
   updateOrder: environment.backendUrl + 'backend/update/order',
-  updateOrderState: environment.backendUrl + 'backend/update/order/state',
   updateOrderDeliveryAddress: environment.backendUrl + 'backend/update/order/delivery-address',
   updateOrderContactData: environment.backendUrl + 'backend/update/order/contact-data',
   updateOrderDeliveryType: environment.backendUrl + 'backend/update/order/delivery-type',
   updateOrderPaymentType: environment.backendUrl + 'backend/update/order/payment-type',
+  // PATCH
+  updateOrderState: environment.backendUrl + 'backend/update/order/state',
   changeRatingArticle: environment.backendUrl + 'backend/change-rating/article',
   changeItemAmountShoppingBasket: environment.backendUrl + 'backend/change-item-amount/shopping-basket',
 };
