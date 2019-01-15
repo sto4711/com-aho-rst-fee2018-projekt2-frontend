@@ -90,8 +90,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
   }
 
   public ngOnInit(): void {
-    this.getUsers();
-    this.getAllOrders();
+    this.userService.getUsers()
+      .subscribe(users => {
+        this.users = users;
+        this.getAllOrders();
+      });
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -140,11 +143,11 @@ export class OverviewComponent implements OnInit, CanComponentDeactivate {
 
   public onFormChange(dataId): void {
     OverviewComponent.getOrderElement(dataId)[0].classList.add('show');
-     this.changed = true;
+    this.changed = true;
   }
 
   public onUpdateUser(userData): void {
-  this.changed = false;
+    this.changed = false;
     OverviewComponent.getOrderElement(userData.value.user_id)[0].classList.toggle('show');
     const updatedUser: User = new User(userData.value.user_id, userData.value.firstname,
       userData.value.name, userData.value.email, userData.value.pwd, userData.value.type);
